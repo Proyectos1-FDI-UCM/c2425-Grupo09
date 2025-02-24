@@ -65,10 +65,17 @@ public class MovimientoHorizontal : MonoBehaviour
 
     private void FixedUpdate()
     {
+        float moveX = InputManager.Instance.MovementVector.x;
 
-        rig.velocity = new Vector2(velocidad * InputManager.Instance.MovementVector.x, rig.velocity.y);
+        rig.velocity = new Vector2(velocidad * moveX, rig.velocity.y);
 
+        if (moveX > 0)
+            transform.rotation = Quaternion.Euler(0, 0, 0); 
+        else if (moveX < 0)
+            transform.rotation = Quaternion.Euler(0, 180, 0); 
     }
+
+
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>

@@ -92,7 +92,7 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
+       Instantiate(_bulletPrefab, transform.position, transform.rotation);
     }
 
 
