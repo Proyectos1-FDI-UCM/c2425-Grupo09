@@ -44,3 +44,6 @@ TagManager:
   - name: Cave
     uniqueID: 2528510245
     locked: 0
+  - name: Player
+    uniqueID: 248116673
+    locked: 0
