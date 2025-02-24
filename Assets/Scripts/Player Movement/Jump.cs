@@ -18,16 +18,14 @@ public class Jump : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     [SerializeField] float _alturaSalto;
-    [SerializeField] Rigidbody2D _rB;
     [SerializeField] Transform _controlarSuelo;
     [SerializeField] LayerMask _suelo;
+    [SerializeField] Vector3 _caja;
     // ---- ATRIBUTOS PRIVADOS ----
     private InputActionSettings _inputAction;
+    private Rigidbody2D _rB;
     private bool _enSuelo;
-    
-    private Vector3 _caja;
-    
-    
+    private int _saltoExtra = 1;
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     private void Awake()
@@ -47,6 +45,7 @@ public class Jump : MonoBehaviour
     private void Update()
     {
         _enSuelo = Physics2D.OverlapBox(_controlarSuelo.position, _caja,0f,_suelo);
+
     }
 
     // ---- MÉTODOS PÚBLICOS ----
@@ -64,10 +63,17 @@ public class Jump : MonoBehaviour
     {
         if (_enSuelo)
         {
-            _rB.AddForce(new Vector2(0, _alturaSalto), ForceMode2D.Impulse);
+            _rB.velocity = new Vector2(0, _alturaSalto);
+            _saltoExtra = 1;
+        }else if(_saltoExtra > 0)
+        {
+            _rB.velocity = new Vector2(0, _alturaSalto);
+            _saltoExtra--;
         }
 
+
     }
+
     private void OnEnable() => _inputAction.Player.Enable();
     private void OnDisable() => _inputAction.Player.Disable();
 

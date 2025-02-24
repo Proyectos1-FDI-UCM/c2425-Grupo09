@@ -147,7 +147,7 @@ Transform:
   m_GameObject: {fileID: 62857880}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.007, y: -0.505, z: 0}
+  m_LocalPosition: {x: -0, y: -0.544, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -404,7 +404,7 @@ BoxCollider2D:
   m_GameObject: {fileID: 1335188189}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 123d7b3fa5e29cc42a792f67c5e6d019, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -456,7 +456,7 @@ Rigidbody2D:
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 123d7b3fa5e29cc42a792f67c5e6d019, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -547,12 +547,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4efd35807f561ca4f9df4aef0d3301f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _alturaSalto: 1
-  _rB: {fileID: 1335188191}
+  _alturaSalto: 6
   _controlarSuelo: {fileID: 62857881}
   _suelo:
     serializedVersion: 2
     m_Bits: 128
+  _caja: {x: 1, y: 0.1, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
