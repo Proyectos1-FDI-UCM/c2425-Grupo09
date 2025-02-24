@@ -23,7 +23,7 @@ public class Bullet : MonoBehaviour
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
 
-    [SerializeField] private float speed;
+    [SerializeField] private float _speed;
 
     #endregion
     
@@ -35,7 +35,7 @@ public class Bullet : MonoBehaviour
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-    private Rigidbody2D rb;
+    private Rigidbody2D _rb;
 
     #endregion
     
@@ -47,13 +47,12 @@ public class Bullet : MonoBehaviour
     // - Hay que borrar los que no se usen 
     
     /// <summary>
-    /// Start is called on the frame when a script is enabled just before 
-    /// any of the Update methods are called the first time.
+    /// En el start, se le da la velocidad a la bala.
     /// </summary>
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-        rb.velocity = transform.right * speed;
+        _rb = GetComponent<Rigidbody2D>();
+        _rb.velocity = transform.right * _speed;
     }
 
     /// <summary>
@@ -82,6 +81,9 @@ public class Bullet : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
+    /// <summary>
+    /// Detecta la colision, y destruye la bala al detectarla.
+    /// </summary>
     private void OnCollisionEnter2D(Collision2D coll)
     {
         Destroy(gameObject);

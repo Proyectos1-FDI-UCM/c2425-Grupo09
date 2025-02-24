@@ -22,8 +22,8 @@ public class Weapon : MonoBehaviour
     // públicos y de inspector se nombren en formato PascalCase
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
-    [SerializeField] private GameObject bulletPrefab;
-    [SerializeField] private float cadenciaDeDisparo;
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private float _cadenciaDeDisparo;
 
     #endregion
     
@@ -35,7 +35,7 @@ public class Weapon : MonoBehaviour
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-    private float tiempoUltimoDisparo;
+    private float _tiempoUltimoDisparo;
 
     #endregion
     
@@ -57,13 +57,14 @@ public class Weapon : MonoBehaviour
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// Si se detecta el input del disparo, y ha pasado el tiempo de cooldown desde el disparo anterior, ejecuta la accion de disparar.
     /// </summary>
     void Update()
     {
-        if (InputManager.Instance.FireWasPressedThisFrame() && Time.time > tiempoUltimoDisparo + cadenciaDeDisparo)
+        if (InputManager.Instance.FireWasPressedThisFrame() && Time.time > _tiempoUltimoDisparo + _cadenciaDeDisparo)
         {
             Shoot();
-            tiempoUltimoDisparo = Time.time;
+            _tiempoUltimoDisparo = Time.time;
         }
             
     }
@@ -86,9 +87,12 @@ public class Weapon : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
     
+    /// <summary>
+    /// Instancia la bala en la posición del jugador 
+    /// </summary>
     private void Shoot()
     {
-        Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+        Instantiate(_bulletPrefab, transform.position, Quaternion.identity);
     }
 
 

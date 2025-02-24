@@ -1864,8 +1864,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7151fdab0452d1a47bd48e66be8b89c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
-  cadenciaDeDisparo: 0.5
+  _bulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
+  _cadenciaDeDisparo: 0.5
 --- !u!1 &1263186883
 GameObject:
   m_ObjectHideFlags: 0
