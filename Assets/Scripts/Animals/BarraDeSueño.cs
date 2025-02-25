@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Script que lleva la bala para gestionar su movimiento
+// Se encarga de gestionar la barra de sueño de los animales
 // Sergio Valiente Urueña
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
@@ -13,7 +13,7 @@ using UnityEngine;
 /// Antes de cada class, descripción de qué es y para qué sirve,
 /// usando todas las líneas que sean necesarias.
 /// </summary>
-public class Bullet : MonoBehaviour
+public class BarraDeSueño : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
@@ -22,8 +22,7 @@ public class Bullet : MonoBehaviour
     // públicos y de inspector se nombren en formato PascalCase
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
-
-    [SerializeField] private float _speed;
+    [SerializeField] int _maxBarraDeSueño;
 
     #endregion
     
@@ -35,7 +34,9 @@ public class Bullet : MonoBehaviour
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-    private Rigidbody2D _rb;
+    
+    [SerializeField] private int _barraDeSueño = 0; 
+    //De momento está SerializeField para poder comprobar en el inspector que aumenta correctamente. Luego se quitará.
 
     #endregion
     
@@ -47,12 +48,12 @@ public class Bullet : MonoBehaviour
     // - Hay que borrar los que no se usen 
     
     /// <summary>
-    /// En el start, se le da la velocidad a la bala.
+    /// Start is called on the frame when a script is enabled just before 
+    /// any of the Update methods are called the first time.
     /// </summary>
     void Start()
     {
-        _rb = GetComponent<Rigidbody2D>();
-        _rb.velocity = transform.right * _speed;
+        
     }
 
     /// <summary>
@@ -72,6 +73,15 @@ public class Bullet : MonoBehaviour
     // mayúscula, incluida la primera letra)
     // Ejemplo: GetPlayerController
 
+    /// <summary>
+    /// Método que se llama desde el script Bullet para aumentar el sueño del animal.
+    /// </summary>
+    public void Dormir(int amount)
+    {
+        if(_barraDeSueño < _maxBarraDeSueño)
+        _barraDeSueño += amount;
+    }
+
     #endregion
     
     // ---- MÉTODOS PRIVADOS ----
@@ -81,15 +91,7 @@ public class Bullet : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
-    /// <summary>
-    /// Detecta la colision, y destruye la bala al detectarla.
-    /// </summary>
-    private void OnCollisionEnter2D(Collision2D coll)
-    {
-        Destroy(gameObject);
-    }
-
     #endregion   
 
-} // class Bullet 
+} // class BarraDeSueño 
 // namespace
