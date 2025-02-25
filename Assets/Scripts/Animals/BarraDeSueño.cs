@@ -1,97 +1,97 @@
 //---------------------------------------------------------
-// Componente de test para probar el input de disparo 
-// Guillermo Jiménez Díaz
-// TemplateP1
+// Se encarga de gestionar la barra de sueño de los animales
+// Sergio Valiente Urueña
+// The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
+// Añadir aquí el resto de directivas using
+
 
 /// <summary>
-/// Componente de prueba que se comunica con el InputManager
-/// para mostrar por consola los eventos de la acción Fire.
-/// Como los eventos IsPressed se muestran cada frame y
-/// saturan la consola, tenemos un tick en el editor para
-/// habilitarlos
+/// Antes de cada class, descripción de qué es y para qué sirve,
+/// usando todas las líneas que sean necesarias.
 /// </summary>
-public class TestFire : MonoBehaviour
+public class BarraDeSueño : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
-
     #region Atributos del Inspector (serialized fields)
-    
-    /// <summary>
-    /// Si está activado, se muestran todos los eventos de que
-    /// la acción está siendo realizada (uno por frame)
-    /// </summary>
-    [SerializeField]
-    private bool displayIsPressed = false;
+    // Documentar cada atributo que aparece aquí.
+    // El convenio de nombres de Unity recomienda que los atributos
+    // públicos y de inspector se nombren en formato PascalCase
+    // (palabras con primera letra mayúscula, incluida la primera letra)
+    // Ejemplo: MaxHealthPoints
+    [SerializeField] int _maxBarraDeSueño;
 
     #endregion
-
-
-
+    
     // ---- ATRIBUTOS PRIVADOS ----
-
     #region Atributos Privados (private fields)
-
     // Documentar cada atributo que aparece aquí.
     // El convenio de nombres de Unity recomienda que los atributos
     // privados se nombren en formato _camelCase (comienza con _, 
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
+    
+    [SerializeField] private int _barraDeSueño = 0; 
+    //De momento está SerializeField para poder comprobar en el inspector que aumenta correctamente. Luego se quitará.
 
     #endregion
-
+    
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
-
     #region Métodos de MonoBehaviour
+    
+    // Por defecto están los típicos (Update y Start) pero:
+    // - Hay que añadir todos los que sean necesarios
+    // - Hay que borrar los que no se usen 
+    
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before 
+    /// any of the Update methods are called the first time.
+    /// </summary>
+    void Start()
+    {
+        
+    }
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
-        if (InputManager.Instance.FireWasPressedThisFrame())
-            Debug.Log($"{Time.frameCount}[{Time.deltaTime}]: Fire was pressed this frame");
-
-        if (InputManager.Instance.FireWasReleasedThisFrame())
-            Debug.Log($"{Time.frameCount}[{Time.deltaTime}]: Fire was released this frame");
-
-        if (displayIsPressed && InputManager.Instance.FireIsPressed())
-        {
-            Debug.Log($"{Time.frameCount}[{Time.deltaTime}]: Fire was pressed");
-        }
+        
     }
-
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
-
     #region Métodos públicos
-
     // Documentar cada método que aparece aquí con ///<summary>
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
     // Ejemplo: GetPlayerController
 
+    /// <summary>
+    /// Método que se llama desde el script Bullet para aumentar el sueño del animal.
+    /// </summary>
+    public void Dormir(int amount)
+    {
+        if(_barraDeSueño < _maxBarraDeSueño)
+        _barraDeSueño += amount;
+    }
+
     #endregion
-
+    
     // ---- MÉTODOS PRIVADOS ----
-
     #region Métodos Privados
-
     // Documentar cada método que aparece aquí
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
-    private void Shoot()
-    {
-        
-    }
 
-    #endregion
-} // class TestFire 
+    #endregion   
+
+} // class BarraDeSueño 
 // namespace

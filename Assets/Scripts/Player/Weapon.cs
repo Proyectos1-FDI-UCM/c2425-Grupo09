@@ -1,24 +1,20 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
-// Nombre del juego
+// Script que se encarga de gestionar el disparo
+// Sergio Valiente Urueña
+// The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
 // Añadir aquí el resto de directivas using
 
-using System.Collections;
-using System.Collections.Generic;
 
 /// <summary>
 /// Antes de cada class, descripción de qué es y para qué sirve,
 /// usando todas las líneas que sean necesarias.
 /// </summary>
-public class MovimientoHorizontal : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
-
-
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
     // Documentar cada atributo que aparece aquí.
@@ -26,11 +22,11 @@ public class MovimientoHorizontal : MonoBehaviour
     // públicos y de inspector se nombren en formato PascalCase
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
+    [SerializeField] private GameObject _bulletPrefab;
+    [SerializeField] private float _cadenciaDeDisparo;
 
-    [SerializeField] float velocidad;
     #endregion
-
-
+    
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
     // Documentar cada atributo que aparece aquí.
@@ -39,17 +35,17 @@ public class MovimientoHorizontal : MonoBehaviour
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-    private Rigidbody2D rig;
+    private float _tiempoUltimoDisparo;
 
     #endregion
-
+    
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-
+    
     // Por defecto están los típicos (Update y Start) pero:
     // - Hay que añadir todos los que sean necesarios
     // - Hay que borrar los que no se usen 
-
+    
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
     /// any of the Update methods are called the first time.
@@ -58,23 +54,19 @@ public class MovimientoHorizontal : MonoBehaviour
     {
         
     }
-    private void Awake()
-    {
-        rig = GetComponent<Rigidbody2D>();
-    }
 
-    private void FixedUpdate()
-    {
-
-        rig.velocity = new Vector2(velocidad * InputManager.Instance.MovementVector.x, rig.velocity.y);
-
-    }
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// Si se detecta el input del disparo, y ha pasado el tiempo de cooldown desde el disparo anterior, ejecuta la accion de disparar.
     /// </summary>
     void Update()
     {
-        
+        if (InputManager.Instance.FireWasPressedThisFrame() && Time.time > _tiempoUltimoDisparo + _cadenciaDeDisparo)
+        {
+            Shoot();
+            _tiempoUltimoDisparo = Time.time;
+        }
+            
     }
     #endregion
 
@@ -94,8 +86,18 @@ public class MovimientoHorizontal : MonoBehaviour
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
+    
+    /// <summary>
+    /// Instancia la bala en la posición del jugador 
+    /// </summary>
+    private void Shoot()
+    {
+       Instantiate(_bulletPrefab, transform.position, transform.rotation);
+    }
+
+
 
     #endregion   
 
-} // class NewBehaviourScript 
+} // class Shoot 
 // namespace
