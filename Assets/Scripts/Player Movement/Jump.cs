@@ -44,7 +44,7 @@ public class Jump : MonoBehaviour
         if(_enSuelo)
         {
             _contadorCoyote = _coyoteTime;
-            _saltoExtra = 1;
+            _saltoExtra = 0;
         }
         else 
         {
