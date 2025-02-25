@@ -21,10 +21,12 @@ public class Jump : MonoBehaviour
     [SerializeField] Transform _controlarSuelo;
     [SerializeField] LayerMask _suelo;
     [SerializeField] Vector3 _caja;
+    [SerializeField] float _coyoteTime;
     // ---- ATRIBUTOS PRIVADOS ----
     private Rigidbody2D _rB;
     private bool _enSuelo;
     private int _saltoExtra = 1;
+    private float _contadorCoyote;
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
 
@@ -37,6 +39,7 @@ public class Jump : MonoBehaviour
     {
         _enSuelo = Physics2D.OverlapBox(_controlarSuelo.position, _caja,0f,_suelo);
 
+        
         if (InputManager.Instance.JumpWasPressedThisFrame()){
             Salto();
         }
