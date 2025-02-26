@@ -22,13 +22,15 @@ public class Jump : MonoBehaviour
     [SerializeField] LayerMask _suelo;
     [SerializeField] Vector3 _caja;
     [SerializeField] float _coyoteTime;
-    [SerializeField] float _jumpBuffer;
+    [SerializeField] GameObject _prefab;
+
     // ---- ATRIBUTOS PRIVADOS ----
     private Rigidbody2D _rB;
     private bool _enSuelo;
-    private int _saltoExtra = 1;
-    private float _contadorCoyote;
-    private float _contadorBuffer;
+    private float _coyoteCounter;
+    private bool _canJump;
+    
+
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
 
@@ -39,27 +41,24 @@ public class Jump : MonoBehaviour
     }
     private void Update()
     {
-        _enSuelo = Physics2D.OverlapBox(_controlarSuelo.position, _caja,0f,_suelo);
+        _enSuelo = Physics2D.OverlapBox(_controlarSuelo.position, _caja, 0f, _suelo);
+        if (_enSuelo)
+        { 
+            _canJump = true;
+            _coyoteCounter = _coyoteTime;
+        }else
+            _coyoteCounter -= Time.deltaTime;
 
-        if(_enSuelo)
+        if (InputManager.Instance.JumpWasPressedThisFrame() && _canJump)
         {
-            _contadorCoyote = _coyoteTime;
-            _saltoExtra = 0;
+            Instantiate(_prefab, gameObject.transform.position, gameObject.transform.rotation);
+            if (_coyoteCounter > 0)
+            {
+                Salto();
+            }
         }
-        else 
-        {
-            _contadorCoyote -= Time.deltaTime;
-        }
+        
 
-        if (InputManager.Instance.JumpWasPressedThisFrame())
-        {
-            _contadorBuffer = _jumpBuffer;
-            Salto();
-        }
-        else
-        {
-            _contadorBuffer -= Time.deltaTime;
-        }
 
     }
 
@@ -76,16 +75,11 @@ public class Jump : MonoBehaviour
     // ---- MÉTODOS PRIVADOS ----
     private void Salto()
     {
-        if (_contadorCoyote > 0f && _enSuelo)
-        {
+        
             _rB.velocity = new Vector2(0, _alturaSalto);
-            _contadorBuffer = 0;
-            
-        }else if(_saltoExtra > 0 && !_enSuelo)
-        {
-            _rB.velocity = new Vector2(0, _alturaSalto);
-            _saltoExtra--;
-        }
+        
+
+        _canJump = false;   
     }
 
 } // class Jump 
