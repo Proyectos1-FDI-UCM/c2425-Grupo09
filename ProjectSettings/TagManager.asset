@@ -11,12 +11,12 @@ TagManager:
   - 
   - Water
   - UI
-  - Player
-  - Ground
-  - Pickable
-  - Picker
-  - Bullet
-  - Animals
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   - 
   - 
   - 
@@ -40,10 +40,4 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
-    locked: 0
-  - name: Cave
-    uniqueID: 2528510245
-    locked: 0
-  - name: Player
-    uniqueID: 248116673
     locked: 0

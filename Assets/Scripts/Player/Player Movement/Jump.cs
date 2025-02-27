@@ -21,10 +21,16 @@ public class Jump : MonoBehaviour
     [SerializeField] Transform _controlarSuelo;
     [SerializeField] LayerMask _suelo;
     [SerializeField] Vector3 _caja;
+    [SerializeField] float _coyoteTime;
+    [SerializeField] GameObject _prefab;
+
     // ---- ATRIBUTOS PRIVADOS ----
     private Rigidbody2D _rB;
     private bool _enSuelo;
-    private int _saltoExtra = 1;
+    private float _coyoteCounter;
+    private bool _canJump;
+    
+
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
 
@@ -35,11 +41,24 @@ public class Jump : MonoBehaviour
     }
     private void Update()
     {
-        _enSuelo = Physics2D.OverlapBox(_controlarSuelo.position, _caja,0f,_suelo);
+        _enSuelo = Physics2D.OverlapBox(_controlarSuelo.position, _caja, 0f, _suelo);
+        if (_enSuelo)
+        { 
+            _canJump = true;
+            _coyoteCounter = _coyoteTime;
+        }else
+            _coyoteCounter -= Time.deltaTime;
 
-        if (InputManager.Instance.JumpWasPressedThisFrame()){
-            Salto();
+        if (InputManager.Instance.JumpWasPressedThisFrame() && _canJump)
+        {
+            Instantiate(_prefab, gameObject.transform.position, gameObject.transform.rotation);
+            if (_coyoteCounter > 0)
+            {
+                Salto();
+            }
         }
+        
+
 
     }
 
@@ -56,15 +75,11 @@ public class Jump : MonoBehaviour
     // ---- MÉTODOS PRIVADOS ----
     private void Salto()
     {
-        if (_enSuelo)
-        {
+        
             _rB.velocity = new Vector2(0, _alturaSalto);
-            _saltoExtra = 1;
-        }else if(_saltoExtra > 0)
-        {
-            _rB.velocity = new Vector2(0, _alturaSalto);
-            _saltoExtra--;
-        }
+        
+
+        _canJump = false;   
     }
 
 } // class Jump 
