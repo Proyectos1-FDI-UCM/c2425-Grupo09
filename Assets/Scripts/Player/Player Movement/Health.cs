@@ -7,6 +7,10 @@
 
 using System;
 using UnityEngine;
+using TMPro;
+using UnityEngine.InputSystem;
+
+
 // Añadir aquí el resto de directivas using
 
 
@@ -20,27 +24,30 @@ public class Health : MonoBehaviour
 
 
     // ---- ATRIBUTOS PRIVADOS ----
-    float maxHealth = 100f;
+    [SerializeField] float maxHealth = 100f;
+    [SerializeField] public TextMeshProUGUI TimerText;
+
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.C)) //TEST -- Comprobar si aumenta la vida
+        if (Keyboard.current.cKey.wasPressedThisFrame) //TEST -- Comprobar si aumenta la vida
         {
             maxHealth += 10f;
             Debug.Log("Vida restante: " +  maxHealth);
         }
-        if (Input.GetKeyDown(KeyCode.D)) //TEST -- Comprobar si reduce la vida
+        if (Keyboard.current.dKey.wasPressedThisFrame) //TEST -- Comprobar si reduce la vida
         {
             maxHealth -= 10f;
             Debug.Log("Vida restante: " + maxHealth);
         }
-
-        if(maxHealth <= 0) //Si la vida llega a 0 se destruye
+        TimerText.text = string.Format("Vida:" + maxHealth);
+        if (maxHealth <= 0) //Si la vida llega a 0 se destruye
         {
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
+
     }
 
     // ---- MÉTODOS PÚBLICOS ----
