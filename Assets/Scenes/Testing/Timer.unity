@@ -388,6 +388,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerText: {fileID: 692249781}
   time: 301
+  SumaSeg: 5
+  RestaSeg: 5
   animator: {fileID: 692249778}
 --- !u!114 &692249781
 MonoBehaviour:
