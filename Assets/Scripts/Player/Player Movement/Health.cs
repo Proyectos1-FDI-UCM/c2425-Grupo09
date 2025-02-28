@@ -25,25 +25,24 @@ public class Health : MonoBehaviour
 
     // ---- ATRIBUTOS PRIVADOS ----
     [SerializeField] float maxHealth = 100f;
-    [SerializeField] public TextMeshProUGUI TimerText;
 
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     private void Update()
     {
-        if (Keyboard.current.cKey.wasPressedThisFrame) //TEST -- Comprobar si aumenta la vida
+        if (InputManager.Instance.FireWasPressedThisFrame()) //TEST -- Comprobar si aumenta la vida
         {
             maxHealth += 10f;
             Debug.Log("Vida restante: " +  maxHealth);
         }
-        if (Keyboard.current.dKey.wasPressedThisFrame) //TEST -- Comprobar si reduce la vida
+        if (InputManager.Instance.JumpWasPressedThisFrame()) //TEST -- Comprobar si reduce la vida
         {
             maxHealth -= 10f;
             Debug.Log("Vida restante: " + maxHealth);
         }
-        TimerText.text = string.Format("Vida:" + maxHealth);
         if (maxHealth <= 0) //Si la vida llega a 0 se destruye
         {
+            Debug.Log("Muerto");
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
