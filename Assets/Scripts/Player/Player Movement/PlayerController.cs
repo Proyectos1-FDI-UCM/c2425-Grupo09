@@ -27,7 +27,14 @@ public class PlayerController : MonoBehaviour
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
 
+    //Velocidad del jugador al moverse
     [SerializeField] float velocidad;
+
+    //Numero de manzanas en el inventario
+    public int applesInInventory = 0;
+
+    //Cantidad de curacion por manzana al consumirse
+    [SerializeField] int appleHealthUp = 50;
     #endregion
 
 
@@ -39,10 +46,9 @@ public class PlayerController : MonoBehaviour
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-    private Rigidbody2D rig;
-    private int applesInInventory = 0;
-    private int appleHealthUp = 50;
 
+    //Componente rigidbody del gameObject
+    private Rigidbody2D _rig;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -62,22 +68,23 @@ public class PlayerController : MonoBehaviour
     }
     private void Awake()
     {
-        rig = GetComponent<Rigidbody2D>();
+        _rig = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
         float moveX = InputManager.Instance.MovementVector.x;
 
-        rig.velocity = new Vector2(velocidad * moveX, rig.velocity.y);
+        _rig.velocity = new Vector2(velocidad * moveX, _rig.velocity.y);
 
         if (moveX > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0); 
         else if (moveX < 0)
             transform.rotation = Quaternion.Euler(0, 180, 0); 
 
-        if (Input.GetKeyDown(KeyCode.P) && applesInInventory > 0) //LUEGO CAMBIO EL INPUT AL BUENO CUANDO ESTE EN CASA
+        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0)
         {
+            Debug.Log("Healed");
             applesInInventory--;
             gameObject.GetComponent<Health>().OnConsumable(appleHealthUp);
         }

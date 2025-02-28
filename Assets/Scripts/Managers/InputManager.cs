@@ -67,6 +67,7 @@ public class InputManager : MonoBehaviour
     /// </summary>
     private InputAction _fire;
     private InputAction _jump;
+    private InputAction _heal;
 
     #endregion
 
@@ -190,6 +191,27 @@ public class InputManager : MonoBehaviour
     public bool JumpWasPressedThisFrame()
     {
         return _jump.WasPressedThisFrame();
+    }
+
+    /// <summary>
+    /// Método para saber si el botón de curacion (Heal) se ha pulsado en este frame
+    /// <returns>Devuelve true, si el botón ha sido pulsado en este frame
+    /// y false, en otro caso
+    /// </returns>
+    /// </summary>
+    public bool HealWasPressedThisFrame()
+    {
+        return _heal.WasPressedThisFrame();
+    }
+
+    public bool HealWasReleasedThisFrame()
+    {
+        return _heal.WasReleasedThisFrame();
+    }
+
+    public bool HealIsPressed()
+    {
+        return _heal.IsPressed();
     }
 
     #endregion

@@ -69,7 +69,7 @@ public class appleConsumable : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Health>() != null)
         {
-            collision.gameObject.GetComponent<Movimiento>().applesInInventory++;
+            collision.gameObject.GetComponent<PlayerController>().applesInInventory++;
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
