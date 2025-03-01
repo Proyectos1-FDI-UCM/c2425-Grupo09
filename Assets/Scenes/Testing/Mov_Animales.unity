@@ -2021,8 +2021,16 @@ PrefabInstance:
     m_TransformParent: {fileID: 1831700839}
     m_Modifications:
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: Speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: AnchoAnimal
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: CooldownSalto
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: CooldownAtaque
@@ -2030,11 +2038,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: DistanciaSalto
-      value: 10
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: DistanciaDeteccion
-      value: 6
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 2179797456744284999, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2333,7 +2341,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1134321858
 Transform:
   m_ObjectHideFlags: 0
@@ -2908,7 +2916,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1336681008
 Transform:
   m_ObjectHideFlags: 0
@@ -2918,7 +2926,7 @@ Transform:
   m_GameObject: {fileID: 1336681007}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -10.62, y: 6.1799994, z: -5.2246737}
+  m_LocalPosition: {x: -10.69, y: 6.1799994, z: -5.2246737}
   m_LocalScale: {x: 0.8039, y: 3.8432999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7452,6 +7460,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1831700839}
     m_Modifications:
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: Speed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: DistanciaDeteccion
       value: 6

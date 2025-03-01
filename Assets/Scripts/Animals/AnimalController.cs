@@ -73,8 +73,15 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto
-        if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(Vector2.right * Mathf.Sign(_direction.x), DistanciaSalto, "Player", "Ground"))
+        // Si(Detecta muro || Deja de detectar plataforma)
+        if (DetectarObjeto(Vector2.right * Mathf.Sign(_direction.x), Vector3.zero, AnchoAnimal, "Ground") || !DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"))
+        {
+            // Gira el animal y cambia la dirección
+            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
+            _direction *= -1;
+        }
+        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya pegando al jugador
+        else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(Vector2.right * Mathf.Sign(_direction.x), DistanciaSalto, "Player", "Ground") && !_isInAttackRange)
         { 
             if(!_isJumping)
             {
@@ -82,21 +89,27 @@ public class AnimalController : MonoBehaviour
                 _destinoSalto = _player.position;
                 //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
             }
+        }
+
+        if(_isJumping)
+        {
             //Se mueve hacia el jugador a gran velocidad (saltando)
            transform.position = Vector2.MoveTowards(transform.position, _destinoSalto, Speed * 6f * Time.deltaTime);
 
-            //Si ha llegado al destino, reseteamos el bool, y establecemos el tiempo del ultimo salto para gestionar el cooldown.
-            if(transform.position.x - _destinoSalto.x <= 0.01f)
+            //Si ha llegado al destino || esta a melee del jugador, reseteamos el bool, y establecemos el tiempo del ultimo salto para gestionar el cooldown.
+            if(_isInAttackRange || transform.position.x - _destinoSalto.x <= 0.01f )
             {
                 _tiempoUltimoSalto = Time.time;
                 _isJumping = false;
             }
+        }  
 
-        } else if(DetectarJugador(Vector2.right * Mathf.Sign(_direction.x), DistanciaDeteccion, "Player", "Ground"))
+        else if(DetectarJugador(Vector2.right * Mathf.Sign(_direction.x), DistanciaDeteccion, "Player", "Ground"))
         {
             if(!_isInAttackRange)
-           transform.position = Vector2.MoveTowards(transform.position, _player.position, Speed * Time.deltaTime);
-           else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
+            transform.position = Vector2.MoveTowards(transform.position, _player.position, Speed * Time.deltaTime);
+
+            else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
                 _player.gameObject.GetComponent<Health>().Updatehealth(-Daño);
                 _tiempoUltimoAtaque = Time.time;
@@ -106,13 +119,6 @@ public class AnimalController : MonoBehaviour
         transform.position += _direction * Speed * Time.deltaTime;
         //De normal camina en la dirección en la que mira.
         
-        // Si(Detecta muro || Deja de detectar plataforma)
-        if (DetectarObjeto(Vector2.right * Mathf.Sign(_direction.x), Vector3.zero, AnchoAnimal, "Ground") || !DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"))
-        {
-            // Gira el enemigo y cambiar la dirección
-            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
-            _direction *= -1;
-        }
         
     }
     #endregion
