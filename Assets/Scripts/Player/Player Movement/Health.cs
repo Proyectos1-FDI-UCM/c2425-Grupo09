@@ -75,15 +75,14 @@ public class Health : MonoBehaviour
     }
     #endregion
 
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
-
-    private void Updatehealth(float amount)
+    public void Updatehealth(float amount)
     {
         _currentHealth += amount;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
         UpdateHealthBar();
     }
+
+    // ---- MÉTODOS PRIVADOS ----
 
     private void UpdateHealthBar()
     {
