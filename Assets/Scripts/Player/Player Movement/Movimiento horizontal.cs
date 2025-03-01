@@ -21,6 +21,9 @@ public class MovimientoHorizontal : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
 
     [SerializeField] float velocidad;
+    [SerializeField] GameObject clock;
+    [SerializeField] GameObject timertext;
+    private Timer timer;
     #endregion
 
 
@@ -38,6 +41,7 @@ public class MovimientoHorizontal : MonoBehaviour
     private void Awake()
     {
         rig = GetComponent<Rigidbody2D>();
+        timer = timertext.GetComponent<Timer>();
     }
 
     private void FixedUpdate()
@@ -47,28 +51,34 @@ public class MovimientoHorizontal : MonoBehaviour
         rig.velocity = new Vector2(velocidad * moveX, rig.velocity.y);
 
         if (moveX > 0)
-            transform.rotation = Quaternion.Euler(0, 0, 0); 
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         else if (moveX < 0)
-            transform.rotation = Quaternion.Euler(0, 180, 0); 
+            transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 
     void Update()
     {
-        
+
     }
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    
+
 
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-    
-
-    #endregion   
-
-} // class NewBehaviourScript 
-// namespace
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Clock"))
+        {
+            timer.Reloj();
+            Destroy(collision.gameObject);
+        }
+    }
+    #endregion
+    // class NewBehaviourScript 
+    // namespace
+}

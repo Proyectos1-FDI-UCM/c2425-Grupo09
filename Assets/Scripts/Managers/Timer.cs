@@ -7,8 +7,8 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI TimerText;
 
-    [SerializeField] float time = 600f;
-    [SerializeField] float SumaSeg = 5f;
+    [SerializeField] float timeSeg = 600f;
+    [SerializeField] public float SumaSeg = 5f;
     [SerializeField] float RestaSeg = 5f;
 
     static float currenttime;
@@ -19,7 +19,7 @@ public class Timer : MonoBehaviour
     void Start()
     {
         playing = true;
-        currenttime = time;
+        currenttime = timeSeg;
         animator.SetBool("1", true);
     }
 
@@ -41,12 +41,17 @@ public class Timer : MonoBehaviour
             if (Keyboard.current.rKey.wasPressedThisFrame) { currenttime = currenttime + SumaSeg; }
             if (Keyboard.current.eKey.wasPressedThisFrame) { currenttime = currenttime - RestaSeg; }
 
-            if (currenttime > (time / 3) * 2) { animator.SetBool("1", true); }
-            if (currenttime < (time / 3) * 2 && currenttime > (time / 3)) { animator.SetBool("2", true);  }
+            if (currenttime > (timeSeg / 3) * 2) { animator.SetBool("1", true); }
+            //if (currenttime < (time / 3) * 2 && currenttime > (time / 3)) { animator.SetBool("2", true);  }
             //if (currenttime < (time / 3)) { animator.SetBool("3", true); }
            
 
         }
+    }
+
+    public void Reloj()
+    { 
+        currenttime =  currenttime + SumaSeg;
     }
 
     public static void StopCounting()
