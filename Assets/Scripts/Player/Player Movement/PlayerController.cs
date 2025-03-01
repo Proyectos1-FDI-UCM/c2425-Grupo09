@@ -29,10 +29,7 @@ public class PlayerController : MonoBehaviour
 
     //Velocidad del jugador al moverse
     [SerializeField] float velocidad;
-
-    //Numero de manzanas en el inventario
-    public int applesInInventory = 0;
-
+    
     //Cantidad de curacion por manzana al consumirse
     [SerializeField] int appleHealthUp = 50;
     #endregion
@@ -90,12 +87,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0)
-        {
-            Debug.Log("Healed");
-            applesInInventory--;
-            GetComponent<Health>().OnConsumable(appleHealthUp);
-        }
+
     }
     #endregion
 

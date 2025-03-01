@@ -22,8 +22,15 @@ public class Health : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
 
+    //Numero de manzanas en el inventario
+    public int applesInInventory = 0;
+
+    //Cantidad curada de vida al tomar la manzana
+    [SerializeField] int appleHealthUp = 50;
 
     // ---- ATRIBUTOS PRIVADOS ----
+
+    //Vida maxima del jugador
     [SerializeField] float maxHealth = 100f;
 
 
@@ -47,7 +54,17 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
 
+        // CURACION AL COMER MANZANA
+        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0)
+        {
+            applesInInventory--;
+            GetComponent<Health>().OnConsumable(appleHealthUp);
+            Debug.Log("Healed, current health: " + maxHealth);
+        }
+
     }
+
+    
 
     // ---- MÉTODOS PÚBLICOS ----
     public void OnConsumable(int healthUp)
@@ -56,7 +73,6 @@ public class Health : MonoBehaviour
     }
 
     // ---- MÉTODOS PRIVADOS ----
-
 
 } // class Health 
 // namespace

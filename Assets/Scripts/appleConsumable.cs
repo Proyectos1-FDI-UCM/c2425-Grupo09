@@ -65,11 +65,12 @@ public class appleConsumable : MonoBehaviour
     ///<summary>
     ///
     /// </summary>
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Health>() != null)
         {
-            collision.gameObject.GetComponent<PlayerController>().applesInInventory++;
+            collision.gameObject.GetComponent<Health>().applesInInventory++;
+            Debug.Log("Apple taken");
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
