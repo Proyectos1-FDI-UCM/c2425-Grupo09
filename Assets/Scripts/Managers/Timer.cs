@@ -14,7 +14,6 @@ public class Timer : MonoBehaviour
     static float currenttime;
     static bool playing = true;
     public Animator animator;
-
    
 
     void Start()

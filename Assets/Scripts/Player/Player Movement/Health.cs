@@ -13,7 +13,6 @@ using UnityEngine.UI;
 using DG.Tweening;
 // Añadir aquí el resto de directivas using
 
-
 /// <summary>
 /// Este script sera el responsable de manejar la vida del jugador,
 /// aumentarla si se cura y reducirla si recibe daño
@@ -21,14 +20,25 @@ using DG.Tweening;
 public class Health : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
+    #region Atributos del Inspector (serialized fields)
+
     [SerializeField] float maxHealth = 100f;
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
+
+    #endregion
+
     // ---- ATRIBUTOS PRIVADOS ----
+    #region Atributos Privados (private fields)
+
     private float _currentHealth;
+
+    #endregion
   
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
+    #region Métodos de MonoBehaviour
+
     void Start()
     {
         _currentHealth = maxHealth;
@@ -54,14 +64,20 @@ public class Health : MonoBehaviour
         }
 
     }
+    #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
+    #region Métodos públicos
+
     public void OnConsumable(int healthUp)
     {
         _currentHealth += healthUp;
     }
+    #endregion
 
     // ---- MÉTODOS PRIVADOS ----
+    #region Métodos Privados
+
     private void Updatehealth(float amount)
     {
         _currentHealth += amount;
@@ -75,6 +91,7 @@ public class Health : MonoBehaviour
         _healthBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
         _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
     }
+    #endregion
 
 } // class Health 
 // namespace
