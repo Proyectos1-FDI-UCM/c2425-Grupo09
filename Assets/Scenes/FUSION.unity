@@ -2126,6 +2126,7 @@ GameObject:
   - component: {fileID: 1300266269}
   - component: {fileID: 1300266273}
   - component: {fileID: 1300266274}
+  - component: {fileID: 1300266275}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -2290,6 +2291,51 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
   _cadenciaDeDisparo: 0.5
+--- !u!114 &1300266275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300266268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e95905e2c1c4a40ad81c37fa30a799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  _healthBarFill: {fileID: 50229960}
+  _fillSpeed: 0.5
+  _colorGradient:
+    serializedVersion: 2
+    key0: {r: 0.6698113, g: 0.026497353, b: 0, a: 1}
+    key1: {r: 0.9245283, g: 0.41893166, b: 0, a: 1}
+    key2: {r: 0.71058226, g: 0.9622642, b: 0.013616921, a: 0}
+    key3: {r: 0.08802067, g: 0.8113208, b: 0.12749958, a: 0}
+    key4: {r: 0, g: 0, b: 0, a: 0}
+    key5: {r: 0, g: 0, b: 0, a: 0}
+    key6: {r: 0, g: 0, b: 0, a: 0}
+    key7: {r: 0, g: 0, b: 0, a: 0}
+    ctime0: 0
+    ctime1: 23130
+    ctime2: 43176
+    ctime3: 65535
+    ctime4: 0
+    ctime5: 0
+    ctime6: 0
+    ctime7: 0
+    atime0: 0
+    atime1: 65535
+    atime2: 0
+    atime3: 0
+    atime4: 0
+    atime5: 0
+    atime6: 0
+    atime7: 0
+    m_Mode: 0
+    m_ColorSpace: -1
+    m_NumColorKeys: 4
+    m_NumAlphaKeys: 2
 --- !u!1001 &1338553108
 PrefabInstance:
   m_ObjectHideFlags: 0
