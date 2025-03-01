@@ -96,6 +96,11 @@ public class AnimalController : MonoBehaviour
         {
             if(!_isInAttackRange)
            transform.position = Vector2.MoveTowards(transform.position, _player.position, Speed * Time.deltaTime);
+           else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
+            {
+                _player.gameObject.GetComponent<Health>().Updatehealth(-Daño);
+                _tiempoUltimoAtaque = Time.time;
+            }
 
         }else
         transform.position += _direction * Speed * Time.deltaTime;
@@ -173,26 +178,12 @@ public class AnimalController : MonoBehaviour
     }
 
     /// <summary>
-    /// Si el jugador se mantiene dentro del Collider, ataca a cooldown y actualiza la vida del jugador con el daño que le hace
-    /// </summary>
-    private void OnTriggerStay2D(Collider2D coll)
-    {
-        if(coll.gameObject.GetComponent<Health>() != null && Time.time > _tiempoUltimoAtaque + CooldownAtaque)
-        {
-            coll.gameObject.GetComponent<Health>().Updatehealth(-Daño);
-            _tiempoUltimoAtaque = Time.time;
-        }
-    }
-
-    /// <summary>
     /// Si el jugador sale del collider IsTrigger, el bool se pone en false para que el animal vuelva a moverse
     /// </summary>
     private void OnTriggerExit2D(Collider2D coll)
     {
         if(coll.gameObject.GetComponent<Health>())
-        {
             _isInAttackRange = false;
-        }
     }
 
 
