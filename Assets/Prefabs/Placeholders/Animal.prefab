@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 2179797456744284999}
   - component: {fileID: 5353711087685021154}
   - component: {fileID: 7261809746522249113}
+  - component: {fileID: 4187176767586889015}
   - component: {fileID: 8364465959951423524}
   - component: {fileID: 2004477079712909556}
-  - component: {fileID: 4187176767586889015}
   m_Layer: 11
   m_Name: Animal
   m_TagString: Untagged
@@ -133,38 +133,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &8364465959951423524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8213178868730188694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3d921bb4509744aa8c37cc9e1f8d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  "_maxBarraDeSue\xF1o": 100
-  "_barraDeSue\xF1o": 0
---- !u!114 &2004477079712909556
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8213178868730188694}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d778fd77dd5ffe542b97cb46a0e169b9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Speed: 3
-  AnchoAnimal: 0.5
-  AltoAnimal: 0.5
-  DistanciaDeteccion: 5
-  CooldownAtaque: 2
-  "Da\xF1o": 10
 --- !u!61 &4187176767586889015
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -210,3 +178,38 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 3.148666, y: 1.5069888}
   m_EdgeRadius: 0
+--- !u!114 &8364465959951423524
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213178868730188694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3d921bb4509744aa8c37cc9e1f8d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  "MaxBarraDeSue\xF1o": 100
+  TriggerCollider: {fileID: 4187176767586889015}
+  "_barraDeSue\xF1o": 0
+--- !u!114 &2004477079712909556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213178868730188694}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d778fd77dd5ffe542b97cb46a0e169b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Speed: 2
+  AnchoAnimal: 0.5
+  AltoAnimal: 0.5
+  DistanciaDeteccion: 6
+  DistanciaSalto: 4
+  CooldownSalto: 5
+  CooldownAtaque: 2
+  "Da\xF1o": 10

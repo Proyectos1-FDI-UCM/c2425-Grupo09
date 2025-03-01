@@ -1712,8 +1712,8 @@ Transform:
   m_GameObject: {fileID: 567907728}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -3.0326576, y: 4.6601763, z: -5.2246737}
-  m_LocalScale: {x: 0.80390006, y: 17.414959, z: 1}
+  m_LocalPosition: {x: 6.01, y: 4.6601763, z: -5.2246737}
+  m_LocalScale: {x: 0.80390006, y: 34.176857, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1748164540}
@@ -2021,8 +2021,20 @@ PrefabInstance:
     m_TransformParent: {fileID: 1831700839}
     m_Modifications:
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
-      propertyPath: DistanciaDeteccion
+      propertyPath: CooldownSalto
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: CooldownAtaque
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: DistanciaSalto
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: DistanciaDeteccion
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2179797456744284999, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2331,7 +2343,7 @@ Transform:
   m_GameObject: {fileID: 1134321857}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 5.31, y: 6.1799994, z: -5.2246737}
+  m_LocalPosition: {x: 22.68, y: 6.1799994, z: -5.2246737}
   m_LocalScale: {x: 0.8039, y: 3.8432999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2797,7 +2809,7 @@ Transform:
   m_GameObject: {fileID: 1300266268}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.13, y: 8.21, z: 0}
+  m_LocalPosition: {x: 0.6, y: 8.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -2817,6 +2829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
+  clock: {fileID: 573840297}
+  timertext: {fileID: 1846238962}
 --- !u!114 &1300266274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2829,8 +2843,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7151fdab0452d1a47bd48e66be8b89c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _bulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
-  _cadenciaDeDisparo: 0.5
+  BulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
+  CadenciaDisparo: 0.5
 --- !u!114 &1300266275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2894,7 +2908,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1336681008
 Transform:
   m_ObjectHideFlags: 0
@@ -2904,7 +2918,7 @@ Transform:
   m_GameObject: {fileID: 1336681007}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.59, y: 6.1799994, z: -5.2246737}
+  m_LocalPosition: {x: -10.62, y: 6.1799994, z: -5.2246737}
   m_LocalScale: {x: 0.8039, y: 3.8432999, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4621,7 +4635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TimerText: {fileID: 1846238967}
-  time: 301
+  timeSeg: 600
   SumaSeg: 5
   RestaSeg: 5
   animator: {fileID: 1846238964}
@@ -7440,7 +7454,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: DistanciaDeteccion
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 2179797456744284999, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: m_LocalPosition.x
