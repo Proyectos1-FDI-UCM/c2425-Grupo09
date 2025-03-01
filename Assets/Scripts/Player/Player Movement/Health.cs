@@ -44,46 +44,28 @@ public class Health : MonoBehaviour
         _currentHealth = maxHealth;
     }
 
-    private void Update()
+    #endregion
+
+    // ---- MÉTODOS PÚBLICOS ----
+    #region Métodos públicos
+   
+    public void Updatehealth(float amount)
     {
-        if (InputManager.Instance.FireWasPressedThisFrame()) //TEST -- Comprobar si aumenta la vida
-        {
-            Updatehealth(10);
-            Debug.Log("Vida restante: " +  _currentHealth);
-        }
-        if (InputManager.Instance.JumpWasPressedThisFrame()) //TEST -- Comprobar si reduce la vida
-        {
-            Updatehealth(-10);
-            Debug.Log("Vida restante: " + _currentHealth);
-        }
+        _currentHealth += amount;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
+        UpdateHealthBar();
+
         if (_currentHealth <= 0) //Si la vida llega a 0 se destruye
         {
             Debug.Log("Muerto");
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
-
     }
     #endregion
-
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-
-    public void OnConsumable(int healthUp)
-    {
-        _currentHealth += healthUp;
-    }
-    #endregion
-
-    public void Updatehealth(float amount)
-    {
-        _currentHealth += amount;
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
-        UpdateHealthBar();
-    }
 
     // ---- MÉTODOS PRIVADOS ----
-
+    #region Métodos privados
     private void UpdateHealthBar()
     {
         float targetFillAmount = _currentHealth / maxHealth;
