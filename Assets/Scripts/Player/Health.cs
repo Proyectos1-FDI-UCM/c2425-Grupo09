@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Mecanica responsable de manejar la vida del jugador, es decir, de Noe.
-// Alejandro García Díaz
+// Alejandro García Díaz, y Sergio González
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -9,10 +9,9 @@ using System;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
-
-
+using UnityEngine.UI;
+using DG.Tweening;
 // Añadir aquí el resto de directivas using
-
 
 /// <summary>
 /// Este script sera el responsable de manejar la vida del jugador,
@@ -21,58 +20,59 @@ using UnityEngine.InputSystem;
 public class Health : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
+    #region Atributos del Inspector (serialized fields)
 
-    //Numero de manzanas en el inventario
-    public int applesInInventory = 0;
+    [SerializeField] float maxHealth = 100f;
+    [SerializeField] private Image _healthBarFill;
+    [SerializeField] private float _fillSpeed;
+    [SerializeField] private Gradient _colorGradient;
 
-    //Cantidad curada de vida al tomar la manzana
-    [SerializeField] int appleHealthUp = 50;
+    #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
+    #region Atributos Privados (private fields)
 
-    //Vida maxima del jugador
-    [SerializeField] float maxHealth = 100f;
+    private float _currentHealth;
 
-
+    #endregion
+  
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
-    private void Update()
+    #region Métodos de MonoBehaviour
+
+    void Start()
     {
-        if (InputManager.Instance.FireWasPressedThisFrame()) //TEST -- Comprobar si aumenta la vida
-        {
-            maxHealth += 10f;
-            Debug.Log("Vida restante: " +  maxHealth);
-        }
-        if (InputManager.Instance.JumpWasPressedThisFrame()) //TEST -- Comprobar si reduce la vida
-        {
-            maxHealth -= 10f;
-            Debug.Log("Vida restante: " + maxHealth);
-        }
-        if (maxHealth <= 0) //Si la vida llega a 0 se destruye
+        _currentHealth = maxHealth;
+    }
+
+    #endregion
+
+    // ---- MÉTODOS PÚBLICOS ----
+    #region Métodos públicos
+   
+    public void Updatehealth(float amount)
+    {
+        _currentHealth += amount;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
+        UpdateHealthBar();
+
+        if (_currentHealth <= 0) //Si la vida llega a 0 se destruye
         {
             Debug.Log("Muerto");
             gameObject.SetActive(false);
             Destroy(gameObject);
         }
-
-        // CURACION AL COMER MANZANA
-        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0)
-        {
-            applesInInventory--;
-            GetComponent<Health>().OnConsumable(appleHealthUp);
-            Debug.Log("Healed, current health: " + maxHealth);
-        }
-
     }
-
-    
-
-    // ---- MÉTODOS PÚBLICOS ----
-    public void OnConsumable(int healthUp)
-    {
-        maxHealth += healthUp;
-    }
+    #endregion
 
     // ---- MÉTODOS PRIVADOS ----
+    #region Métodos privados
+    private void UpdateHealthBar()
+    {
+        float targetFillAmount = _currentHealth / maxHealth;
+        _healthBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
+        _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
+    }
+    #endregion
 
 } // class Health 
 // namespace
