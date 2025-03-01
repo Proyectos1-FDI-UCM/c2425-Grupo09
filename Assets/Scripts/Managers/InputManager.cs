@@ -242,6 +242,7 @@ public class InputManager : MonoBehaviour
         // y FireWasReleasedThisFrame)
         _fire = _theController.Player.Fire;
         _jump = _theController.Player.Jump;
+        _heal = _theController.Player.Heal;
     }
 
     /// <summary>

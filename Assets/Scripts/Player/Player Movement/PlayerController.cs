@@ -82,12 +82,6 @@ public class PlayerController : MonoBehaviour
         else if (moveX < 0)
             transform.rotation = Quaternion.Euler(0, 180, 0); 
 
-        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0)
-        {
-            Debug.Log("Healed");
-            applesInInventory--;
-            gameObject.GetComponent<Health>().OnConsumable(appleHealthUp);
-        }
     }
 
 
@@ -96,7 +90,12 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        
+        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0)
+        {
+            Debug.Log("Healed");
+            applesInInventory--;
+            GetComponent<Health>().OnConsumable(appleHealthUp);
+        }
     }
     #endregion
 

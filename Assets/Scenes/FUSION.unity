@@ -1544,7 +1544,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &573840298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2126,6 +2126,7 @@ GameObject:
   - component: {fileID: 1300266269}
   - component: {fileID: 1300266273}
   - component: {fileID: 1300266274}
+  - component: {fileID: 1300266275}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -2276,6 +2277,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
+  applesInInventory: 2
+  appleHealthUp: 50
 --- !u!114 &1300266274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2290,6 +2293,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _bulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
   _cadenciaDeDisparo: 0.5
+--- !u!114 &1300266275
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300266268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 96e95905e2c1c4a40ad81c37fa30a799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
 --- !u!1001 &1338553108
 PrefabInstance:
   m_ObjectHideFlags: 0
