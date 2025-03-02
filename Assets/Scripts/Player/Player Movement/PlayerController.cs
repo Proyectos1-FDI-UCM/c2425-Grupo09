@@ -29,9 +29,6 @@ public class PlayerController : MonoBehaviour
 
     //Velocidad del jugador al moverse
     [SerializeField] float velocidad;
-    [SerializeField] GameObject clock;
-    [SerializeField] GameObject timertext;
-    private Timer timer;
     #endregion
 
 
@@ -66,7 +63,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rig = GetComponent<Rigidbody2D>();
-        timer = timertext.GetComponent<Timer>();
     }
 
     private void FixedUpdate()
@@ -108,15 +104,6 @@ public class PlayerController : MonoBehaviour
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Clock"))
-        {
-            timer.Reloj();
-            Destroy(collision.gameObject);
-        }
-    }
     #endregion   
 
 } // class NewBehaviourScript 

@@ -8,8 +8,8 @@ public class Timer : MonoBehaviour
     [SerializeField] public TextMeshProUGUI TimerText;
 
     [SerializeField] float timeSeg = 600f;
-    [SerializeField] public float SumaSeg = 5f;
-    [SerializeField] float RestaSeg = 5f;
+     public float SumaSeg = 5f;
+     float RestaSeg = 5f;
 
     static float currenttime;
     static bool playing = true;
@@ -49,9 +49,9 @@ public class Timer : MonoBehaviour
         }
     }
 
-    public void Reloj()
+    public void Reloj(float x)
     { 
-        currenttime =  currenttime + SumaSeg;
+        currenttime =  currenttime + x;
     }
 
     public static void StopCounting()
