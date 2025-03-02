@@ -52,7 +52,8 @@ public class AnimalController : MonoBehaviour
     private bool _isInAttackRange = false;
     //Bool para saber si el animal está ejecutando el salto
     private bool _isJumping = false;
-    
+
+    private Jump _jump;
 
     #endregion
     
@@ -65,6 +66,7 @@ public class AnimalController : MonoBehaviour
     void Awake()
     {
         _player = FindFirstObjectByType<Health>().gameObject.transform;
+        _jump = _player.gameObject.GetComponent<Jump>();
     }
 
     /// <summary>
@@ -72,42 +74,45 @@ public class AnimalController : MonoBehaviour
     /// al tratarse de un patrón de movimiento sencillo.
     /// </summary>
     void Update()
-    {
+    {   
+        //Se declara una variable para la dirección del Raycast en la dirección en la que mira el jugador para mayor claridad de código, ya que se usa múltiples veces.
+        Vector2 rightDirection = Vector2.right * Mathf.Sign(_direction.x);
+
         // Si(Detecta muro || Deja de detectar plataforma)
-        if (DetectarObjeto(Vector2.right * Mathf.Sign(_direction.x), Vector3.zero, AnchoAnimal, "Ground") || !DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"))
+        if (DetectarObjeto(rightDirection, Vector3.zero, AnchoAnimal, "Ground") || !DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"))
         {
             // Gira el animal y cambia la dirección
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
             _direction *= -1;
         }
-        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya pegando al jugador
-        else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(Vector2.right * Mathf.Sign(_direction.x), DistanciaSalto, "Player", "Ground") && !_isInAttackRange)
+        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador && el jugador está en el suelo
+        else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(rightDirection, DistanciaSalto, "Player", "Ground") && !_isInAttackRange && _jump.IsGrounded())
         { 
             if(!_isJumping)
             {
                 _isJumping = true;
-                _destinoSalto = _player.position;
+                _destinoSalto = new Vector2(_player.position.x, transform.position.y);
                 //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
             }
         }
 
         if(_isJumping)
         {
-            //Se mueve hacia el jugador a gran velocidad (saltando)
+            //Se mueve hacia el jugador a gran velocidad (salto)
            transform.position = Vector2.MoveTowards(transform.position, _destinoSalto, Speed * 6f * Time.deltaTime);
 
             //Si ha llegado al destino || esta a melee del jugador, reseteamos el bool, y establecemos el tiempo del ultimo salto para gestionar el cooldown.
-            if(_isInAttackRange || transform.position.x - _destinoSalto.x <= 0.01f )
+            if(_isInAttackRange || Mathf.Abs(transform.position.x - _destinoSalto.x) <= 0.01f )
             {
                 _tiempoUltimoSalto = Time.time;
                 _isJumping = false;
             }
         }  
 
-        else if(DetectarJugador(Vector2.right * Mathf.Sign(_direction.x), DistanciaDeteccion, "Player", "Ground"))
+        else if(DetectarJugador(rightDirection, DistanciaDeteccion, "Player", "Ground"))
         {
             if(!_isInAttackRange)
-            transform.position = Vector2.MoveTowards(transform.position, _player.position, Speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), Speed * Time.deltaTime);
 
             else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
