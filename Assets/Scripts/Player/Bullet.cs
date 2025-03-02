@@ -59,7 +59,7 @@ public class Bullet : MonoBehaviour
     /// <summary>
     /// Detecta la colision, y destruye la bala al detectarla. Además verifica si esta colisionando con un animal, en cuyo caso aumenta su barra de sueño.
     /// </summary>
-    private void OnCollisionEnter2D(Collision2D coll)
+    private void OnTriggerEnter2D(Collider2D coll)
     {
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
             coll.gameObject.GetComponent<BarraDeSueño>().Dormir(Damage);
