@@ -29,9 +29,6 @@ public class PlayerController : MonoBehaviour
 
     //Velocidad del jugador al moverse
     [SerializeField] float velocidad;
-    
-    //Cantidad de curacion por manzana al consumirse
-    [SerializeField] int appleHealthUp = 50;
     #endregion
 
 
