@@ -29,6 +29,9 @@ public class PlayerController : MonoBehaviour
 
     //Velocidad del jugador al moverse
     [SerializeField] float velocidad;
+    [SerializeField] GameObject clock;
+    [SerializeField] GameObject timertext;
+    private Timer timer;
     #endregion
 
 
@@ -63,6 +66,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rig = GetComponent<Rigidbody2D>();
+        timer = timertext.GetComponent<Timer>();
     }
 
     private void FixedUpdate()
@@ -97,7 +101,7 @@ public class PlayerController : MonoBehaviour
     // Ejemplo: GetPlayerController
 
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
@@ -105,6 +109,14 @@ public class PlayerController : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Clock"))
+        {
+            gameObject.GetComponent<Timer>().Reloj();
+            Destroy(collision.gameObject);
+        }
+    }
     #endregion   
 
 } // class NewBehaviourScript 
