@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Clock"))
         {
-            gameObject.GetComponent<Timer>().Reloj();
+            timer.Reloj();
             Destroy(collision.gameObject);
         }
     }
