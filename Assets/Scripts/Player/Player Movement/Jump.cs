@@ -50,6 +50,10 @@ public class Jump : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
     // Ejemplo: GetPlayerController
+    public bool IsGrounded()
+    {
+       return (Physics2D.OverlapBox(_controlarSuelo.position, _caja,0f,_suelo));
+    }
 
     #endregion
 
