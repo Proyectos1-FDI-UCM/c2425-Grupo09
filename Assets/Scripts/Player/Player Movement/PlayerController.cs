@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float velocidad;
     [SerializeField] GameObject clock;
     [SerializeField] GameObject timertext;
+    private Timer timer;
     #endregion
 
 
@@ -45,7 +46,6 @@ public class PlayerController : MonoBehaviour
 
     //Componente rigidbody del gameObject
     private Rigidbody2D _rig;
-    private Timer _timer;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -66,7 +66,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rig = GetComponent<Rigidbody2D>();
-        _timer = timertext.GetComponent<Timer>();
+        timer = timertext.GetComponent<Timer>();
     }
 
     private void FixedUpdate()
@@ -113,7 +113,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Clock"))
         {
-            _timer.Reloj();
+            timer.Reloj();
             Destroy(collision.gameObject);
         }
     }
