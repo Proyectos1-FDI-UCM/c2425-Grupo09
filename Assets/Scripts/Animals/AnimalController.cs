@@ -31,6 +31,8 @@ public class AnimalController : MonoBehaviour
     [SerializeField] float CooldownSalto;
     [SerializeField] float CooldownAtaque;
     [SerializeField] int Daño;
+    //Transform del jugador para que el animal sepa donde saltar
+    [SerializeField] Transform _player;
 
     #endregion
     
@@ -41,8 +43,6 @@ public class AnimalController : MonoBehaviour
     private Vector3 _direction = Vector3.right;
     //Vector para almacenar el punto de destino del salto del animal
     private Vector3 _destinoSalto;
-    //Transform del jugador para que el animal sepa donde saltar
-    private Transform _player;
 
     //Variables para almacenar el ultimo tiempo donde se ejecuto el ataque y salto (de cara a gestionar los cooldowns)
     private float _tiempoUltimoAtaque;
@@ -54,6 +54,7 @@ public class AnimalController : MonoBehaviour
     private bool _isJumping = false;
 
     private Jump _jump;
+    private Health _health;
 
     #endregion
     
@@ -65,8 +66,8 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        _player = FindFirstObjectByType<Health>().gameObject.transform;
         _jump = _player.gameObject.GetComponent<Jump>();
+        _health = _player.gameObject.GetComponent<Health>();
     }
 
     /// <summary>
@@ -116,7 +117,7 @@ public class AnimalController : MonoBehaviour
 
             else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
-                _player.gameObject.GetComponent<Health>().Updatehealth(-Daño);
+                _health.Updatehealth(-Daño);
                 _tiempoUltimoAtaque = Time.time;
             }
 

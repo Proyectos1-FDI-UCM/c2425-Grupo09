@@ -1570,7 +1570,6 @@ MonoBehaviour:
   TimerText: {fileID: 1399640087}
   timeSeg: 600
   SumaSeg: 20
-  RestaSeg: 5
   animator: {fileID: 1399640083}
 --- !u!114 &429026505
 MonoBehaviour:
@@ -1929,6 +1928,10 @@ PrefabInstance:
       propertyPath: Speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1300266272}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: DistanciaDeteccion
       value: 6

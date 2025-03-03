@@ -1860,7 +1860,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &573840298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2024,6 +2024,10 @@ PrefabInstance:
       propertyPath: Speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1300266272}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: AnchoAnimal
       value: 0.5
@@ -2870,8 +2874,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 5
-  clock: {fileID: 573840297}
-  timertext: {fileID: 1846238962}
 --- !u!114 &1300266274
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2931,6 +2933,8 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
+  applesInInventory: 0
+  appleHealthUp: 50
 --- !u!114 &1300266276
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4696,7 +4700,6 @@ MonoBehaviour:
   TimerText: {fileID: 1846238967}
   timeSeg: 600
   SumaSeg: 5
-  RestaSeg: 5
   animator: {fileID: 1846238964}
 --- !u!114 &1846238967
 MonoBehaviour:
@@ -7515,6 +7518,10 @@ PrefabInstance:
       propertyPath: Speed
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: _player
+      value: 
+      objectReference: {fileID: 1300266272}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: DistanciaDeteccion
       value: 6
