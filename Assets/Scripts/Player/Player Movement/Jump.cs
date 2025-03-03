@@ -24,7 +24,7 @@ public class Jump : MonoBehaviour
     // ---- ATRIBUTOS PRIVADOS ----
     private Rigidbody2D _rB;
     private bool _enSuelo;
-    private int _saltoExtra = 1;
+    private int _saltoExtra = 0;
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
 
@@ -33,14 +33,20 @@ public class Jump : MonoBehaviour
         _rB = GetComponent<Rigidbody2D>();
         
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
         _enSuelo = Physics2D.OverlapBox(_controlarSuelo.position, _caja,0f,_suelo);
+    }
+
+    private void Update()
+    {
+        if (_enSuelo)
+            _saltoExtra = 0;
 
         if (InputManager.Instance.JumpWasPressedThisFrame()){
             Salto();
         }
-
     }
 
     // ---- MÉTODOS PÚBLICOS ----
@@ -50,10 +56,6 @@ public class Jump : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
     // Ejemplo: GetPlayerController
-    public bool IsGrounded()
-    {
-       return (Physics2D.OverlapBox(_controlarSuelo.position, _caja,0f,_suelo));
-    }
 
     #endregion
 
@@ -63,7 +65,7 @@ public class Jump : MonoBehaviour
         if (_enSuelo)
         {
             _rB.velocity = new Vector2(0, _alturaSalto);
-            _saltoExtra = 1;
+            _saltoExtra = 0;
         }else if(_saltoExtra > 0)
         {
             _rB.velocity = new Vector2(0, _alturaSalto);

@@ -86,8 +86,8 @@ public class AnimalController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
             _direction *= -1;
         }
-        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador && el jugador está en el suelo
-        else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(rightDirection, DistanciaSalto, "Player", "Ground") && !_isInAttackRange && _jump.IsGrounded())
+        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador 
+        else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(rightDirection, DistanciaSalto, "Player", "Ground") && !_isInAttackRange)
         { 
             if(!_isJumping)
             {
