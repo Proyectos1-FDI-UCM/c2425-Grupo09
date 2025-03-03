@@ -33,9 +33,11 @@ public class AnimalController : MonoBehaviour
     [SerializeField] int Daño;
     //Transform del jugador para que el animal sepa donde saltar
     [SerializeField] Transform _player;
+    [SerializeField] Transform BarraDeSueñoFill;
+    [SerializeField] Transform BarraDeSueñoBackground;
 
     #endregion
-    
+
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
@@ -84,6 +86,9 @@ public class AnimalController : MonoBehaviour
         {
             // Gira el animal y cambia la dirección
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
+            BarraDeSueñoFill.rotation = Quaternion.Euler(0, BarraDeSueñoFill.rotation.eulerAngles.y - 180, 0);
+            BarraDeSueñoBackground.rotation = Quaternion.Euler(0, BarraDeSueñoBackground.rotation.eulerAngles.y - 180, 0);
+
             _direction *= -1;
         }
         //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador 
