@@ -25,10 +25,9 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth = 100f;
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
-    [SerializeField] private Gradient _colorGradient;
-    [SerializeField] int applesInInventory = 0;
+    [SerializeField] private Gradient _colorGradient;    
     [SerializeField] private int appleHealthUp = 50;
-
+    public int applesInInventory = 0;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -71,6 +70,7 @@ public class Health : MonoBehaviour
         {
             applesInInventory--;
             Updatehealth(appleHealthUp);
+            FindObjectOfType<InventoryController>().AppleConsumed();
         }
     }
     #endregion
@@ -89,6 +89,7 @@ public class Health : MonoBehaviour
         if (collision.gameObject.CompareTag("Apple"))
         {
             applesInInventory++;
+            FindObjectOfType<InventoryController>().NumAppleToText(applesInInventory);
             Debug.Log("Manzana cogida");
             collision.gameObject.SetActive(false);
             Destroy(collision.gameObject);
