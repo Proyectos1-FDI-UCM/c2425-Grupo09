@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Pablo Abellán y Diego García
 // Nombre del juego
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -21,28 +21,32 @@ public class PlayerController : MonoBehaviour
 
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
 
     //Velocidad del jugador al moverse
     [SerializeField] float velocidad;
+
+    //Salto
+    [SerializeField] float AlturaSalto;
+    [SerializeField] Transform ControlarSuelo;
+    [SerializeField] LayerMask Suelo;
+    [SerializeField] Vector3 Caja;
+    [SerializeField] float CoyoteTime;
+    [SerializeField] float BufferTime;
     #endregion
 
 
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // privados se nombren en formato _camelCase (comienza con _, 
-    // primera palabra en minúsculas y el resto con la 
-    // primera letra en mayúsculas)
-    // Ejemplo: _maxHealthPoints
 
-    //Componente rigidbody del gameObject
-    private Rigidbody2D _rig;
+    private Rigidbody2D _rB;
+    private bool _enSuelo;
+    private float _coyoteCounter;
+    private bool _isJumping;
+    private float _bufferCounter;
+
+    private int _extraJump = 1;
+    private int _jumpCounter;
+    
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -58,18 +62,20 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
+        _rB = GetComponent<Rigidbody2D>();
     }
     private void Awake()
     {
-        _rig = GetComponent<Rigidbody2D>();
+        _rB = GetComponent<Rigidbody2D>();
     }
 
     private void FixedUpdate()
     {
+        _enSuelo = Physics2D.OverlapBox(ControlarSuelo.position, Caja, 0f, Suelo);
+
         float moveX = InputManager.Instance.MovementVector.x;
 
-        _rig.velocity = new Vector2(velocidad * moveX, _rig.velocity.y);
+        _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y);
 
         if (moveX > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0); 
@@ -82,28 +88,58 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-    void Update()
+     void Update()
     {
+        _coyoteCounter = _enSuelo ? CoyoteTime : _coyoteCounter - Time.deltaTime;
+
+        _bufferCounter = InputManager.Instance.JumpWasPressedThisFrame() ? BufferTime : _bufferCounter - Time.deltaTime;
+
+        if (InputManager.Instance.JumpWasPressedThisFrame() && !_enSuelo && _jumpCounter > 0)
+        {
+            Jump();
+            _jumpCounter = 0;
+        }
+        else if (_enSuelo)
+        {
+            _jumpCounter = _extraJump;
+        }
+        if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping)
+        {
+            Jump();
+            _bufferCounter = 0;
+
+            StartCoroutine(JumpCooldown());
+        }
 
     }
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
+
 
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
+   /// <summary>
+    /// Jump se llama cuando el jugador  quiere saltar.
+    /// </summary>
+    private void Jump()
+    {
+        Debug.Log("Salto ejecutado");
+        _rB.velocity = new Vector2(_rB.velocity.x, AlturaSalto);
+    }
+    /// <summary>
+    /// JumpCooldown se llama cuando el jugador ya ha saltado, 
+    /// tenga que esperar un cooldown para volverlo a hacer.
+    /// </summary>
+    private IEnumerator JumpCooldown()
+    {
+        _isJumping = true;
+        yield return new WaitForSeconds(0.4f);
+        _isJumping = false;
+    }
     #endregion   
 
 } // class NewBehaviourScript 

@@ -55,7 +55,6 @@ public class AnimalController : MonoBehaviour
     //Bool para saber si el animal está ejecutando el salto
     private bool _isJumping = false;
 
-    private Jump _jump;
     private Health _health;
 
     #endregion
@@ -68,7 +67,6 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        _jump = _player.gameObject.GetComponent<Jump>();
         _health = _player.gameObject.GetComponent<Health>();
     }
 
