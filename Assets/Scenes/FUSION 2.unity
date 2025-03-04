@@ -6111,7 +6111,7 @@ MonoBehaviour:
   TimerText: {fileID: 1846238967}
   Player: {fileID: 1300266268}
   LoseMenu: {fileID: 995296853}
-  timeSeg: 20
+  timeSeg: 600
   SumaSeg: 5
   animator: {fileID: 1846238964}
 --- !u!114 &1846238967

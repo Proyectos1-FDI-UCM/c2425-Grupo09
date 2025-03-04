@@ -141,6 +141,8 @@ public class AnimalController : MonoBehaviour
     public void TurnAround()
     {
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
+        BarraDeSueñoFill.rotation = Quaternion.Euler(0, BarraDeSueñoFill.rotation.eulerAngles.y - 180, 0);
+        BarraDeSueñoBackground.rotation = Quaternion.Euler(0, BarraDeSueñoBackground.rotation.eulerAngles.y - 180, 0);
         _direction *= -1;
     }
 
