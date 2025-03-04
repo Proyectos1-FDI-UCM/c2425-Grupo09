@@ -135,6 +135,15 @@ public class AnimalController : MonoBehaviour
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
 
+    /// <summary>
+    /// Este método se llama desde bullet para girar al enemigo en caso de que el jugador lo ataque por la espalda.
+    /// </summary>
+    public void TurnAround()
+    {
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
+        _direction *= -1;
+    }
+
     #endregion
     
     // ---- MÉTODOS PRIVADOS ----

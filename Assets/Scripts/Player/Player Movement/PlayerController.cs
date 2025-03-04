@@ -127,7 +127,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        Debug.Log("Salto ejecutado");
         _rB.velocity = new Vector2(_rB.velocity.x, AlturaSalto);
     }
     /// <summary>

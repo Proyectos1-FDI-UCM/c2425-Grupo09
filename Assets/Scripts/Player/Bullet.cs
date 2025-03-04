@@ -62,8 +62,13 @@ public class Bullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D coll)
     {
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
+        {
             coll.gameObject.GetComponent<BarraDeSueño>().Dormir(Damage);
-        
+
+            //Si el enemigo está de espaldas, lo gira para que ataque
+            if (Mathf.Abs(transform.rotation.eulerAngles.y - coll.gameObject.transform.rotation.eulerAngles.y) <= 0.001f) 
+                coll.gameObject.GetComponent<AnimalController>().TurnAround();
+        } 
         Destroy(gameObject);
     }
 
