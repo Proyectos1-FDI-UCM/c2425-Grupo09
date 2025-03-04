@@ -60,7 +60,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!114 &246599989654751630
 MonoBehaviour:
@@ -167,7 +167,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 7482667652216324306, guid: 0a69a5909624cac4d83d00ec0c6dfcb3, type: 3}
+  m_Sprite: {fileID: 7482667652216324306, guid: 26b262b2377b1904bba132a6d3a957eb, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -371,7 +371,7 @@ MonoBehaviour:
   "MaxBarraDeSue\xF1o": 100
   TriggerCollider: {fileID: 4187176767586889015}
   _healthBarFill: {fileID: 3910361444192131790}
-  _fillSpeed: 0.5
+  _fillSpeed: 0.2
   _colorGradient:
     serializedVersion: 2
     key0: {r: 0.76306456, g: 0.013883919, b: 0.9811321, a: 1}

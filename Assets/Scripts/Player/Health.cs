@@ -25,9 +25,8 @@ public class Health : MonoBehaviour
     [SerializeField] float maxHealth = 100f;
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
-    [SerializeField] private Gradient _colorGradient;    
-    [SerializeField] private int appleHealthUp = 50;
-    public int applesInInventory = 0;
+    [SerializeField] private Gradient _colorGradient;
+
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -64,15 +63,6 @@ public class Health : MonoBehaviour
         }
     }
 
-    public void Update()
-    {
-        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0) //Curacion al consumir una manzana
-        {
-            applesInInventory--;
-            Updatehealth(appleHealthUp);
-            FindObjectOfType<InventoryController>().AppleConsumed();
-        }
-    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -84,17 +74,6 @@ public class Health : MonoBehaviour
         _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("Apple"))
-        {
-            applesInInventory++;
-            FindObjectOfType<InventoryController>().NumAppleToText(applesInInventory);
-            Debug.Log("Manzana cogida");
-            collision.gameObject.SetActive(false);
-            Destroy(collision.gameObject);
-        }
-    }
     #endregion
 
 } // class Health 

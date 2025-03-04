@@ -55,17 +55,20 @@ public class BarraDeSueño : MonoBehaviour
     /// </summary>
     public void Dormir(int amount)
     {
-        if(_barraDeSueño < MaxBarraDeSueño)
-        _barraDeSueño += amount;
-
-        else if(!dormido)
+        if(!dormido)
         {
-            _animalController.enabled = false;
-            TriggerCollider.enabled = false;
-            dormido = true;
+            _barraDeSueño += amount;
+
+            if(_barraDeSueño >= MaxBarraDeSueño)
+            {
+                _animalController.enabled = false;
+                TriggerCollider.enabled = false;
+                dormido = true;
+            }
+
+            _barraDeSueño = Mathf.Clamp(_barraDeSueño, 0f, MaxBarraDeSueño);
+            UpdateHealthBar();
         }
-        _barraDeSueño = Mathf.Clamp(_barraDeSueño, 0f, MaxBarraDeSueño);
-        UpdateHealthBar();
     }
 
     #endregion
