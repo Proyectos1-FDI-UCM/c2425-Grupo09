@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 88ab91c3c24f24d8789e651802f2b486
   - enabled: 1
+    path: Assets/Scenes/FUSION 2.unity
+    guid: 35fb0bc1f8742e8429ea0ea010672034
+  - enabled: 1
     path: Assets/Scenes/Level1.unity
     guid: 20527f57389d748ee93839d6d77bce46
   m_configObjects: {}

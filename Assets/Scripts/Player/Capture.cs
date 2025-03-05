@@ -63,7 +63,7 @@ public class Capture : MonoBehaviour
                 RecogerObjeto();
             }
         }
-        Debug.Log(_animal);
+        //Debug.Log(_animal);
     }
 
     #endregion
