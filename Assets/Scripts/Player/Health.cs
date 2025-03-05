@@ -23,6 +23,7 @@ public class Health : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
 
     [SerializeField] float maxHealth = 100f;
+    [SerializeField] float startingHealth = 100f;
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
@@ -41,7 +42,9 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        _currentHealth = maxHealth;
+        _currentHealth = startingHealth;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
+        UpdateHealthBar();
     }
 
     #endregion

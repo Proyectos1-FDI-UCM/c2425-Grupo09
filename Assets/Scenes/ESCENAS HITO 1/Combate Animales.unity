@@ -8348,6 +8348,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1831700839}
     m_Modifications:
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: "Da\xF1o"
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: Speed
       value: 3
       objectReference: {fileID: 0}
@@ -8361,7 +8365,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: CooldownSalto
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: CooldownAtaque
@@ -9368,7 +9372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80997271be13099409579ccb66ae0655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 5
+  velocidad: 7
   AlturaSalto: 5
   ControlarSuelo: {fileID: 911724506}
   Suelo:
@@ -9404,6 +9408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  startingHealth: 100
   _healthBarFill: {fileID: 50229960}
   _fillSpeed: 0.5
   _colorGradient:
@@ -10897,6 +10902,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1831700839}
     m_Modifications:
+    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+      propertyPath: "Da\xF1o"
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: Speed
       value: 3
