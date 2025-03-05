@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5423635563226832573}
   - component: {fileID: 2725598850786426308}
   - component: {fileID: 3027325249833464269}
+  - component: {fileID: 1095373416437715726}
   m_Layer: 12
   m_Name: Apple
   m_TagString: Apple
@@ -28,8 +29,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.01, y: -2.48, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1.6666666}
+  m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -892321607, guid: 09ed578f85f5e644191efbd34f4ad376, type: 3}
+  m_Sprite: {fileID: -523342886, guid: 194ba3fb98c25614e8b40c2d43b4d80b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +122,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.74, y: 2.04}
+    oldSize: {x: 1.74, y: 2.02}
     newSize: {x: 1.74, y: 2.04}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -130,3 +131,16 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.74, y: 2.04}
   m_EdgeRadius: 0
+--- !u!114 &1095373416437715726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280653737915957505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20fc2b22ab7f21d448b93e0d3d16aaf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  InventoryControllerHolder: {fileID: 0}

@@ -33,9 +33,11 @@ public class AnimalController : MonoBehaviour
     [SerializeField] int Daño;
     //Transform del jugador para que el animal sepa donde saltar
     [SerializeField] Transform _player;
+    [SerializeField] Transform BarraDeSueñoFill;
+    [SerializeField] Transform BarraDeSueñoBackground;
 
     #endregion
-    
+
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
@@ -53,7 +55,6 @@ public class AnimalController : MonoBehaviour
     //Bool para saber si el animal está ejecutando el salto
     private bool _isJumping = false;
 
-    private Jump _jump;
     private Health _health;
 
     #endregion
@@ -66,7 +67,6 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     void Awake()
     {
-        _jump = _player.gameObject.GetComponent<Jump>();
         _health = _player.gameObject.GetComponent<Health>();
     }
 
@@ -84,10 +84,13 @@ public class AnimalController : MonoBehaviour
         {
             // Gira el animal y cambia la dirección
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
+            BarraDeSueñoFill.rotation = Quaternion.Euler(0, BarraDeSueñoFill.rotation.eulerAngles.y - 180, 0);
+            BarraDeSueñoBackground.rotation = Quaternion.Euler(0, BarraDeSueñoBackground.rotation.eulerAngles.y - 180, 0);
+
             _direction *= -1;
         }
-        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador && el jugador está en el suelo
-        else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(rightDirection, DistanciaSalto, "Player", "Ground") && !_isInAttackRange && _jump.IsGrounded())
+        //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador 
+        else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(rightDirection, DistanciaSalto, "Player", "Ground") && !_isInAttackRange)
         { 
             if(!_isJumping)
             {
@@ -131,6 +134,17 @@ public class AnimalController : MonoBehaviour
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
+
+    /// <summary>
+    /// Este método se llama desde bullet para girar al enemigo en caso de que el jugador lo ataque por la espalda.
+    /// </summary>
+    public void TurnAround()
+    {
+        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
+        BarraDeSueñoFill.rotation = Quaternion.Euler(0, BarraDeSueñoFill.rotation.eulerAngles.y - 180, 0);
+        BarraDeSueñoBackground.rotation = Quaternion.Euler(0, BarraDeSueñoBackground.rotation.eulerAngles.y - 180, 0);
+        _direction *= -1;
+    }
 
     #endregion
     

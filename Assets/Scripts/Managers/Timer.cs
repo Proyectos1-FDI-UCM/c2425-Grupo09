@@ -6,6 +6,8 @@ using TMPro;
 public class Timer : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI TimerText;
+    [SerializeField] GameObject Player;
+    [SerializeField] GameObject LoseMenu;
 
     [SerializeField] float timeSeg = 600f;
      public float SumaSeg = 5f;
@@ -21,6 +23,7 @@ public class Timer : MonoBehaviour
         playing = true;
         currenttime = timeSeg;
         animator.SetBool("1", true);
+        
     }
 
     void Update()
@@ -32,10 +35,12 @@ public class Timer : MonoBehaviour
             int seconds = Mathf.FloorToInt(currenttime % 60);
 
             if (minutes <= 0 && seconds <= 0)
-            {
+            {  
                 minutes = 0;
                 seconds = 0;
+                PlayerDead();
                 TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); StopCounting();
+                
             }
             TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             if (Keyboard.current.rKey.wasPressedThisFrame) { currenttime = currenttime + SumaSeg; }
@@ -54,10 +59,15 @@ public class Timer : MonoBehaviour
         currenttime =  currenttime + x;
     }
 
-    public static void StopCounting()
+    public void StopCounting()
     {
         playing = false;
         Debug.Log("Fin partida");
+    }
+    private void PlayerDead()
+    {
+        Destroy(Player);
+        LoseMenu.SetActive(true);
     }
 }
 

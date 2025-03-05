@@ -6,6 +6,9 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
+
 // Añadir aquí el resto de directivas using
 
 
@@ -19,22 +22,25 @@ public class BarraDeSueño : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
     [SerializeField] int MaxBarraDeSueño;
     [SerializeField] Collider2D TriggerCollider;
-    
+    [SerializeField] private Image _healthBarFill;
+    [SerializeField] private float _fillSpeed;
+    [SerializeField] private Gradient _colorGradient;
+
     #endregion
-    
+
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
-    
-    [SerializeField] private int _barraDeSueño = 0; 
+
+    [SerializeField] private float _barraDeSueño = 0; 
     //De momento está SerializeField para poder comprobar en el inspector que aumenta correctamente. Luego se quitará.
     private AnimalController _animalController;
     private bool dormido;
 
     #endregion
-    
+
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-    
+
     void Awake()
     {
         _animalController = GetComponent<AnimalController>();
@@ -49,23 +55,32 @@ public class BarraDeSueño : MonoBehaviour
     /// </summary>
     public void Dormir(int amount)
     {
-        if(_barraDeSueño < MaxBarraDeSueño)
-        _barraDeSueño += amount;
-
-        else if(!dormido)
+        if(!dormido)
         {
-            _animalController.enabled = false;
-            TriggerCollider.enabled = false;
-            dormido = true;
+            _barraDeSueño += amount;
+
+            if(_barraDeSueño >= MaxBarraDeSueño)
+            {
+                _animalController.enabled = false;
+                TriggerCollider.enabled = false;
+                dormido = true;
+            }
+
+            _barraDeSueño = Mathf.Clamp(_barraDeSueño, 0f, MaxBarraDeSueño);
+            UpdateHealthBar();
         }
-          
     }
 
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-
+    private void UpdateHealthBar()
+    {
+        float targetFillAmount = _barraDeSueño / MaxBarraDeSueño;
+        _healthBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
+        _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
+    }
 
     #endregion   
 
