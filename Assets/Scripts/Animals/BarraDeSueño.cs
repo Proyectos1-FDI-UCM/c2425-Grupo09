@@ -62,7 +62,6 @@ public class BarraDeSueño : MonoBehaviour
             if(_barraDeSueño >= MaxBarraDeSueño)
             {
                 _animalController.enabled = false;
-                TriggerCollider.enabled = false;
                 dormido = true;
             }
 
@@ -70,6 +69,9 @@ public class BarraDeSueño : MonoBehaviour
             UpdateHealthBar();
         }
     }
+
+    public bool Dormido ()
+    { return dormido; }
 
     #endregion
 

@@ -17,7 +17,6 @@ public class Capture : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
 
     [SerializeField] private float distanciaMaxima = 30f;  // Distancia máxima a la que se puede interactuar con el objeto.
-    [SerializeField] private GameObject jugador;  // Referencia al objeto del jugador en la escena.
 
     #endregion
 
@@ -48,7 +47,7 @@ public class Capture : MonoBehaviour
     {
         if (_animal != null)
         {
-            float distancia = Vector3.Distance(jugador.transform.position, _animal.transform.position);
+            float distancia = Vector3.Distance(transform.position, _animal.transform.position);
 
             if (distancia <= distanciaMaxima)
             {
@@ -59,8 +58,7 @@ public class Capture : MonoBehaviour
                 _near = false;
             }
 
-            if (_near && Input.GetKeyDown(KeyCode.F))
-                //&& _barraDeSueño.Dormido())
+            if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
             {
                 RecogerObjeto();
             }
@@ -75,9 +73,9 @@ public class Capture : MonoBehaviour
 
     /// <summary>
     /// </summary>
-    void OnTriggerEnter(Collider other)
+    void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<BarraDeSueño>() != null)
+        if (other.gameObject.GetComponent<BarraDeSueño>() != null)
         {
             _animal = other.gameObject; 
             _barraDeSueño = _animal.GetComponent<BarraDeSueño>();
@@ -87,9 +85,9 @@ public class Capture : MonoBehaviour
     /// <summary>
     /// Método llamado cuando el jugador sale de la zona de colisión.
     /// </summary>
-    void OnTriggerExit(Collider other)
+    void OnTriggerExit2D(Collider2D other)
     {
-        if (other.GetComponent<BarraDeSueño>() != null)
+        if (other.gameObject.GetComponent<BarraDeSueño>() != null)
         {
             _near = false;  
             _animal = null;  

@@ -68,6 +68,8 @@ public class InputManager : MonoBehaviour
     private InputAction _fire;
     private InputAction _jump;
     private InputAction _heal;
+    private InputAction _capture;
+
 
     #endregion
 
@@ -214,6 +216,10 @@ public class InputManager : MonoBehaviour
         return _heal.IsPressed();
     }
 
+    public bool CaptureWasPressedThisFrame()
+    {
+        return _capture.WasPressedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -243,6 +249,8 @@ public class InputManager : MonoBehaviour
         _fire = _theController.Player.Fire;
         _jump = _theController.Player.Jump;
         _heal = _theController.Player.Heal;
+        _capture = _theController.Player.Capture;
+
     }
 
     /// <summary>

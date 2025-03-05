@@ -64,6 +64,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Capture"",
+                    ""type"": ""Button"",
+                    ""id"": ""1eadaa13-0767-4e64-8ca9-804f7c974fcd"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -262,6 +271,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""2d565011-a13e-4065-8bb9-acf7b3080624"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Capture"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -853,6 +873,7 @@ namespace UnityEngine.InputSystem
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
+            m_Player_Capture = m_Player.FindAction("Capture", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -930,6 +951,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Heal;
+        private readonly InputAction m_Player_Capture;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -938,6 +960,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Heal => m_Wrapper.m_Player_Heal;
+            public InputAction @Capture => m_Wrapper.m_Player_Capture;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -959,6 +982,9 @@ namespace UnityEngine.InputSystem
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
+                @Capture.started += instance.OnCapture;
+                @Capture.performed += instance.OnCapture;
+                @Capture.canceled += instance.OnCapture;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -975,6 +1001,9 @@ namespace UnityEngine.InputSystem
                 @Heal.started -= instance.OnHeal;
                 @Heal.performed -= instance.OnHeal;
                 @Heal.canceled -= instance.OnHeal;
+                @Capture.started -= instance.OnCapture;
+                @Capture.performed -= instance.OnCapture;
+                @Capture.canceled -= instance.OnCapture;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1161,6 +1190,7 @@ namespace UnityEngine.InputSystem
             void OnFire(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
             void OnHeal(InputAction.CallbackContext context);
+            void OnCapture(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
