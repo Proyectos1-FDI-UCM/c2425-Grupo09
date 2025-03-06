@@ -121,6 +121,8 @@ public class AnimalController : MonoBehaviour
             else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
                 _health.Updatehealth(-Daño);
+                _health.HurtAnimation();
+
                 _tiempoUltimoAtaque = Time.time;
             }
 

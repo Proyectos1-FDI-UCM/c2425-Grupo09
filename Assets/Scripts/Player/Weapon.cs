@@ -20,7 +20,7 @@ public class Weapon : MonoBehaviour
     [SerializeField] private GameObject BulletPrefab;
     //Cadencia de disparo
     [SerializeField] private float CadenciaDisparo;
-
+    [SerializeField] Animator animator;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
@@ -41,8 +41,10 @@ public class Weapon : MonoBehaviour
     {
         if (InputManager.Instance.FireWasPressedThisFrame() && Time.time > _tiempoUltimoDisparo + CadenciaDisparo)
         {
+            animator.SetTrigger("Attack");
             Shoot();
             _tiempoUltimoDisparo = Time.time;
+            
         }
             
     }

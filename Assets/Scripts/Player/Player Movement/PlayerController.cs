@@ -32,6 +32,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 Caja;
     [SerializeField] float CoyoteTime;
     [SerializeField] float BufferTime;
+
+    [SerializeField] Animator animator;
+
     #endregion
 
 
@@ -63,6 +66,10 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rB = GetComponent<Rigidbody2D>();
+        if (animator == null)
+        {
+            animator = GetComponent<Animator>(); // Si no lo asignas en el inspector, lo asignamos automáticamente
+        }
     }
     private void Awake()
     {
@@ -78,9 +85,16 @@ public class PlayerController : MonoBehaviour
         _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y);
 
         if (moveX > 0)
-            transform.rotation = Quaternion.Euler(0, 0, 0); 
+        {
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+            animator.SetBool("Walk", true); 
+        }
         else if (moveX < 0)
-            transform.rotation = Quaternion.Euler(0, 180, 0); 
+        {
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+            animator.SetBool("Walk", true);
+        }
+        else animator.SetBool("Walk", false);
 
     }
 

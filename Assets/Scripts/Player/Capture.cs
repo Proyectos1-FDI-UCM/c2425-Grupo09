@@ -17,7 +17,7 @@ public class Capture : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
 
     [SerializeField] private float distanciaMaxima = 30f;  // Distancia máxima a la que se puede interactuar con el objeto.
-
+    [SerializeField] Animator animator;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -60,6 +60,7 @@ public class Capture : MonoBehaviour
 
             if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
             {
+                animator.SetTrigger("Capture");
                 RecogerObjeto();
             }
         }

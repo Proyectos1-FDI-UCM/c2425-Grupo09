@@ -27,7 +27,7 @@ public class Health : MonoBehaviour
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
-
+    [SerializeField] Animator animator;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -61,10 +61,13 @@ public class Health : MonoBehaviour
         if (_currentHealth <= 0) //Si la vida llega a 0 se destruye
         {
             Debug.Log("Muerto");
-            gameObject.SetActive(false);
-            Destroy(gameObject);
+            //gameObject.SetActive(false);
+            animator.SetTrigger("Dead");
+            //Destroy(gameObject);
         }
     }
+    public void HurtAnimation ()
+    { animator.SetTrigger("Hurt"); }
 
     #endregion
 
