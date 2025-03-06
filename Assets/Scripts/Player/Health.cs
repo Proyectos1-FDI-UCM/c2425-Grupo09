@@ -28,12 +28,11 @@ public class Health : MonoBehaviour
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
     [SerializeField] Animator animator;
+    [HideInInspector] public float _currentHealth;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
-
-    private float _currentHealth;
 
     #endregion
   
