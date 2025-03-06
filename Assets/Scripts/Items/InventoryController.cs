@@ -59,7 +59,7 @@ public class InventoryController : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0) //Curacion al consumir una manzana
+        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0 && _health._currentHealth < 100) //Curacion al consumir una manzana
         {
             applesInInventory--;
             _health.Updatehealth(appleHealthUp);
