@@ -69,7 +69,7 @@ public class InputManager : MonoBehaviour
     private InputAction _jump;
     private InputAction _heal;
     private InputAction _capture;
-
+    private InputAction _grappler;
 
     #endregion
 
@@ -220,6 +220,16 @@ public class InputManager : MonoBehaviour
     {
         return _capture.WasPressedThisFrame();
     }
+
+    public bool GrapplerWasPressedThisFrame()
+    {
+        return _grappler.WasPressedThisFrame();
+    }
+
+    public bool GrapplerWasReleasedThisFrame()
+    {
+        return _grappler.WasReleasedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -250,6 +260,7 @@ public class InputManager : MonoBehaviour
         _jump = _theController.Player.Jump;
         _heal = _theController.Player.Heal;
         _capture = _theController.Player.Capture;
+        _grappler = _theController.Player.Grappler;
 
     }
 

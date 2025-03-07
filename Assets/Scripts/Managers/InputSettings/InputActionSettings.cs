@@ -73,6 +73,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Grappler"",
+                    ""type"": ""Button"",
+                    ""id"": ""9154d7f7-1c12-49ee-97d9-143038a55880"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -177,17 +186,6 @@ namespace UnityEngine.InputSystem
                 },
                 {
                     ""name"": """",
-                    ""id"": ""05f6913d-c316-48b2-a6bb-e225f14c7960"",
-                    ""path"": ""<Mouse>/leftButton"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": "";Keyboard&Mouse"",
-                    ""action"": ""Fire"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""85b7bb89-594a-4cb0-800b-9c4b97006e0a"",
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
@@ -238,6 +236,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Capture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d60de0e8-16ca-4b9f-ad91-e7414a184692"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Grappler"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -830,6 +839,7 @@ namespace UnityEngine.InputSystem
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
             m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
             m_Player_Capture = m_Player.FindAction("Capture", throwIfNotFound: true);
+            m_Player_Grappler = m_Player.FindAction("Grappler", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -908,6 +918,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Jump;
         private readonly InputAction m_Player_Heal;
         private readonly InputAction m_Player_Capture;
+        private readonly InputAction m_Player_Grappler;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -917,6 +928,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
             public InputAction @Heal => m_Wrapper.m_Player_Heal;
             public InputAction @Capture => m_Wrapper.m_Player_Capture;
+            public InputAction @Grappler => m_Wrapper.m_Player_Grappler;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -941,6 +953,9 @@ namespace UnityEngine.InputSystem
                 @Capture.started += instance.OnCapture;
                 @Capture.performed += instance.OnCapture;
                 @Capture.canceled += instance.OnCapture;
+                @Grappler.started += instance.OnGrappler;
+                @Grappler.performed += instance.OnGrappler;
+                @Grappler.canceled += instance.OnGrappler;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -960,6 +975,9 @@ namespace UnityEngine.InputSystem
                 @Capture.started -= instance.OnCapture;
                 @Capture.performed -= instance.OnCapture;
                 @Capture.canceled -= instance.OnCapture;
+                @Grappler.started -= instance.OnGrappler;
+                @Grappler.performed -= instance.OnGrappler;
+                @Grappler.canceled -= instance.OnGrappler;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1147,6 +1165,7 @@ namespace UnityEngine.InputSystem
             void OnJump(InputAction.CallbackContext context);
             void OnHeal(InputAction.CallbackContext context);
             void OnCapture(InputAction.CallbackContext context);
+            void OnGrappler(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

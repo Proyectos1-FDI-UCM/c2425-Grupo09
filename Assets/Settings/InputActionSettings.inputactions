@@ -49,6 +49,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Grappler",
+                    "type": "Button",
+                    "id": "9154d7f7-1c12-49ee-97d9-143038a55880",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -153,17 +162,6 @@
                 },
                 {
                     "name": "",
-                    "id": "05f6913d-c316-48b2-a6bb-e225f14c7960",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": ";Keyboard&Mouse",
-                    "action": "Fire",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "85b7bb89-594a-4cb0-800b-9c4b97006e0a",
                     "path": "<Keyboard>/space",
                     "interactions": "",
@@ -214,6 +212,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Capture",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d60de0e8-16ca-4b9f-ad91-e7414a184692",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Grappler",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

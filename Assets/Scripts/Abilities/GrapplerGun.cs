@@ -5,10 +5,6 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [Header("Scripts Ref:")]
     public Tutorial_GrapplingRope grappleRope;
 
-    [Header("Layers Settings:")]
-    [SerializeField] private bool grappleToAll = false;
-    [SerializeField] private int grappableLayerNumber = 9;
-
     [Header("Main Camera:")]
     public Camera m_camera;
 
@@ -48,6 +44,13 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [HideInInspector] public Vector2 grapplePoint;
     [HideInInspector] public Vector2 grappleDistanceVector;
 
+    [Header("Raycast")]
+    [SerializeField] private Vector2 boxSize;  
+    [SerializeField] private Vector3 rayCastOffset;
+    [SerializeField] private float maxDistance;           
+    [SerializeField] private LayerMask tilemapLayer;   
+    private Vector2 direction = Vector2.up;  
+
     private void Start()
     {
         grappleRope.enabled = false;
@@ -57,11 +60,11 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (InputManager.Instance.GrapplerWasPressedThisFrame())
         {
             SetGrapplePoint();
         }
-        else if (Input.GetKey(KeyCode.Mouse0))
+        else if (InputManager.Instance.GrapplerWasPressedThisFrame())
         {
             if (grappleRope.enabled)
             {
@@ -83,7 +86,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
                 }
             }
         }
-        else if (Input.GetKeyUp(KeyCode.Mouse0))
+        else if (InputManager.Instance.GrapplerWasReleasedThisFrame())
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
@@ -91,8 +94,8 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         }
         else
         {
-            Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-            RotateGun(mousePos, true);
+            //Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
+            //RotateGun(mousePos, true);
         }
     }
 
@@ -113,20 +116,20 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
     void SetGrapplePoint()
     {
-        Vector2 distanceVector = m_camera.ScreenToWorldPoint(Input.mousePosition) - gunPivot.position;
-        if (Physics2D.Raycast(firePoint.position, distanceVector.normalized))
+        RaycastHit2D _hit = Physics2D.BoxCast(transform.position + rayCastOffset, boxSize, 0, direction, maxDistance, tilemapLayer);
+    
+        if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
         {
-            RaycastHit2D _hit = Physics2D.Raycast(firePoint.position, distanceVector.normalized);
-            if (_hit.transform.gameObject.layer == grappableLayerNumber || grappleToAll)
-            {
-                if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
-                {
-                    grapplePoint = _hit.point;
-                    grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
-                    grappleRope.enabled = true;
-                }
-            }
+            grapplePoint = _hit.point;
+            grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
+            grappleRope.enabled = true;
         }
+    }
+
+    void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireCube((Vector2)transform.position+ (Vector2)rayCastOffset + direction * maxDistance / 2, boxSize);
     }
 
     public void Grapple()
