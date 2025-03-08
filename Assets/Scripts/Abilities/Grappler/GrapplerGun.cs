@@ -46,12 +46,15 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
     [Header("Raycast")]
     [SerializeField] private float maxDistance;  
-    [SerializeField] private float alturaMinimaEnganche;   
+    [SerializeField] private float alturaMinimaEnganche;  
+
+    [Header("Grappler")] 
     [SerializeField] private float impulso;      
     [SerializeField] private float offset;
+    [SerializeField] private float velocidadReduccion;
     [SerializeField] private LayerMask grapplingLayer;   
 
-    private Vector2 direction = Vector2.up;  
+    private Vector2 _direction = Vector2.up;  
 
     private void Start()
     {
@@ -88,6 +91,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
         }
+
     }
 
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
@@ -140,14 +144,15 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             return;
         }
 
+        //Ahora buscamos un punto más avanzado del anterior (ya que sino como el jugador se mueve hacia delante, engancharse al punto anterior calculado resultaría en que el jugador se engancharía más atras)
         Vector2 bestHitAdvanced = Vector2.zero;
         Vector2 bestHitPoint = bestHit.ClosestPoint(transform.position);
 
-        for(float i = 1; i < 4; i++)
+        for(float i = 1; i < 5; i++)
         {
             bestHitAdvanced = new Vector2 (bestHitPoint.x + offset/i * Mathf.Sign(m_rigidbody.gameObject.transform.rotation.y), bestHitPoint.y);
 
-            Collider2D collider = Physics2D.OverlapCircle(bestHitAdvanced, 0.1f);
+            Collider2D collider = Physics2D.OverlapCircle(bestHitAdvanced, 0.1f, grapplingLayer);
             float distance = Vector2.Distance(bestHitAdvanced, transform.position);
 
             if(collider != null && distance <= maxDistance)

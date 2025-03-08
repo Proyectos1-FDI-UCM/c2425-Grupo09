@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Vector3 Caja;
     [SerializeField] float CoyoteTime;
     [SerializeField] float BufferTime;
+    [SerializeField]  float maxVelocidad = 7f;
 
     [SerializeField] Animator animator;
 
@@ -77,10 +78,23 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(_enSuelo);
         float moveX = InputManager.Instance.MovementVector.x;
 
-        if(!grappleRope.isGrappling)
+        if (!grappleRope.isGrappling)
         {
-            _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y);
+            _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); // Movimiento normal
         }
+        else
+        {
+            // Aplicar fuerza en dirección del movimiento
+            _rB.AddForce(new Vector2(moveX * velocidad/2f, 0), ForceMode2D.Force);
+
+            //Se limita la velocidad del jugador mientras este colgado
+            if (_rB.velocity.magnitude > maxVelocidad)
+            {
+                _rB.velocity = _rB.velocity.normalized * maxVelocidad;
+            }
+        }
+        
+
 
         if (moveX > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
