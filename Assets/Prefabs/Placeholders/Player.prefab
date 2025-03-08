@@ -286,6 +286,7 @@ MonoBehaviour:
   maxDistance: 8
   alturaMinimaEnganche: 1
   impulso: 8
+  offset: 3
   grapplingLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -441,7 +442,7 @@ MonoBehaviour:
   grapplingGun: {fileID: 7072989487668917770}
   m_lineRenderer: {fileID: 52264924122161533}
   percision: 120
-  straightenLineSpeed: 12
+  straightenLineSpeed: 15
   ropeAnimationCurve:
     serializedVersion: 2
     m_Curve:

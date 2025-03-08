@@ -8700,6 +8700,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 50229960}
     - target: {fileID: 7072989487668917770, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
+      propertyPath: offset
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7072989487668917770, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
       propertyPath: m_camera
       value: 
       objectReference: {fileID: 519420031}
@@ -8711,6 +8715,10 @@ PrefabInstance:
       propertyPath: grayGoldenApple
       value: 
       objectReference: {fileID: 356165236}
+    - target: {fileID: 9011569648895095918, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
+      propertyPath: straightenLineSpeed
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

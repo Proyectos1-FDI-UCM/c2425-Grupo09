@@ -48,6 +48,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [SerializeField] private float maxDistance;  
     [SerializeField] private float alturaMinimaEnganche;   
     [SerializeField] private float impulso;      
+    [SerializeField] private float offset;
     [SerializeField] private LayerMask grapplingLayer;   
 
     private Vector2 direction = Vector2.up;  
@@ -139,16 +140,34 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             return;
         }
 
-        // Guardar el punto de enganche
-        grapplePoint = bestHit.ClosestPoint(transform.position);
+        Vector2 bestHitAdvanced = Vector2.zero;
+        Vector2 bestHitPoint = bestHit.ClosestPoint(transform.position);
+
+        for(float i = 1; i < 4; i++)
+        {
+            bestHitAdvanced = new Vector2 (bestHitPoint.x + offset/i * Mathf.Sign(m_rigidbody.gameObject.transform.rotation.y), bestHitPoint.y);
+
+            Collider2D collider = Physics2D.OverlapCircle(bestHitAdvanced, 0.1f);
+            float distance = Vector2.Distance(bestHitAdvanced, transform.position);
+
+            if(collider != null && distance <= maxDistance)
+            {
+                grapplePoint = bestHitAdvanced;
+                break;
+            }
+            else
+            {
+                grapplePoint = bestHitPoint;
+            }
+        }
+
         grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
         grappleRope.enabled = true;
 
         RotateGun(grapplePoint, true);
     }
 
-
-
+    //Depuración puntos de enganche
     void OnDrawGizmos()
     {
         // Dibujar el área de detección (círculo)
