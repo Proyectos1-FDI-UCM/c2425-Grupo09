@@ -45,10 +45,9 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [HideInInspector] public Vector2 grappleDistanceVector;
 
     [Header("Raycast")]
-    [SerializeField] private Vector2 boxSize;  
-    [SerializeField] private Vector3 rayCastOffset;
     [SerializeField] private float maxDistance;           
     [SerializeField] private LayerMask tilemapLayer;   
+    [SerializeField] private float alturaMinimaEnganche;
     private Vector2 direction = Vector2.up;  
 
     private void Start()
@@ -64,16 +63,11 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         {
             SetGrapplePoint();
         }
-        else if (InputManager.Instance.GrapplerWasPressedThisFrame())
+        else if (InputManager.Instance.GrapplerIsPressed())
         {
             if (grappleRope.enabled)
             {
-                RotateGun(grapplePoint, false);
-            }
-            else
-            {
-                Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-                RotateGun(mousePos, true);
+                RotateGun(grapplePoint, true);
             }
 
             if (launchToPoint && grappleRope.isGrappling)
@@ -91,11 +85,6 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
-        }
-        else
-        {
-            //Vector2 mousePos = m_camera.ScreenToWorldPoint(Input.mousePosition);
-            //RotateGun(mousePos, true);
         }
     }
 
@@ -116,21 +105,75 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
     void SetGrapplePoint()
     {
-        RaycastHit2D _hit = Physics2D.BoxCast(transform.position + rayCastOffset, boxSize, 0, direction, maxDistance, tilemapLayer);
-    
-        if (Vector2.Distance(_hit.point, firePoint.position) <= maxDistnace || !hasMaxDistance)
+        // Detectar todos los objetos en un radio determinado
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, maxDistance, tilemapLayer);
+        
+        if (hits.Length == 0) 
         {
-            grapplePoint = _hit.point;
-            grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
-            grappleRope.enabled = true;
+            Debug.Log("No se detectaron objetos en el área.");
+            return;
         }
+
+        Collider2D bestHit = null;
+        float bestDistance = Mathf.Infinity;
+
+        foreach (Collider2D hit in hits)
+        {
+            Vector2 hitPoint = hit.ClosestPoint(transform.position);
+
+            // Filtrar solo los puntos que están por encima del jugador
+            if (hitPoint.y < transform.position.y + alturaMinimaEnganche) continue;
+
+            float distance = Vector2.Distance(hitPoint, transform.position);
+            if (distance < bestDistance)
+            {
+                bestDistance = distance;
+                bestHit = hit;
+            }
+        }
+
+        if (bestHit == null) 
+        {
+            Debug.Log("No hay objetos válidos sobre el jugador.");
+            return;
+        }
+
+        // Guardar el punto de enganche
+        grapplePoint = bestHit.ClosestPoint(transform.position);
+        grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
+        grappleRope.enabled = true;
+
+        RotateGun(grapplePoint, true);
     }
+
+
 
     void OnDrawGizmos()
     {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireCube((Vector2)transform.position+ (Vector2)rayCastOffset + direction * maxDistance / 2, boxSize);
+        // Dibujar el área de detección (círculo)
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, maxDistance);
+
+        // Dibujar todos los puntos detectados
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, maxDistance, tilemapLayer);
+        foreach (Collider2D hit in hits)
+        {
+            Vector2 hitPoint = hit.ClosestPoint(transform.position);
+
+            // Color amarillo para todos los puntos detectados
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawSphere(hitPoint, 0.1f);
+        }
+
+        // Dibujar el punto de enganche final en rojo
+        if (grapplePoint != Vector2.zero)
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawSphere(grapplePoint, 0.15f);
+        }
     }
+
+
 
     public void Grapple()
     {
@@ -153,21 +196,17 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         }
         else
         {
-            switch (launchType)
+            if (launchType == LaunchType.Transform_Launch)
             {
-                case LaunchType.Physics_Launch:
-                    m_springJoint2D.connectedAnchor = grapplePoint;
-
-                    Vector2 distanceVector = firePoint.position - gunHolder.position;
-
-                    m_springJoint2D.distance = distanceVector.magnitude;
-                    m_springJoint2D.frequency = launchSpeed;
-                    m_springJoint2D.enabled = true;
-                    break;
-                case LaunchType.Transform_Launch:
-                    m_rigidbody.gravityScale = 0;
-                    m_rigidbody.velocity = Vector2.zero;
-                    break;
+                m_rigidbody.gravityScale = 0;
+                m_rigidbody.velocity = Vector2.zero;
+            }
+            if (launchType == LaunchType.Physics_Launch)
+            {
+                m_springJoint2D.connectedAnchor = grapplePoint;
+                m_springJoint2D.distance = 0;
+                m_springJoint2D.frequency = launchSpeed;
+                m_springJoint2D.enabled = true;
             }
         }
     }

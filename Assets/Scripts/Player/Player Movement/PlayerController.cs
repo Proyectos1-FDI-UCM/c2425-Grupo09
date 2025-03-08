@@ -79,7 +79,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         _enSuelo = Physics2D.OverlapBox(ControlarSuelo.position, Caja, 0f, Suelo);
-        Debug.Log(_enSuelo);
+        //Debug.Log(_enSuelo);
         float moveX = InputManager.Instance.MovementVector.x;
 
         _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y);
@@ -108,7 +108,7 @@ public class PlayerController : MonoBehaviour
 
         if (InputManager.Instance.JumpWasPressedThisFrame() && !_enSuelo && _jumpCounter > 0)
         {
-            Debug.Log("Salto");
+            //Debug.Log("Salto");
             Jump();
             _jumpCounter = 0;
         }
@@ -118,7 +118,7 @@ public class PlayerController : MonoBehaviour
         }
         if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping)
         {
-            Debug.Log("Salto");
+            //Debug.Log("Salto");
 
             Jump();
             _bufferCounter = 0;

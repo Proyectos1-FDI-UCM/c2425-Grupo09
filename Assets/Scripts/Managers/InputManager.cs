@@ -230,6 +230,11 @@ public class InputManager : MonoBehaviour
     {
         return _grappler.WasReleasedThisFrame();
     }
+
+    public bool GrapplerIsPressed()
+    {
+        return _grappler.IsPressed();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
