@@ -15,8 +15,6 @@ using System.Collections.Generic;
 /// </summary>
 public class PlayerController : MonoBehaviour
 {
-
-
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
 
@@ -32,7 +30,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float BufferTime;
 
     [SerializeField] Animator animator;
-    [SerializeField] Tutorial_GrapplingRope grappleRope;
 
     #endregion
 
@@ -41,6 +38,8 @@ public class PlayerController : MonoBehaviour
     #region Atributos Privados (private fields)
 
     private Rigidbody2D _rB;
+    private Tutorial_GrapplingRope grappleRope;
+
     private bool _enSuelo;
     private float _coyoteCounter;
     private bool _isJumping;
@@ -61,6 +60,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rB = GetComponent<Rigidbody2D>();
+        grappleRope = GetComponentInChildren<Tutorial_GrapplingRope>();
         if (animator == null)
         {
             animator = GetComponent<Animator>(); // Si no lo asignas en el inspector, lo asignamos automáticamente
