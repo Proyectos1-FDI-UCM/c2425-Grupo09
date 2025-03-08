@@ -3289,6 +3289,10 @@ PrefabInstance:
       propertyPath: _healthBarFill
       value: 
       objectReference: {fileID: 50229960}
+    - target: {fileID: 6959977417964215870, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
+      propertyPath: startingHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7154726047639681158, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
       propertyPath: numApples
       value: 
@@ -3298,7 +3302,8 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1037621090}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
+    m_RemovedGameObjects:
+    - {fileID: 4182403147052342822, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
