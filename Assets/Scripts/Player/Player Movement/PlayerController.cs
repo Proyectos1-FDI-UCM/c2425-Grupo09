@@ -1,13 +1,11 @@
 //---------------------------------------------------------
 // Breve descripción del contenido del archivo
-// Pablo Abellán y Diego García
+// Pablo Abellán, Diego García, Sergio Valiente
 // Nombre del juego
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
-
 using System.Collections;
 using System.Collections.Generic;
 
@@ -34,6 +32,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float BufferTime;
 
     [SerializeField] Animator animator;
+    [SerializeField] Tutorial_GrapplingRope grappleRope;
 
     #endregion
 
@@ -54,10 +53,6 @@ public class PlayerController : MonoBehaviour
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-
-    // Por defecto están los típicos (Update y Start) pero:
-    // - Hay que añadir todos los que sean necesarios
-    // - Hay que borrar los que no se usen 
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
@@ -82,13 +77,15 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(_enSuelo);
         float moveX = InputManager.Instance.MovementVector.x;
 
-        _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y);
+        if(!grappleRope.isGrappling)
+        {
+            _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y);
+        }
 
         if (moveX > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
         else if (moveX < 0)
             transform.rotation = Quaternion.Euler(0, 180, 0);
-
 
         if (moveX != 0) animator.SetBool("Walk", true);
 

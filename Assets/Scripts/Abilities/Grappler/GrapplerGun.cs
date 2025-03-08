@@ -45,16 +45,17 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [HideInInspector] public Vector2 grappleDistanceVector;
 
     [Header("Raycast")]
-    [SerializeField] private float maxDistance;           
-    [SerializeField] private LayerMask tilemapLayer;   
-    [SerializeField] private float alturaMinimaEnganche;
+    [SerializeField] private float maxDistance;  
+    [SerializeField] private float alturaMinimaEnganche;   
+    [SerializeField] private float impulso;      
+    [SerializeField] private LayerMask grapplingLayer;   
+
     private Vector2 direction = Vector2.up;  
 
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
-
     }
 
     private void Update()
@@ -106,11 +107,11 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     void SetGrapplePoint()
     {
         // Detectar todos los objetos en un radio determinado
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, maxDistance, tilemapLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, maxDistance, grapplingLayer);
         
         if (hits.Length == 0) 
         {
-            Debug.Log("No se detectaron objetos en el área.");
+            //Debug.Log("No se detectaron objetos en el área.");
             return;
         }
 
@@ -134,7 +135,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
         if (bestHit == null) 
         {
-            Debug.Log("No hay objetos válidos sobre el jugador.");
+            //Debug.Log("No hay objetos válidos sobre el jugador.");
             return;
         }
 
@@ -155,7 +156,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, maxDistance);
 
         // Dibujar todos los puntos detectados
-        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, maxDistance, tilemapLayer);
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, maxDistance, grapplingLayer);
         foreach (Collider2D hit in hits)
         {
             Vector2 hitPoint = hit.ClosestPoint(transform.position);
@@ -173,8 +174,6 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         }
     }
 
-
-
     public void Grapple()
     {
         m_springJoint2D.autoConfigureDistance = false;
@@ -189,6 +188,9 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             {
                 m_springJoint2D.autoConfigureDistance = true;
                 m_springJoint2D.frequency = 0;
+
+                //Impulso
+                //m_rigidbody.velocity = new Vector2(impulso * Mathf.Sign(m_rigidbody.gameObject.transform.rotation.y), m_rigidbody.velocity.y);
             }
 
             m_springJoint2D.connectedAnchor = grapplePoint;

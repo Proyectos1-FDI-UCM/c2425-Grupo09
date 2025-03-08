@@ -696,17 +696,18 @@ MonoBehaviour:
   maxDistnace: 6
   launchToPoint: 0
   launchType: 1
-  launchSpeed: 3
-  autoConfigureDistance: 0
+  launchSpeed: 1
+  autoConfigureDistance: 1
   targetDistance: 6.5
   targetFrequncy: 1
   grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
   maxDistance: 8
-  tilemapLayer:
+  alturaMinimaEnganche: 1
+  impulso: 8
+  grapplingLayer:
     serializedVersion: 2
     m_Bits: 128
-  alturaMinimaEnganche: 2
 --- !u!212 &452452739
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2146,6 +2147,7 @@ MonoBehaviour:
   CoyoteTime: 0.1
   BufferTime: 0.1
   animator: {fileID: 0}
+  grappleRope: {fileID: 2085290292}
 --- !u!114 &1300266274
 MonoBehaviour:
   m_ObjectHideFlags: 0
