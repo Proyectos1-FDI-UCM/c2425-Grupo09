@@ -272,10 +272,6 @@ MonoBehaviour:
   firePoint: {fileID: 4913350770382398780}
   m_springJoint2D: {fileID: 5112008373399619799}
   m_rigidbody: {fileID: 3172370024501741938}
-  rotateOverTime: 1
-  rotationSpeed: 17.6
-  hasMaxDistance: 0
-  maxDistnace: 6
   launchToPoint: 0
   launchType: 1
   launchSpeed: 1
@@ -285,10 +281,10 @@ MonoBehaviour:
   grapplePoint: {x: 0, y: 0}
   grappleDistanceVector: {x: 0, y: 0}
   maxDistance: 8
-  alturaMinimaEnganche: 1
+  alturaMinimaEnganche: 0.8
   impulso: 8
-  offset: 0
-  velocidadReduccion: 0
+  offset: 3
+  velocidadReduccion: 0.5
   grapplingLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -441,10 +437,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27c8117b80c78a04cb14d3209bdb5e3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  grapplingGun: {fileID: 7072989487668917770}
-  m_lineRenderer: {fileID: 52264924122161533}
-  percision: 120
-  straightenLineSpeed: 15
+  _GrapplerGun: {fileID: 7072989487668917770}
+  _LineRenderer: {fileID: 52264924122161533}
+  Percision: 120
+  StraightenLineSpeed: 40
   ropeAnimationCurve:
     serializedVersion: 2
     m_Curve:
@@ -557,7 +553,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  ropeProgressionSpeed: 10
+  RopeProgressionSpeed: 10
   isGrappling: 1
 --- !u!1 &3561404253343709620
 GameObject:

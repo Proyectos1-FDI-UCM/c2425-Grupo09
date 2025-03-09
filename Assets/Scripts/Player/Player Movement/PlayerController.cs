@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
     #region Atributos Privados (private fields)
 
     private Rigidbody2D _rB;
-    private Tutorial_GrapplingRope grappleRope;
+    private GrapplerRope grappleRope;
 
     private float _coyoteCounter;
     private bool _isJumping;
@@ -62,7 +62,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rB = GetComponent<Rigidbody2D>();
-        grappleRope = GetComponentInChildren<Tutorial_GrapplingRope>();
+        grappleRope = GetComponentInChildren<GrapplerRope>();
         if (animator == null)
         {
             animator = GetComponent<Animator>(); // Si no lo asignas en el inspector, lo asignamos automáticamente
@@ -79,31 +79,35 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(_enSuelo);
         float moveX = InputManager.Instance.MovementVector.x;
 
+        //MOVIMIENTO CON GRAPPLER
+
+        //Si no está enganchado o esta enganchado estando en el suelo se mueve normal
         if (!grappleRope.isGrappling || (grappleRope.isGrappling & _enSuelo))
         {   
             if(_enSuelo)
                 _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); // Movimiento normal
+
             else if (Mathf.Abs(moveX) > 0) //Si está en el aire, solo pone velocidad al rb si el input es >0 (así conserva la inercia)
                 _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); 
+
             else  //Si está en el aire y no hay input, lo deceleramos poco a poco
                 _rB.velocity = new Vector2(Mathf.Lerp(_rB.velocity.x, 0, Time.deltaTime * 2f), _rB.velocity.y);
         }
-        else
+        else //Si está enganchado, el jugador puede balancearse un poco añadiendo fuerzas (no velocidad para que se sienta mas natural)
         {
             if(Mathf.Abs(moveX) > 0)
                 _rB.AddForce(new Vector2(moveX * velocidad/2f, 0), ForceMode2D.Force);
             else  
                 _rB.velocity = new Vector2(Mathf.Lerp(_rB.velocity.x, 0, Time.deltaTime * 2f), _rB.velocity.y);
+                //Si no recibe input estando colgado, se decelera poco a poco al jugador
 
-            //Se limita la velocidad del jugador mientras este colgado
+            //Se limita la velocidad del jugador mientras este colgado para que no supere maxVelocidad
             if (_rB.velocity.magnitude > maxVelocidad)
             {
                 _rB.velocity = _rB.velocity.normalized * maxVelocidad;
             }
         }
         
-
-
         if (moveX > 0)
             transform.rotation = Quaternion.Euler(0, 0, 0);
         else if (moveX < 0)
@@ -125,20 +129,21 @@ public class PlayerController : MonoBehaviour
 
         _bufferCounter = InputManager.Instance.JumpWasPressedThisFrame() ? BufferTime : _bufferCounter - Time.deltaTime;
 
-        if (InputManager.Instance.JumpWasPressedThisFrame() && !_enSuelo && _jumpCounter > 0)
+        if (InputManager.Instance.JumpWasPressedThisFrame() && !_enSuelo && !grappleRope.isGrappling && _jumpCounter > 0)
         {
             //Debug.Log("Salto");
             Jump();
             _jumpCounter = 0;
+
+            StartCoroutine(JumpCooldown());
         }
         else if (_enSuelo)
         {
             _jumpCounter = _extraJump;
         }
-        if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping)
+        if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.isGrappling)
         {
             //Debug.Log("Salto");
-
             Jump();
             _bufferCounter = 0;
 

@@ -1,9 +1,24 @@
+//---------------------------------------------------------
+// Este script es el responsable del grappler
+// Sergio Valiente
+// Nombre del juego
+// Proyectos 1 - Curso 2024-25
+//---------------------------------------------------------
+
 using UnityEngine;
 
-public class Tutorial_GrapplingGun : MonoBehaviour
+/// <summary>
+/// Antes de cada class, descripción de qué es y para qué sirve,
+/// usando todas las líneas que sean necesarias.
+/// </summary>
+public class GrapplerGun : MonoBehaviour
 {
+
+     // ---- ATRIBUTOS DEL INSPECTOR ----
+    #region Atributos del Inspector (serialized fields)
+
     [Header("Scripts Ref:")]
-    public Tutorial_GrapplingRope grappleRope;
+    public GrapplerRope grappleRope;
     [SerializeField] private PlayerController playerController;
 
     [Header("Main Camera:")]
@@ -17,14 +32,6 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [Header("Physics Ref:")]
     public SpringJoint2D m_springJoint2D;
     public Rigidbody2D m_rigidbody;
-
-    [Header("Rotation:")]
-    [SerializeField] private bool rotateOverTime = true;
-    [Range(0, 60)] [SerializeField] private float rotationSpeed = 4;
-
-    [Header("Distance:")]
-    [SerializeField] private bool hasMaxDistance = false;
-    [SerializeField] private float maxDistnace = 20;
 
     private enum LaunchType
     {
@@ -55,27 +62,38 @@ public class Tutorial_GrapplingGun : MonoBehaviour
     [SerializeField] private float velocidadReduccion;
     [SerializeField] private LayerMask grapplingLayer;   
 
-    private Vector2 _direction = Vector2.up;  
+    #endregion
 
+    // ---- ATRIBUTOS PRIVADOS ----
+    #region Atributos Privados (private fields)
+
+    private Vector2 _direction = Vector2.up; 
+
+    #endregion
+
+    // ---- MÉTODOS DE MONOBEHAVIOUR ----
+    #region Métodos de MonoBehaviour
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
     private void Start()
     {
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
     }
 
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
     private void Update()
     {
-        if (InputManager.Instance.GrapplerWasPressedThisFrame())
+        if (InputManager.Instance.GrapplerWasPressedThisFrame()) //Si se detecta el Input, se lanza el grappler
         {
             SetGrapplePoint();
         }
-        else if (InputManager.Instance.GrapplerIsPressed())
+        else if (InputManager.Instance.GrapplerIsPressed()) //Mientras esta presionado el Input, se mantiene el grappler
         {
-            if (grappleRope.enabled)
-            {
-                RotateGun(grapplePoint, true);
-            }
-
             if (launchToPoint && grappleRope.isGrappling)
             {
                 if (launchType == LaunchType.Transform_Launch)
@@ -86,18 +104,19 @@ public class Tutorial_GrapplingGun : MonoBehaviour
                 }
             }
         }
-        else if (InputManager.Instance.GrapplerWasReleasedThisFrame())
+        else if (InputManager.Instance.GrapplerWasReleasedThisFrame()) //Si se deja de presionar el Input, se desactiva la cuerda
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
         }
 
+        //Si el jugador esta enganchado, pero esta andando por el suelo
         if (grappleRope.isGrappling && playerController._enSuelo)
         {
             // Verifica si el jugador está moviéndose
             if (InputManager.Instance.MovementVector.x  != 0) 
-                m_springJoint2D.frequency = 0.1f; //Hacemos flexible la cuerda
+                m_springJoint2D.frequency = 0.1f; //Hacemos flexible la cuerda para que pueda estirarse o contraerse
             
             //Si la cuerda se ha hecho demasiado grande, se suelta
             if(m_springJoint2D.distance > maxDistance) 
@@ -107,25 +126,17 @@ public class Tutorial_GrapplingGun : MonoBehaviour
                 m_rigidbody.gravityScale = 1;
             }
 
-        } else m_springJoint2D.frequency = 0f;
+        } else m_springJoint2D.frequency = 0f; //Si no, se pone la frecuencia a 0 para que la cuerda deje de ser flexible
 
     }
+    #endregion
 
-    void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
-    {
-        Vector3 distanceVector = lookPoint - gunPivot.position;
+    // ---- MÉTODOS PRIVADOS ----
+    #region Métodos Privados
 
-        float angle = Mathf.Atan2(distanceVector.y, distanceVector.x) * Mathf.Rad2Deg;
-        if (rotateOverTime && allowRotationOverTime)
-        {
-            gunPivot.rotation = Quaternion.Lerp(gunPivot.rotation, Quaternion.AngleAxis(angle, Vector3.forward), Time.deltaTime * rotationSpeed);
-        }
-        else
-        {
-            gunPivot.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        }
-    }
-
+    /// <summary>
+    /// Este método establece el punto al que el jugador va a engancharse
+    /// </summary>
     void SetGrapplePoint()
     {
         // Detectar todos los objetos en un radio determinado
@@ -165,16 +176,18 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         Vector2 bestHitAdvanced = Vector2.zero;
         Vector2 bestHitPoint = bestHit.ClosestPoint(transform.position);
 
+        //Iteramos para ver varias posibilidades. Ej: el offset inicial es 3. Si este punto no es válido, entonces se prueba con 3/2, si este tampoco se prueba con 3/3 etc.
         for(float i = 1; i < 5; i++)
         {
             bestHitAdvanced = new Vector2 (bestHitPoint.x + offset/i * Mathf.Sign(m_rigidbody.gameObject.transform.rotation.y), bestHitPoint.y);
 
+            //Ahora miramos que este nuevo punto este en un objeto al que engancharse
             Collider2D collider = Physics2D.OverlapCircle(bestHitAdvanced, 0.1f, grapplingLayer);
             float distance = Vector2.Distance(bestHitAdvanced, transform.position);
 
-            if(collider != null && distance <= maxDistance)
+            if(collider != null && distance <= maxDistance) //Si se ha encontrado un punto válido, se establece y se sale del for
             {
-                grapplePoint = bestHitAdvanced;
+                grapplePoint = bestHitAdvanced; 
                 break;
             }
             else
@@ -185,11 +198,11 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
         grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
         grappleRope.enabled = true;
-
-        RotateGun(grapplePoint, true);
     }
 
-    //Depuración puntos de enganche
+    /// <summary>
+    /// Se dibuja con Gizmos para depurar el radio de accion, el punto más cercano al jugador, y el punto al que se une.
+    /// </summary>
     void OnDrawGizmos()
     {
         // Dibujar el área de detección (círculo)
@@ -215,6 +228,14 @@ public class Tutorial_GrapplingGun : MonoBehaviour
         }
     }
 
+    #endregion
+
+    // ---- MÉTODOS PÚBLICOS ----
+    #region Métodos públicos
+
+    /// <summary>
+    /// Método que se encarga de realizar la acción de Grapple propiamente, es decir que lanza la cuerda para engancharse al punto deseado.
+    /// </summary>
     public void Grapple()
     {
         m_springJoint2D.autoConfigureDistance = false;
@@ -253,14 +274,6 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             }
         }
     }
-
-    private void OnDrawGizmosSelected()
-    {
-        if (firePoint != null && hasMaxDistance)
-        {
-            Gizmos.color = Color.green;
-            Gizmos.DrawWireSphere(firePoint.position, maxDistnace);
-        }
-    }
+    #endregion
 
 }
