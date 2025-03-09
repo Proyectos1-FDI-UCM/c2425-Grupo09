@@ -59,7 +59,6 @@ public class GrapplerGun : MonoBehaviour
     [Header("Grappler")] 
     [SerializeField] private float impulso;      
     [SerializeField] private float offset;
-    [SerializeField] private float velocidadReduccion;
     [SerializeField] private LayerMask grapplingLayer;   
 
     #endregion
@@ -116,7 +115,7 @@ public class GrapplerGun : MonoBehaviour
         {
             // Verifica si el jugador está moviéndose
             if (InputManager.Instance.MovementVector.x  != 0) 
-                m_springJoint2D.frequency = 0.1f; //Hacemos flexible la cuerda para que pueda estirarse o contraerse
+                m_springJoint2D.frequency = 0.3f; //Hacemos flexible la cuerda para que pueda estirarse o contraerse
             
             //Si la cuerda se ha hecho demasiado grande, se suelta
             if(m_springJoint2D.distance > maxDistance) 
@@ -126,7 +125,12 @@ public class GrapplerGun : MonoBehaviour
                 m_rigidbody.gravityScale = 1;
             }
 
-        } else m_springJoint2D.frequency = 0f; //Si no, se pone la frecuencia a 0 para que la cuerda deje de ser flexible
+        } 
+        else 
+        {
+            m_springJoint2D.distance = Vector2.Distance(grapplePoint, transform.position); //Se reestablece el tamaño de la cuerda cuando el jugador deja de estar en el suelo
+            m_springJoint2D.frequency = 0f; //Si no, se pone la frecuencia a 0 para que la cuerda deje de ser flexible
+        }
 
     }
     #endregion
