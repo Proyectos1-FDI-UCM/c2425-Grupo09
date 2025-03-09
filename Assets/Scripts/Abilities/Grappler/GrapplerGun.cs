@@ -4,6 +4,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 {
     [Header("Scripts Ref:")]
     public Tutorial_GrapplingRope grappleRope;
+    [SerializeField] private PlayerController playerController;
 
     [Header("Main Camera:")]
     public Camera m_camera;
@@ -91,6 +92,22 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
         }
+
+        if (grappleRope.isGrappling && playerController._enSuelo)
+        {
+            // Verifica si el jugador está moviéndose
+            if (InputManager.Instance.MovementVector.x  != 0) 
+                m_springJoint2D.frequency = 0.1f; //Hacemos flexible la cuerda
+            
+            //Si la cuerda se ha hecho demasiado grande, se suelta
+            if(m_springJoint2D.distance > maxDistance) 
+            {
+                grappleRope.enabled = false;
+                m_springJoint2D.enabled = false;
+                m_rigidbody.gravityScale = 1;
+            }
+
+        } else m_springJoint2D.frequency = 0f;
 
     }
 

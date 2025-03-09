@@ -31,6 +31,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField]  float maxVelocidad = 7f;
 
     [SerializeField] Animator animator;
+    
+    [HideInInspector] public bool _enSuelo;
 
     #endregion
 
@@ -41,7 +43,6 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D _rB;
     private Tutorial_GrapplingRope grappleRope;
 
-    private bool _enSuelo;
     private float _coyoteCounter;
     private bool _isJumping;
     private float _bufferCounter;
@@ -78,14 +79,21 @@ public class PlayerController : MonoBehaviour
         //Debug.Log(_enSuelo);
         float moveX = InputManager.Instance.MovementVector.x;
 
-        if (!grappleRope.isGrappling)
-        {
-            _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); // Movimiento normal
+        if (!grappleRope.isGrappling || (grappleRope.isGrappling & _enSuelo))
+        {   
+            if(_enSuelo)
+                _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); // Movimiento normal
+            else if (Mathf.Abs(moveX) > 0) //Si está en el aire, solo pone velocidad al rb si el input es >0 (así conserva la inercia)
+                _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); 
+            else  //Si está en el aire y no hay input, lo deceleramos poco a poco
+                _rB.velocity = new Vector2(Mathf.Lerp(_rB.velocity.x, 0, Time.deltaTime * 2f), _rB.velocity.y);
         }
         else
         {
-            // Aplicar fuerza en dirección del movimiento
-            _rB.AddForce(new Vector2(moveX * velocidad/2f, 0), ForceMode2D.Force);
+            if(Mathf.Abs(moveX) > 0)
+                _rB.AddForce(new Vector2(moveX * velocidad/2f, 0), ForceMode2D.Force);
+            else  
+                _rB.velocity = new Vector2(Mathf.Lerp(_rB.velocity.x, 0, Time.deltaTime * 2f), _rB.velocity.y);
 
             //Se limita la velocidad del jugador mientras este colgado
             if (_rB.velocity.magnitude > maxVelocidad)

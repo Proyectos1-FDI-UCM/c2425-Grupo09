@@ -265,6 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 9011569648895095918}
+  playerController: {fileID: 3574316574254708645}
   m_camera: {fileID: 0}
   gunHolder: {fileID: 4913350770382398780}
   gunPivot: {fileID: 849332029143353790}
@@ -286,7 +287,8 @@ MonoBehaviour:
   maxDistance: 8
   alturaMinimaEnganche: 1
   impulso: 8
-  Offset: 3
+  offset: 0
+  velocidadReduccion: 0
   grapplingLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -568,6 +570,7 @@ GameObject:
   - component: {fileID: 1333277335162404909}
   - component: {fileID: 5324902973523119067}
   - component: {fileID: 3230622309813070400}
+  - component: {fileID: 4070313632664109126}
   - component: {fileID: 3172370024501741938}
   - component: {fileID: 3574316574254708645}
   - component: {fileID: 219931106219531943}
@@ -699,6 +702,41 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1647477, y: 2.1649718}
   m_EdgeRadius: 0
+--- !u!58 &4070313632664109126
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561404253343709620}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.5}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!50 &3172370024501741938
 Rigidbody2D:
   serializedVersion: 4
@@ -747,7 +785,9 @@ MonoBehaviour:
   Caja: {x: 0.9, y: 0.01, z: 0}
   CoyoteTime: 0.1
   BufferTime: 0.1
+  maxVelocidad: 7
   animator: {fileID: 3784885503509508793}
+  _enSuelo: 0
 --- !u!114 &219931106219531943
 MonoBehaviour:
   m_ObjectHideFlags: 0
