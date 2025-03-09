@@ -4,6 +4,7 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 {
     [Header("Scripts Ref:")]
     public Tutorial_GrapplingRope grappleRope;
+    [SerializeField] private PlayerController playerController;
 
     [Header("Main Camera:")]
     public Camera m_camera;
@@ -46,11 +47,15 @@ public class Tutorial_GrapplingGun : MonoBehaviour
 
     [Header("Raycast")]
     [SerializeField] private float maxDistance;  
-    [SerializeField] private float alturaMinimaEnganche;   
+    [SerializeField] private float alturaMinimaEnganche;  
+
+    [Header("Grappler")] 
     [SerializeField] private float impulso;      
+    [SerializeField] private float offset;
+    [SerializeField] private float velocidadReduccion;
     [SerializeField] private LayerMask grapplingLayer;   
 
-    private Vector2 direction = Vector2.up;  
+    private Vector2 _direction = Vector2.up;  
 
     private void Start()
     {
@@ -87,6 +92,23 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;
         }
+
+        if (grappleRope.isGrappling && playerController._enSuelo)
+        {
+            // Verifica si el jugador está moviéndose
+            if (InputManager.Instance.MovementVector.x  != 0) 
+                m_springJoint2D.frequency = 0.1f; //Hacemos flexible la cuerda
+            
+            //Si la cuerda se ha hecho demasiado grande, se suelta
+            if(m_springJoint2D.distance > maxDistance) 
+            {
+                grappleRope.enabled = false;
+                m_springJoint2D.enabled = false;
+                m_rigidbody.gravityScale = 1;
+            }
+
+        } else m_springJoint2D.frequency = 0f;
+
     }
 
     void RotateGun(Vector3 lookPoint, bool allowRotationOverTime)
@@ -139,16 +161,35 @@ public class Tutorial_GrapplingGun : MonoBehaviour
             return;
         }
 
-        // Guardar el punto de enganche
-        grapplePoint = bestHit.ClosestPoint(transform.position);
+        //Ahora buscamos un punto más avanzado del anterior (ya que sino como el jugador se mueve hacia delante, engancharse al punto anterior calculado resultaría en que el jugador se engancharía más atras)
+        Vector2 bestHitAdvanced = Vector2.zero;
+        Vector2 bestHitPoint = bestHit.ClosestPoint(transform.position);
+
+        for(float i = 1; i < 5; i++)
+        {
+            bestHitAdvanced = new Vector2 (bestHitPoint.x + offset/i * Mathf.Sign(m_rigidbody.gameObject.transform.rotation.y), bestHitPoint.y);
+
+            Collider2D collider = Physics2D.OverlapCircle(bestHitAdvanced, 0.1f, grapplingLayer);
+            float distance = Vector2.Distance(bestHitAdvanced, transform.position);
+
+            if(collider != null && distance <= maxDistance)
+            {
+                grapplePoint = bestHitAdvanced;
+                break;
+            }
+            else
+            {
+                grapplePoint = bestHitPoint;
+            }
+        }
+
         grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
         grappleRope.enabled = true;
 
         RotateGun(grapplePoint, true);
     }
 
-
-
+    //Depuración puntos de enganche
     void OnDrawGizmos()
     {
         // Dibujar el área de detección (círculo)
