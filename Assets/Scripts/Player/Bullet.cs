@@ -28,7 +28,6 @@ public class Bullet : MonoBehaviour
     #region Atributos Privados (private fields)
     //Rigidbody2D bala
     private Rigidbody2D _rb;
-    private int tDaño;
     private int daño;
     #endregion
     
@@ -46,10 +45,6 @@ public class Bullet : MonoBehaviour
         _rb.velocity = transform.right * Speed;
 
         Destroy(gameObject, 5f);
-        tDaño = Damage * 125 / 100;  // 25% más daño
-        daño = Damage;
-        Debug.Log(Damage); 
-        Debug.Log(tDaño);
 
 
     }
@@ -72,7 +67,6 @@ public class Bullet : MonoBehaviour
     {
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
         {
-            Debug.Log(daño);
             coll.gameObject.GetComponent<BarraDeSueño>().Dormir(daño);
 
             //Si el enemigo está de espaldas, lo gira para que ataque
@@ -90,9 +84,8 @@ public class Bullet : MonoBehaviour
         }
         else
         {
-            daño = tDaño;
+            daño = Damage * 125 / 100;
         }
-        Debug.Log(tigre);
 
     }
     #endregion   
