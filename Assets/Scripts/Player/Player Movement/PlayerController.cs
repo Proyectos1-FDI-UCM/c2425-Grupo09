@@ -1,11 +1,12 @@
 //---------------------------------------------------------
 // Breve descripción del contenido del archivo
 // Pablo Abellán, Diego García, Sergio Valiente
-// Nombre del juego
+// The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -32,7 +33,22 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Animator animator;
     
-    [HideInInspector] public bool _enSuelo;
+    //Evento que se llama cuando cambia el estado de EnSuelo
+    public event Action<bool> OnGroundStateChanged;
+
+    public bool EnSuelo 
+    {
+        get => _enSuelo;
+        set
+        {
+            if (_enSuelo != value) // Detecta cambio de estado
+            {
+                _enSuelo = value;
+                OnGroundStateChanged?.Invoke(_enSuelo);
+            }
+        }
+    }
+
 
     #endregion
 
@@ -49,6 +65,8 @@ public class PlayerController : MonoBehaviour
 
     private int _extraJump = 1;
     private int _jumpCounter;
+
+    private bool _enSuelo;
     
     #endregion
 
@@ -75,16 +93,16 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _enSuelo = Physics2D.OverlapBox(ControlarSuelo.position, Caja, 0f, Suelo);
-        //Debug.Log(_enSuelo);
+        EnSuelo = Physics2D.OverlapBox(ControlarSuelo.position, Caja, 0f, Suelo);
+        //Debug.Log(EnSuelo);
         float moveX = InputManager.Instance.MovementVector.x;
 
         //MOVIMIENTO CON GRAPPLER
 
         //Si no está enganchado o esta enganchado estando en el suelo se mueve normal
-        if (!grappleRope.isGrappling || (grappleRope.isGrappling & _enSuelo))
+        if (!grappleRope.IsGrappling || (grappleRope.IsGrappling & EnSuelo))
         {   
-            if(_enSuelo)
+            if(EnSuelo)
                 _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); // Movimiento normal
 
             else if (Mathf.Abs(moveX) > 0) //Si está en el aire, solo pone velocidad al rb si el input es >0 (así conserva la inercia)
@@ -113,7 +131,7 @@ public class PlayerController : MonoBehaviour
         else if (moveX < 0)
             transform.rotation = Quaternion.Euler(0, 180, 0);
 
-        if (moveX != 0) animator.SetBool("Walk", true);
+        if (moveX != 0 && EnSuelo) animator.SetBool("Walk", true);
 
         else animator.SetBool("Walk", false);
 
@@ -125,11 +143,11 @@ public class PlayerController : MonoBehaviour
     /// </summary>
      void Update()
     {
-        _coyoteCounter = _enSuelo ? CoyoteTime : _coyoteCounter - Time.deltaTime;
+        _coyoteCounter = EnSuelo ? CoyoteTime : _coyoteCounter - Time.deltaTime;
 
         _bufferCounter = InputManager.Instance.JumpWasPressedThisFrame() ? BufferTime : _bufferCounter - Time.deltaTime;
 
-        if (InputManager.Instance.JumpWasPressedThisFrame() && !_enSuelo && !grappleRope.isGrappling && _jumpCounter > 0)
+        if (InputManager.Instance.JumpWasPressedThisFrame() && !EnSuelo && !grappleRope.IsGrappling && _jumpCounter > 0)
         {
             //Debug.Log("Salto");
             Jump();
@@ -137,11 +155,11 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(JumpCooldown());
         }
-        else if (_enSuelo)
+        else if (EnSuelo)
         {
             _jumpCounter = _extraJump;
         }
-        if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.isGrappling)
+        if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.IsGrappling)
         {
             //Debug.Log("Salto");
             Jump();

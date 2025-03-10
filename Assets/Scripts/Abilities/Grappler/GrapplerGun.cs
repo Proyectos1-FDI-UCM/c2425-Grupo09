@@ -1,7 +1,7 @@
 //---------------------------------------------------------
 // Este script es el responsable del grappler
 // Sergio Valiente
-// Nombre del juego
+// The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
@@ -59,6 +59,7 @@ public class GrapplerGun : MonoBehaviour
     [Header("Grappler")] 
     [SerializeField] private float impulso;      
     [SerializeField] private float offset;
+    [SerializeField] private float flexibilidadAndando = 0.3f;
     [SerializeField] private LayerMask grapplingLayer;   
 
     #endregion
@@ -78,8 +79,13 @@ public class GrapplerGun : MonoBehaviour
     /// </summary>
     private void Start()
     {
+        //Al principio se desactiva la cuerda
         grappleRope.enabled = false;
         m_springJoint2D.enabled = false;
+
+        //Suscripción a eventos
+        playerController.OnGroundStateChanged += CheckGrapplingState;
+        grappleRope.OnGrappleStateChanged += CheckGrapplingState;
     }
 
     /// <summary>
@@ -93,7 +99,7 @@ public class GrapplerGun : MonoBehaviour
         }
         else if (InputManager.Instance.GrapplerIsPressed()) //Mientras esta presionado el Input, se mantiene el grappler
         {
-            if (launchToPoint && grappleRope.isGrappling)
+            if (launchToPoint && grappleRope.IsGrappling)
             {
                 if (launchType == LaunchType.Transform_Launch)
                 {
@@ -110,33 +116,39 @@ public class GrapplerGun : MonoBehaviour
             m_rigidbody.gravityScale = 1;
         }
 
-        //Si el jugador esta enganchado, pero esta andando por el suelo
-        if (grappleRope.isGrappling && playerController._enSuelo)
-        {
-            // Verifica si el jugador está moviéndose
-            if (InputManager.Instance.MovementVector.x  != 0) 
-                m_springJoint2D.frequency = 0.3f; //Hacemos flexible la cuerda para que pueda estirarse o contraerse
-            
-            //Si la cuerda se ha hecho demasiado grande, se suelta
-            if(m_springJoint2D.distance > maxDistance) 
-            {
-                grappleRope.enabled = false;
-                m_springJoint2D.enabled = false;
-                m_rigidbody.gravityScale = 1;
-            }
+        /*Si la cuerda se ha hecho demasiado grande, se suelta. 
+        De momento esta desactivado porque la flexibilidad de la cuerda a 0.3 ya limita el tamaño, pero si la hicieramos mas flexible si sería necesario.
 
+        if(m_springJoint2D.distance > maxDistance) 
+        {
+            grappleRope.enabled = false;
+            m_springJoint2D.enabled = false;
+            m_rigidbody.gravityScale = 1;
+        }*/
+    }
+    #endregion
+
+    // ---- MÉTODOS PRIVADOS ----
+    #region Métodos Privados
+
+    /// <summary>
+    /// Método que se llama en los eventos playerController.OnGroundStateChanged y grappleRope.OnGrappleStateChanged.
+    /// Si el jugador está enganchado y en el suelo se hace la cuerda flexible, sino rígida. 
+    /// <summary>
+    private void CheckGrapplingState(bool _)
+    {        
+        if (grappleRope.IsGrappling && playerController.EnSuelo)
+        {
+            if (InputManager.Instance.MovementVector.x != 0)
+            m_springJoint2D.frequency = flexibilidadAndando; //Se hace la cuerda flexible
+            
         } 
         else 
         {
             m_springJoint2D.distance = Vector2.Distance(grapplePoint, transform.position); //Se reestablece el tamaño de la cuerda cuando el jugador deja de estar en el suelo
             m_springJoint2D.frequency = 0f; //Si no, se pone la frecuencia a 0 para que la cuerda deje de ser flexible
         }
-
     }
-    #endregion
-
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
 
     /// <summary>
     /// Este método establece el punto al que el jugador va a engancharse
@@ -262,7 +274,7 @@ public class GrapplerGun : MonoBehaviour
             m_springJoint2D.connectedAnchor = grapplePoint;
             m_springJoint2D.enabled = true;
         }
-        else
+        else //Esto es si quisieramos que el grappler impulsara al jugador hacia la dirección donde se ha enganchado
         {
             if (launchType == LaunchType.Transform_Launch)
             {
