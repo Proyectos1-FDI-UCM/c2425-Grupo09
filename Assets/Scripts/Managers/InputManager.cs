@@ -225,6 +225,10 @@ public class InputManager : MonoBehaviour
     {
         return _tiger.WasPressedThisFrame();
     }
+    public bool TigerIsPressed()
+    {
+        return _tiger.IsPressed();
+    }
 
     public bool GrapplerWasPressedThisFrame()
     {
@@ -271,6 +275,8 @@ public class InputManager : MonoBehaviour
         _heal = _theController.Player.Heal;
         _capture = _theController.Player.Capture;
         _grappler = _theController.Player.Grappler;
+        _tiger = _theController.Player.Tiger;
+
 
     }
 

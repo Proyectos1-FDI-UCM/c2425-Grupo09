@@ -2998,6 +2998,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1150975967 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8364465959951423524, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
+  m_PrefabInstance: {fileID: 621820433}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf3d921bb4509744aa8c37cc9e1f8d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1165017634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3127,6 +3138,17 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 3784885503509508793, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
   m_PrefabInstance: {fileID: 1323542718}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1300266278 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3574316574254708645, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
+  m_PrefabInstance: {fileID: 1323542718}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300266268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 80997271be13099409579ccb66ae0655, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1308830980
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3225,6 +3247,10 @@ PrefabInstance:
       propertyPath: animator
       value: 
       objectReference: {fileID: 1300266275}
+    - target: {fileID: 219931106219531943, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
+      propertyPath: playercontroller
+      value: 
+      objectReference: {fileID: 1300266278}
     - target: {fileID: 1333277335162404909, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -3281,6 +3307,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3574316574254708645, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
+      propertyPath: "barraDeSue\xF1o"
+      value: 
+      objectReference: {fileID: 1150975967}
     - target: {fileID: 5324902973523119067, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
       propertyPath: m_Sprite
       value: 

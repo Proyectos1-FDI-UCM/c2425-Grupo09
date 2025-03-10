@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
     //Velocidad bala
     [SerializeField] private float Speed;
     //Daño bala
-    [SerializeField] private int Damage;
+    [SerializeField] private int Damage = 10;
 
     #endregion
     
@@ -28,7 +28,8 @@ public class Bullet : MonoBehaviour
     #region Atributos Privados (private fields)
     //Rigidbody2D bala
     private Rigidbody2D _rb;
-
+    private int tDaño;
+    private int daño;
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -39,20 +40,28 @@ public class Bullet : MonoBehaviour
     /// </summary>
     void Start()
     {
+        
+
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = transform.right * Speed;
 
         Destroy(gameObject, 5f);
+        tDaño = Damage * 125 / 100;  // 25% más daño
+        daño = Damage;
+        Debug.Log(Damage); 
+        Debug.Log(tDaño);
+
+
     }
 
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
- 
+
 
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
@@ -63,7 +72,8 @@ public class Bullet : MonoBehaviour
     {
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
         {
-            coll.gameObject.GetComponent<BarraDeSueño>().Dormir(Damage);
+            Debug.Log(daño);
+            coll.gameObject.GetComponent<BarraDeSueño>().Dormir(daño);
 
             //Si el enemigo está de espaldas, lo gira para que ataque
             if (Mathf.Abs(transform.rotation.eulerAngles.y - coll.gameObject.transform.rotation.eulerAngles.y) <= 0.001f) 
@@ -72,6 +82,19 @@ public class Bullet : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void HabilidadTigre(bool tigre)
+    {
+        if (!tigre)
+        {
+            daño = Damage;
+        }
+        else
+        {
+            daño = tDaño;
+        }
+        Debug.Log(tigre);
+
+    }
     #endregion   
 
 } // class Bullet 
