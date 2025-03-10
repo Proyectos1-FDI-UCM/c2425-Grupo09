@@ -70,6 +70,7 @@ public class InputManager : MonoBehaviour
     private InputAction _heal;
     private InputAction _capture;
     private InputAction _grappler;
+    private InputAction _tiger;
 
     #endregion
 
@@ -220,6 +221,14 @@ public class InputManager : MonoBehaviour
     {
         return _capture.WasPressedThisFrame();
     }
+    public bool TigerWasPressedThisFrame()
+    {
+        return _tiger.WasPressedThisFrame();
+    }
+    public bool TigerIsPressed()
+    {
+        return _tiger.IsPressed();
+    }
 
     public bool GrapplerWasPressedThisFrame()
     {
@@ -266,6 +275,8 @@ public class InputManager : MonoBehaviour
         _heal = _theController.Player.Heal;
         _capture = _theController.Player.Capture;
         _grappler = _theController.Player.Grappler;
+        _tiger = _theController.Player.Tiger;
+
 
     }
 

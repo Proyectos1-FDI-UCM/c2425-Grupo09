@@ -58,7 +58,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _rB;
     private GrapplerRope grappleRope;
-
     private float _coyoteCounter;
     private bool _isJumping;
     private float _bufferCounter;
@@ -67,7 +66,11 @@ public class PlayerController : MonoBehaviour
     private int _jumpCounter;
 
     private bool _enSuelo;
+    private bool tiger;
+
     
+    private float tSpeed; 
+    private float Speed;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -83,8 +86,10 @@ public class PlayerController : MonoBehaviour
         grappleRope = GetComponentInChildren<GrapplerRope>();
         if (animator == null)
         {
-            animator = GetComponent<Animator>(); // Si no lo asignas en el inspector, lo asignamos automáticamente
+            animator = GetComponent<Animator>(); // Si no lo asignas en el inspector, lo asigna automáticamente
         }
+        Speed = velocidad;
+        tSpeed = velocidad * 1.25f;
     }
     private void Awake()
     {
@@ -167,10 +172,16 @@ public class PlayerController : MonoBehaviour
 
             StartCoroutine(JumpCooldown());
         }
-
+        if (InputManager.Instance.TigerWasPressedThisFrame())
+        {
+            tiger = !tiger;
+        }
+        if (tiger) velocidad = tSpeed;
+        else velocidad = Speed;
     }
     #endregion
-
+    public bool Tiger ()
+        { return tiger; }
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
 

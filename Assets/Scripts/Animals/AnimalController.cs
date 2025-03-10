@@ -6,7 +6,7 @@
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
+using System.Collections;
 
 
 /// <summary>
@@ -32,9 +32,11 @@ public class AnimalController : MonoBehaviour
     [SerializeField] float CooldownAtaque;
     [SerializeField] int Daño;
     //Transform del jugador para que el animal sepa donde saltar
+    [Header("Referencias")]
     [SerializeField] Transform _player;
     [SerializeField] Transform BarraDeSueñoFill;
     [SerializeField] Transform BarraDeSueñoBackground;
+    [SerializeField] GameObject AttackVFXHolder;
 
     #endregion
 
@@ -56,6 +58,7 @@ public class AnimalController : MonoBehaviour
     private bool _isJumping = false;
 
     private Health _health;
+    private Animator _animator;
 
     #endregion
     
@@ -68,6 +71,7 @@ public class AnimalController : MonoBehaviour
     void Awake()
     {
         _health = _player.gameObject.GetComponent<Health>();
+        _animator = GetComponent<Animator>();
     }
 
     /// <summary>
@@ -116,12 +120,13 @@ public class AnimalController : MonoBehaviour
         else if(DetectarJugador(rightDirection, DistanciaDeteccion, "Player", "Ground"))
         {
             if(!_isInAttackRange)
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), Speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), Speed * Time.deltaTime);           
 
             else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
                 _health.Updatehealth(-Daño);
                 _health.HurtAnimation();
+                StartCoroutine(AttackVFX());
 
                 _tiempoUltimoAtaque = Time.time;
             }
@@ -196,6 +201,14 @@ public class AnimalController : MonoBehaviour
         return false; // No detectó al jugador o fue bloqueado por una pared
     }
 
+    private IEnumerator AttackVFX()
+    {
+        AttackVFXHolder.SetActive(true);
+        _animator.SetBool("Move", false);
+        yield return new WaitForSeconds(0.6f);
+        AttackVFXHolder.SetActive(false);
+    }
+
     /// <summary>
     /// OnTriggerEnter2D se llama cuando algun objeto entra en el collider en modo IsTrigger del animal (que representa el rango de ataque).
     /// </summary>
@@ -203,6 +216,7 @@ public class AnimalController : MonoBehaviour
     {
         if(coll.gameObject.GetComponent<Health>() != null)
             _isInAttackRange = true;
+            
     }
 
     /// <summary>
@@ -211,7 +225,11 @@ public class AnimalController : MonoBehaviour
     private void OnTriggerExit2D(Collider2D coll)
     {
         if(coll.gameObject.GetComponent<Health>())
+        {
             _isInAttackRange = false;
+            _animator.SetBool("Move", true);
+        }
+            
     }
 
 

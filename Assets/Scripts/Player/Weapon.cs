@@ -21,6 +21,7 @@ public class Weapon : MonoBehaviour
     //Cadencia de disparo
     [SerializeField] private float CadenciaDisparo;
     [SerializeField] Animator animator;
+    [SerializeField] PlayerController playercontroller;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
@@ -54,16 +55,19 @@ public class Weapon : MonoBehaviour
     #region Métodos públicos
 
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-    
+
     /// <summary>
     /// Instancia la bala en la posición del jugador 
     /// </summary>
     private void Shoot()
     {
-       Instantiate(BulletPrefab, transform.position, transform.rotation);
+        GameObject newBullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
+        Bullet bulletScript = newBullet.GetComponent<Bullet>();
+
+        bulletScript.HabilidadTigre(playercontroller.Tiger ());
     }
 
 
