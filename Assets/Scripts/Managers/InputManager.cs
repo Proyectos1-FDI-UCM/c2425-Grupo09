@@ -70,6 +70,7 @@ public class InputManager : MonoBehaviour
     private InputAction _heal;
     private InputAction _capture;
     private InputAction _grappler;
+    private InputAction _tiger;
 
     #endregion
 
@@ -219,6 +220,10 @@ public class InputManager : MonoBehaviour
     public bool CaptureWasPressedThisFrame()
     {
         return _capture.WasPressedThisFrame();
+    }
+    public bool TigerWasPressedThisFrame()
+    {
+        return _tiger.WasPressedThisFrame();
     }
 
     public bool GrapplerWasPressedThisFrame()

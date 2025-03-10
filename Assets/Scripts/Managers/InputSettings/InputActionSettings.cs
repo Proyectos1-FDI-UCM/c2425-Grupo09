@@ -82,6 +82,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tiger"",
+                    ""type"": ""Button"",
+                    ""id"": ""5c71b20b-a58b-40de-a1c5-368fb7f6e30a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -247,6 +256,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Grappler"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c080b72-e97f-463c-bdde-872817dd8836"",
+                    ""path"": ""<Keyboard>/t"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tiger"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -840,6 +860,7 @@ namespace UnityEngine.InputSystem
             m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
             m_Player_Capture = m_Player.FindAction("Capture", throwIfNotFound: true);
             m_Player_Grappler = m_Player.FindAction("Grappler", throwIfNotFound: true);
+            m_Player_Tiger = m_Player.FindAction("Tiger", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -919,6 +940,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Heal;
         private readonly InputAction m_Player_Capture;
         private readonly InputAction m_Player_Grappler;
+        private readonly InputAction m_Player_Tiger;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -929,6 +951,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Heal => m_Wrapper.m_Player_Heal;
             public InputAction @Capture => m_Wrapper.m_Player_Capture;
             public InputAction @Grappler => m_Wrapper.m_Player_Grappler;
+            public InputAction @Tiger => m_Wrapper.m_Player_Tiger;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -956,6 +979,9 @@ namespace UnityEngine.InputSystem
                 @Grappler.started += instance.OnGrappler;
                 @Grappler.performed += instance.OnGrappler;
                 @Grappler.canceled += instance.OnGrappler;
+                @Tiger.started += instance.OnTiger;
+                @Tiger.performed += instance.OnTiger;
+                @Tiger.canceled += instance.OnTiger;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -978,6 +1004,9 @@ namespace UnityEngine.InputSystem
                 @Grappler.started -= instance.OnGrappler;
                 @Grappler.performed -= instance.OnGrappler;
                 @Grappler.canceled -= instance.OnGrappler;
+                @Tiger.started -= instance.OnTiger;
+                @Tiger.performed -= instance.OnTiger;
+                @Tiger.canceled -= instance.OnTiger;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1166,6 +1195,7 @@ namespace UnityEngine.InputSystem
             void OnHeal(InputAction.CallbackContext context);
             void OnCapture(InputAction.CallbackContext context);
             void OnGrappler(InputAction.CallbackContext context);
+            void OnTiger(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
