@@ -139,9 +139,7 @@ public class GrapplerGun : MonoBehaviour
     {        
         if (grappleRope.IsGrappling && playerController.EnSuelo)
         {
-            if (InputManager.Instance.MovementVector.x != 0)
             m_springJoint2D.frequency = flexibilidadAndando; //Se hace la cuerda flexible
-            
         } 
         else 
         {
