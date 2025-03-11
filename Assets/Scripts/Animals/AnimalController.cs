@@ -133,7 +133,9 @@ public class AnimalController : MonoBehaviour
                 StartCoroutine(AttackVFX());
 
                 _tiempoUltimoAtaque = Time.time;
-            }
+            } 
+            else 
+            _animator.SetBool("Move", false);
 
         }else
         transform.position += _direction * Speed * Time.deltaTime;
