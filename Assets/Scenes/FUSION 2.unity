@@ -556,6 +556,52 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &412355039
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 412355041}
+  - component: {fileID: 412355040}
+  m_Layer: 0
+  m_Name: AbilitiesManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &412355040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412355039}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 562dfc3f02795664cae785aa68e9c1db, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nightVision: 0
+  doubleJump: 0
+--- !u!4 &412355041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 412355039}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.5227056, y: 6.386853, z: -0.07640812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &424418671
 GameObject:
   m_ObjectHideFlags: 0
@@ -1967,10 +2013,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1300266272}
-    - target: {fileID: 2004477079712909556, guid: b66bcacb3afb23146bc3df7db665da24, type: 3}
-      propertyPath: AltoAnimal
-      value: 1.5
-      objectReference: {fileID: 0}
     - target: {fileID: 2179797456744284999, guid: b66bcacb3afb23146bc3df7db665da24, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.28
@@ -2017,6 +2059,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8213178868730188694, guid: b66bcacb3afb23146bc3df7db665da24, type: 3}
       propertyPath: m_Name
+      value: Bunny
+      objectReference: {fileID: 0}
+    - target: {fileID: 8213178868730188694, guid: b66bcacb3afb23146bc3df7db665da24, type: 3}
+      propertyPath: m_TagString
       value: Bunny
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -2816,17 +2862,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1150975967 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8364465959951423524, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
-  m_PrefabInstance: {fileID: 621820433}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf3d921bb4509744aa8c37cc9e1f8d07, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1165017634
 GameObject:
   m_ObjectHideFlags: 0
@@ -3128,7 +3163,7 @@ PrefabInstance:
     - target: {fileID: 3574316574254708645, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
       propertyPath: "barraDeSue\xF1o"
       value: 
-      objectReference: {fileID: 1150975967}
+      objectReference: {fileID: 0}
     - target: {fileID: 5324902973523119067, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -7856,10 +7891,6 @@ PrefabInstance:
       propertyPath: _player
       value: 
       objectReference: {fileID: 1300266272}
-    - target: {fileID: 2004477079712909556, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
-      propertyPath: DistanciaDeteccion
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 2179797456744284999, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: m_LocalPosition.x
       value: -4.386542
@@ -7900,21 +7931,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6501396213692754463, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
-      propertyPath: m_AnchorMax.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6501396213692754463, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
-      propertyPath: m_AnchorMax.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 8213178868730188694, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
     - target: {fileID: 8213178868730188694, guid: 0eb76fa60663bf84f8b8439435cb1e74, type: 3}
-      propertyPath: m_IsActive
-      value: 1
+      propertyPath: m_TagString
+      value: Bat
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7928,6 +7951,7 @@ SceneRoots:
   - {fileID: 1263186886}
   - {fileID: 656303764}
   - {fileID: 2038953465}
+  - {fileID: 412355041}
   - {fileID: 1540570470}
   - {fileID: 1165017635}
   - {fileID: 580282194}
