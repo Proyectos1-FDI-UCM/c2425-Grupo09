@@ -126,6 +126,10 @@ public class AnimalController : MonoBehaviour
             {
                 _health.Updatehealth(-Daño);
                 _health.HurtAnimation();
+
+                _animator.SetTrigger("Attack");
+                _animator.SetBool("Move", false);
+
                 StartCoroutine(AttackVFX());
 
                 _tiempoUltimoAtaque = Time.time;
@@ -204,7 +208,6 @@ public class AnimalController : MonoBehaviour
     private IEnumerator AttackVFX()
     {
         AttackVFXHolder.SetActive(true);
-        _animator.SetBool("Move", false);
         yield return new WaitForSeconds(0.6f);
         AttackVFXHolder.SetActive(false);
     }
