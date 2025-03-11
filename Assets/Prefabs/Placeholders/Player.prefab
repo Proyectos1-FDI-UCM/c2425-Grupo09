@@ -200,6 +200,7 @@ MonoBehaviour:
   alturaMinimaEnganche: 0.8
   impulso: 8
   offset: 3
+  flexibilidadAndando: 0.3
   grapplingLayer:
     serializedVersion: 2
     m_Bits: 128
@@ -354,7 +355,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GrapplerGun: {fileID: 7072989487668917770}
   _LineRenderer: {fileID: 52264924122161533}
-  Percision: 120
+  Precision: 120
   StraightenLineSpeed: 40
   ropeAnimationCurve:
     serializedVersion: 2
@@ -469,7 +470,6 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   RopeProgressionSpeed: 10
-  isGrappling: 1
 --- !u!1 &3561404253343709620
 GameObject:
   m_ObjectHideFlags: 0
@@ -697,7 +697,6 @@ MonoBehaviour:
   BufferTime: 0.1
   maxVelocidad: 7
   animator: {fileID: 3784885503509508793}
-  _enSuelo: 0
 --- !u!114 &219931106219531943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -713,6 +712,7 @@ MonoBehaviour:
   BulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
   CadenciaDisparo: 0.5
   animator: {fileID: 3784885503509508793}
+  playercontroller: {fileID: 3574316574254708645}
 --- !u!114 &6959977417964215870
 MonoBehaviour:
   m_ObjectHideFlags: 0
