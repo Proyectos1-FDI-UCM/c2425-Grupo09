@@ -761,6 +761,9 @@ MonoBehaviour:
     m_NumAlphaKeys: 2
   animator: {fileID: 3784885503509508793}
   _currentHealth: 0
+  ShieldDuration: 10
+  Shield: 7
+  CooldownShield: 10
 --- !u!114 &7154726047639681158
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -91,6 +91,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Shield"",
+                    ""type"": ""Button"",
+                    ""id"": ""0b866240-7577-4e73-b4a7-a2625c8e3c14"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -267,6 +276,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Tiger"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6d7ffad5-91b1-453d-a1b8-f6953bc71d21"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -861,6 +881,7 @@ namespace UnityEngine.InputSystem
             m_Player_Capture = m_Player.FindAction("Capture", throwIfNotFound: true);
             m_Player_Grappler = m_Player.FindAction("Grappler", throwIfNotFound: true);
             m_Player_Tiger = m_Player.FindAction("Tiger", throwIfNotFound: true);
+            m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -941,6 +962,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Capture;
         private readonly InputAction m_Player_Grappler;
         private readonly InputAction m_Player_Tiger;
+        private readonly InputAction m_Player_Shield;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -952,6 +974,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Capture => m_Wrapper.m_Player_Capture;
             public InputAction @Grappler => m_Wrapper.m_Player_Grappler;
             public InputAction @Tiger => m_Wrapper.m_Player_Tiger;
+            public InputAction @Shield => m_Wrapper.m_Player_Shield;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -982,6 +1005,9 @@ namespace UnityEngine.InputSystem
                 @Tiger.started += instance.OnTiger;
                 @Tiger.performed += instance.OnTiger;
                 @Tiger.canceled += instance.OnTiger;
+                @Shield.started += instance.OnShield;
+                @Shield.performed += instance.OnShield;
+                @Shield.canceled += instance.OnShield;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1007,6 +1033,9 @@ namespace UnityEngine.InputSystem
                 @Tiger.started -= instance.OnTiger;
                 @Tiger.performed -= instance.OnTiger;
                 @Tiger.canceled -= instance.OnTiger;
+                @Shield.started -= instance.OnShield;
+                @Shield.performed -= instance.OnShield;
+                @Shield.canceled -= instance.OnShield;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1196,6 +1225,7 @@ namespace UnityEngine.InputSystem
             void OnCapture(InputAction.CallbackContext context);
             void OnGrappler(InputAction.CallbackContext context);
             void OnTiger(InputAction.CallbackContext context);
+            void OnShield(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

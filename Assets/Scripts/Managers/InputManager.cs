@@ -71,7 +71,7 @@ public class InputManager : MonoBehaviour
     private InputAction _capture;
     private InputAction _grappler;
     private InputAction _tiger;
-
+    private InputAction _shield;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -244,6 +244,11 @@ public class InputManager : MonoBehaviour
     {
         return _grappler.IsPressed();
     }
+
+    public bool ShieldWasPressedThisFrame()
+    {
+        return _shield.WasPressedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -276,6 +281,7 @@ public class InputManager : MonoBehaviour
         _capture = _theController.Player.Capture;
         _grappler = _theController.Player.Grappler;
         _tiger = _theController.Player.Tiger;
+        _shield = _theController.Player.Shield;
 
 
     }
