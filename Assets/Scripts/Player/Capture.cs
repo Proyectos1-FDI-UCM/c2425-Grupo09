@@ -26,11 +26,17 @@ public class Capture : MonoBehaviour
     private bool _near = false;  
     private GameObject _animal;  
     private BarraDeSueño _barraDeSueño; 
+    private PlayerController _playerController;
 
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
+
+    private void Awake()
+    {
+        _playerController = GetComponent<PlayerController>();
+    }
 
     /// <summary>
     /// Start se llama cuando el script se habilita, antes de que se ejecute cualquier Update por primera vez.
@@ -80,6 +86,20 @@ public class Capture : MonoBehaviour
         {
             _animal = other.gameObject; 
             _barraDeSueño = _animal.GetComponent<BarraDeSueño>();
+
+            if (_near && InputManager.Instance.CaptureWasPressedThisFrame() && _barraDeSueño.Dormido())
+            {
+                if (_animal.CompareTag("Bunny"))
+                {
+                    AbilitiesManager.Instance.BunnyAbilityUnlock();
+                    _playerController.extraJump = 1;
+                }
+                if (_animal.CompareTag("Bat"))
+                {
+                    AbilitiesManager.Instance.BatAbilityUnlock();
+                    _playerController.nightVision.SetActive(true);
+                }
+            }
         }
     }
 

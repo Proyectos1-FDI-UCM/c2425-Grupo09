@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &533296063765854950
 Transform:
   m_ObjectHideFlags: 0
@@ -507,7 +507,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.61, y: -2.339, z: 0}
-  m_LocalScale: {x: 0.7, y: 0.7, z: 0.7}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 533296063765854950}
@@ -696,7 +696,9 @@ MonoBehaviour:
   CoyoteTime: 0.1
   BufferTime: 0.1
   maxVelocidad: 7
+  extraJump: 0
   animator: {fileID: 3784885503509508793}
+  nightVision: {fileID: 1596692666541051136}
 --- !u!114 &219931106219531943
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -726,7 +728,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  startingHealth: 10
+  startingHealth: 100
   _healthBarFill: {fileID: 0}
   _fillSpeed: 0.5
   _colorGradient:
