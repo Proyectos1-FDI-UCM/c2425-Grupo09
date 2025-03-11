@@ -86,19 +86,26 @@ public class Capture : MonoBehaviour
         {
             _animal = other.gameObject; 
             _barraDeSueño = _animal.GetComponent<BarraDeSueño>();
+        }
+    }
 
-            if (_near && InputManager.Instance.CaptureWasPressedThisFrame() && _barraDeSueño.Dormido())
+    private void OnTriggerStay(Collider other)
+    {
+        if (_near && InputManager.Instance.CaptureWasPressedThisFrame() && _barraDeSueño.Dormido())
+        {
+            if (_animal.CompareTag("Bunny"))
             {
-                if (_animal.CompareTag("Bunny"))
-                {
-                    AbilitiesManager.Instance.BunnyAbilityUnlock();
-                    _playerController.extraJump = 1;
-                }
-                if (_animal.CompareTag("Bat"))
-                {
-                    AbilitiesManager.Instance.BatAbilityUnlock();
-                    _playerController.nightVision.SetActive(true);
-                }
+                Debug.Log("saltos extra:" + _playerController.extraJump);
+                AbilitiesManager.Instance.BunnyAbilityUnlock();
+                _playerController.extraJump = 1;
+                Debug.Log("saltos extra:" + _playerController.extraJump);
+            }
+            if (_animal.CompareTag("Bat"))
+            {
+                Debug.Log("activada la vision nocturna");
+                AbilitiesManager.Instance.BatAbilityUnlock();
+                _playerController.nightVision.SetActive(true);
+                Debug.Log("activada la vision nocturna");
             }
         }
     }
