@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 70
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -93,6 +93,32 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
@@ -100,10 +126,10 @@ TextureImporter:
       name: ilustracion-nube-pixel-art-diseno-plano_23-2150183887_0
       rect:
         serializedVersion: 2
-        x: 280
-        y: 55
-        width: 320
-        height: 133
+        x: 37
+        y: 450
+        width: 253
+        height: 106
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,6 +139,111 @@ TextureImporter:
       bones: []
       spriteID: 58f696bb99b3b824d9ad85348316184d
       internalID: -1383710823
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ilustracion-nube-pixel-art-diseno-plano_23-2150183887_1
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 427
+        width: 253
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e97ef1fe6eca3fa488f4ef6d815b0127
+      internalID: 1673231056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ilustracion-nube-pixel-art-diseno-plano_23-2150183887_2
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 257
+        width: 258
+        height: 112
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5546bf3e40ffb1e4da1c10353cf506f7
+      internalID: -1325899249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ilustracion-nube-pixel-art-diseno-plano_23-2150183887_3
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 247
+        width: 253
+        height: 132
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42834820d5b0a3a4baba6d22df83c368
+      internalID: -1751898181
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ilustracion-nube-pixel-art-diseno-plano_23-2150183887_4
+      rect:
+        serializedVersion: 2
+        x: 37
+        y: 65
+        width: 208
+        height: 111
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31c51e72d4fb34c4b89436cdf899ef1d
+      internalID: -1730815958
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ilustracion-nube-pixel-art-diseno-plano_23-2150183887_5
+      rect:
+        serializedVersion: 2
+        x: 295
+        y: 57
+        width: 294
+        height: 127
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fdd60e08acafd294da70f5dea5fed846
+      internalID: 1144768786
       vertices: []
       indices: 
       edges: []
@@ -129,6 +260,11 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       ilustracion-nube-pixel-art-diseno-plano_23-2150183887_0: -1383710823
+      ilustracion-nube-pixel-art-diseno-plano_23-2150183887_1: 1673231056
+      ilustracion-nube-pixel-art-diseno-plano_23-2150183887_2: -1325899249
+      ilustracion-nube-pixel-art-diseno-plano_23-2150183887_3: -1751898181
+      ilustracion-nube-pixel-art-diseno-plano_23-2150183887_4: -1730815958
+      ilustracion-nube-pixel-art-diseno-plano_23-2150183887_5: 1144768786
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
