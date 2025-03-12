@@ -30,8 +30,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float CoyoteTime;
     [SerializeField] float BufferTime;
     [SerializeField]  float maxVelocidad = 7f;
+    public int extraJump = 0;
 
     [SerializeField] Animator animator;
+    public GameObject nightVision;
     
     //Evento que se llama cuando cambia el estado de EnSuelo
     public event Action<bool> OnGroundStateChanged;
@@ -62,7 +64,6 @@ public class PlayerController : MonoBehaviour
     private bool _isJumping;
     private float _bufferCounter;
 
-    private int _extraJump = 1;
     private int _jumpCounter;
 
     private bool _enSuelo;
@@ -90,6 +91,16 @@ public class PlayerController : MonoBehaviour
         }
         Speed = velocidad;
         tSpeed = velocidad * 1.25f;
+
+        if (AbilitiesManager.Instance.doubleJump)
+        {
+            extraJump = 1;
+        }
+        if (AbilitiesManager.Instance.nightVision)
+        {
+            nightVision.SetActive(true);
+        }
+
     }
     private void Awake()
     {
@@ -162,7 +173,7 @@ public class PlayerController : MonoBehaviour
         }
         else if (EnSuelo)
         {
-            _jumpCounter = _extraJump;
+            _jumpCounter = extraJump;
         }
         if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.IsGrappling)
         {

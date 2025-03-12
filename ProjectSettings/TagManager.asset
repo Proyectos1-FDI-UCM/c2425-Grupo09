@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Clock
+  - Apple
+  - Bat
+  - Bunny
   layers:
   - Default
   - TransparentFX

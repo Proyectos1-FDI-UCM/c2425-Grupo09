@@ -5,6 +5,7 @@
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
+using UnityEditor.Rendering;
 using UnityEngine;
 
 /// <summary>
@@ -26,11 +27,17 @@ public class Capture : MonoBehaviour
     private bool _near = false;  
     private GameObject _animal;  
     private BarraDeSueño _barraDeSueño; 
+    private PlayerController _playerController;
 
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
+
+    private void Awake()
+    {
+        _playerController = GetComponent<PlayerController>();
+    }
 
     /// <summary>
     /// Start se llama cuando el script se habilita, antes de que se ejecute cualquier Update por primera vez.
@@ -61,6 +68,21 @@ public class Capture : MonoBehaviour
             if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
             {
                 animator.SetTrigger("Capture");
+                Debug.Log("if");
+                if (_animal.CompareTag("Bunny"))
+                {
+                    Debug.Log("saltos extra:" + _playerController.extraJump);
+                    AbilitiesManager.Instance.BunnyAbilityUnlock();
+                    _playerController.extraJump = 1;
+                    Debug.Log("saltos extra:" + _playerController.extraJump);
+                }
+                if (_animal.CompareTag("Bat"))
+                {
+                    Debug.Log("activada la vision nocturna");
+                    AbilitiesManager.Instance.BatAbilityUnlock();
+                    _playerController.nightVision.SetActive(true);
+                    Debug.Log("activada la vision nocturna");
+                }
                 RecogerObjeto();
             }
         }
