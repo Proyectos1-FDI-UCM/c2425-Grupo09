@@ -28,6 +28,7 @@ public class Capture : MonoBehaviour
     private GameObject _animal;  
     private BarraDeSueño _barraDeSueño; 
     private PlayerController _playerController;
+    private GrapplerGun _grapplerGun;
 
     #endregion
 
@@ -37,6 +38,7 @@ public class Capture : MonoBehaviour
     private void Awake()
     {
         _playerController = GetComponent<PlayerController>();
+        _grapplerGun = GetComponentInChildren<GrapplerGun>();
     }
 
     /// <summary>
@@ -82,6 +84,16 @@ public class Capture : MonoBehaviour
                     AbilitiesManager.Instance.BatAbilityUnlock();
                     _playerController.nightVision.SetActive(true);
                     Debug.Log("activada la vision nocturna");
+                }
+                if (_animal.CompareTag("Gorila"))
+                {
+                    AbilitiesManager.Instance.GorilaAbilityUnlock();
+                    _grapplerGun.grapplerUnlocked = true;
+                }
+                if (_animal.CompareTag("Tiger"))
+                {
+                    AbilitiesManager.Instance.TigerAbilityUnlock();
+                    _playerController.tigerUnlock = true;
                 }
                 RecogerObjeto();
             }

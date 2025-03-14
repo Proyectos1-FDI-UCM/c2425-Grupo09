@@ -27,6 +27,8 @@ public class AbilitiesManager : MonoBehaviour
     public static AbilitiesManager Instance { get; private set; }
     public bool nightVision = false;
     public bool doubleJump = false;
+    public bool grappler = false;
+    public bool tiger = false;
 
     #endregion
     
@@ -94,9 +96,17 @@ public class AbilitiesManager : MonoBehaviour
     {
         nightVision = true;
     }
+    public void GorilaAbilityUnlock()
+    {
+        grappler = true;
+    }
+    public void TigerAbilityUnlock()
+    {
+        tiger = true;
+    }
 
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
@@ -104,7 +114,7 @@ public class AbilitiesManager : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
-    #endregion   
+    #endregion
 
 } // class AbilitiesController 
 // namespace

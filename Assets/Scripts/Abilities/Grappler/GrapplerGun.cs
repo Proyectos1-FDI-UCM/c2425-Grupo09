@@ -33,6 +33,8 @@ public class GrapplerGun : MonoBehaviour
     public SpringJoint2D m_springJoint2D;
     public Rigidbody2D m_rigidbody;
 
+    public bool grapplerUnlocked = false;
+
     private enum LaunchType
     {
         Transform_Launch,
@@ -93,11 +95,11 @@ public class GrapplerGun : MonoBehaviour
     /// </summary>
     private void Update()
     {
-        if (InputManager.Instance.GrapplerWasPressedThisFrame()) //Si se detecta el Input, se lanza el grappler
+        if (InputManager.Instance.GrapplerWasPressedThisFrame() && grapplerUnlocked) //Si se detecta el Input, se lanza el grappler
         {
             SetGrapplePoint();
         }
-        else if (InputManager.Instance.GrapplerIsPressed()) //Mientras esta presionado el Input, se mantiene el grappler
+        else if (InputManager.Instance.GrapplerIsPressed() && grapplerUnlocked) //Mientras esta presionado el Input, se mantiene el grappler
         {
             if (launchToPoint && grappleRope.IsGrappling)
             {
@@ -109,7 +111,7 @@ public class GrapplerGun : MonoBehaviour
                 }
             }
         }
-        else if (InputManager.Instance.GrapplerWasReleasedThisFrame()) //Si se deja de presionar el Input, se desactiva la cuerda
+        else if (InputManager.Instance.GrapplerWasReleasedThisFrame() && grapplerUnlocked) //Si se deja de presionar el Input, se desactiva la cuerda
         {
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
