@@ -18,6 +18,7 @@ public class Weapon : MonoBehaviour
    
     //Prefab de la bala
     [SerializeField] private GameObject BulletPrefab;
+    [SerializeField] private Transform firingPoint;
     //Cadencia de disparo
     [SerializeField] private float CadenciaDisparo;
     [SerializeField] Animator animator;
@@ -64,7 +65,7 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        GameObject newBullet = Instantiate(BulletPrefab, transform.position, transform.rotation);
+        GameObject newBullet = Instantiate(BulletPrefab, firingPoint.position, transform.rotation);
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
         bulletScript.HabilidadTigre(playercontroller.Tiger ());
