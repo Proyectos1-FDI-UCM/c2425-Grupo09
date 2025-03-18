@@ -79,9 +79,9 @@ public class Clock : MonoBehaviour
         GameObject player = collision.gameObject;
         if (player.GetComponent<PlayerController>() != null)
         {
-          
+            gameObject.SetActive(false);
             timer.Reloj(SumaSeg);
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 
