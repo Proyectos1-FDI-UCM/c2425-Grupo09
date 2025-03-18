@@ -32,6 +32,8 @@ public class Health : MonoBehaviour
     [SerializeField] float ShieldDuration;
     [SerializeField] float Shield;
     [SerializeField] float CooldownShield;
+    [SerializeField] float fillshield;
+    [SerializeField] private Image _shieldBarFill; // Barra de escudo
 
     #endregion
 
@@ -42,6 +44,7 @@ public class Health : MonoBehaviour
     private float _currentDuration;
     private float _dañoActual;
     private float _currentShield;
+    private float _shieldDown;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -57,14 +60,21 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
-        _currentDuration -= Time.deltaTime;
+        if (_currentShield > 0)
+        {
+            _currentDuration -= Time.deltaTime;
+            if (_currentDuration <= 0) // Si la duración llega a 0, el escudo se desactiva
+            {
+                _currentShield = 0;
+
+            }
+        }
 
         if (InputManager.Instance.ShieldWasPressedThisFrame() && Time.time > _timeLastShield + CooldownShield)
         {
             _timeLastShield = Time.time;
             OnShield();
             _currentDuration = ShieldDuration;
-
         }
     }
 
@@ -82,9 +92,15 @@ public class Health : MonoBehaviour
             _dañoActual += _currentShield;
             _currentShield = 0;
             _currentHealth += _dañoActual;
+            UpdateShieldBar();
         }
         else if (_currentShield > 0)
+        {
+
             _currentShield += amount;
+            UpdateShieldBar();
+        }
+
         else if (_currentShield <= 0)
         {
             _currentHealth += amount;
@@ -116,9 +132,21 @@ public class Health : MonoBehaviour
     /// <summary>
     /// Este método pone el escudo al jugador
     /// </summary>
+    private void UpdateShieldBar()
+    {
+        if (Shield > 0) // Asegurar que no haya división por cero
+        {
+
+            float targetFillAmount = _currentShield / Shield;
+            _shieldBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
+
+        }
+    }
     private void OnShield()
     {
         _currentShield = Shield;
+        _currentDuration = ShieldDuration; // Reinicia la duración del escudo
+        UpdateShieldBar(); // Asegurar que la barra del escudo se llene visualmente
     }
     #endregion
 
