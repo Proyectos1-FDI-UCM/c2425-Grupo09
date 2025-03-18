@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocidad: 7
-  AlturaSalto: 6
+  AlturaSalto: 10
   ControlarSuelo: {fileID: 4312175879584428798}
   Suelo:
     serializedVersion: 2
@@ -697,7 +697,7 @@ MonoBehaviour:
   Caja: {x: 0.9, y: 0.01, z: 0}
   CoyoteTime: 0.1
   BufferTime: 0.1
-  maxVelocidad: 7
+  maxVelocidad: 8
   extraJump: 0
   tigerUnlock: 0
   animator: {fileID: 3784885503509508793}
