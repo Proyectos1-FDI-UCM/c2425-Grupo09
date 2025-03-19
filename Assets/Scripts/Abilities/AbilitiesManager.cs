@@ -29,6 +29,7 @@ public class AbilitiesManager : MonoBehaviour
     public bool doubleJump = false;
     public bool grappler = false;
     public bool tiger = false;
+    public bool armadillo = false;
 
     #endregion
     
@@ -103,6 +104,10 @@ public class AbilitiesManager : MonoBehaviour
     public void TigerAbilityUnlock()
     {
         tiger = true;
+    }
+    public void ArmadilloAbilityUnlock()
+    {
+        armadillo = true;
     }
 
     #endregion

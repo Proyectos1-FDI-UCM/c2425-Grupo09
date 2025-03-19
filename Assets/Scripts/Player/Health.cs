@@ -32,6 +32,7 @@ public class Health : MonoBehaviour
     [SerializeField] float ShieldDuration;
     [SerializeField] float Shield;
     [SerializeField] float CooldownShield;
+    public bool armadilloUnlocked = false;
 
     #endregion
 
@@ -49,6 +50,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
+        if (AbilitiesManager.Instance.armadillo == true) { armadilloUnlocked = true; }
         _currentDuration = ShieldDuration;
         _currentHealth = startingHealth;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
@@ -59,7 +61,7 @@ public class Health : MonoBehaviour
     {
         _currentDuration -= Time.deltaTime;
 
-        if (InputManager.Instance.ShieldWasPressedThisFrame() && Time.time > _timeLastShield + CooldownShield)
+        if (InputManager.Instance.ShieldWasPressedThisFrame() && Time.time > _timeLastShield + CooldownShield && armadilloUnlocked)
         {
             _timeLastShield = Time.time;
             OnShield();

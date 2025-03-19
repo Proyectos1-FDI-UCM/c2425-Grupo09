@@ -29,6 +29,7 @@ public class Capture : MonoBehaviour
     private BarraDeSueño _barraDeSueño; 
     private PlayerController _playerController;
     private GrapplerGun _grapplerGun;
+    private Health _health;
 
     #endregion
 
@@ -39,6 +40,7 @@ public class Capture : MonoBehaviour
     {
         _playerController = GetComponent<PlayerController>();
         _grapplerGun = GetComponentInChildren<GrapplerGun>();
+        _health = GetComponent<Health>();
     }
 
     /// <summary>
@@ -93,7 +95,12 @@ public class Capture : MonoBehaviour
                 if (_animal.CompareTag("Tiger"))
                 {
                     AbilitiesManager.Instance.TigerAbilityUnlock();
-                    _playerController.tigerUnlock = true;
+                    _playerController.tigerUnlocked = true;
+                }
+                if (_animal.CompareTag("Tiger"))
+                {
+                    AbilitiesManager.Instance.ArmadilloAbilityUnlock();
+                    _health.armadilloUnlocked = true;
                 }
                 RecogerObjeto();
             }

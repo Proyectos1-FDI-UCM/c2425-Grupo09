@@ -88,6 +88,12 @@ public class GrapplerGun : MonoBehaviour
         //Suscripción a eventos
         playerController.OnGroundStateChanged += CheckGrapplingState;
         grappleRope.OnGrappleStateChanged += CheckGrapplingState;
+
+        //Comprobacion de desbloqueo de la habilidad
+        if (AbilitiesManager.Instance.grappler == true)
+        {
+            grapplerUnlocked = true;
+        }
     }
 
     /// <summary>

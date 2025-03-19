@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float BufferTime;
     [SerializeField]  float maxVelocidad = 7f;
     public int extraJump = 0;
-    public bool tigerUnlock = false;
+    public bool tigerUnlocked = false;
 
     [SerializeField] Animator animator;
     public GameObject nightVision;
@@ -99,6 +99,10 @@ public class PlayerController : MonoBehaviour
         if (AbilitiesManager.Instance.nightVision)
         {
             nightVision.SetActive(true);
+        }
+        if(AbilitiesManager.Instance.tiger == true) 
+        { 
+            tigerUnlocked = true; 
         }
 
     }
@@ -184,12 +188,12 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(JumpCooldown());
         }
 
-        if (tigerUnlock) velocidad = tSpeed;
+        if (tigerUnlocked) velocidad = tSpeed;
         else velocidad = Speed;
     }
     #endregion
     public bool Tiger ()
-        { return tigerUnlock; }
+        { return tigerUnlocked; }
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
 
