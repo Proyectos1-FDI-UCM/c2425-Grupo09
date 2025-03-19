@@ -35,10 +35,9 @@ public class Health : MonoBehaviour
     [SerializeField] float ShieldDuration;
     [SerializeField] float Shield;
     [SerializeField] float CooldownShield;
-    [SerializeField] float fillshield;
     [SerializeField] private Image _shieldBarFill; // Barra de escudo
 
-    [HideInInspector] public bool armadilloUnlocked = false;
+    public bool armadilloUnlocked = false;
 
     #endregion
 
@@ -93,6 +92,7 @@ public class Health : MonoBehaviour
     {
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
         _dañoActual = amount;
+
         if (-amount > _currentShield)
         {
             _dañoActual += _currentShield;
@@ -116,11 +116,8 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0) //Si la vida llega a 0 se destruye
         {
-            CheckpointManager.Instance.Revivir();
-            Debug.Log("Muerto");
-            //gameObject.SetActive(false);
             animator.SetTrigger("Dead");
-            //Destroy(gameObject);
+            CheckpointManager.Instance.Revivir();
         }
     }
     public void HurtAnimation()
@@ -132,10 +129,13 @@ public class Health : MonoBehaviour
     #region Métodos privados
     private void UpdateHealthBar()
     {
-        float targetFillAmount = _currentHealth / maxHealth;
+        float maximoRelativo = _currentHealth + _currentShield > 100 ? _currentHealth + _currentShield : maxHealth;
+
+        float targetFillAmount = _currentHealth / maximoRelativo;
         _healthBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
-        _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
+        _healthBarFill.color = _colorGradient.Evaluate(_currentHealth / maxHealth);
     }
+
     /// <summary>
     /// Este método pone el escudo al jugador
     /// </summary>
@@ -143,17 +143,18 @@ public class Health : MonoBehaviour
     {
         if (Shield > 0) // Asegurar que no haya división por cero
         {
+            float maximoRelativo = _currentHealth + _currentShield > 100 ? _currentHealth + _currentShield : maxHealth;
 
-            float targetFillAmount = _currentShield / Shield;
+            float targetFillAmount = (_currentShield + _currentHealth) / maximoRelativo;
             _shieldBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
-
         }
     }
     private void OnShield()
     {
-        _currentShield = Shield;
+        _currentShield += Shield;
         _currentDuration = ShieldDuration; // Reinicia la duración del escudo
         UpdateShieldBar(); // Asegurar que la barra del escudo se llene visualmente
+        UpdateHealthBar();
     }
     #endregion
 
