@@ -96,8 +96,14 @@ public class AnimalController : MonoBehaviour
         { 
             if(!_isJumping)
             {
-                _isJumping = true;
                 _destinoSalto = new Vector2(_player.position.x, transform.position.y);
+
+                //Vemos si el punto de destino es válido
+                LayerMask groundMask = LayerMask.GetMask("Ground");
+                Collider2D collider = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x, _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
+
+
+                if(collider != null) _isJumping = true;
                 //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
             }
         }
