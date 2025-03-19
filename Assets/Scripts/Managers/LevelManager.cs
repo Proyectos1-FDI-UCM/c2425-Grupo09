@@ -25,11 +25,6 @@ public class LevelManager : MonoBehaviour
 
     #region Atributos del Inspector (serialized fields)
 
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
 
     #endregion
 
@@ -57,6 +52,8 @@ public class LevelManager : MonoBehaviour
             Init();
         }
     }
+
+    
 
     #endregion
 
@@ -89,6 +86,8 @@ public class LevelManager : MonoBehaviour
         return _instance != null;
     }
 
+    
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -102,6 +101,7 @@ public class LevelManager : MonoBehaviour
     {
         // De momento no hay nada que inicializar
     }
+
 
     #endregion
 } // class LevelManager 

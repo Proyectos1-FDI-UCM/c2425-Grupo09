@@ -1,29 +1,29 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
-
 using TMPro;
 
 public class Timer : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI TimerText;
     [SerializeField] GameObject Player;
-    [SerializeField] GameObject LoseMenu;
 
     [SerializeField] float timeSeg = 600f;
-     public float SumaSeg = 5f;
-     float RestaSeg = 5f;
+    public float SumaSeg = 5f;
+    float RestaSeg = 5f;
 
     static float currenttime;
     static bool playing = true;
     public Animator animator;
+    private Health _health;
    
 
     void Start()
     {
+        _health = Player.GetComponent<Health>();
+
         playing = true;
         currenttime = timeSeg;
         animator.SetBool("1", true);
-        
     }
 
     void Update()
@@ -64,10 +64,11 @@ public class Timer : MonoBehaviour
         playing = false;
         Debug.Log("Fin partida");
     }
+
     private void PlayerDead()
     {
-        Destroy(Player);
-        LoseMenu.SetActive(true);
+        UIManager.Instance.ShowGameOverMenu();
+        _health.Die();
     }
 }
 

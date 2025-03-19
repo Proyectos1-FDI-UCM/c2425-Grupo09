@@ -193,8 +193,8 @@ GameObject:
   - component: {fileID: 2004477079712909556}
   - component: {fileID: -8695810516374697467}
   m_Layer: 11
-  m_Name: Bunny
-  m_TagString: Bunny
+  m_Name: Tiger
+  m_TagString: Tiger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -209,7 +209,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.386542, y: -1.9497836, z: -5.22453}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4467697562762629256}
@@ -257,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e0aab8ef7a3e2664c9a41888a276b862, type: 3}
+  m_Sprite: {fileID: 1608372342, guid: 368d2bad25dc7c04291a862e5f2e51c7, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -300,18 +300,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.11223817, y: -0.48013043}
+  m_Offset: {x: 0.05193138, y: -0.48013043}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 3}
+    oldSize: {x: 2.8125, y: 1.375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.2244763, y: 1.9602609}
+  m_Size: {x: 2.7924652, y: 1.9602609}
   m_EdgeRadius: 0
 --- !u!61 &4187176767586889015
 BoxCollider2D:
@@ -345,18 +345,18 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.0012612343, y: -0.2889905}
+  m_Offset: {x: 0.096030235, y: -0.2889905}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.125, y: 3}
+    oldSize: {x: 2.8125, y: 1.375}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.2243004, y: 2.3175974}
+  m_Size: {x: 3.5510616, y: 2.3175974}
   m_EdgeRadius: 0
 --- !u!114 &8364465959951423524
 MonoBehaviour:
@@ -421,15 +421,15 @@ MonoBehaviour:
   AnchoAnimal: 0.5
   AltoAnimal: 1.5
   DistanciaDeteccion: 6
-  DistanciaSalto: 4
+  DistanciaSalto: 10
   CooldownSalto: 5
   CooldownAtaque: 2
-  Damage: 10
+  Damage: 25
   _player: {fileID: 0}
   SleepBarFill: {fileID: 2333517821545416594}
   SleepBarBackground: {fileID: 4286075701578461951}
   AttackVFXHolder: {fileID: 7072939102738138423}
-  NeedAttackVFX: 1
+  NeedAttackVFX: 0
 --- !u!95 &-8695810516374697467
 Animator:
   serializedVersion: 5
@@ -440,7 +440,7 @@ Animator:
   m_GameObject: {fileID: 8213178868730188694}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2b656825904332a4a9aea45e002fa3e5, type: 2}
+  m_Controller: {fileID: 9100000, guid: c4dee89b06ccdd74a89ed6780e253755, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
