@@ -6465,6 +6465,7 @@ GameObject:
   - component: {fileID: 2038953464}
   - component: {fileID: 2038953466}
   - component: {fileID: 2038953467}
+  - component: {fileID: 2038953468}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -6529,7 +6530,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 1300266268}
+--- !u!114 &2038953468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2038953463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daa5972f699810e4082ddef6343654bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
   Fade: {fileID: 506611070}
+  GameOverMenu: {fileID: 995296853}
 --- !u!1001 &6617690479110106151
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Este script se encarga de gestionar el sistema de checkpoints
+// Breve descripción del contenido del archivo
 // Sergio Valiente Urueña
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
@@ -8,31 +8,33 @@
 using UnityEngine;
 using System.Collections;
 
+
 /// <summary>
 /// Antes de cada class, descripción de qué es y para qué sirve,
 /// usando todas las líneas que sean necesarias.
 /// </summary>
-public class CheckpointManager : MonoBehaviour
+public class UIManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    [SerializeField] private GameObject Player;
+
+    public static UIManager Instance { get; private set; }
+
+    [SerializeField] private GameObject Fade;
+    [SerializeField] private GameObject GameOverMenu;
 
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
-    public static CheckpointManager Instance { get; private set; }
-
-    private Vector3 _lastCheckpoint;
-    private Health _playerHealth;
+    private Animator _fadeAnim;
 
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-
+    
     protected void Awake()
     {
         if (Instance == null)
@@ -45,53 +47,47 @@ public class CheckpointManager : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before 
+    /// any of the Update methods are called the first time.
+    /// </summary>
     void Start()
     {
-        _playerHealth = Player.GetComponent<Health>();
-        SetCheckpoint(Player.transform.position);
+        _fadeAnim = Fade.GetComponent<Animator>();
     }
- 
+
+
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-
-    /// <summary>
-    /// Se llama desde el Capture cuando se recoge un animal, para establecer el checkpoint.
-    /// </summary>
-    public void SetCheckpoint(Vector3 checkPosition)
+    public void FadeIn()
     {
-        _lastCheckpoint = checkPosition;
+        Fade.SetActive(true);
     }
 
-    public void Revivir()
+    public void FadeOut()
     {
-        StartCoroutine(ResetPlayer());
+        StartCoroutine(FadeDelay());
+    }
+
+    public void ShowGameOverMenu()
+    {
+        GameOverMenu.SetActive(true);
     }
 
     #endregion
     
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-
-    private IEnumerator ResetPlayer()
+    private IEnumerator FadeDelay()
     {
-        yield return new WaitForSeconds(1f);
-
-        UIManager.Instance.FadeIn();
-
-        Player.SetActive(false);
-        Player.transform.position = _lastCheckpoint;
-
-        yield return new WaitForSeconds(1f);
-        _playerHealth._currentHealth = 100f;
-        _playerHealth.Updatehealth(0f);
-        
-        Player.SetActive(true);
-        UIManager.Instance.FadeOut();
+        _fadeAnim.SetTrigger("FadeOut");
+        yield return new WaitForSeconds(0.4f);
+        Fade.SetActive(false);
     }
 
     #endregion   
 
-} // class CheckpointManager 
+} // class UIManager 
 // namespace

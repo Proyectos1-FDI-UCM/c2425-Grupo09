@@ -114,12 +114,18 @@ public class Health : MonoBehaviour
 
         UpdateHealthBar();
 
-        if (_currentHealth <= 0) //Si la vida llega a 0 se destruye
+        if (_currentHealth <= 0) //Si la vida llega a 0 muere
         {
-            animator.SetTrigger("Dead");
-            CheckpointManager.Instance.Revivir();
+           Die();
         }
     }
+
+    public void Die()
+    {
+        animator.SetTrigger("Dead");
+        CheckpointManager.Instance.Revivir();
+    }
+
     public void HurtAnimation()
     { animator.SetTrigger("Hurt"); }
 

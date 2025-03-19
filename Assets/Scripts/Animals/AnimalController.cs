@@ -85,15 +85,11 @@ public class AnimalController : MonoBehaviour
         //Se declara una variable para la dirección del Raycast en la dirección en la que mira el jugador para mayor claridad de código, ya que se usa múltiples veces.
         Vector2 rightDirection = Vector2.right * Mathf.Sign(_direction.x);
 
+        bool _canWalk = !(DetectarObjeto(rightDirection, Vector3.zero, AnchoAnimal, "Ground") || !DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"));
         // Si(Detecta muro || Deja de detectar plataforma)
-        if (DetectarObjeto(rightDirection, Vector3.zero, AnchoAnimal, "Ground") || !DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"))
+        if(!_canWalk)
         {
-            // Gira el animal y cambia la dirección
-            transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
-            SleepBarFill.rotation = Quaternion.Euler(0, SleepBarFill.rotation.eulerAngles.y - 180, 0);
-            SleepBarBackground.rotation = Quaternion.Euler(0, SleepBarBackground.rotation.eulerAngles.y - 180, 0);
-
-            _direction *= -1;
+            TurnAround();
         }
         //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador 
         else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(rightDirection, DistanciaSalto, "Player", "Ground") && !_isInAttackRange)
@@ -122,7 +118,8 @@ public class AnimalController : MonoBehaviour
         else if(DetectarJugador(rightDirection, DistanciaDeteccion, "Player", "Ground"))
         {
             if(!_isInAttackRange)
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(_player.position.x, transform.position.y), Speed * Time.deltaTime);           
+            transform.position += _direction * Speed * Time.deltaTime;
+      
 
             else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
@@ -156,10 +153,13 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     public void TurnAround()
     {
-        transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
-        SleepBarFill.rotation = Quaternion.Euler(0, SleepBarFill.rotation.eulerAngles.y - 180, 0);
-        SleepBarBackground.rotation = Quaternion.Euler(0, SleepBarBackground.rotation.eulerAngles.y - 180, 0);
+        // Gira el animal y cambia la dirección
         _direction *= -1;
+        transform.rotation = Quaternion.Euler(0, _direction.x == 1 ? 0 : 180, 0);
+
+        //Los elementos del canvas al ser rectTransform usan localEulerAngles en vez de rotation
+        SleepBarFill.localEulerAngles = transform.eulerAngles;
+        SleepBarBackground.localEulerAngles = transform.eulerAngles;
     }
 
     #endregion
@@ -178,8 +178,7 @@ public class AnimalController : MonoBehaviour
         
         RaycastHit2D hit = Physics2D.Raycast(origen, direccion, distancia, capa);
         
-        //Dibujar el rayo para depuración
-        Debug.DrawRay(origen, direccion * distancia, Color.yellow);
+        //Debug.DrawRay(origen, direccion * distancia, Color.yellow);
 
         return hit.collider != null; 
     }
@@ -195,8 +194,8 @@ public class AnimalController : MonoBehaviour
         LayerMask capasDetectables = LayerMask.GetMask(capaJugador, capaPared);
         
         RaycastHit2D hit = Physics2D.Raycast(origen, direccion, distancia, capasDetectables);
-        //Dibujar el rayo para depuración
-        Debug.DrawRay(origen, direccion * distancia, Color.green);
+
+        //Debug.DrawRay(origen, direccion * distancia, Color.green);
         
         if (hit.collider != null)
         {
@@ -224,7 +223,6 @@ public class AnimalController : MonoBehaviour
     {
         if(coll.gameObject.GetComponent<Health>() != null)
             _isInAttackRange = true;
-            
     }
 
     /// <summary>
