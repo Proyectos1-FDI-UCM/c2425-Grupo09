@@ -29,6 +29,7 @@ public class Capture : MonoBehaviour
     private BarraDeSueño _barraDeSueño; 
     private PlayerController _playerController;
     private GrapplerGun _grapplerGun;
+    private Health _health;
 
     #endregion
 
@@ -39,14 +40,7 @@ public class Capture : MonoBehaviour
     {
         _playerController = GetComponent<PlayerController>();
         _grapplerGun = GetComponentInChildren<GrapplerGun>();
-    }
-
-    /// <summary>
-    /// Start se llama cuando el script se habilita, antes de que se ejecute cualquier Update por primera vez.
-    /// </summary>
-    void Start()
-    {
-
+        _health = GetComponent<Health>();
     }
 
     /// <summary>
@@ -70,7 +64,8 @@ public class Capture : MonoBehaviour
             if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
             {
                 animator.SetTrigger("Capture");
-                Debug.Log("if");
+                LevelManager.Instance.SetCheckpoint(transform.position);
+                
                 if (_animal.CompareTag("Bunny"))
                 {
                     Debug.Log("saltos extra:" + _playerController.extraJump);
@@ -93,7 +88,12 @@ public class Capture : MonoBehaviour
                 if (_animal.CompareTag("Tiger"))
                 {
                     AbilitiesManager.Instance.TigerAbilityUnlock();
-                    _playerController.tigerUnlock = true;
+                    _playerController.tigerUnlocked = true;
+                }
+                if (_animal.CompareTag("Tiger"))
+                {
+                    AbilitiesManager.Instance.ArmadilloAbilityUnlock();
+                    _health.armadilloUnlocked = true;
                 }
                 RecogerObjeto();
             }

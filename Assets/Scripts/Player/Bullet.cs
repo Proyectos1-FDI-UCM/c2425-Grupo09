@@ -39,14 +39,10 @@ public class Bullet : MonoBehaviour
     /// </summary>
     void Start()
     {
-        
-
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = transform.right * Speed;
 
         Destroy(gameObject, 5f);
-
-
     }
 
     #endregion
@@ -67,6 +63,7 @@ public class Bullet : MonoBehaviour
     {
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
         {
+            gameObject.SetActive(false);
             coll.gameObject.GetComponent<BarraDeSueño>().Dormir(daño);
 
             //Si el enemigo está de espaldas, lo gira para que ataque
