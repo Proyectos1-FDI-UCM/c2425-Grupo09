@@ -44,14 +44,6 @@ public class Capture : MonoBehaviour
     }
 
     /// <summary>
-    /// Start se llama cuando el script se habilita, antes de que se ejecute cualquier Update por primera vez.
-    /// </summary>
-    void Start()
-    {
-
-    }
-
-    /// <summary>
     /// Update se llama cada frame si el MonoBehaviour está habilitado.
     /// </summary>
     void Update()
@@ -72,7 +64,8 @@ public class Capture : MonoBehaviour
             if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
             {
                 animator.SetTrigger("Capture");
-                Debug.Log("if");
+                LevelManager.Instance.SetCheckpoint(transform.position);
+                
                 if (_animal.CompareTag("Bunny"))
                 {
                     Debug.Log("saltos extra:" + _playerController.extraJump);

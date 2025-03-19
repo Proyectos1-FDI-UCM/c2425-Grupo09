@@ -7,6 +7,7 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using System.Collections;
 
 /// <summary>
 /// Componente que se encarga de la gestión de un nivel concreto.
@@ -25,11 +26,8 @@ public class LevelManager : MonoBehaviour
 
     #region Atributos del Inspector (serialized fields)
 
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
+    [SerializeField] private GameObject Player;
+    [SerializeField] private GameObject Fade;
 
     #endregion
 
@@ -41,6 +39,11 @@ public class LevelManager : MonoBehaviour
     /// Instancia única de la clase (singleton).
     /// </summary>
     private static LevelManager _instance;
+
+    private Vector3 _lastCheckpoint;
+
+    private Animator _playerAnim;
+    private Animator _fadeAnim;
 
     #endregion
 
@@ -56,6 +59,13 @@ public class LevelManager : MonoBehaviour
             _instance = this;
             Init();
         }
+    }
+
+    void Start()
+    {
+        _playerAnim = Player.GetComponent<Animator>();
+        _fadeAnim = Fade.GetComponent<Animator>();
+        SetCheckpoint(Player.transform.position);
     }
 
     #endregion
@@ -89,6 +99,19 @@ public class LevelManager : MonoBehaviour
         return _instance != null;
     }
 
+    /// <summary>
+    /// Se llama desde el Capture cuando se recoge un animal, para establecer el checkpoint.
+    /// </summary>
+    public void SetCheckpoint(Vector3 checkPosition)
+    {
+        _lastCheckpoint = checkPosition;
+    }
+
+    public void Revivir()
+    {
+        StartCoroutine(ResetPlayer());
+    }
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -101,6 +124,24 @@ public class LevelManager : MonoBehaviour
     private void Init()
     {
         // De momento no hay nada que inicializar
+    }
+
+    private IEnumerator ResetPlayer()
+    {
+        yield return new WaitForSeconds(1f);
+
+        Fade.SetActive(true);
+        Player.SetActive(false);
+        Player.transform.position = _lastCheckpoint;
+
+        yield return new WaitForSeconds(1f);
+        
+        Player.SetActive(true);
+        _fadeAnim.SetTrigger("FadeOut");
+
+        yield return new WaitForSeconds(0.4f);
+
+        Fade.SetActive(false);
     }
 
     #endregion
