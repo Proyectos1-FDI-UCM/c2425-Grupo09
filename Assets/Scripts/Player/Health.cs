@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Mecanica responsable de manejar la vida del jugador(incluyendo el escudo), es decir, de Noe.
-// Alejandro García Díaz, Sergio González y Diego García
+// Alejandro García Díaz, Sergio González, Diego García y Sergio Valiente
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -22,6 +22,7 @@ public class Health : MonoBehaviour
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
 
+    [Header("Vida")]
     [SerializeField] float maxHealth = 100f;
     [SerializeField] float startingHealth = 100f;
     [SerializeField] private Image _healthBarFill;
@@ -29,15 +30,15 @@ public class Health : MonoBehaviour
     [SerializeField] private Gradient _colorGradient;
     [SerializeField] Animator animator;
     [HideInInspector] public float _currentHealth;
+
+    [Header("Escudo")]
     [SerializeField] float ShieldDuration;
     [SerializeField] float Shield;
     [SerializeField] float CooldownShield;
-<<<<<<< HEAD
     [SerializeField] float fillshield;
     [SerializeField] private Image _shieldBarFill; // Barra de escudo
-=======
-    public bool armadilloUnlocked = false;
->>>>>>> a68f7ad7d94361e0fc0093f412847e408b48575a
+
+    [HideInInspector] public bool armadilloUnlocked = false;
 
     #endregion
 
@@ -115,6 +116,7 @@ public class Health : MonoBehaviour
 
         if (_currentHealth <= 0) //Si la vida llega a 0 se destruye
         {
+            CheckpointManager.Instance.Revivir();
             Debug.Log("Muerto");
             //gameObject.SetActive(false);
             animator.SetTrigger("Dead");

@@ -30,13 +30,15 @@ public class AnimalController : MonoBehaviour
     [SerializeField] float DistanciaSalto;
     [SerializeField] float CooldownSalto;
     [SerializeField] float CooldownAtaque;
-    [SerializeField] int Daño;
+    [SerializeField] int Damage;
     //Transform del jugador para que el animal sepa donde saltar
     [Header("Referencias")]
     [SerializeField] Transform _player;
-    [SerializeField] Transform BarraDeSueñoFill;
-    [SerializeField] Transform BarraDeSueñoBackground;
+    [SerializeField] Transform SleepBarFill;
+    [SerializeField] Transform SleepBarBackground;
+
     [SerializeField] GameObject AttackVFXHolder;
+    [SerializeField] bool NeedAttackVFX;
 
     #endregion
 
@@ -88,8 +90,8 @@ public class AnimalController : MonoBehaviour
         {
             // Gira el animal y cambia la dirección
             transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
-            BarraDeSueñoFill.rotation = Quaternion.Euler(0, BarraDeSueñoFill.rotation.eulerAngles.y - 180, 0);
-            BarraDeSueñoBackground.rotation = Quaternion.Euler(0, BarraDeSueñoBackground.rotation.eulerAngles.y - 180, 0);
+            SleepBarFill.rotation = Quaternion.Euler(0, SleepBarFill.rotation.eulerAngles.y - 180, 0);
+            SleepBarBackground.rotation = Quaternion.Euler(0, SleepBarBackground.rotation.eulerAngles.y - 180, 0);
 
             _direction *= -1;
         }
@@ -124,12 +126,13 @@ public class AnimalController : MonoBehaviour
 
             else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
-                _health.Updatehealth(-Daño);
+                _health.Updatehealth(-Damage);
                 _health.HurtAnimation();
 
                 _animator.SetTrigger("Attack");
                 _animator.SetBool("Move", false);
-
+                
+                if(NeedAttackVFX)
                 StartCoroutine(AttackVFX());
 
                 _tiempoUltimoAtaque = Time.time;
@@ -154,8 +157,8 @@ public class AnimalController : MonoBehaviour
     public void TurnAround()
     {
         transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 180, 0);
-        BarraDeSueñoFill.rotation = Quaternion.Euler(0, BarraDeSueñoFill.rotation.eulerAngles.y - 180, 0);
-        BarraDeSueñoBackground.rotation = Quaternion.Euler(0, BarraDeSueñoBackground.rotation.eulerAngles.y - 180, 0);
+        SleepBarFill.rotation = Quaternion.Euler(0, SleepBarFill.rotation.eulerAngles.y - 180, 0);
+        SleepBarBackground.rotation = Quaternion.Euler(0, SleepBarBackground.rotation.eulerAngles.y - 180, 0);
         _direction *= -1;
     }
 

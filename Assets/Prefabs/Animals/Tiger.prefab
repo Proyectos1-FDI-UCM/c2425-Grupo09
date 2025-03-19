@@ -421,14 +421,15 @@ MonoBehaviour:
   AnchoAnimal: 0.5
   AltoAnimal: 1.5
   DistanciaDeteccion: 6
-  DistanciaSalto: 4
+  DistanciaSalto: 10
   CooldownSalto: 5
   CooldownAtaque: 2
-  "Da\xF1o": 10
+  Damage: 25
   _player: {fileID: 0}
-  "BarraDeSue\xF1oFill": {fileID: 2333517821545416594}
-  "BarraDeSue\xF1oBackground": {fileID: 4286075701578461951}
+  SleepBarFill: {fileID: 2333517821545416594}
+  SleepBarBackground: {fileID: 4286075701578461951}
   AttackVFXHolder: {fileID: 7072939102738138423}
+  NeedAttackVFX: 0
 --- !u!95 &-8695810516374697467
 Animator:
   serializedVersion: 5

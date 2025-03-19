@@ -64,7 +64,7 @@ public class Capture : MonoBehaviour
             if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
             {
                 animator.SetTrigger("Capture");
-                LevelManager.Instance.SetCheckpoint(transform.position);
+                CheckpointManager.Instance.SetCheckpoint(transform.position);
                 
                 if (_animal.CompareTag("Bunny"))
                 {
@@ -90,7 +90,7 @@ public class Capture : MonoBehaviour
                     AbilitiesManager.Instance.TigerAbilityUnlock();
                     _playerController.tigerUnlocked = true;
                 }
-                if (_animal.CompareTag("Tiger"))
+                if (_animal.CompareTag("Armadillo"))
                 {
                     AbilitiesManager.Instance.ArmadilloAbilityUnlock();
                     _health.armadilloUnlocked = true;
