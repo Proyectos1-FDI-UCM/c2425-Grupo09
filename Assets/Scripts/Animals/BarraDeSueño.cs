@@ -34,6 +34,7 @@ public class BarraDeSueño : MonoBehaviour
     [SerializeField] private float _barraDeSueño = 0; 
     //De momento está SerializeField para poder comprobar en el inspector que aumenta correctamente. Luego se quitará.
     private AnimalController _animalController;
+    private Animator _animator;
     private bool dormido;
 
     #endregion
@@ -44,6 +45,7 @@ public class BarraDeSueño : MonoBehaviour
     void Awake()
     {
         _animalController = GetComponent<AnimalController>();
+        _animator = GetComponent<Animator>();
     }
     #endregion
 
@@ -62,6 +64,7 @@ public class BarraDeSueño : MonoBehaviour
             if(_barraDeSueño >= MaxBarraDeSueño)
             {
                 _animalController.enabled = false;
+                _animator.SetTrigger("Sleep");
                 dormido = true;
             }
 
