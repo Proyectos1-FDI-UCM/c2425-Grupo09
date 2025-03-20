@@ -167,25 +167,23 @@ public class PlayerController : MonoBehaviour
 
         _bufferCounter = InputManager.Instance.JumpWasPressedThisFrame() ? BufferTime : _bufferCounter - Time.deltaTime;
 
-        if (InputManager.Instance.JumpWasPressedThisFrame() && !EnSuelo && !grappleRope.IsGrappling && _jumpCounter > 0)
-        {
-            //Debug.Log("Salto");
-            Jump();
-            _jumpCounter = 0;
-
-            StartCoroutine(JumpCooldown());
-        }
-        else if (EnSuelo)
-        {
-            _jumpCounter = extraJump;
-        }
         if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.IsGrappling)
         {
             //Debug.Log("Salto");
             Jump();
             _bufferCounter = 0;
-
             StartCoroutine(JumpCooldown());
+        }
+        else if (InputManager.Instance.JumpWasPressedThisFrame() && !EnSuelo && !grappleRope.IsGrappling && _jumpCounter > 0)
+        {
+            //Debug.Log("Salto");
+            Jump();
+            _jumpCounter = 0;
+            StartCoroutine(JumpCooldown());
+        }
+        else if (EnSuelo)
+        {
+            _jumpCounter = extraJump;
         }
 
         if (tigerUnlocked) velocidad = tSpeed;
