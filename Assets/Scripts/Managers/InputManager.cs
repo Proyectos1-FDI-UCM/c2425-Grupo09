@@ -72,6 +72,7 @@ public class InputManager : MonoBehaviour
     private InputAction _grappler;
     private InputAction _tiger;
     private InputAction _shield;
+    private InputAction _checklist;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -249,6 +250,11 @@ public class InputManager : MonoBehaviour
     {
         return _shield.WasPressedThisFrame();
     }
+
+    public bool ChecklistWasPressedThisFrame()
+    {
+        return _checklist.WasPressedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -282,6 +288,7 @@ public class InputManager : MonoBehaviour
         _grappler = _theController.Player.Grappler;
         _tiger = _theController.Player.Tiger;
         _shield = _theController.Player.Shield;
+        _checklist = _theController.Player.CheckList;
 
 
     }
