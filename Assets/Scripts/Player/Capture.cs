@@ -30,6 +30,7 @@ public class Capture : MonoBehaviour
     private PlayerController _playerController;
     private GrapplerGun _grapplerGun;
     private Health _health;
+    private CheckList _checkList;
 
     #endregion
 
@@ -41,6 +42,7 @@ public class Capture : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _grapplerGun = GetComponentInChildren<GrapplerGun>();
         _health = GetComponent<Health>();
+        _checkList = GetComponent<CheckList>();
     }
 
     /// <summary>
@@ -72,6 +74,9 @@ public class Capture : MonoBehaviour
                     AbilitiesManager.Instance.BunnyAbilityUnlock();
                     _playerController.extraJump = 1;
                     Debug.Log("saltos extra:" + _playerController.extraJump);
+
+                    if(_barraDeSueño.Male) _checkList.ActivateTick(0);
+                    else _checkList.ActivateTick(1);
                 }
                 if (_animal.CompareTag("Bat"))
                 {
@@ -79,21 +84,33 @@ public class Capture : MonoBehaviour
                     AbilitiesManager.Instance.BatAbilityUnlock();
                     _playerController.nightVision.SetActive(true);
                     Debug.Log("activada la vision nocturna");
+
+                    if (_barraDeSueño.Male) _checkList.ActivateTick(2);
+                    else _checkList.ActivateTick(3);
                 }
                 if (_animal.CompareTag("Gorila"))
                 {
                     AbilitiesManager.Instance.GorilaAbilityUnlock();
                     _grapplerGun.grapplerUnlocked = true;
+
+                    if (_barraDeSueño.Male) _checkList.ActivateTick(4);
+                    else _checkList.ActivateTick(5);
                 }
                 if (_animal.CompareTag("Tiger"))
                 {
                     AbilitiesManager.Instance.TigerAbilityUnlock();
                     _playerController.tigerUnlocked = true;
+
+                    if (_barraDeSueño.Male) _checkList.ActivateTick(6);
+                    else _checkList.ActivateTick(7);
                 }
                 if (_animal.CompareTag("Armadillo"))
                 {
                     AbilitiesManager.Instance.ArmadilloAbilityUnlock();
                     _health.armadilloUnlocked = true;
+
+                    if (_barraDeSueño.Male) _checkList.ActivateTick(8);
+                    else _checkList.ActivateTick(9);
                 }
                 RecogerObjeto();
             }

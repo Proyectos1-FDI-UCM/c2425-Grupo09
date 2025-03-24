@@ -26,6 +26,8 @@ public class BarraDeSueño : MonoBehaviour
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
 
+    public bool Male;
+
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----

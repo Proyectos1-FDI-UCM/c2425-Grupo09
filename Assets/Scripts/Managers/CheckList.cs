@@ -23,6 +23,7 @@ public class CheckList : MonoBehaviour
     // Ejemplo: MaxHealthPoints
 
     [SerializeField] private GameObject menuPanel; // Aqui referenciamos a el panel del menú de checklist
+    [SerializeField] private GameObject[] ticks;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -77,6 +78,11 @@ public class CheckList : MonoBehaviour
             menuPanel.SetActive(_isMenuOpen);
         }
     }
+
+    public void ActivateTick(int _index)
+    {
+        ticks[_index].SetActive(true);
+    } //Activa dentro de ticks
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
