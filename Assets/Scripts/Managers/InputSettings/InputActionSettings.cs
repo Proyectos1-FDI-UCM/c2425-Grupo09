@@ -100,6 +100,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""CheckList"",
+                    ""type"": ""Button"",
+                    ""id"": ""c574fdf2-9055-47e6-bd91-2577c900eee6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -287,6 +296,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""52233f9d-a1be-4772-a3d4-9238df2cac17"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""CheckList"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -882,6 +902,7 @@ namespace UnityEngine.InputSystem
             m_Player_Grappler = m_Player.FindAction("Grappler", throwIfNotFound: true);
             m_Player_Tiger = m_Player.FindAction("Tiger", throwIfNotFound: true);
             m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
+            m_Player_CheckList = m_Player.FindAction("CheckList", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -963,6 +984,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Grappler;
         private readonly InputAction m_Player_Tiger;
         private readonly InputAction m_Player_Shield;
+        private readonly InputAction m_Player_CheckList;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -975,6 +997,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Grappler => m_Wrapper.m_Player_Grappler;
             public InputAction @Tiger => m_Wrapper.m_Player_Tiger;
             public InputAction @Shield => m_Wrapper.m_Player_Shield;
+            public InputAction @CheckList => m_Wrapper.m_Player_CheckList;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1008,6 +1031,9 @@ namespace UnityEngine.InputSystem
                 @Shield.started += instance.OnShield;
                 @Shield.performed += instance.OnShield;
                 @Shield.canceled += instance.OnShield;
+                @CheckList.started += instance.OnCheckList;
+                @CheckList.performed += instance.OnCheckList;
+                @CheckList.canceled += instance.OnCheckList;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1036,6 +1062,9 @@ namespace UnityEngine.InputSystem
                 @Shield.started -= instance.OnShield;
                 @Shield.performed -= instance.OnShield;
                 @Shield.canceled -= instance.OnShield;
+                @CheckList.started -= instance.OnCheckList;
+                @CheckList.performed -= instance.OnCheckList;
+                @CheckList.canceled -= instance.OnCheckList;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1226,6 +1255,7 @@ namespace UnityEngine.InputSystem
             void OnGrappler(InputAction.CallbackContext context);
             void OnTiger(InputAction.CallbackContext context);
             void OnShield(InputAction.CallbackContext context);
+            void OnCheckList(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
