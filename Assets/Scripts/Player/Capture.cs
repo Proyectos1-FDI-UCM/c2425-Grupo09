@@ -87,7 +87,6 @@ public class Capture : MonoBehaviour
                     Debug.Log("saltos extra:" + _playerController.extraJump);
                     AbilitiesManager.Instance.BunnyAbilityUnlock();
                     _playerController.extraJump = 1;
-                    Debug.Log("saltos extra:" + _playerController.extraJump);
 
                     if(_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleBunny);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleBunny);
@@ -97,7 +96,6 @@ public class Capture : MonoBehaviour
                     Debug.Log("activada la vision nocturna");
                     AbilitiesManager.Instance.BatAbilityUnlock();
                     _playerController.nightVision.SetActive(true);
-                    Debug.Log("activada la vision nocturna");
 
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleBat);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleBat);
