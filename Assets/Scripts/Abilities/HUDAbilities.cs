@@ -1,20 +1,19 @@
 //---------------------------------------------------------
-// Script responsable de manejar cuando pueden funcionar las habilidades
-// Alejandro García Díaz, Pablo Abellán
+// Breve descripción del contenido del archivo
+// Pablo Abellán
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
-using static UnityEditor.ShaderGraph.Internal.KeywordDependentCollection;
 // Añadir aquí el resto de directivas using
-
+using UnityEngine.UI;
 
 /// <summary>
 /// Antes de cada class, descripción de qué es y para qué sirve,
 /// usando todas las líneas que sean necesarias.
 /// </summary>
-public class AbilitiesManager : MonoBehaviour
+public class HUDAbilities : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
@@ -23,14 +22,9 @@ public class AbilitiesManager : MonoBehaviour
     // públicos y de inspector se nombren en formato PascalCase
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
-
-    public static AbilitiesManager Instance { get; private set; }
-    public bool nightVision = false;
-    public bool doubleJump = false;
-    public bool grappler = false;
-    public bool tiger = false;
-    public bool armadillo = false;
-
+    [SerializeField] Image[] Greyimage;
+    [SerializeField] Sprite[] Colorimage;
+    [SerializeField] GameObject[] ColorKeysImage;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -41,13 +35,7 @@ public class AbilitiesManager : MonoBehaviour
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-    HUDAbilities _HUDAbilities;
-    enum _HUDImage
-    {
-        Armadillo,
-        Bat,
-        Gorila
-    }
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -63,7 +51,7 @@ public class AbilitiesManager : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _HUDAbilities = GetComponent<HUDAbilities>();
+        
     }
 
     /// <summary>
@@ -72,18 +60,6 @@ public class AbilitiesManager : MonoBehaviour
     void Update()
     {
         
-    }
-
-    protected void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
     }
     #endregion
 
@@ -94,33 +70,14 @@ public class AbilitiesManager : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
     // Ejemplo: GetPlayerController
-
-    public void BunnyAbilityUnlock()
+     public void ActivateColor(int index)
     {
-        doubleJump = true;
+        Greyimage[index].sprite = Colorimage[index];
+        if (ColorKeysImage[index] != null) 
+        ColorKeysImage[index].SetActive(true);
     }
-    public void BatAbilityUnlock()
-    {
-        nightVision = true;
-        _HUDAbilities.ActivateColor((int)_HUDImage.Bat);
-    }
-    public void GorilaAbilityUnlock()
-    {
-        grappler = true;
-        _HUDAbilities.ActivateColor((int)_HUDImage.Gorila);
-    }
-    public void TigerAbilityUnlock()
-    {
-        tiger = true;
-    }
-    public void ArmadilloAbilityUnlock()
-    {
-        armadillo = true;
-        _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
-    }
-
     #endregion
-
+    
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
@@ -128,7 +85,7 @@ public class AbilitiesManager : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
-    #endregion
+    #endregion   
 
-} // class AbilitiesController 
+} // class HUD-Abilities 
 // namespace
