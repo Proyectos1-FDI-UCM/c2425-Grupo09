@@ -20,7 +20,9 @@ public class Bullet : MonoBehaviour
     //Velocidad bala
     [SerializeField] private float Speed;
     //Daño bala
-    [SerializeField] private int Damage = 10;
+    [SerializeField] private float Damage = 10;
+
+    [SerializeField] private float TigerMultiplier = 1.25f;
 
     #endregion
     
@@ -28,7 +30,7 @@ public class Bullet : MonoBehaviour
     #region Atributos Privados (private fields)
     //Rigidbody2D bala
     private Rigidbody2D _rb;
-    private int daño;
+    private float _damage;
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -41,8 +43,6 @@ public class Bullet : MonoBehaviour
     {
         _rb = GetComponent<Rigidbody2D>();
         _rb.velocity = transform.right * Speed;
-
-        Destroy(gameObject, 5f);
     }
 
     #endregion
@@ -64,12 +64,20 @@ public class Bullet : MonoBehaviour
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
         {
             gameObject.SetActive(false);
-            coll.gameObject.GetComponent<BarraDeSueño>().Dormir(daño);
+            coll.gameObject.GetComponent<BarraDeSueño>().Dormir(_damage);
 
             //Si el enemigo está de espaldas, lo gira para que ataque
-            if (Mathf.Abs(transform.rotation.eulerAngles.y - coll.gameObject.transform.rotation.eulerAngles.y) <= 0.001f) 
+            if (Mathf.Abs(transform.rotation.eulerAngles.y - coll.gameObject.transform.rotation.eulerAngles.y) <= 0.001f && coll.gameObject.GetComponent<AnimalController>() != null) 
                 coll.gameObject.GetComponent<AnimalController>().TurnAround();
         } 
+        Destroy(gameObject);
+    }
+
+    /// <summary>
+    /// Si la bala se sale de la pantalla, la destruye
+    /// </summary>
+    void OnBecameInvisible()
+    {
         Destroy(gameObject);
     }
 
@@ -77,11 +85,11 @@ public class Bullet : MonoBehaviour
     {
         if (!tigre)
         {
-            daño = Damage;
+            _damage = Damage;
         }
         else
         {
-            daño = Damage * 125 / 100;
+            _damage = Damage * TigerMultiplier;
         }
 
     }

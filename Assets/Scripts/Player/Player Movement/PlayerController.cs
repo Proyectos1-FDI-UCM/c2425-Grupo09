@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     #region Atributos Privados (private fields)
 
     private Rigidbody2D _rB;
+    private SpriteRenderer _sr;
     private GrapplerRope grappleRope;
     private float _coyoteCounter;
     private bool _isJumping;
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _rB = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
         grappleRope = GetComponentInChildren<GrapplerRope>();
         if (animator == null)
         {

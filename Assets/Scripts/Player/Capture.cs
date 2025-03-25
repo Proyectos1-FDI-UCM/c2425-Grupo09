@@ -32,6 +32,20 @@ public class Capture : MonoBehaviour
     private Health _health;
     private CheckList _checkList;
 
+    private enum _animalIdentifier
+    {
+        MaleBunny,
+        FemaleBunny,
+        MaleBat,
+        FemaleBat,
+        MaleGorila,
+        FemaleGorila,
+        MaleTiger,
+        FemaleTiger,
+        MaleArmadillo,
+        FemaleArmadillo
+    }
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -75,8 +89,8 @@ public class Capture : MonoBehaviour
                     _playerController.extraJump = 1;
                     Debug.Log("saltos extra:" + _playerController.extraJump);
 
-                    if(_barraDeSueño.Male) _checkList.ActivateTick(0);
-                    else _checkList.ActivateTick(1);
+                    if(_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleBunny);
+                    else _checkList.ActivateTick((int)_animalIdentifier.FemaleBunny);
                 }
                 if (_animal.CompareTag("Bat"))
                 {
@@ -85,32 +99,32 @@ public class Capture : MonoBehaviour
                     _playerController.nightVision.SetActive(true);
                     Debug.Log("activada la vision nocturna");
 
-                    if (_barraDeSueño.Male) _checkList.ActivateTick(2);
-                    else _checkList.ActivateTick(3);
+                    if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleBat);
+                    else _checkList.ActivateTick((int)_animalIdentifier.FemaleBat);
                 }
                 if (_animal.CompareTag("Gorila"))
                 {
                     AbilitiesManager.Instance.GorilaAbilityUnlock();
                     _grapplerGun.grapplerUnlocked = true;
 
-                    if (_barraDeSueño.Male) _checkList.ActivateTick(4);
-                    else _checkList.ActivateTick(5);
+                    if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleGorila);
+                    else _checkList.ActivateTick((int)_animalIdentifier.FemaleGorila);
                 }
                 if (_animal.CompareTag("Tiger"))
                 {
                     AbilitiesManager.Instance.TigerAbilityUnlock();
                     _playerController.tigerUnlocked = true;
 
-                    if (_barraDeSueño.Male) _checkList.ActivateTick(6);
-                    else _checkList.ActivateTick(7);
+                    if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleTiger);
+                    else _checkList.ActivateTick((int)_animalIdentifier.FemaleTiger);
                 }
                 if (_animal.CompareTag("Armadillo"))
                 {
                     AbilitiesManager.Instance.ArmadilloAbilityUnlock();
                     _health.armadilloUnlocked = true;
 
-                    if (_barraDeSueño.Male) _checkList.ActivateTick(8);
-                    else _checkList.ActivateTick(9);
+                    if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleArmadillo);
+                    else _checkList.ActivateTick((int)_animalIdentifier.FemaleArmadillo);
                 }
                 RecogerObjeto();
             }

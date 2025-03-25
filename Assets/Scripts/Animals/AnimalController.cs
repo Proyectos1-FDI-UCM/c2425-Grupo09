@@ -30,6 +30,7 @@ public class AnimalController : MonoBehaviour
     [SerializeField] float DistanciaSalto;
     [SerializeField] float CooldownSalto;
     [SerializeField] float CooldownAtaque;
+    [SerializeField] float JumpSpeed = 6f;
     [SerializeField] int Damage;
     //Transform del jugador para que el animal sepa donde saltar
     [Header("Referencias")]
@@ -85,7 +86,8 @@ public class AnimalController : MonoBehaviour
         //Se declara una variable para la dirección del Raycast en la dirección en la que mira el jugador para mayor claridad de código, ya que se usa múltiples veces.
         Vector2 rightDirection = Vector2.right * Mathf.Sign(_direction.x);
 
-        bool _canWalk = !(DetectarObjeto(rightDirection, Vector3.zero, AnchoAnimal, "Ground") || !DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"));
+        bool _canWalk = (!DetectarObjeto(rightDirection, Vector3.zero, AnchoAnimal, "Ground") &&
+                         DetectarObjeto(Vector2.down, new Vector3(AnchoAnimal + 0.2f, 0, 0) * Mathf.Sign(_direction.x), AltoAnimal + 0.2f, "Ground"));
         // Si(Detecta muro || Deja de detectar plataforma)
         if(!_canWalk)
         {
@@ -111,7 +113,7 @@ public class AnimalController : MonoBehaviour
         if(_isJumping)
         {
             //Se mueve hacia el jugador a gran velocidad (salto)
-           transform.position = Vector2.MoveTowards(transform.position, _destinoSalto, Speed * 6f * Time.deltaTime);
+           transform.position = Vector2.MoveTowards(transform.position, _destinoSalto, Speed * JumpSpeed * Time.deltaTime);
 
             //Si ha llegado al destino || esta a melee del jugador, reseteamos el bool, y establecemos el tiempo del ultimo salto para gestionar el cooldown.
             if(_isInAttackRange || Mathf.Abs(transform.position.x - _destinoSalto.x) <= 0.01f )

@@ -63,12 +63,12 @@ public class UIManager : MonoBehaviour
     #region Métodos públicos
     public void FadeIn()
     {
-        Fade.SetActive(true);
+        _fadeAnim.SetTrigger("FadeIn");
     }
 
     public void FadeOut()
     {
-        StartCoroutine(FadeDelay());
+        _fadeAnim.SetTrigger("FadeOut");
     }
 
     public void ShowGameOverMenu()
@@ -80,12 +80,6 @@ public class UIManager : MonoBehaviour
     
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-    private IEnumerator FadeDelay()
-    {
-        _fadeAnim.SetTrigger("FadeOut");
-        yield return new WaitForSeconds(0.4f);
-        Fade.SetActive(false);
-    }
 
     #endregion   
 

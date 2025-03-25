@@ -16,7 +16,6 @@ public class CheckpointManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    [SerializeField] private GameObject Player;
 
     #endregion
     
@@ -27,6 +26,7 @@ public class CheckpointManager : MonoBehaviour
 
     private Vector3 _lastCheckpoint;
     private Health _playerHealth;
+    private GameObject _player;
 
     #endregion
     
@@ -43,12 +43,6 @@ public class CheckpointManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-    
-    void Start()
-    {
-        _playerHealth = Player.GetComponent<Health>();
-        SetCheckpoint(Player.transform.position);
     }
  
     #endregion
@@ -69,6 +63,13 @@ public class CheckpointManager : MonoBehaviour
         StartCoroutine(ResetPlayer());
     }
 
+    public void PlayerReference(GameObject player)
+    {
+        _player = player;
+        _playerHealth = _player.GetComponent<Health>();
+        SetCheckpoint(_player.transform.position);
+    }
+
     #endregion
     
     // ---- MÉTODOS PRIVADOS ----
@@ -80,14 +81,13 @@ public class CheckpointManager : MonoBehaviour
 
         UIManager.Instance.FadeIn();
 
-        Player.SetActive(false);
-        Player.transform.position = _lastCheckpoint;
+        _player.SetActive(false);
+        _player.transform.position = _lastCheckpoint;
 
         yield return new WaitForSeconds(1f);
-        _playerHealth._currentHealth = 100f;
-        _playerHealth.Updatehealth(0f);
+        _playerHealth.ResetPlayer();
         
-        Player.SetActive(true);
+        _player.SetActive(true);
         UIManager.Instance.FadeOut();
     }
 

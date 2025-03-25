@@ -20,7 +20,7 @@ public class BarraDeSueño : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    [SerializeField] int MaxBarraDeSueño;
+    [SerializeField] float MaxBarraDeSueño;
     [SerializeField] Collider2D TriggerCollider;
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
@@ -57,7 +57,7 @@ public class BarraDeSueño : MonoBehaviour
     /// <summary>
     /// Método que se llama desde el script Bullet para aumentar el sueño del animal.
     /// </summary>
-    public void Dormir(int amount)
+    public void Dormir(float amount)
     {
         if(!dormido)
         {

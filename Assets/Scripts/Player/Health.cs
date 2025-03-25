@@ -61,6 +61,8 @@ public class Health : MonoBehaviour
         _currentHealth = startingHealth;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
         UpdateHealthBar();
+
+        CheckpointManager.Instance.PlayerReference(gameObject);
     }
 
     private void Update()
@@ -128,6 +130,12 @@ public class Health : MonoBehaviour
 
     public void HurtAnimation()
     { animator.SetTrigger("Hurt"); }
+
+    public void ResetPlayer()
+    {
+        _currentHealth = 100f;
+        Updatehealth(0f);
+    }
 
     #endregion
 
