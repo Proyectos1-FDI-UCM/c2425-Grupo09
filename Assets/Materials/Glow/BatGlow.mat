@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ArmadilloGlow
+  m_Name: BatGlow
   m_Shader: {fileID: -6465566751694194690, guid: 328901e64e7e9a84fb48dfd8cb8bdfbe, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -44,11 +44,13 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors:
-    - _GlowColor: {r: 5.992157, g: 5.209987, b: 0, a: 0}
+    - _GlowColor: {r: 1.1818869, g: 0.019335253, b: 5.9921565, a: 1}
   m_BuildTextureStacks: []
---- !u!114 &1880279524002640005
+--- !u!114 &4039592199674254963
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}

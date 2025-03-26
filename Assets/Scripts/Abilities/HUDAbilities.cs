@@ -25,6 +25,7 @@ public class HUDAbilities : MonoBehaviour
     [SerializeField] Image[] Greyimage;
     [SerializeField] Sprite[] Colorimage;
     [SerializeField] GameObject[] ColorKeysImage;
+    [SerializeField] GameObject[] GlowEffect;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----

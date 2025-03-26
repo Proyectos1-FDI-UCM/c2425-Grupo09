@@ -2067,7 +2067,7 @@ MonoBehaviour:
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
-  m_RenderPostProcessing: 0
+  m_RenderPostProcessing: 1
   m_Antialiasing: 0
   m_AntialiasingQuality: 2
   m_StopNaN: 0
@@ -6521,9 +6521,33 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 69859735}
     m_Modifications:
+    - target: {fileID: 730371494253398058, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 926344180780929923, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
+      propertyPath: m_Color.b
+      value: 0.43867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 926344180780929923, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
+      propertyPath: m_Color.g
+      value: 0.43867922
+      objectReference: {fileID: 0}
+    - target: {fileID: 926344180780929923, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 926344180780929923, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
     - target: {fileID: 3883696414354607044, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
       propertyPath: m_Name
       value: HUDAbilities
+      objectReference: {fileID: 0}
+    - target: {fileID: 4442372773832489416, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5931885650527105012, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
       propertyPath: m_Pivot.x
@@ -6604,6 +6628,10 @@ PrefabInstance:
     - target: {fileID: 5931885650527105012, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6045186793912871311, guid: 3668b39dddbd73948919c6115c3d9194, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
