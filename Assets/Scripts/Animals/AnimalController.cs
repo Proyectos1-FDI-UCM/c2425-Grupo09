@@ -101,9 +101,9 @@ public class AnimalController : MonoBehaviour
 
                 //Vemos si el punto de destino es válido
                 LayerMask groundMask = LayerMask.GetMask("Ground");
-                Collider2D collider = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x, _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
+                Collider2D _targetPoint = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x - AnchoAnimal * 2f * Mathf.Sign(_direction.x), _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
 
-                if(collider != null) _isJumping = true;
+                if(_targetPoint != null) _isJumping = true;
                 //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
             }
         }
