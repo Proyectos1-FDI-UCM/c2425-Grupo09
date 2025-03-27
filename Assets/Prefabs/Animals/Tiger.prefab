@@ -300,7 +300,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.05193138, y: -0.48013043}
+  m_Offset: {x: 0.05193138, y: -0.043405116}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -311,7 +311,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.7924652, y: 1.9602609}
+  m_Size: {x: 2.7924652, y: 1.42492}
   m_EdgeRadius: 0
 --- !u!61 &4187176767586889015
 BoxCollider2D:
@@ -345,7 +345,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.096030235, y: -0.2889905}
+  m_Offset: {x: 0.096030235, y: -0.007232189}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -356,7 +356,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 3.5510616, y: 2.3175974}
+  m_Size: {x: 3.5510616, y: 1.4159708}
   m_EdgeRadius: 0
 --- !u!114 &8364465959951423524
 MonoBehaviour:
@@ -404,6 +404,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  Male: 0
   "_barraDeSue\xF1o": 0
 --- !u!114 &2004477079712909556
 MonoBehaviour:
@@ -424,6 +425,7 @@ MonoBehaviour:
   DistanciaSalto: 10
   CooldownSalto: 5
   CooldownAtaque: 2
+  JumpSpeed: 6
   Damage: 25
   _player: {fileID: 0}
   SleepBarFill: {fileID: 2333517821545416594}

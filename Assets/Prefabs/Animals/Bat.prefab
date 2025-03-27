@@ -404,6 +404,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  Male: 0
   "_barraDeSue\xF1o": 0
 --- !u!114 &2004477079712909556
 MonoBehaviour:
@@ -424,6 +425,7 @@ MonoBehaviour:
   DistanciaSalto: 4
   CooldownSalto: 5
   CooldownAtaque: 2
+  JumpSpeed: 6
   Damage: 8
   _player: {fileID: 0}
   SleepBarFill: {fileID: 2333517821545416594}
@@ -476,9 +478,9 @@ Transform:
   m_GameObject: {fileID: 8708497689362075033}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -453.64, y: -224.996, z: 0}
-  m_LocalScale: {x: 0.001985759, y: 0.0021755632, z: 0.0027708667}
-  m_ConstrainProportionsScale: 0
+  m_LocalPosition: {x: -453.9, y: -224.97, z: 0}
+  m_LocalScale: {x: 0.0025759, y: 0.0028221116, z: 0.0035943312}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4286075701578461951}
   - {fileID: 2333517821545416594}
