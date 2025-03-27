@@ -35,8 +35,7 @@ public class AnimalController : MonoBehaviour
     //Transform del jugador para que el animal sepa donde saltar
     [Header("Referencias")]
     [SerializeField] Transform _player;
-    [SerializeField] Transform SleepBarFill;
-    [SerializeField] Transform SleepBarBackground;
+    [SerializeField] Transform SleepBarCanvas;
 
     [SerializeField] GameObject AttackVFXHolder;
     [SerializeField] bool NeedAttackVFX;
@@ -104,7 +103,6 @@ public class AnimalController : MonoBehaviour
                 LayerMask groundMask = LayerMask.GetMask("Ground");
                 Collider2D collider = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x, _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
 
-
                 if(collider != null) _isJumping = true;
                 //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
             }
@@ -166,8 +164,7 @@ public class AnimalController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, _direction.x == 1 ? 0 : 180, 0);
 
         //Los elementos del canvas al ser rectTransform usan localEulerAngles en vez de rotation
-        SleepBarFill.localEulerAngles = transform.eulerAngles;
-        SleepBarBackground.localEulerAngles = transform.eulerAngles;
+        SleepBarCanvas.localEulerAngles = transform.eulerAngles;
     }
 
     #endregion
