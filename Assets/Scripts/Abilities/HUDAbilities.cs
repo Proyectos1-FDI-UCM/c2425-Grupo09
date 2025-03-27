@@ -17,30 +17,42 @@ public class HUDAbilities : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
+
+    public static HUDAbilities Instance { get; private set; }
+
     [SerializeField] Image[] Greyimage;
     [SerializeField] Sprite[] Colorimage;
     [SerializeField] GameObject[] ColorKeysImage;
     [SerializeField] GameObject[] GlowEffect;
+
+    
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // privados se nombren en formato _camelCase (comienza con _, 
-    // primera palabra en minúsculas y el resto con la 
-    // primera letra en mayúsculas)
-    // Ejemplo: _maxHealthPoints
+    private enum _animal
+    {
+        Armadillo,
+        Bat,
+        Gorilla
+    }
 
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
+
+    protected void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     #endregion
 
@@ -51,14 +63,29 @@ public class HUDAbilities : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
     // Ejemplo: GetPlayerController
-     public void ActivateColor(int index)
+    public void ActivateColor(int index)
     {
         Greyimage[index].sprite = Colorimage[index];
         if (ColorKeysImage[index] != null) 
         ColorKeysImage[index].SetActive(true);
     }
+
+    public void GorillaGlow(bool state)
+    {
+        GlowEffect[(int)_animal.Gorilla].SetActive(state); 
+    }
+
+    public void BatGlow(bool state)
+    {
+        GlowEffect[(int)_animal.Bat].SetActive(state);
+    }
+
+    public void ArmadilloGlow(bool state)
+    {
+        GlowEffect[(int)_animal.Armadillo].SetActive(state);
+    }
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
@@ -66,7 +93,7 @@ public class HUDAbilities : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
-    #endregion   
+    #endregion
 
 } // class HUD-Abilities 
 // namespace

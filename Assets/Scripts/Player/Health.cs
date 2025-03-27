@@ -72,8 +72,10 @@ public class Health : MonoBehaviour
             _currentDuration -= Time.deltaTime;
             if (_currentDuration <= 0) // Si la duración llega a 0, el escudo se desactiva
             {
+                HUDAbilities.Instance.ArmadilloGlow(false);
                 _currentShield = 0;
-
+                UpdateShieldBar(); 
+                UpdateHealthBar();
             }
         }
 
@@ -161,10 +163,14 @@ public class Health : MonoBehaviour
 
             float targetFillAmount = (_currentShield + _currentHealth) / maximoRelativo;
             _shieldBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
+
+            if(_currentShield <= 0)
+                HUDAbilities.Instance.ArmadilloGlow(false);
         }
     }
     private void OnShield()
     {
+        HUDAbilities.Instance.ArmadilloGlow(true);
         _currentShield += Shield;
         _currentDuration = ShieldDuration; // Reinicia la duración del escudo
         UpdateShieldBar(); // Asegurar que la barra del escudo se llene visualmente
