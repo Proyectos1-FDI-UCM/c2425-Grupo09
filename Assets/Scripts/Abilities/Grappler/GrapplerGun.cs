@@ -104,6 +104,7 @@ public class GrapplerGun : MonoBehaviour
         if (InputManager.Instance.GrapplerWasPressedThisFrame() && grapplerUnlocked) //Si se detecta el Input, se lanza el grappler
         {
             SetGrapplePoint();
+            HUDAbilities.Instance.GorillaGlow(true);
         }
         else if (InputManager.Instance.GrapplerIsPressed() && grapplerUnlocked) //Mientras esta presionado el Input, se mantiene el grappler
         {
@@ -119,6 +120,7 @@ public class GrapplerGun : MonoBehaviour
         }
         else if (InputManager.Instance.GrapplerWasReleasedThisFrame() && grapplerUnlocked) //Si se deja de presionar el Input, se desactiva la cuerda
         {
+            HUDAbilities.Instance.GorillaGlow(false);
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
             m_rigidbody.gravityScale = 1;

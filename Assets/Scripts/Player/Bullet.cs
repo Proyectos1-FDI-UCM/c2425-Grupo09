@@ -63,12 +63,17 @@ public class Bullet : MonoBehaviour
     {
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
         {
+            BarraDeSueño _sleepBar =  coll.gameObject.GetComponent<BarraDeSueño>();
             gameObject.SetActive(false);
-            coll.gameObject.GetComponent<BarraDeSueño>().Dormir(_damage);
+            _sleepBar.Dormir(_damage);
 
             //Si el enemigo está de espaldas, lo gira para que ataque
-            if (Mathf.Abs(transform.rotation.eulerAngles.y - coll.gameObject.transform.rotation.eulerAngles.y) <= 0.001f && coll.gameObject.GetComponent<AnimalController>() != null) 
+            if (Mathf.Abs(transform.rotation.eulerAngles.y - coll.gameObject.transform.rotation.eulerAngles.y) <= 0.001f && 
+                coll.gameObject.GetComponent<AnimalController>() != null && !_sleepBar.Dormido()) 
+            {
                 coll.gameObject.GetComponent<AnimalController>().TurnAround();
+            }
+                
         } 
         Destroy(gameObject);
     }
