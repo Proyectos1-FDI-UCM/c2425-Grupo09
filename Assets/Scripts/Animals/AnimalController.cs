@@ -34,7 +34,6 @@ public class AnimalController : MonoBehaviour
     [SerializeField] int Damage;
     //Transform del jugador para que el animal sepa donde saltar
     [Header("Referencias")]
-    [SerializeField] Transform _player;
     [SerializeField] Transform SleepBarCanvas;
 
     [SerializeField] GameObject AttackVFXHolder;
@@ -61,6 +60,7 @@ public class AnimalController : MonoBehaviour
 
     private Health _health;
     private Animator _animator;
+    private Transform _player;
 
     #endregion
     
@@ -72,6 +72,7 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     void Awake()
     {
+        _player = FindFirstObjectByType<PlayerController>().transform;
         _health = _player.gameObject.GetComponent<Health>();
         _animator = GetComponent<Animator>();
     }

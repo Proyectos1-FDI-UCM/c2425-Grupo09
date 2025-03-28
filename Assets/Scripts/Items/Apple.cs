@@ -17,7 +17,6 @@ public class Apple : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    [SerializeField] GameObject InventoryControllerHolder;
 
     #endregion
     
@@ -37,7 +36,7 @@ public class Apple : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _inventoryController = InventoryControllerHolder.GetComponent<InventoryController>();
+        _inventoryController = FindFirstObjectByType<InventoryController>();
     }
 
     #endregion

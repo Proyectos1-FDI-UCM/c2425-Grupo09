@@ -18,7 +18,6 @@ public class Clock : MonoBehaviour
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (Serialized Fields)
 
-    [SerializeField] GameObject timertext;
     private Timer timer;
     [SerializeField] float SumaSeg = 20f;
     #endregion
@@ -39,10 +38,7 @@ public class Clock : MonoBehaviour
     void Awake()
     {
         // Se obtiene el componente Timer del objeto asociado a "timerText"
-        
-            timer = timertext.GetComponent<Timer>();
-       
-        
+        timer = FindFirstObjectByType<Timer>();
     }
 
     /// <summary>
