@@ -149,9 +149,9 @@ public class PlayerController : MonoBehaviour
         }
         
         if (moveX > 0)
-            transform.rotation = Quaternion.Euler(0, 0, 0);
+            _sr.flipX = false;
         else if (moveX < 0)
-            transform.rotation = Quaternion.Euler(0, 180, 0);
+            _sr.flipX = true;
 
         if (moveX != 0 && EnSuelo) animator.SetBool("Walk", true);
 

@@ -30,27 +30,29 @@ public class Bullet : MonoBehaviour
     #region Atributos Privados (private fields)
     //Rigidbody2D bala
     private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
     private float _damage;
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-    
-    /// <summary>
-    /// En el start, se le da la velocidad a la bala.
-    /// </summary>
-    void Start()
-    {
-        _rb = GetComponent<Rigidbody2D>();
-        _rb.velocity = transform.right * Speed;
-    }
 
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
 
+    /// <summary>
+    /// Método que se llama al disparar la bala. Le da velocidad en la dirección que recibe.
+    /// </summary>
+    public void ImpulseBullet(Vector3 _direction)
+    {
+        _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
 
+        _rb.velocity = _direction * Speed;
+        _sr.flipX = _direction.x == 1;
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -63,16 +65,22 @@ public class Bullet : MonoBehaviour
     {
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
         {
-            BarraDeSueño _sleepBar =  coll.gameObject.GetComponent<BarraDeSueño>();
             gameObject.SetActive(false);
+
+            BarraDeSueño _sleepBar =  coll.gameObject.GetComponent<BarraDeSueño>();
             _sleepBar.Dormir(_damage);
 
-            //Si el enemigo está de espaldas, lo gira para que ataque
-            if (Mathf.Abs(transform.rotation.eulerAngles.y - coll.gameObject.transform.rotation.eulerAngles.y) <= 0.001f && 
-                coll.gameObject.GetComponent<AnimalController>() != null && !_sleepBar.Dormido()) 
+            if(coll.gameObject.GetComponent<AnimalController>() != null)
             {
-                coll.gameObject.GetComponent<AnimalController>().TurnAround();
+                AnimalController _animalController = coll.gameObject.GetComponent<AnimalController>();
+
+                //Si el enemigo está de espaldas, lo gira para que ataque
+                if (_animalController.IsFlipped == _sr.flipX && !_sleepBar.Dormido()) 
+                {
+                    _animalController.TurnAround();
+                }
             }
+            
                 
         } 
         Destroy(gameObject);

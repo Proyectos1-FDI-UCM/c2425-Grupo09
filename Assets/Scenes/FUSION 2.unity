@@ -6440,7 +6440,8 @@ PrefabInstance:
       propertyPath: grayGoldenApple
       value: 
       objectReference: {fileID: 1037621090}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 4070313632664109126, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
     m_RemovedGameObjects:
     - {fileID: 4182403147052342822, guid: 6247e622d24b06b4a9a22061410c97d0, type: 3}
     m_AddedGameObjects: []

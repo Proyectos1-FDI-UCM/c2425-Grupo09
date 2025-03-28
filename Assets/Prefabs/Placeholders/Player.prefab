@@ -482,7 +482,6 @@ GameObject:
   - component: {fileID: 1333277335162404909}
   - component: {fileID: 5324902973523119067}
   - component: {fileID: 3230622309813070400}
-  - component: {fileID: 4070313632664109126}
   - component: {fileID: 3172370024501741938}
   - component: {fileID: 3574316574254708645}
   - component: {fileID: 219931106219531943}
@@ -516,6 +515,7 @@ Transform:
   - {fileID: 4312175879584428798}
   - {fileID: 849332029143353790}
   - {fileID: 4152911538471892314}
+  - {fileID: 1648611272353832852}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &5324902973523119067
@@ -615,41 +615,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.1647477, y: 2.1649718}
   m_EdgeRadius: 0
---- !u!58 &4070313632664109126
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3561404253343709620}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_ForceSendLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ForceReceiveLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_ContactCaptureLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_CallbackLayers:
-    serializedVersion: 2
-    m_Bits: 4294967295
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.5}
-  serializedVersion: 2
-  m_Radius: 0.6
 --- !u!50 &3172370024501741938
 Rigidbody2D:
   serializedVersion: 4
@@ -716,7 +681,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BulletPrefab: {fileID: 5243571921748052852, guid: 6f1131d1468bb544bb2ced9a6a589522, type: 3}
-  firingPoint: {fileID: 4152911538471892314}
+  FiringPointRight: {fileID: 4152911538471892314}
+  FiringPointLeft: {fileID: 1648611272353832852}
   CadenciaDisparo: 0.5
   animator: {fileID: 3784885503509508793}
   playercontroller: {fileID: 3574316574254708645}
@@ -858,6 +824,37 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 0}
   ticks: []
+--- !u!1 &3611056737479953626
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1648611272353832852}
+  m_Layer: 6
+  m_Name: FiringPointLeft
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1648611272353832852
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3611056737479953626}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.271, y: 0.485, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1333277335162404909}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5947388263973176589
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,7 +928,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4152911538471892314}
   m_Layer: 6
-  m_Name: FiringPoint
+  m_Name: FiringPointRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

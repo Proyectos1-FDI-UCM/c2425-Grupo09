@@ -25,6 +25,12 @@ public class AnimalController : MonoBehaviour
     [SerializeField, Tooltip("Define la mitad del alto del animal en unidades del juego. Ej: Para un cubo 1x1x1 la altura sería 0.5")]
     private float AltoAnimal;
 
+    public bool IsFlipped
+    {
+        get { return _direction.x == 1; }
+    }
+
+
     [Header("Ataque")]
     [SerializeField] float DistanciaDeteccion;
     [SerializeField] float DistanciaSalto;
@@ -36,7 +42,8 @@ public class AnimalController : MonoBehaviour
     [Header("Referencias")]
     [SerializeField] Transform SleepBarCanvas;
 
-    [SerializeField] GameObject AttackVFXHolder;
+    [SerializeField] GameObject AttackVFXHolderRight;
+    [SerializeField] GameObject AttackVFXHolderLeft;
     [SerializeField] bool NeedAttackVFX;
 
     #endregion
@@ -60,6 +67,7 @@ public class AnimalController : MonoBehaviour
 
     private Health _health;
     private Animator _animator;
+    private SpriteRenderer _sr;
     private Transform _player;
 
     #endregion
@@ -75,6 +83,7 @@ public class AnimalController : MonoBehaviour
         _player = FindFirstObjectByType<PlayerController>().transform;
         _health = _player.gameObject.GetComponent<Health>();
         _animator = GetComponent<Animator>();
+        _sr = GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -162,10 +171,7 @@ public class AnimalController : MonoBehaviour
     {
         // Gira el animal y cambia la dirección
         _direction *= -1;
-        transform.rotation = Quaternion.Euler(0, _direction.x == 1 ? 0 : 180, 0);
-
-        //Los elementos del canvas al ser rectTransform usan localEulerAngles en vez de rotation
-        SleepBarCanvas.localEulerAngles = transform.eulerAngles;
+        _sr.flipX = !_sr.flipX;
     }
 
     #endregion
@@ -214,12 +220,22 @@ public class AnimalController : MonoBehaviour
 
         return false; // No detectó al jugador o fue bloqueado por una pared
     }
-
+    
     private IEnumerator AttackVFX()
     {
-        AttackVFXHolder.SetActive(true);
-        yield return new WaitForSeconds(0.6f);
-        AttackVFXHolder.SetActive(false);
+        if(IsFlipped)
+        {
+            AttackVFXHolderLeft.SetActive(true);
+            yield return new WaitForSeconds(0.6f);
+            AttackVFXHolderLeft.SetActive(false);
+        }
+        else 
+        {
+            AttackVFXHolderRight.SetActive(true);
+            yield return new WaitForSeconds(0.6f);
+            AttackVFXHolderRight.SetActive(false);
+        }
+        
     }
 
     /// <summary>

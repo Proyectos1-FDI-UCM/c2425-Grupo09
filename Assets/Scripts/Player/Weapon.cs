@@ -18,7 +18,9 @@ public class Weapon : MonoBehaviour
    
     //Prefab de la bala
     [SerializeField] private GameObject BulletPrefab;
-    [SerializeField] private Transform firingPoint;
+    [SerializeField] private Transform FiringPointRight;
+    [SerializeField] private Transform FiringPointLeft;
+
     //Cadencia de disparo
     [SerializeField] private float CadenciaDisparo;
     [SerializeField] Animator animator;
@@ -29,11 +31,17 @@ public class Weapon : MonoBehaviour
     #region Atributos Privados (private fields)
     //Variable para almacenar el último tiempo en el que se disparó
     private float _tiempoUltimoDisparo;
+    private SpriteRenderer _sr;
 
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
+
+    void Awake()
+    {
+        _sr = GetComponent<SpriteRenderer>();
+    }
 
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
@@ -46,7 +54,6 @@ public class Weapon : MonoBehaviour
             animator.SetTrigger("Attack");
             Shoot();
             _tiempoUltimoDisparo = Time.time;
-            
         }
             
     }
@@ -61,17 +68,21 @@ public class Weapon : MonoBehaviour
     #region Métodos Privados
 
     /// <summary>
-    /// Instancia la bala en la posición del jugador 
+    /// Instancia la bala a la izquierda o derecha del jugador en función de si esta girado o no, y le otorga velocidad en esa dirección.
     /// </summary>
     private void Shoot()
     {
-        GameObject newBullet = Instantiate(BulletPrefab, firingPoint.position, transform.rotation);
+        bool isFlipped = _sr.flipX;
+
+        Vector3 _firingPoint = (isFlipped ? FiringPointLeft : FiringPointRight).position;
+        Vector3 _bulletDirection = isFlipped ? Vector3.left : Vector3.right;
+
+        GameObject newBullet = Instantiate(BulletPrefab, _firingPoint, transform.rotation);
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
-        bulletScript.HabilidadTigre(playercontroller.Tiger ());
+        bulletScript.ImpulseBullet(_bulletDirection);
+        bulletScript.HabilidadTigre(playercontroller.Tiger());
     }
-
-
 
     #endregion   
 
