@@ -70,7 +70,7 @@ public class Weapon : MonoBehaviour
         bool isFlipped = playercontroller.FlippedRight;
 
         Vector3 _firingPoint = (isFlipped ? FiringPointRight : FiringPointRight).position;
-        Vector3 _bulletDirection = isFlipped ? Vector3.left : Vector3.right;
+        Vector3 _bulletDirection = isFlipped ? Vector3.right : Vector3.left;
 
         GameObject newBullet = Instantiate(BulletPrefab, _firingPoint, transform.rotation);
         Bullet bulletScript = newBullet.GetComponent<Bullet>();

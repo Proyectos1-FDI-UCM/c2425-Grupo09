@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
+// Controlador de cámara basado en colisiones.
 // Sergio Valiente Urueña
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
@@ -11,8 +11,8 @@ using UnityEditor;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Controla el comportamiento de la cámara al detectar la entrada y salida de un jugador en un área específica.
+/// Se encarga de cambiar de cámara o desplazar la vista en función de las configuraciones establecidas.
 /// </summary>
 public class CameraControlTrigger : MonoBehaviour
 {
@@ -47,6 +47,11 @@ public class CameraControlTrigger : MonoBehaviour
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
+    /// <summary>
+    /// Detecta cuándo un objeto con un PlayerController entra en la zona de activación.
+    /// Si la opción de mover la cámara está habilitada, ajusta la vista en la dirección configurada.
+    /// </summary>
+    /// <param name="other">Collider del objeto que entra en la zona.</param>
     private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
@@ -58,6 +63,12 @@ public class CameraControlTrigger : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Detecta cuándo un objeto con un PlayerController sale de la zona de activación.
+    /// Si la opción de cambiar de cámara está habilitada, intercambia entre las cámaras configuradas.
+    /// También permite volver a mover la cámara si está activado.
+    /// </summary>
+    /// <param name="other">Collider del objeto que sale de la zona.</param>
     private void OnTriggerExit2D(Collider2D other)
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
@@ -80,6 +91,10 @@ public class CameraControlTrigger : MonoBehaviour
 } // class CameraControlTrigger 
 // namespace
 
+/// <summary>
+/// Clase que almacena las configuraciones personalizadas del inspector para el control de la cámara.
+/// Define opciones para intercambiar cámaras y desplazar la vista.
+/// </summary>
 [System.Serializable]
 public class CustomInspectorObjects
 {
@@ -94,6 +109,9 @@ public class CustomInspectorObjects
     [HideInInspector] public float panTime = 0.35f;
 }
 
+/// <summary>
+/// Enumeración que define las posibles direcciones en las que se puede mover la cámara.
+/// </summary>
 public enum PanDirection
 {
     Up,
@@ -102,6 +120,10 @@ public enum PanDirection
     Right
 }
 
+/// <summary>
+/// Editor personalizado para la clase CameraControlTrigger.
+/// Permite una mejor visualización y edición de las configuraciones de la cámara en el inspector de Unity.
+/// </summary>
 [CustomEditor(typeof(CameraControlTrigger))]
 public class MyScriptEditor : Editor
 {
@@ -112,6 +134,9 @@ public class MyScriptEditor : Editor
         cameraControlTrigger = (CameraControlTrigger)target;
     }
 
+    /// <summary>
+    /// Dibuja la interfaz personalizada en el inspector de Unity, permitiendo la configuración de las cámaras y el desplazamiento.
+    /// </summary>
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();

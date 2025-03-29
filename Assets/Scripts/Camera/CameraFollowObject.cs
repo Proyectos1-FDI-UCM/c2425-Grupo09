@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
+// Script para gestionar el seguimiento de la cámara al jugador
 // Sergio Valiente
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
@@ -11,8 +11,7 @@ using System.Collections;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Gestiona el seguimiento de la cámara al jugador y la rotación cuando este gira.
 /// </summary>
 public class CameraFollowObject : MonoBehaviour
 {
@@ -40,6 +39,9 @@ public class CameraFollowObject : MonoBehaviour
     #region Métodos de MonoBehaviour
     
 
+    /// <summary>
+    /// Inicializa las referencias y obtiene el estado inicial de rotación del jugador.
+    /// </summary>
     void Awake()
     { 
         if (PlayerTransform != null)
@@ -52,7 +54,9 @@ public class CameraFollowObject : MonoBehaviour
         _isFacingRight = _playerController.FlippedRight; 
     }
 
-
+    /// <summary>
+    /// Actualiza la posición de la cámara para que siga al jugador.
+    /// </summary>
     void Update()
     {
         transform.position = PlayerTransform.position;
@@ -61,6 +65,10 @@ public class CameraFollowObject : MonoBehaviour
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
+
+    /// <summary>
+    /// Inicia la rotación de la cámara cuando el jugador gira.
+    /// </summary>
     public void CallTurn()
     {
         //_turnCoroutine = StartCoroutine(FlipYLerp());
@@ -95,17 +103,14 @@ public class CameraFollowObject : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Determina la rotación final de la cámara en función de la dirección del jugador.
+    /// </summary>
+    /// <returns>Ángulo de rotación en el eje Y (0° o 180°).</returns>
     private float DetermineEndRotation()
     {
         _isFacingRight = !_isFacingRight;
-        if (_isFacingRight)
-        {
-            return 0f;
-        }
-        else
-        {
-            return 180f;
-        }
+       return _isFacingRight ? 0f : 180f;
     }
     #endregion   
 

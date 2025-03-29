@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
+// Gestiona las camaras del juego
 // Sergio Valiente Urueña
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
@@ -12,8 +12,8 @@ using Cinemachine;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Gestiona las cámaras virtuales en la escena, permitiendo cambios dinámicos entre ellas
+/// y ajustes en el comportamiento de la cámara en función del movimiento del jugador.
 /// </summary>
 public class CameraManager : MonoBehaviour
 {
@@ -49,6 +49,9 @@ public class CameraManager : MonoBehaviour
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
     
+    /// <summary>
+    /// Configura la instancia del CameraManager y asigna la cámara activa al inicio.
+    /// </summary>
     void Awake()
     {
         if (Instance == null)
@@ -75,18 +78,35 @@ public class CameraManager : MonoBehaviour
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
     
+    /// <summary>
+    /// Modifica suavemente el Y Damping de la cámara dependiendo de si el jugador está cayendo.
+    /// </summary>
+    /// <param name="isPlayerFalling">Indica si el jugador está cayendo.</param>
+    
     //Lerp Camera
     public void LerpYDamping(bool isPlayerFalling)
     {
         _lerpYPanCoroutine = StartCoroutine(LerpYAction(isPlayerFalling));
     } 
 
-    //Pan camera
+     /// <summary>
+    /// Realiza un desplazamiento de la cámara en una dirección específica durante un tiempo determinado.
+    /// </summary>
+    /// <param name="panDistace">Distancia del desplazamiento.</param>
+    /// <param name="panTime">Tiempo que tarda en completarse el desplazamiento.</param>
+    /// <param name="panDirection">Dirección del desplazamiento.</param>
+    /// <param name="panToStartingPos">Si es verdadero, la cámara vuelve a su posición original.</param>
     public void PanCameraOnContact(float panDistace, float panTime, PanDirection panDirection, bool panToStartingPos)
     {
         _panCameraCoroutine = StartCoroutine(PanCamera(panDistace, panTime, panDirection, panToStartingPos));
     }
 
+    /// <summary>
+    /// Cambia entre dos cámaras virtuales en función de la dirección de salida del jugador.
+    /// </summary>
+    /// <param name="cameraFromLeft">Cámara activa cuando el jugador viene desde la izquierda.</param>
+    /// <param name="cameraFromRight">Cámara activa cuando el jugador viene desde la derecha.</param>
+    /// <param name="triggerExitDirection">Dirección en la que el jugador sale del trigger.</param>
     public void SwapCamera(CinemachineVirtualCamera cameraFromLeft, CinemachineVirtualCamera cameraFromRight, Vector2 triggerExitDirection)
     {
         if(_currentCamera == cameraFromLeft && triggerExitDirection.x > 0f)
@@ -110,6 +130,9 @@ public class CameraManager : MonoBehaviour
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
+    /// <summary>
+    /// Corrutina que ajusta el valor de Y Damping de la cámara suavemente.
+    /// </summary>
     private IEnumerator LerpYAction(bool isPlayerFalling)
     {
         IsLerpingYDamping = true;
@@ -140,7 +163,9 @@ public class CameraManager : MonoBehaviour
         IsLerpingYDamping = false;
     }
 
-
+    /// <summary>
+    /// Corrutina que desplaza la cámara en la dirección y distancia especificadas.
+    /// </summary>
     private IEnumerator PanCamera(float panDistace, float panTime, PanDirection panDirection, bool panToStartingPos)
     {
         Vector2 endPos = Vector2.zero;

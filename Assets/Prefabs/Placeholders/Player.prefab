@@ -630,7 +630,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1.4
+  m_GravityScale: 2.3
   m_Material: {fileID: 6200000, guid: 123d7b3fa5e29cc42a792f67c5e6d019, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -654,8 +654,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80997271be13099409579ccb66ae0655, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocidad: 7
-  AlturaSalto: 10
+  velocidad: 9
+  AlturaSalto: 12.5
   ControlarSuelo: {fileID: 4312175879584428798}
   Suelo:
     serializedVersion: 2
