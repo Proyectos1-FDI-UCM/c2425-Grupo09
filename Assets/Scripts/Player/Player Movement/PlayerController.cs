@@ -52,6 +52,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public bool FlippedRight
+    {
+        get => _flippedRight;
+    }
+
 
     #endregion
 
@@ -69,10 +74,15 @@ public class PlayerController : MonoBehaviour
     private int _jumpCounter;
 
     private bool _enSuelo;
-
+    private bool _flippedRight = true;
+    private float moveX;
     
     private float tSpeed; 
     private float Speed;
+
+    //Camara
+    private CameraFollowObject _cameraFollowObject;
+    private float _fallSpeedYDampingChangeThreshold;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -86,7 +96,9 @@ public class PlayerController : MonoBehaviour
     {
         _rB = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
+        _cameraFollowObject = FindFirstObjectByType<CameraFollowObject>();
         grappleRope = GetComponentInChildren<GrapplerRope>();
+
         if (animator == null)
         {
             animator = GetComponent<Animator>(); // Si no lo asignas en el inspector, lo asigna automáticamente
@@ -107,6 +119,8 @@ public class PlayerController : MonoBehaviour
             tigerUnlocked = true; 
         }
 
+        _fallSpeedYDampingChangeThreshold = CameraManager.Instance.FallSpeedYDampingChangeThreshold;
+
     }
     private void Awake()
     {
@@ -117,7 +131,7 @@ public class PlayerController : MonoBehaviour
     {
         EnSuelo = Physics2D.OverlapBox(ControlarSuelo.position, Caja, 0f, Suelo);
         //Debug.Log(EnSuelo);
-        float moveX = InputManager.Instance.MovementVector.x;
+        moveX = InputManager.Instance.MovementVector.x;
 
         //MOVIMIENTO CON GRAPPLER
 
@@ -148,10 +162,8 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        if (moveX > 0)
-            _sr.flipX = false;
-        else if (moveX < 0)
-            _sr.flipX = true;
+        if (moveX > 0 || moveX < 0) 
+            TurnCheck();
 
         if (moveX != 0 && EnSuelo) animator.SetBool("Walk", true);
 
@@ -190,6 +202,17 @@ public class PlayerController : MonoBehaviour
 
         if (tigerUnlocked) velocidad = tSpeed;
         else velocidad = Speed;
+
+        if(_rB.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.Instance.LerpYDamping(true);
+        }
+
+        if(_rB.velocity.y >= 0f && !CameraManager.Instance.IsLerpingYDamping && CameraManager.Instance.LerpedFromPlayerFalling)
+        {
+            CameraManager.Instance.LerpedFromPlayerFalling = false;
+            CameraManager.Instance.LerpYDamping(false);
+        }
     }
     #endregion
     public bool Tiger ()
@@ -219,6 +242,38 @@ public class PlayerController : MonoBehaviour
         _isJumping = true;
         yield return new WaitForSeconds(0.4f);
         _isJumping = false;
+    }
+
+    private void TurnCheck()
+    {
+        if(moveX > 0 && !_flippedRight)
+        {
+            Turn();
+        } else if(moveX < 0 && _flippedRight)
+        {
+            Turn();
+        }
+    }
+
+    private void Turn()
+    {
+        if(_flippedRight)
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 180f, transform.rotation.z));
+            _flippedRight = !_flippedRight;
+            _cameraFollowObject.CallTurn();
+            //_sr.flipX = false;
+
+        }
+        else
+        {
+            transform.rotation = Quaternion.Euler(new Vector3(transform.rotation.x, 0f, transform.rotation.z));
+            _flippedRight = !_flippedRight;
+            _cameraFollowObject.CallTurn();
+            //_sr.flipX = true;
+        }
+
+       
     }
     #endregion   
 

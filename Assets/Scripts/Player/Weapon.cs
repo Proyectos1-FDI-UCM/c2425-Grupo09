@@ -38,11 +38,6 @@ public class Weapon : MonoBehaviour
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
 
-    void Awake()
-    {
-        _sr = GetComponent<SpriteRenderer>();
-    }
-
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// Si se detecta el input del disparo, y ha pasado el tiempo de cooldown desde el disparo anterior, ejecuta la accion de disparar.
@@ -72,9 +67,9 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        bool isFlipped = _sr.flipX;
+        bool isFlipped = playercontroller.FlippedRight;
 
-        Vector3 _firingPoint = (isFlipped ? FiringPointLeft : FiringPointRight).position;
+        Vector3 _firingPoint = (isFlipped ? FiringPointRight : FiringPointRight).position;
         Vector3 _bulletDirection = isFlipped ? Vector3.left : Vector3.right;
 
         GameObject newBullet = Instantiate(BulletPrefab, _firingPoint, transform.rotation);
