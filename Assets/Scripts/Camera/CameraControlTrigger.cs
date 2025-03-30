@@ -9,7 +9,6 @@ using UnityEngine;
 using Cinemachine;
 using UnityEditor;
 
-
 /// <summary>
 /// Controla el comportamiento de la cámara al detectar la entrada y salida de un jugador en un área específica.
 /// Se encarga de cambiar de cámara o desplazar la vista en función de las configuraciones establecidas.
@@ -92,8 +91,8 @@ public class CameraControlTrigger : MonoBehaviour
 // namespace
 
 /// <summary>
-/// Clase que almacena las configuraciones personalizadas del inspector para el control de la cámara.
-/// Define opciones para intercambiar cámaras y desplazar la vista.
+/// Esta clase se utiliza para almacenar y gestionar configuraciones que se muestran en el Inspector de Unity.
+/// Los campos públicos han sido elegidos en este caso porque no se requiere lógica adicional o validación.
 /// </summary>
 [System.Serializable]
 public class CustomInspectorObjects

@@ -27,15 +27,29 @@ public class CameraManager : MonoBehaviour
     [Header("Controls for lerping the Y Damping during player jump/fall")]
     [SerializeField] private float _fallPanAmount = 0.25f;
     [SerializeField] private float _fallYPanTime = 0.35f;
-    public float FallSpeedYDampingChangeThreshold = -10f;
-
-    public bool IsLerpingYDamping { get; private set; } 
-    public bool LerpedFromPlayerFalling { get; set; }
+    [SerializeField] private float _fallSpeedYDampingChangeThreshold = -5f;
+    public float FallSpeedYDampingChangeThreshold
+    { 
+        get { return _fallSpeedYDampingChangeThreshold; } 
+        set { _fallSpeedYDampingChangeThreshold = value; } 
+    }
+    public bool IsLerpingYDamping 
+    { 
+        get { return _isLerpingYDamping; } 
+        private set { _isLerpingYDamping = value; } 
+    }
+    public bool LerpedFromPlayerFalling 
+    { 
+      get {return _lerpedFromPlayerFalling ;} 
+      set {_lerpedFromPlayerFalling = value; }
+    }
 
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
+    private bool _isLerpingYDamping;
+    private bool _lerpedFromPlayerFalling;
     private Coroutine _lerpYPanCoroutine;
     private Coroutine _panCameraCoroutine;
     private CinemachineVirtualCamera _currentCamera;
