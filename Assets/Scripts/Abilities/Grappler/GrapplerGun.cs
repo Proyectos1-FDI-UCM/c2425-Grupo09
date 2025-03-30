@@ -70,6 +70,7 @@ public class GrapplerGun : MonoBehaviour
     #region Atributos Privados (private fields)
 
     private Vector2 _direction = Vector2.up; 
+    private float _initialGravity;
 
     #endregion
 
@@ -94,6 +95,8 @@ public class GrapplerGun : MonoBehaviour
         {
             grapplerUnlocked = true;
         }
+
+        _initialGravity = m_rigidbody.gravityScale;
     }
 
     /// <summary>
@@ -123,7 +126,7 @@ public class GrapplerGun : MonoBehaviour
             HUDAbilities.Instance.GorillaGlow(false);
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            m_rigidbody.gravityScale = 1;
+            m_rigidbody.gravityScale = _initialGravity;
         }
 
         /*Si la cuerda se ha hecho demasiado grande, se suelta. 
