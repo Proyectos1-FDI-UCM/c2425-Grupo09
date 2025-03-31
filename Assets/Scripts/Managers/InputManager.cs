@@ -73,6 +73,8 @@ public class InputManager : MonoBehaviour
     private InputAction _tiger;
     private InputAction _shield;
     private InputAction _checklist;
+
+    private InputAction _testing;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -255,6 +257,11 @@ public class InputManager : MonoBehaviour
     {
         return _checklist.WasPressedThisFrame();
     }
+
+    public bool TestingWasPressedThisFrame()
+    {
+        return _testing.WasPressedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -290,7 +297,7 @@ public class InputManager : MonoBehaviour
         _shield = _theController.Player.Shield;
         _checklist = _theController.Player.CheckList;
 
-
+        _testing = _theController.Player.Testing;
     }
 
     /// <summary>

@@ -109,6 +109,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Testing"",
+                    ""type"": ""Button"",
+                    ""id"": ""2f9cfff6-76e8-467d-81cc-50fa88534339"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -307,6 +316,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""CheckList"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6c6cced5-3a61-4769-b3ed-96238d13c85c"",
+                    ""path"": ""<Keyboard>/k"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Testing"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -903,6 +923,7 @@ namespace UnityEngine.InputSystem
             m_Player_Tiger = m_Player.FindAction("Tiger", throwIfNotFound: true);
             m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
             m_Player_CheckList = m_Player.FindAction("CheckList", throwIfNotFound: true);
+            m_Player_Testing = m_Player.FindAction("Testing", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -985,6 +1006,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Tiger;
         private readonly InputAction m_Player_Shield;
         private readonly InputAction m_Player_CheckList;
+        private readonly InputAction m_Player_Testing;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -998,6 +1020,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Tiger => m_Wrapper.m_Player_Tiger;
             public InputAction @Shield => m_Wrapper.m_Player_Shield;
             public InputAction @CheckList => m_Wrapper.m_Player_CheckList;
+            public InputAction @Testing => m_Wrapper.m_Player_Testing;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1034,6 +1057,9 @@ namespace UnityEngine.InputSystem
                 @CheckList.started += instance.OnCheckList;
                 @CheckList.performed += instance.OnCheckList;
                 @CheckList.canceled += instance.OnCheckList;
+                @Testing.started += instance.OnTesting;
+                @Testing.performed += instance.OnTesting;
+                @Testing.canceled += instance.OnTesting;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1065,6 +1091,9 @@ namespace UnityEngine.InputSystem
                 @CheckList.started -= instance.OnCheckList;
                 @CheckList.performed -= instance.OnCheckList;
                 @CheckList.canceled -= instance.OnCheckList;
+                @Testing.started -= instance.OnTesting;
+                @Testing.performed -= instance.OnTesting;
+                @Testing.canceled -= instance.OnTesting;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1256,6 +1285,7 @@ namespace UnityEngine.InputSystem
             void OnTiger(InputAction.CallbackContext context);
             void OnShield(InputAction.CallbackContext context);
             void OnCheckList(InputAction.CallbackContext context);
+            void OnTesting(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
