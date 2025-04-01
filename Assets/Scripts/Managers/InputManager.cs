@@ -73,7 +73,7 @@ public class InputManager : MonoBehaviour
     private InputAction _tiger;
     private InputAction _shield;
     private InputAction _checklist;
-
+    private InputAction _exit;
     private InputAction _testing;
     #endregion
 
@@ -262,6 +262,11 @@ public class InputManager : MonoBehaviour
     {
         return _testing.WasPressedThisFrame();
     }
+
+    public bool ExitWasPressedThisFrame()
+    {
+        return _exit.WasPressedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -298,6 +303,8 @@ public class InputManager : MonoBehaviour
         _checklist = _theController.Player.CheckList;
 
         _testing = _theController.Player.Testing;
+        _exit = _theController.Player.Exit;
+
     }
 
     /// <summary>

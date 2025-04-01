@@ -4,8 +4,10 @@
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
-
+using TMPro;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 // Añadir aquí el resto de directivas using
 
 /// <summary>
@@ -24,6 +26,8 @@ public class CheckList : MonoBehaviour
 
     [SerializeField] private GameObject menuPanel; // Aqui referenciamos a el panel del menú de checklist
     [SerializeField] private GameObject[] ticks;
+    [SerializeField] private TextMeshProUGUI VesselText;
+    [SerializeField] private GameObject VesselTextBack;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -36,10 +40,15 @@ public class CheckList : MonoBehaviour
     // Ejemplo: _maxHealthPoints
 
     private bool _isMenuOpen = false;
+    private int _ticks = 0;
+    private bool _allCaptured;
+    private bool _inVesselRange;
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
+    public bool _onVessel;
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
@@ -51,6 +60,11 @@ public class CheckList : MonoBehaviour
         {
             menuPanel.SetActive(false); // Con esto hacemos que el menú esté oculto al inicio
         }
+
+        VesselText.gameObject.SetActive(false);
+        VesselTextBack.gameObject.SetActive(false);
+        _allCaptured = false;
+        _onVessel = false;
     }
 
     /// <summary>
@@ -62,6 +76,20 @@ public class CheckList : MonoBehaviour
         {
             ToggleMenu();
         }
+        if (_onVessel && !_allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
+        {
+            VesselText.gameObject.SetActive(true);
+            VesselTextBack.gameObject.SetActive(true);
+            StartCoroutine(DeactivateVesselTextAfterTime(2f));
+        }
+        else if (_onVessel && _allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
+        { 
+            SceneManager.LoadScene("Victory"); 
+        }
+        if (_ticks==10)
+        {
+            _allCaptured=true;
+        }
     }
     #endregion
 
@@ -70,6 +98,15 @@ public class CheckList : MonoBehaviour
     /// <summary>
     /// Activa o desactiva el menú de checklist al presionar Tab.
     /// </summary>
+    IEnumerator DeactivateVesselTextAfterTime(float waitTime)
+    {
+        // Espera el tiempo especificado
+        yield return new WaitForSeconds(waitTime);
+
+        // Desactiva el texto después del tiempo de espera
+        VesselText.gameObject.SetActive(false);
+        VesselTextBack.gameObject.SetActive(false);
+    }
     public void ToggleMenu()
     {
         if (menuPanel != null)
@@ -78,10 +115,26 @@ public class CheckList : MonoBehaviour
             menuPanel.SetActive(_isMenuOpen);
         }
     }
-
+    
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Vessel"))
+        {
+            _onVessel = true;
+            
+        }
+    }
+    void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Vessel"))
+        {
+            _onVessel = false;
+        }
+    }
     public void ActivateTick(int _index)
     {
         ticks[_index].SetActive(true);
+        _ticks++;
     } //Activa dentro de ticks
     #endregion
 

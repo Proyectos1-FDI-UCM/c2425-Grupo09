@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// EL jugador recoge animales dormidos con la F
+// Valeria Espada
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

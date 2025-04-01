@@ -11,6 +11,7 @@ TagManager:
   - Gorila
   - Tiger
   - Armadillo
+  - Vessel
   layers:
   - Default
   - TransparentFX

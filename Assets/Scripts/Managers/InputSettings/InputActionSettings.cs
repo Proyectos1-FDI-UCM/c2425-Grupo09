@@ -118,6 +118,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Exit"",
+                    ""type"": ""Button"",
+                    ""id"": ""19a79ff4-6bf2-4f05-83f9-598503168615"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -327,6 +336,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Testing"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""cd222f08-4619-4825-9a8b-b18657b081b4"",
+                    ""path"": ""<Keyboard>/v"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -924,6 +944,7 @@ namespace UnityEngine.InputSystem
             m_Player_Shield = m_Player.FindAction("Shield", throwIfNotFound: true);
             m_Player_CheckList = m_Player.FindAction("CheckList", throwIfNotFound: true);
             m_Player_Testing = m_Player.FindAction("Testing", throwIfNotFound: true);
+            m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1007,6 +1028,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Shield;
         private readonly InputAction m_Player_CheckList;
         private readonly InputAction m_Player_Testing;
+        private readonly InputAction m_Player_Exit;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -1021,6 +1043,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Shield => m_Wrapper.m_Player_Shield;
             public InputAction @CheckList => m_Wrapper.m_Player_CheckList;
             public InputAction @Testing => m_Wrapper.m_Player_Testing;
+            public InputAction @Exit => m_Wrapper.m_Player_Exit;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1060,6 +1083,9 @@ namespace UnityEngine.InputSystem
                 @Testing.started += instance.OnTesting;
                 @Testing.performed += instance.OnTesting;
                 @Testing.canceled += instance.OnTesting;
+                @Exit.started += instance.OnExit;
+                @Exit.performed += instance.OnExit;
+                @Exit.canceled += instance.OnExit;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1094,6 +1120,9 @@ namespace UnityEngine.InputSystem
                 @Testing.started -= instance.OnTesting;
                 @Testing.performed -= instance.OnTesting;
                 @Testing.canceled -= instance.OnTesting;
+                @Exit.started -= instance.OnExit;
+                @Exit.performed -= instance.OnExit;
+                @Exit.canceled -= instance.OnExit;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1286,6 +1315,7 @@ namespace UnityEngine.InputSystem
             void OnShield(InputAction.CallbackContext context);
             void OnCheckList(InputAction.CallbackContext context);
             void OnTesting(InputAction.CallbackContext context);
+            void OnExit(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
