@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 3061a7e26b22edc4daa73fec6967cf5b
+guid: 820a05d1de4c27a429540c8b967900ea
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,43 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bunny_sleep_3_0
+      name: Bat_sleeping_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 50
-        height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 18
+        y: 15
+        width: 35
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.68}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 03cb3624e25c1d5419f94182534e0592
-      internalID: -2033232418
+      spriteID: 6560dedc9a263cc40809c4b5c0028348
+      internalID: -2008255613
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bunny_sleep_3_1
+      name: Bat_sleeping_1
       rect:
         serializedVersion: 2
-        x: 0
-        y: 31
-        width: 16
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+        x: 68
+        y: 15
+        width: 35
+        height: 49
+      alignment: 9
+      pivot: {x: 0.5, y: 0.68}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ab26ecca6e4dd5c488d4dd5167bdc245
-      internalID: -389944342
+      spriteID: cc15ab7a9c95a7d428d8b33beda0a74d
+      internalID: 131059497
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat_sleeping_2
+      rect:
+        serializedVersion: 2
+        x: 141
+        y: 16
+        width: 35
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.68}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 62321c0e8f87d3a4bba8b8cf04e66816
+      internalID: 310609569
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Bat_sleeping_4
+      rect:
+        serializedVersion: 2
+        x: 204
+        y: 16
+        width: 35
+        height: 48
+      alignment: 9
+      pivot: {x: 0.5, y: 0.68}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 356a1d4b67bb5f445ae47b26592de9f5
+      internalID: 169321309
       vertices: []
       indices: 
       edges: []
@@ -149,8 +191,13 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bunny_sleep_3_0: -2033232418
-      bunny_sleep_3_1: -389944342
+      Bat_sleeping_0: -2008255613
+      Bat_sleeping_1: 131059497
+      Bat_sleeping_2: 310609569
+      Bat_sleeping_3: 670768659
+      Bat_sleeping_4: 169321309
+      Bat_sleeping_5: 2045682077
+      Bat_sleeping_6: -219223296
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
