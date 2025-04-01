@@ -24,6 +24,10 @@ public class CaveEntrance : MonoBehaviour
     [Header("Referencias Cueva")]
     [SerializeField] GameObject CaveBackground;
     [SerializeField] GameObject CaveAnimals;
+
+    [Header("Referencias Jungla")]
+    [SerializeField] GameObject JungleBackground;
+    [SerializeField] GameObject JungleAnimals;
     //Bool para saber si el jugador entra desde la izquierda o desde la derecha
     [SerializeField] bool enteringFromLeft;
 
@@ -92,6 +96,11 @@ public class CaveEntrance : MonoBehaviour
                     SavannahBackground.SetActive(true);
                     SavannahAnimals.SetActive(true);
                 }
+                else
+                {
+                    JungleBackground.SetActive(true);
+                    JungleAnimals.SetActive(true);
+                }
             }
         }
     }
@@ -111,6 +120,9 @@ public class CaveEntrance : MonoBehaviour
         {
             SavannahBackground.SetActive(false);
             SavannahAnimals.SetActive(false);
+
+            JungleBackground.SetActive(false);
+            JungleAnimals.SetActive(false);
         }
     }
 
