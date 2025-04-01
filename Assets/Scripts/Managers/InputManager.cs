@@ -75,6 +75,7 @@ public class InputManager : MonoBehaviour
     private InputAction _checklist;
     private InputAction _exit;
     private InputAction _testing;
+    private InputAction _map;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -267,6 +268,11 @@ public class InputManager : MonoBehaviour
     {
         return _exit.WasPressedThisFrame();
     }
+
+    public bool MapIsPressed()
+    {
+        return _map.IsPressed();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -304,6 +310,7 @@ public class InputManager : MonoBehaviour
 
         _testing = _theController.Player.Testing;
         _exit = _theController.Player.Exit;
+        _map =_theController.Player.Map;
 
     }
 

@@ -127,6 +127,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Map"",
+                    ""type"": ""Button"",
+                    ""id"": ""42a7079c-0ee5-4d16-80b8-4a3cdd09b67e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -347,6 +356,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36200965-f53a-46e1-9d42-b8ce37ffa581"",
+                    ""path"": ""<Keyboard>/m"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -945,6 +965,7 @@ namespace UnityEngine.InputSystem
             m_Player_CheckList = m_Player.FindAction("CheckList", throwIfNotFound: true);
             m_Player_Testing = m_Player.FindAction("Testing", throwIfNotFound: true);
             m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
+            m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1029,6 +1050,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_CheckList;
         private readonly InputAction m_Player_Testing;
         private readonly InputAction m_Player_Exit;
+        private readonly InputAction m_Player_Map;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -1044,6 +1066,7 @@ namespace UnityEngine.InputSystem
             public InputAction @CheckList => m_Wrapper.m_Player_CheckList;
             public InputAction @Testing => m_Wrapper.m_Player_Testing;
             public InputAction @Exit => m_Wrapper.m_Player_Exit;
+            public InputAction @Map => m_Wrapper.m_Player_Map;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1086,6 +1109,9 @@ namespace UnityEngine.InputSystem
                 @Exit.started += instance.OnExit;
                 @Exit.performed += instance.OnExit;
                 @Exit.canceled += instance.OnExit;
+                @Map.started += instance.OnMap;
+                @Map.performed += instance.OnMap;
+                @Map.canceled += instance.OnMap;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1123,6 +1149,9 @@ namespace UnityEngine.InputSystem
                 @Exit.started -= instance.OnExit;
                 @Exit.performed -= instance.OnExit;
                 @Exit.canceled -= instance.OnExit;
+                @Map.started -= instance.OnMap;
+                @Map.performed -= instance.OnMap;
+                @Map.canceled -= instance.OnMap;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1316,6 +1345,7 @@ namespace UnityEngine.InputSystem
             void OnCheckList(InputAction.CallbackContext context);
             void OnTesting(InputAction.CallbackContext context);
             void OnExit(InputAction.CallbackContext context);
+            void OnMap(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
