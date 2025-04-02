@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Este script hace que el mapa se abra y se vuelva a cerrar, con sus respectivos detalles
+// Diego García
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -23,6 +23,8 @@ public class MapManager : MonoBehaviour
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
     [SerializeField] GameObject Map;
+    [SerializeField] GameObject PlayerIcon;
+    [SerializeField] GameObject MapRoomContainer;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
@@ -33,33 +35,50 @@ public class MapManager : MonoBehaviour
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-
+    private bool _mapaAbierto;
+    private PlayerController _playerController;
     #endregion
-    
+
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-    
+
     // Por defecto están los típicos (Update y Start) pero:
     // - Hay que añadir todos los que sean necesarios
     // - Hay que borrar los que no se usen 
-    
+
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
     /// any of the Update methods are called the first time.
     /// </summary>
-    void Start()
+    private void Start()
     {
         
     }
-
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
     void Update()
     {
-        if(InputManager.Instance.MapIsPressed())
-            Map.SetActive(true);
-        else Map.SetActive(false);
+        if (InputManager.Instance.MapWasPressedThisFrame())
+        {
+            if (!_mapaAbierto)
+            {
+                Map.SetActive(true);
+                PlayerIcon.SetActive(true);
+                MapRoomContainer.SetActive(true);
+                _mapaAbierto = true;
+                Time.timeScale = 0f;
+            }
+            else
+            {
+                Map.SetActive(false);
+                PlayerIcon.SetActive(false);
+                MapRoomContainer.SetActive(false);
+                _mapaAbierto = false;  
+                Time.timeScale = 1f;
+            }
+        }
+
     }
     #endregion
 

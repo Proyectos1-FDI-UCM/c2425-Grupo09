@@ -72,7 +72,7 @@ public class Weapon : MonoBehaviour
         Vector3 _firingPoint = (isFlipped ? FiringPointRight : FiringPointRight).position;
         Vector3 _bulletDirection = isFlipped ? Vector3.right : Vector3.left;
 
-        GameObject newBullet = Instantiate(BulletPrefab, _firingPoint, transform.rotation);
+        GameObject newBullet = Instantiate(BulletPrefab, _firingPoint, Quaternion.identity);
         Bullet bulletScript = newBullet.GetComponent<Bullet>();
 
         bulletScript.ImpulseBullet(_bulletDirection);

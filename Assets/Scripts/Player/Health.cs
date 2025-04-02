@@ -6,6 +6,7 @@
 //---------------------------------------------------------
 
 using System;
+using Cinemachine;
 using UnityEngine;
 using TMPro;
 using UnityEngine.InputSystem;
@@ -49,10 +50,29 @@ public class Health : MonoBehaviour
     private float _dañoActual;
     private float _currentShield;
     private float _shieldDown;
+
+    private PlayerController _playerController;
+    private CinemachineImpulseSource _cinemachineImpulseSource;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
+
+    void Awake()
+    {
+        if(GetComponent<CinemachineImpulseSource>() != null)
+        {
+            _cinemachineImpulseSource = GetComponent<CinemachineImpulseSource>();
+        } 
+        else Debug.Log("CinemachineImpulseSource no encontrado");
+        
+
+        if(GetComponent<PlayerController>() != null)
+        {
+            _playerController = GetComponent<PlayerController>();
+        } 
+        else Debug.Log("PlayerController no encontrado");
+    }
 
     void Start()
     {
@@ -97,6 +117,11 @@ public class Health : MonoBehaviour
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
         _dañoActual = amount;
 
+        if (_dañoActual < 0) 
+        {
+            CameraShakeManager.Instance.CameraShake(_cinemachineImpulseSource, 1f);
+        }
+
         if (-amount > _currentShield)
         {
             _dañoActual += _currentShield;
@@ -127,6 +152,7 @@ public class Health : MonoBehaviour
     public void Die()
     {
         animator.SetTrigger("Dead");
+        _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
     }
 
@@ -135,6 +161,7 @@ public class Health : MonoBehaviour
 
     public void ResetPlayer()
     {
+        _playerController.enabled = true;
         _currentHealth = 100f;
         Updatehealth(0f);
     }

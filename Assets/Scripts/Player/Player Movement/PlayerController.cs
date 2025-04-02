@@ -217,6 +217,12 @@ public class PlayerController : MonoBehaviour
     #endregion
     public bool Tiger ()
         { return tigerUnlocked; }
+
+    public void DisablePlayer()
+    {
+        _rB.velocity = Vector2.zero;
+        enabled = false;
+    }
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
 

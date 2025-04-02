@@ -269,9 +269,9 @@ public class InputManager : MonoBehaviour
         return _exit.WasPressedThisFrame();
     }
 
-    public bool MapIsPressed()
+    public bool MapWasPressedThisFrame()
     {
-        return _map.IsPressed();
+        return _map.WasPressedThisFrame();
     }
     #endregion
 
