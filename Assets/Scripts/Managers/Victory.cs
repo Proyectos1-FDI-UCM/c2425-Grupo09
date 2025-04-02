@@ -34,13 +34,18 @@ public class Victory : MonoBehaviour
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
+    /// <summary>
+    /// El método Start oculta el cartel y asigna los componentes Capture y Timer.
+    /// </summary>
     void Start()
     {
         this.gameObject.SetActive(false);
         _capture = player.GetComponent<Capture>();
         _timer = timer.GetComponent<Timer>();
     }
-
+    /// <summary>
+    /// Método que muestra el cartel de victoria cuando el jugador escapa. Escribe los textos AnimalCount y TimerCount con las estadísticas de la partida. Activa el botón del menú.
+    /// </summary>
     public void ShowVictory()
     {
         _animals = _capture.AnimalCount();
@@ -50,59 +55,52 @@ public class Victory : MonoBehaviour
         this.gameObject.SetActive(true);
 
         AnimalsText.text = "Animales capturados: " + _animals.ToString();
-        TimeText.text = "Tiempo de partida: " + string.Format("{0:00}:{1:00}", _minutes, _seconds);
+        TimeText.text = "Tiempo restante: " + string.Format("{0:00}:{1:00}", _minutes, _seconds);
 
-        // Llamamos a la animación para mostrar el cartel con el deslizamiento
+        // Animación cartel
         StartCoroutine(SlideInPanel());
+
         MenuButton.onClick.AddListener(OnButtonClick);
     }
 
-    // Corutina que anima el cartel desde arriba y lo estabiliza en el centro
+    /// <summary>
+    /// Método que hace la animación del cartel cuando se desliza desde lo alto de la pantalla hasta el centro.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator SlideInPanel()
     {
-        // Guarda la posición original del panel
+        // Pos original
         Vector2 originalPosition = victoryPanel.anchoredPosition;
 
-        // Inicializa el panel fuera de la vista (arriba de la pantalla)
+        // Pos inicial 
         victoryPanel.anchoredPosition = new Vector2(originalPosition.x, Screen.height);
 
-        // Velocidad de movimiento
-        float moveDuration = 0.7f; // Duración total de la animación
+        // Velocidad y duración de movimiento
+        float moveDuration = 0.7f; 
         float elapsedTime = 0f;
 
-        // Realiza la animación: baja hasta la posición final
+        // Animación
         while (elapsedTime < moveDuration)
         {
-            // Proporción del tiempo transcurrido (t)
+            
             float t = elapsedTime / moveDuration;
 
-            // Mueve el panel de arriba hacia la posición final
+            
             float currentY = Mathf.Lerp(Screen.height, originalPosition.y, t);
             victoryPanel.anchoredPosition = new Vector2(originalPosition.x, currentY);
 
-            // Incrementa el tiempo transcurrido
+            
             elapsedTime += Time.deltaTime;
 
             yield return null;
         }
 
-        // Asegura que el panel esté exactamente en la posición original
         victoryPanel.anchoredPosition = originalPosition;
     }
 
 
 
     #endregion
-
-
-
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-
-    }
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
@@ -120,6 +118,9 @@ public class Victory : MonoBehaviour
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
+    /// <summary>
+    /// Vuelve a la escena menú al presionar el botón.
+    /// </summary>
     private void OnButtonClick()
     {
         SceneManager.LoadScene("MainMenu");
