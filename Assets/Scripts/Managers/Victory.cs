@@ -55,7 +55,7 @@ public class Victory : MonoBehaviour
         this.gameObject.SetActive(true);
 
         AnimalsText.text = "Animales capturados: " + _animals.ToString();
-        TimeText.text = "Tiempo restante: " + string.Format("{0:00}:{1:00}", _minutes, _seconds);
+        TimeText.text = "Tiempo de partida: " + string.Format("{0:00}:{1:00}", _minutes, _seconds);
 
         // Animación cartel
         StartCoroutine(SlideInPanel());

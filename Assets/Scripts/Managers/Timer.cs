@@ -72,13 +72,13 @@ public class Timer : MonoBehaviour
 
     public float MinutesCount ()
     {
-        int minutes = Mathf.FloorToInt(currenttime / 60);
+        int minutes = Mathf.FloorToInt((timeSeg - currenttime) / 60);
         return minutes;
     }
     public float SecondsCount()
     {
 
-        int seconds = Mathf.FloorToInt(currenttime % 60);
+        int seconds = Mathf.FloorToInt((timeSeg - currenttime) % 60);
         return seconds;
     }
     private void PlayerDead()
