@@ -28,6 +28,7 @@ public class CheckList : MonoBehaviour
     [SerializeField] private GameObject[] ticks;
     [SerializeField] private TextMeshProUGUI VesselText;
     [SerializeField] private GameObject VesselTextBack;
+    [SerializeField] private GameObject victorySign;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -43,6 +44,7 @@ public class CheckList : MonoBehaviour
     private int _ticks = 0;
     private bool _allCaptured;
     private bool _inVesselRange;
+    private Victory _victory;
 
     #endregion
 
@@ -65,6 +67,7 @@ public class CheckList : MonoBehaviour
         VesselTextBack.gameObject.SetActive(false);
         _allCaptured = false;
         _onVessel = false;
+        _victory = victorySign.GetComponent<Victory>();
     }
 
     /// <summary>
@@ -83,8 +86,8 @@ public class CheckList : MonoBehaviour
             StartCoroutine(DeactivateVesselTextAfterTime(2f));
         }
         else if (_onVessel && _allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
-        { 
-            SceneManager.LoadScene("Victory"); 
+        {
+            _victory.ShowVictory(); 
         }
         if (_ticks==10)
         {

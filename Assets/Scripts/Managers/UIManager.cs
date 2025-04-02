@@ -21,7 +21,6 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [SerializeField] private GameObject Fade;
-    [SerializeField] private GameObject GameOverMenu;
 
     #endregion
     
@@ -69,11 +68,6 @@ public class UIManager : MonoBehaviour
     public void FadeOut()
     {
         _fadeAnim.SetTrigger("FadeOut");
-    }
-
-    public void ShowGameOverMenu()
-    {
-        GameOverMenu.SetActive(true);
     }
 
     #endregion

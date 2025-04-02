@@ -6,6 +6,9 @@ public class Timer : MonoBehaviour
 {
     [SerializeField] public TextMeshProUGUI TimerText;
     [SerializeField] GameObject Player;
+    [SerializeField] GameObject DefeatSign;
+
+
 
     [SerializeField] float timeSeg = 600f;
     public float SumaSeg = 5f;
@@ -15,12 +18,13 @@ public class Timer : MonoBehaviour
     static bool playing = true;
     public Animator animator;
     private Health _health;
+    private Defeat _defeat;
    
 
     void Start()
     {
         _health = Player.GetComponent<Health>();
-
+        _defeat = DefeatSign.GetComponent<Defeat>();
         playing = true;
         currenttime = timeSeg;
         animator.SetBool("1", true);
@@ -39,7 +43,8 @@ public class Timer : MonoBehaviour
                 minutes = 0;
                 seconds = 0;
                 PlayerDead();
-                TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); StopCounting();
+                TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
+                StopCounting();
                 
             }
             TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
@@ -65,9 +70,20 @@ public class Timer : MonoBehaviour
         Debug.Log("Fin partida");
     }
 
+    public float MinutesCount ()
+    {
+        int minutes = Mathf.FloorToInt(currenttime / 60);
+        return minutes;
+    }
+    public float SecondsCount()
+    {
+
+        int seconds = Mathf.FloorToInt(currenttime % 60);
+        return seconds;
+    }
     private void PlayerDead()
     {
-        UIManager.Instance.ShowGameOverMenu();
+        _defeat.ShowDefeat();
         _health.Die();
     }
 }

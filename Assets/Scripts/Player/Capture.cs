@@ -31,6 +31,7 @@ public class Capture : MonoBehaviour
     private GrapplerGun _grapplerGun;
     private Health _health;
     private CheckList _checkList;
+    private int _capturedAnimals = 0;
 
     private enum _animalIdentifier
     {
@@ -57,6 +58,7 @@ public class Capture : MonoBehaviour
         _grapplerGun = GetComponentInChildren<GrapplerGun>();
         _health = GetComponent<Health>();
         _checkList = GetComponent<CheckList>();
+        _capturedAnimals = 0;
     }
 
     /// <summary>
@@ -81,6 +83,7 @@ public class Capture : MonoBehaviour
             {
                 animator.SetTrigger("Capture");
                 CheckpointManager.Instance.SetCheckpoint(transform.position);
+                _capturedAnimals++;
                 
                 if (_animal.CompareTag("Bunny"))
                 {
@@ -157,6 +160,8 @@ public class Capture : MonoBehaviour
             _animal = null;  
         }
     }
+    public int AnimalCount ()
+    { return _capturedAnimals; }
 
     #endregion
 
@@ -172,6 +177,7 @@ public class Capture : MonoBehaviour
             Destroy(_animal);
         }
     }
+    
 
     #endregion
 
