@@ -66,7 +66,15 @@ public class BarraDeSueño : MonoBehaviour
             if(_barraDeSueño >= MaxBarraDeSueño)
             {
                 _animalController.enabled = false;
-                _animator.SetTrigger("Sleep");
+                if (_animalController.IsFlipped)
+                {
+                    _animator.SetTrigger("Sleep_Right");
+                }
+                else 
+                {
+                    _animalController.TurnAround();
+                    _animator.SetTrigger("Sleep_Left");
+                }
                 dormido = true;
             }
 

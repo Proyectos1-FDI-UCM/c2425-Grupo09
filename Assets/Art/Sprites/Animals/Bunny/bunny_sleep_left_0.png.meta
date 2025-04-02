@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 90f3233f11bce274881ce50d778c9f2c
+guid: b26d68a71ed8b4043a603c6672c0bda7
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -97,7 +97,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bunny_sleep_2_0
+      name: bunny_sleep_left_0_0
       rect:
         serializedVersion: 2
         x: 0
@@ -105,14 +105,14 @@ TextureImporter:
         width: 50
         height: 48
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d90faee63b0b3e4ca05dda96addc61e
-      internalID: -1490539263
+      spriteID: 79401aa43292321408aa11510f398ed3
+      internalID: 1787712312
       vertices: []
       indices: 
       edges: []
@@ -128,8 +128,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bunny_sleep_2_0: -1490539263
-      bunny_sleep_2_1: -1933795594
+      bunny_sleep_left_0_0: 1787712312
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

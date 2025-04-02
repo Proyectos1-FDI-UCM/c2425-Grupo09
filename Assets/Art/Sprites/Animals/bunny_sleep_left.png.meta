@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 90f3233f11bce274881ce50d778c9f2c
+guid: 16654638616aa014b8bcc5a7df2fdd19
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,7 +72,7 @@ TextureImporter:
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
-    textureCompression: 1
+    textureCompression: 0
     compressionQuality: 50
     crunchedCompression: 0
     allowsAlphaSplitting: 0
@@ -97,22 +97,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bunny_sleep_2_0
+      name: bunny_sleep_left_0
       rect:
         serializedVersion: 2
-        x: 0
-        y: 0
-        width: 50
+        x: 13
+        y: 16
+        width: 35
         height: 48
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.65, y: 0.55}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1d90faee63b0b3e4ca05dda96addc61e
-      internalID: -1490539263
+      spriteID: 659c94986ac083240a019c4bc218d77e
+      internalID: 1754738164
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunny_sleep_left_2
+      rect:
+        serializedVersion: 2
+        x: 76
+        y: 16
+        width: 35
+        height: 48
+      alignment: 9
+      pivot: {x: 0.65, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8774e7da7ff2f464aa5959e45baa9fdb
+      internalID: -1263132608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunny_sleep_left_5
+      rect:
+        serializedVersion: 2
+        x: 149
+        y: 15
+        width: 35
+        height: 48
+      alignment: 9
+      pivot: {x: 0.65, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3c362ac11178a54ab673caf30bf625c
+      internalID: -23596006
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: bunny_sleep_left_7
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 15
+        width: 35
+        height: 48
+      alignment: 9
+      pivot: {x: 0.65, y: 0.55}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 835ab0908204e654296733ce78ffd790
+      internalID: 320573373
       vertices: []
       indices: 
       edges: []
@@ -128,8 +191,14 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bunny_sleep_2_0: -1490539263
-      bunny_sleep_2_1: -1933795594
+      bunny_sleep_left_0: 1754738164
+      bunny_sleep_left_1: -318762250
+      bunny_sleep_left_2: -1263132608
+      bunny_sleep_left_3: -433536183
+      bunny_sleep_left_4: 600656126
+      bunny_sleep_left_5: -23596006
+      bunny_sleep_left_6: -1465222445
+      bunny_sleep_left_7: 320573373
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
