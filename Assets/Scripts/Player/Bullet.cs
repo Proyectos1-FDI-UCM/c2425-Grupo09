@@ -75,7 +75,7 @@ public class Bullet : MonoBehaviour
                 AnimalController _animalController = coll.gameObject.GetComponent<AnimalController>();
 
                 //Si el enemigo está de espaldas, lo gira para que ataque
-                if (_animalController.IsFlipped == _sr.flipX && !_sleepBar.Dormido()) 
+                if (!_animalController.IsFlipped == _sr.flipX && !_sleepBar.Dormido()) 
                 {
                     _animalController.TurnAround();
                 }
