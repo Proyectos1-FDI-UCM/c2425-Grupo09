@@ -49,6 +49,7 @@ public class Health : MonoBehaviour
     private float _dañoActual;
     private float _currentShield;
     private float _shieldDown;
+    private PlayerController _playerController;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -56,6 +57,12 @@ public class Health : MonoBehaviour
 
     void Start()
     {
+        if(GetComponent<PlayerController>() != null)
+        {
+            _playerController = GetComponent<PlayerController>();
+        } 
+        else Debug.Log("PlayerController no encontrado");
+
         if (AbilitiesManager.Instance.armadillo == true) { armadilloUnlocked = true; }
         _currentDuration = ShieldDuration;
         _currentHealth = startingHealth;
@@ -127,6 +134,7 @@ public class Health : MonoBehaviour
     public void Die()
     {
         animator.SetTrigger("Dead");
+        _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
     }
 
@@ -135,6 +143,7 @@ public class Health : MonoBehaviour
 
     public void ResetPlayer()
     {
+        _playerController.enabled = true;
         _currentHealth = 100f;
         Updatehealth(0f);
     }

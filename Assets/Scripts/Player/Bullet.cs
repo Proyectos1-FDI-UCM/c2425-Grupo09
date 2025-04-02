@@ -51,7 +51,7 @@ public class Bullet : MonoBehaviour
         _sr = GetComponent<SpriteRenderer>();
 
         _rb.velocity = _direction * Speed;
-        _sr.flipX = _direction.x == 1;
+        _sr.flipX = _direction.x != 1;
     }
     #endregion
 
