@@ -48,6 +48,11 @@ public class PlayerController : MonoBehaviour
             {
                 _enSuelo = value;
                 OnGroundStateChanged?.Invoke(_enSuelo);
+
+                if(_enSuelo == true)
+                {
+                    animator.SetTrigger("Land");
+                } else animator.ResetTrigger("Land");
             }
         }
     }
@@ -69,6 +74,7 @@ public class PlayerController : MonoBehaviour
     private GrapplerRope grappleRope;
     private float _coyoteCounter;
     private bool _isJumping;
+    private bool _isFalling;
     private float _bufferCounter;
 
     private int _jumpCounter;
@@ -183,14 +189,12 @@ public class PlayerController : MonoBehaviour
 
         if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.IsGrappling)
         {
-            //Debug.Log("Salto");
             Jump();
             _bufferCounter = 0;
             StartCoroutine(JumpCooldown());
         }
         else if (InputManager.Instance.JumpWasPressedThisFrame() && !EnSuelo && !grappleRope.IsGrappling && _jumpCounter > 0)
         {
-            //Debug.Log("Salto");
             Jump();
             _jumpCounter = 0;
             StartCoroutine(JumpCooldown());

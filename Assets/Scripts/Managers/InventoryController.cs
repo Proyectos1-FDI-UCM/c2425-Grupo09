@@ -35,6 +35,7 @@ public class InventoryController : MonoBehaviour
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
     private Health _health;
+    private Animator _animator;
     
     private int aviableApples;
     private int applesInInventory = 0;
@@ -55,12 +56,14 @@ public class InventoryController : MonoBehaviour
     void Awake()
     {
         _health = GetComponent<Health>();
+        _animator = GetComponent<Animator>();
     }
 
     private void Update()
     {
         if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0 && _health._currentHealth < 100) //Curacion al consumir una manzana
         {
+            _animator.SetTrigger("Eat");
             applesInInventory--;
             _health.Updatehealth(appleHealthUp);
             AppleConsumed();
