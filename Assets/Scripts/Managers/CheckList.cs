@@ -65,7 +65,7 @@ public class CheckList : MonoBehaviour
 
         VesselText.gameObject.SetActive(false);
         VesselTextBack.gameObject.SetActive(false);
-        _allCaptured = false;
+        _allCaptured = true;
         _onVessel = false;
         _victory = victorySign.GetComponent<Victory>();
     }

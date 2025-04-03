@@ -992,7 +992,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu
+  m_text: Menu Principal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45bb8c7486b0954488e1af1ff90b13b7, type: 2}
   m_sharedMaterial: {fileID: -1697619792946960641, guid: 45bb8c7486b0954488e1af1ff90b13b7, type: 2}
@@ -1019,8 +1019,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3582,7 +3582,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Main Menu
+  m_text: Menu Principal
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 45bb8c7486b0954488e1af1ff90b13b7, type: 2}
   m_sharedMaterial: {fileID: -1697619792946960641, guid: 45bb8c7486b0954488e1af1ff90b13b7, type: 2}
@@ -3609,8 +3609,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 30
-  m_fontSizeBase: 30
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7364,7 +7364,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4456332920816085900, guid: 76b803d1309ac4540aa9b287ac248771, type: 3}
       propertyPath: timeSeg
-      value: 601
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4456332920816085900, guid: 76b803d1309ac4540aa9b287ac248771, type: 3}
       propertyPath: LoseMenu
