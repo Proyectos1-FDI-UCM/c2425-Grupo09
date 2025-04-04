@@ -166,6 +166,16 @@ public class Health : MonoBehaviour
         Updatehealth(0f);
     }
 
+    public void EnablePlayerForAnimation()
+    {
+        _playerController.enabled = true;
+    }
+
+    public void DisablePlayerForAnimation()
+    {
+        _playerController.enabled = false;
+    }
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----

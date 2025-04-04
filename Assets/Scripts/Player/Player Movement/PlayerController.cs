@@ -219,23 +219,40 @@ public class PlayerController : MonoBehaviour
         }
     }
     #endregion
-    public bool Tiger ()
-        { return tigerUnlocked; }
+
+    // ---- MÉTODOS PÚBLICOS ----
+    #region Métodos públicos
+
+    public bool Tiger()
+    { return tigerUnlocked; }
 
     public void DisablePlayer()
     {
         _rB.velocity = Vector2.zero;
         enabled = false;
     }
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
 
+    /// <summary>
+    /// Save se usa para guardar la posicion del jugador en el struct 
+    /// </summary>
+    public void Save(ref PlayerSaveData data)
+    {
+        data.Position = transform.position;
+    }
+
+    /// <summary>
+    /// Load se usa para cargar la posicion del jugador en el struct 
+    /// </summary>
+    public void Load(PlayerSaveData data)
+    {
+        transform.position = data.Position;
+    }
 
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-   /// <summary>
+    /// <summary>
     /// Jump se llama cuando el jugador  quiere saltar.
     /// </summary>
     private void Jump()
@@ -287,5 +304,11 @@ public class PlayerController : MonoBehaviour
     }
     #endregion   
 
-} // class NewBehaviourScript 
+}
+// class NewBehaviourScript 
 // namespace
+[System.Serializable]
+public struct PlayerSaveData
+{
+    public Vector3 Position;
+}
