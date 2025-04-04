@@ -26,6 +26,8 @@ public class AbilitiesManager : MonoBehaviour
     public bool tiger = false;
     public bool armadillo = false;
 
+    [SerializeField] private GameObject ObtainEffect;
+
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -74,6 +76,7 @@ public class AbilitiesManager : MonoBehaviour
     public void BunnyAbilityUnlock()
     {
         doubleJump = true;
+        ObtainEffect.SetActive(true);
     }
     public void BatAbilityUnlock()
     {
