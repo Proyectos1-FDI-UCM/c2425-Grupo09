@@ -76,6 +76,8 @@ public class InputManager : MonoBehaviour
     private InputAction _exit;
     private InputAction _testing;
     private InputAction _map;
+    private InputAction _save;
+    private InputAction _load;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -273,6 +275,18 @@ public class InputManager : MonoBehaviour
     {
         return _map.WasPressedThisFrame();
     }
+
+    public bool SaveWasPressedThisFrame()
+    {
+        return _save.WasPressedThisFrame();
+    }
+
+    public bool LoadWasPressedThisFrame()
+    {
+        return _load.WasPressedThisFrame();
+    }
+
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -311,6 +325,8 @@ public class InputManager : MonoBehaviour
         _testing = _theController.Player.Testing;
         _exit = _theController.Player.Exit;
         _map =_theController.Player.Map;
+        _save = _theController.Player.Save;
+        _load = _theController.Player.Load;
 
     }
 
