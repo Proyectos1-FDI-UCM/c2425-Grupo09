@@ -47,7 +47,6 @@ public class Weapon : MonoBehaviour
         if (InputManager.Instance.FireWasPressedThisFrame() && Time.time > _tiempoUltimoDisparo + CadenciaDisparo)
         {
             animator.SetTrigger("Attack");
-            Shoot();
             _tiempoUltimoDisparo = Time.time;
         }
             
