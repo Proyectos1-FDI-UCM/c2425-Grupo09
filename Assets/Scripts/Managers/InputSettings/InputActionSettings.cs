@@ -136,6 +136,24 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Save"",
+                    ""type"": ""Button"",
+                    ""id"": ""610b65b6-7ff7-4054-a4ba-22a5e74c64c4"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Load"",
+                    ""type"": ""Button"",
+                    ""id"": ""906dec09-5260-4cef-bca2-9417beed8f4d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -367,6 +385,28 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""29305284-a902-4644-a183-f0036f6d38dd"",
+                    ""path"": ""<Keyboard>/0"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Save"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b6fe625e-6a82-4acb-afa8-d5e6a338edcb"",
+                    ""path"": ""<Keyboard>/9"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Load"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -966,6 +1006,8 @@ namespace UnityEngine.InputSystem
             m_Player_Testing = m_Player.FindAction("Testing", throwIfNotFound: true);
             m_Player_Exit = m_Player.FindAction("Exit", throwIfNotFound: true);
             m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
+            m_Player_Save = m_Player.FindAction("Save", throwIfNotFound: true);
+            m_Player_Load = m_Player.FindAction("Load", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1051,6 +1093,8 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Testing;
         private readonly InputAction m_Player_Exit;
         private readonly InputAction m_Player_Map;
+        private readonly InputAction m_Player_Save;
+        private readonly InputAction m_Player_Load;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -1067,6 +1111,8 @@ namespace UnityEngine.InputSystem
             public InputAction @Testing => m_Wrapper.m_Player_Testing;
             public InputAction @Exit => m_Wrapper.m_Player_Exit;
             public InputAction @Map => m_Wrapper.m_Player_Map;
+            public InputAction @Save => m_Wrapper.m_Player_Save;
+            public InputAction @Load => m_Wrapper.m_Player_Load;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1112,6 +1158,12 @@ namespace UnityEngine.InputSystem
                 @Map.started += instance.OnMap;
                 @Map.performed += instance.OnMap;
                 @Map.canceled += instance.OnMap;
+                @Save.started += instance.OnSave;
+                @Save.performed += instance.OnSave;
+                @Save.canceled += instance.OnSave;
+                @Load.started += instance.OnLoad;
+                @Load.performed += instance.OnLoad;
+                @Load.canceled += instance.OnLoad;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1152,6 +1204,12 @@ namespace UnityEngine.InputSystem
                 @Map.started -= instance.OnMap;
                 @Map.performed -= instance.OnMap;
                 @Map.canceled -= instance.OnMap;
+                @Save.started -= instance.OnSave;
+                @Save.performed -= instance.OnSave;
+                @Save.canceled -= instance.OnSave;
+                @Load.started -= instance.OnLoad;
+                @Load.performed -= instance.OnLoad;
+                @Load.canceled -= instance.OnLoad;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1346,6 +1404,8 @@ namespace UnityEngine.InputSystem
             void OnTesting(InputAction.CallbackContext context);
             void OnExit(InputAction.CallbackContext context);
             void OnMap(InputAction.CallbackContext context);
+            void OnSave(InputAction.CallbackContext context);
+            void OnLoad(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

@@ -8,13 +8,15 @@
 using UnityEngine;
 using System.IO;
 // Añadir aquí el resto de directivas using
+using System.Collections;
+using System.Collections.Generic;
 
 
 /// <summary>
 /// Antes de cada class, descripción de qué es y para qué sirve,
 /// usando todas las líneas que sean necesarias.
 /// </summary>
-public class Save 
+public class SaveSystem
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
@@ -30,7 +32,7 @@ public class Save
         public PlayerSaveData PlayerData;
     }
     #endregion
-    
+
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
     // Documentar cada atributo que aparece aquí.
@@ -39,7 +41,6 @@ public class Save
     // primera palabra en minúsculas y el resto con la 
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
-
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -63,7 +64,7 @@ public class Save
     /// </summary>
     void Update()
     {
-        
+
     }
     #endregion
 
@@ -74,7 +75,25 @@ public class Save
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
     // Ejemplo: GetPlayerController
+    public static string SaveFileName()
+    {
+        string _saveFile = Application.persistentDataPath + "/save" + ".save";
+        return _saveFile;
+    }
 
+    public static void Save()
+    {
+        HandleSaveData();
+
+        File.WriteAllText(SaveFileName(), JsonUtility.ToJson(_saveData, true));
+    }
+
+    public static void Load()
+    {
+        string _saveContent = File.ReadAllText(SaveFileName());
+        _saveData = JsonUtility.FromJson<SaveData>( _saveContent );
+        HandleLoadData();
+    }
     #endregion
     
     // ---- MÉTODOS PRIVADOS ----
@@ -83,7 +102,14 @@ public class Save
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
-
+    private static void HandleSaveData()
+    {
+        GameManager.Instance._playerController.Save(ref _saveData.PlayerData);
+    }
+    private static void HandleLoadData()
+    {
+        GameManager.Instance._playerController.Load( _saveData.PlayerData);
+    }
     #endregion   
 
 } // class Save 
