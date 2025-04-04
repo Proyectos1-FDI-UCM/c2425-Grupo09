@@ -62,6 +62,7 @@ public class Timer : MonoBehaviour
     public void Reloj(float x)
     { 
         currenttime =  currenttime + x;
+        timeSeg = timeSeg + x;
     }
 
     public void StopCounting()
