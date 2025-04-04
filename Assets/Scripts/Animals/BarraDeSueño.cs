@@ -72,8 +72,8 @@ public class BarraDeSueño : MonoBehaviour
                 }
                 else 
                 {
-                    _animalController.TurnAround();
                     _animator.SetTrigger("Sleep_Left");
+                    _animalController.TurnAround();
                 }
                 dormido = true;
             }
