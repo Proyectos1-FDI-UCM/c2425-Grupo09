@@ -6,6 +6,7 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using System.Collections;
 // Añadir aquí el resto de directivas using
 
 
@@ -27,6 +28,7 @@ public class AbilitiesManager : MonoBehaviour
     public bool armadillo = false;
 
     [SerializeField] private GameObject ObtainEffect;
+    [SerializeField] GameObject[] AbilitiesTextBox;
 
     #endregion
 
@@ -76,8 +78,9 @@ public class AbilitiesManager : MonoBehaviour
     public void BunnyAbilityUnlock()
     {
         doubleJump = true;
-        ObtainEffect.SetActive(true);
+        StartCoroutine(EffectAnimation(0));
     }
+
     public void BatAbilityUnlock()
     {
         nightVision = true;
@@ -89,20 +92,25 @@ public class AbilitiesManager : MonoBehaviour
         }
         
         _HUDAbilities.ActivateColor((int)_HUDImage.Bat);
+        StartCoroutine(EffectAnimation(1));
+
     }
     public void GorilaAbilityUnlock()
     {
         grappler = true;
         _HUDAbilities.ActivateColor((int)_HUDImage.Gorila);
+        StartCoroutine(EffectAnimation(2));
     }
     public void TigerAbilityUnlock()
     {
         tiger = true;
+        StartCoroutine(EffectAnimation(3));
     }
     public void ArmadilloAbilityUnlock()
     {
         armadillo = true;
         _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
+        StartCoroutine(EffectAnimation(4));
     }
 
     #endregion
@@ -110,6 +118,19 @@ public class AbilitiesManager : MonoBehaviour
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
+    private IEnumerator EffectAnimation(int index)
+    {
+        ObtainEffect.SetActive(true);
+        EnableAbilityTextBox(index, true);
+        yield return new WaitForSeconds(2.5f);
+        EnableAbilityTextBox(index, false);
+        ObtainEffect.SetActive(false);
+    }
+
+     public void EnableAbilityTextBox(int index, bool state)
+    {
+        AbilitiesTextBox[index].SetActive(state);
+    }
     #endregion
 
 } // class AbilitiesController 
