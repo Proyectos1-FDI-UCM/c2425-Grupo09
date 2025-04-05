@@ -8,7 +8,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using TMPro;
 
 // Añadir aquí el resto de directivas using
 
@@ -21,11 +21,14 @@ public class MenuManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    [SerializeField] private Button playButton;
     [SerializeField] private RectTransform titlePanel;
     [SerializeField] private RectTransform menuPanel;
+    [SerializeField] TMP_Text playText; 
+    
 
+    
 
+    public float speed = 0.1f;  // Velocidad del parpadeo
     // Documentar cada atributo que aparece aquí.
     // El convenio de nombres de Unity recomienda que los atributos
     // públicos y de inspector se nombren en formato PascalCase
@@ -36,6 +39,9 @@ public class MenuManager : MonoBehaviour
 
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
+    private Color color1 = new Color(0.176f, 0.110f, 0f); 
+    private Color color2 = Color.white; 
+    private float time = 0f;
     // Documentar cada atributo que aparece aquí.
     // El convenio de nombres de Unity recomienda que los atributos
     // privados se nombren en formato _camelCase (comienza con _, 
@@ -60,8 +66,6 @@ public class MenuManager : MonoBehaviour
     {
         StartCoroutine(SlideInTitlePanel());
         StartCoroutine(SlideInMenuPanel());
-
-        
     }
 
     /// <summary>
@@ -69,7 +73,18 @@ public class MenuManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        playButton.onClick.AddListener(OnButtonClick);
+        if (InputManager.Instance.PlayWasPressedThisFrame())
+        { SceneManager.LoadScene("FUSION_MAPA"); }
+
+        // Interpolación entre los dos colores según el tiempo
+        time += Time.deltaTime * speed;
+
+        // Usamos Mathf.PingPong para alternar entre 0 y 1
+        float t = Mathf.PingPong(time, 1f);
+
+        // Lerp entre los dos colores
+        playText.color = Color.Lerp(color1, color2, t);
+    
     }
     #endregion
 
@@ -141,10 +156,6 @@ public class MenuManager : MonoBehaviour
         menuPanel.anchoredPosition = originalPosition;
     }
 
-    private void OnButtonClick()
-    {
-        SceneManager.LoadScene("FUSION_MAPA");
-    }
     // Documentar cada método que aparece aquí
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
