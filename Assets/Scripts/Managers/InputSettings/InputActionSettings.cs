@@ -154,6 +154,24 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""New action"",
+                    ""type"": ""Button"",
+                    ""id"": ""63fc0d93-1563-42cc-a083-279ea65c04be"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Play"",
+                    ""type"": ""Button"",
+                    ""id"": ""be43a7d2-c6d1-45e9-9fc7-2b724d3ce120"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -407,6 +425,28 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Load"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9a95ad20-e3c1-4b78-a3f3-3dcfaaaf42b8"",
+                    ""path"": """",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""New action"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9181e6fa-428a-4aca-8662-2bb20c8b7903"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Play"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1008,6 +1048,8 @@ namespace UnityEngine.InputSystem
             m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
             m_Player_Save = m_Player.FindAction("Save", throwIfNotFound: true);
             m_Player_Load = m_Player.FindAction("Load", throwIfNotFound: true);
+            m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
+            m_Player_Play = m_Player.FindAction("Play", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1095,6 +1137,8 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Map;
         private readonly InputAction m_Player_Save;
         private readonly InputAction m_Player_Load;
+        private readonly InputAction m_Player_Newaction;
+        private readonly InputAction m_Player_Play;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -1113,6 +1157,8 @@ namespace UnityEngine.InputSystem
             public InputAction @Map => m_Wrapper.m_Player_Map;
             public InputAction @Save => m_Wrapper.m_Player_Save;
             public InputAction @Load => m_Wrapper.m_Player_Load;
+            public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
+            public InputAction @Play => m_Wrapper.m_Player_Play;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1164,6 +1210,12 @@ namespace UnityEngine.InputSystem
                 @Load.started += instance.OnLoad;
                 @Load.performed += instance.OnLoad;
                 @Load.canceled += instance.OnLoad;
+                @Newaction.started += instance.OnNewaction;
+                @Newaction.performed += instance.OnNewaction;
+                @Newaction.canceled += instance.OnNewaction;
+                @Play.started += instance.OnPlay;
+                @Play.performed += instance.OnPlay;
+                @Play.canceled += instance.OnPlay;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1210,6 +1262,12 @@ namespace UnityEngine.InputSystem
                 @Load.started -= instance.OnLoad;
                 @Load.performed -= instance.OnLoad;
                 @Load.canceled -= instance.OnLoad;
+                @Newaction.started -= instance.OnNewaction;
+                @Newaction.performed -= instance.OnNewaction;
+                @Newaction.canceled -= instance.OnNewaction;
+                @Play.started -= instance.OnPlay;
+                @Play.performed -= instance.OnPlay;
+                @Play.canceled -= instance.OnPlay;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1406,6 +1464,8 @@ namespace UnityEngine.InputSystem
             void OnMap(InputAction.CallbackContext context);
             void OnSave(InputAction.CallbackContext context);
             void OnLoad(InputAction.CallbackContext context);
+            void OnNewaction(InputAction.CallbackContext context);
+            void OnPlay(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {

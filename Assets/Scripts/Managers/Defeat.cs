@@ -50,7 +50,7 @@ public class Defeat : MonoBehaviour
         _animals = _capture.AnimalCount();
         this.gameObject.SetActive(true);
 
-        AnimalsText.text = "Animales capturados: " + _animals.ToString();
+        AnimalsText.text = "Captured animals: " + _animals.ToString();
 
         // Animación cartel
         StartCoroutine(SlideInPanel());

@@ -78,6 +78,8 @@ public class InputManager : MonoBehaviour
     private InputAction _map;
     private InputAction _save;
     private InputAction _load;
+    private InputAction _play;
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -285,6 +287,10 @@ public class InputManager : MonoBehaviour
     {
         return _load.WasPressedThisFrame();
     }
+    public bool PlayWasPressedThisFrame()
+    {
+        return _play.WasPressedThisFrame();
+    }
 
 
     #endregion
@@ -327,6 +333,8 @@ public class InputManager : MonoBehaviour
         _map =_theController.Player.Map;
         _save = _theController.Player.Save;
         _load = _theController.Player.Load;
+        _play = _theController.Player.Play;
+
 
     }
 
