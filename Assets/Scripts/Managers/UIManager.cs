@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Breve descripción del contenido del archivo
-// Sergio Valiente Urueña
+// Sergio Valiente Urueña, Sergio Gonzalez
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -21,19 +21,21 @@ public class UIManager : MonoBehaviour
     public static UIManager Instance { get; private set; }
 
     [SerializeField] private GameObject Fade;
+    [SerializeField] private GameObject PauseMenu;
 
     #endregion
-    
+
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
     private Animator _fadeAnim;
+    private bool _isPaused = false;
 
     #endregion
-    
+
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-    
+
     protected void Awake()
     {
         if (Instance == null)
@@ -45,6 +47,23 @@ public class UIManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Update()
+    {
+        if (InputManager.Instance.PauseWasPressedThisFrame())
+        {
+            if (_isPaused)
+                ResumeGame();
+            else
+                PauseGame();
+        }
+    }
+    private void PauseGame()
+    {
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0f;
+        _isPaused = true;
+    }
+
     
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
@@ -69,13 +88,18 @@ public class UIManager : MonoBehaviour
     {
         _fadeAnim.SetTrigger("FadeOut");
     }
-
+    public void ResumeGame()
+    {
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        _isPaused = false;
+    }
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
-    #endregion   
+    #endregion
 
 } // class UIManager 
 // namespace

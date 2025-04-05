@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Contiene el componente de InputManager
-// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín
+// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín, Sergio Gonzalez Lopez
 // TemplateP1
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -79,6 +79,7 @@ public class InputManager : MonoBehaviour
     private InputAction _save;
     private InputAction _load;
     private InputAction _play;
+    private InputAction _pause;
 
     #endregion
 
@@ -291,7 +292,10 @@ public class InputManager : MonoBehaviour
     {
         return _play.WasPressedThisFrame();
     }
-
+    public bool PauseWasPressedThisFrame()
+    {
+        return _pause.WasPressedThisFrame();
+    }
 
     #endregion
 
@@ -334,7 +338,7 @@ public class InputManager : MonoBehaviour
         _save = _theController.Player.Save;
         _load = _theController.Player.Load;
         _play = _theController.Player.Play;
-
+        _pause = _theController.Player.Pause;
 
     }
 

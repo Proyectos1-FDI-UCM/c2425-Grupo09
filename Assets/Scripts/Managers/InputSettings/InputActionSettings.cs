@@ -172,6 +172,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""b613af91-60d7-4315-855b-124a918ec423"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -447,6 +456,17 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Play"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a3d09036-b6b0-40c1-a70f-1c52b9134d05"",
+                    ""path"": ""<Keyboard>/o"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1050,6 +1070,7 @@ namespace UnityEngine.InputSystem
             m_Player_Load = m_Player.FindAction("Load", throwIfNotFound: true);
             m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
             m_Player_Play = m_Player.FindAction("Play", throwIfNotFound: true);
+            m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             // UI
             m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
             m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1139,6 +1160,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Load;
         private readonly InputAction m_Player_Newaction;
         private readonly InputAction m_Player_Play;
+        private readonly InputAction m_Player_Pause;
         public struct PlayerActions
         {
             private @InputActionSettings m_Wrapper;
@@ -1159,6 +1181,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Load => m_Wrapper.m_Player_Load;
             public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
             public InputAction @Play => m_Wrapper.m_Player_Play;
+            public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1216,6 +1239,9 @@ namespace UnityEngine.InputSystem
                 @Play.started += instance.OnPlay;
                 @Play.performed += instance.OnPlay;
                 @Play.canceled += instance.OnPlay;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
 
             private void UnregisterCallbacks(IPlayerActions instance)
@@ -1268,6 +1294,9 @@ namespace UnityEngine.InputSystem
                 @Play.started -= instance.OnPlay;
                 @Play.performed -= instance.OnPlay;
                 @Play.canceled -= instance.OnPlay;
+                @Pause.started -= instance.OnPause;
+                @Pause.performed -= instance.OnPause;
+                @Pause.canceled -= instance.OnPause;
             }
 
             public void RemoveCallbacks(IPlayerActions instance)
@@ -1466,6 +1495,7 @@ namespace UnityEngine.InputSystem
             void OnLoad(InputAction.CallbackContext context);
             void OnNewaction(InputAction.CallbackContext context);
             void OnPlay(InputAction.CallbackContext context);
+            void OnPause(InputAction.CallbackContext context);
         }
         public interface IUIActions
         {
