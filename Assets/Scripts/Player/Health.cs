@@ -157,7 +157,10 @@ public class Health : MonoBehaviour
     }
 
     public void HurtAnimation()
-    { animator.SetTrigger("Hurt"); }
+    {
+        animator.SetTrigger("Hurt"); 
+        EnablePlayerForAnimation();
+    }
 
     public void ResetPlayer()
     {
