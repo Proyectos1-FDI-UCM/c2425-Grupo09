@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
     // públicos y de inspector se nombren en formato PascalCase
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
+    public PlayerController _playerController;
 
     #endregion
 
@@ -94,6 +95,17 @@ public class GameManager : MonoBehaviour
             // Éramos la instancia de verdad, no un clon.
             _instance = null;
         } // if somos la instancia principal
+    }
+    private void Start()
+    {
+        _playerController = FindFirstObjectByType<PlayerController>();
+    }
+    private void Update()
+    {
+        if (InputManager.Instance.SaveWasPressedThisFrame())
+            SaveSystem.Save();
+        else if (InputManager.Instance.LoadWasPressedThisFrame())
+            SaveSystem.Load();
     }
 
     #endregion

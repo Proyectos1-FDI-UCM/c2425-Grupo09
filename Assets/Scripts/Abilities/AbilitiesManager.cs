@@ -77,40 +77,58 @@ public class AbilitiesManager : MonoBehaviour
 
     public void BunnyAbilityUnlock()
     {
-        doubleJump = true;
-        StartCoroutine(EffectAnimation(0));
+        if(!doubleJump)
+        {
+            doubleJump = true;
+            StartCoroutine(EffectAnimation(0));
+        }
     }
 
     public void BatAbilityUnlock()
     {
-        nightVision = true;
-
-        for(int i = 0; i < _caveTriggers.Length; i++)
+        if(!nightVision)
         {
-            if (_caveTriggers[i] != null)
-            _caveTriggers[i].UnlockCave();
+            nightVision = true;
+
+            for(int i = 0; i < _caveTriggers.Length; i++)
+            {
+                if (_caveTriggers[i] != null)
+                _caveTriggers[i].UnlockCave();
+            }
+            
+            _HUDAbilities.ActivateColor((int)_HUDImage.Bat);
+            StartCoroutine(EffectAnimation(1));
         }
         
-        _HUDAbilities.ActivateColor((int)_HUDImage.Bat);
-        StartCoroutine(EffectAnimation(1));
 
     }
     public void GorilaAbilityUnlock()
     {
-        grappler = true;
-        _HUDAbilities.ActivateColor((int)_HUDImage.Gorila);
-        StartCoroutine(EffectAnimation(2));
+        if(!grappler)
+        {
+            grappler = true;
+            _HUDAbilities.ActivateColor((int)_HUDImage.Gorila);
+            StartCoroutine(EffectAnimation(2));
+        }
+       
     }
     public void TigerAbilityUnlock()
     {
-        tiger = true;
-        StartCoroutine(EffectAnimation(3));
+        if(!tiger)
+        {
+            tiger = true;
+            StartCoroutine(EffectAnimation(3));
+        }
+        
     }
     public void ArmadilloAbilityUnlock()
     {
-        armadillo = true;
-        _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
-        StartCoroutine(EffectAnimation(4));
+        if(!armadillo)
+        {
+            armadillo = true;
+            _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
+            StartCoroutine(EffectAnimation(4));
+        }
     }
 
     #endregion
@@ -121,10 +139,12 @@ public class AbilitiesManager : MonoBehaviour
     private IEnumerator EffectAnimation(int index)
     {
         ObtainEffect.SetActive(true);
+        yield return new WaitForSeconds(2f);
         EnableAbilityTextBox(index, true);
-        yield return new WaitForSeconds(2.5f);
-        EnableAbilityTextBox(index, false);
+        yield return new WaitForSeconds(2f);
         ObtainEffect.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        EnableAbilityTextBox(index, false);
     }
 
      public void EnableAbilityTextBox(int index, bool state)
