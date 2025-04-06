@@ -30,6 +30,7 @@ public class SaveSystem
     public struct SaveData
     {
         public PlayerSaveData PlayerData;
+        public PlayerAbilitiesData AbilitiesData;
     }
     #endregion
 
@@ -105,10 +106,13 @@ public class SaveSystem
     private static void HandleSaveData()
     {
         GameManager.Instance._playerController.Save(ref _saveData.PlayerData);
+        GameManager.Instance._abilitiesManager.Save(ref _saveData.AbilitiesData);
+        
     }
     private static void HandleLoadData()
     {
         GameManager.Instance._playerController.Load( _saveData.PlayerData);
+        GameManager.Instance._abilitiesManager.Load( _saveData.AbilitiesData);
     }
     #endregion   
 

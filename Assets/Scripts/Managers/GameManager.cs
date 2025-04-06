@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
     public PlayerController _playerController;
+    public AbilitiesManager _abilitiesManager;
 
     #endregion
 
@@ -99,6 +100,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _playerController = FindFirstObjectByType<PlayerController>();
+        _abilitiesManager = FindFirstObjectByType<AbilitiesManager>();
     }
     private void Update()
     {

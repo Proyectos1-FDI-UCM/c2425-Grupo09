@@ -129,14 +129,44 @@ public class AbilitiesManager : MonoBehaviour
             UIManager.Instance.VFXObtainAbility((int)_HUDImage.Armadillo);
         }
     }
+    #region Save and Load
+
+    public void Save(ref PlayerAbilitiesData data)
+    {
+        data.nightVision = nightVision;
+        data.doubleJump = doubleJump;
+        data.grappler = grappler;
+        data.tiger = tiger;
+        data.armadillo = armadillo;
+    }
+
+    public void Load(PlayerAbilitiesData data) 
+    { 
+        nightVision = data.nightVision;
+        doubleJump = data.doubleJump;
+        grappler = data.grappler;
+        tiger = data.tiger;
+        armadillo = data.armadillo;
+    }
+
+    #endregion
 
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
-    
+
     #endregion
 
 } // class AbilitiesController 
 // namespace
+[System.Serializable]
+public struct PlayerAbilitiesData
+{
+    public bool nightVision;
+    public bool doubleJump;
+    public bool grappler;
+    public bool tiger;
+    public bool armadillo;
+}
