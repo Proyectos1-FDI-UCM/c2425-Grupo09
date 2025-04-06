@@ -52,6 +52,7 @@ public class PlayerController : MonoBehaviour
                 if(_enSuelo == true)
                 {
                     animator.SetTrigger("Land");
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.land, false);
                 } else animator.ResetTrigger("Land");
             }
         }
@@ -258,6 +259,7 @@ public class PlayerController : MonoBehaviour
     private void Jump()
     {
         animator.SetTrigger("Jump");
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.jump, true);
         _rB.velocity = new Vector2(_rB.velocity.x, AlturaSalto);
     }
     /// <summary>

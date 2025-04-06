@@ -20,11 +20,6 @@ public class InventoryController : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
 
     [SerializeField] TextMeshProUGUI numApples;
     [SerializeField] GameObject grayGoldenApple;
@@ -45,14 +40,6 @@ public class InventoryController : MonoBehaviour
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
     
-    // Por defecto están los típicos (Update y Start) pero:
-    // - Hay que añadir todos los que sean necesarios
-    // - Hay que borrar los que no se usen 
-    
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before 
-    /// any of the Update methods are called the first time.
-    /// </summary>
     void Awake()
     {
         _health = GetComponent<Health>();
@@ -64,6 +51,7 @@ public class InventoryController : MonoBehaviour
         if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0 && _health._currentHealth < 100) //Curacion al consumir una manzana
         {
             _animator.SetTrigger("Eat");
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.eat, true);
             applesInInventory--;
             _health.Updatehealth(appleHealthUp);
             AppleConsumed();

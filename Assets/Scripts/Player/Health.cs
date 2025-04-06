@@ -103,6 +103,7 @@ public class Health : MonoBehaviour
         {
             _timeLastShield = Time.time;
             OnShield();
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.shield, true);
             _currentDuration = ShieldDuration;
         }
     }
@@ -148,6 +149,7 @@ public class Health : MonoBehaviour
            Die();
         } else {
             animator.SetTrigger("Hurt"); 
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurt, true);
             EnablePlayerForAnimation();
         }
     }
@@ -155,6 +157,7 @@ public class Health : MonoBehaviour
     public void Die()
     {
         animator.SetTrigger("Dead");
+        AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.die, false);
         _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
     }

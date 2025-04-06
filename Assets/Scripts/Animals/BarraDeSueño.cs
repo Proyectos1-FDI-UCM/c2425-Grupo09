@@ -62,6 +62,7 @@ public class BarraDeSueño : MonoBehaviour
         if(!dormido)
         {
             _barraDeSueño += amount;
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.animalHurt, true);
 
             if(_barraDeSueño >= MaxBarraDeSueño)
             {

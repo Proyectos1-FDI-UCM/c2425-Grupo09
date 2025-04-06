@@ -108,6 +108,7 @@ public class GrapplerGun : MonoBehaviour
         {
             SetGrapplePoint();
             HUDAbilities.Instance.GorillaGlow(true);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.launchGrappler, true);
         }
         else if (InputManager.Instance.GrapplerIsPressed() && grapplerUnlocked) //Mientras esta presionado el Input, se mantiene el grappler
         {

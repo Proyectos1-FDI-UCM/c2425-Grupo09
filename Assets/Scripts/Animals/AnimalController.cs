@@ -143,6 +143,7 @@ public class AnimalController : MonoBehaviour
 
                 _animator.SetTrigger("Attack");
                 _animator.SetBool("Move", false);
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.attack, true);
                 
                 if(NeedAttackVFX)
                 StartCoroutine(AttackVFX());
