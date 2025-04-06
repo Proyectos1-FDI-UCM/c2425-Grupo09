@@ -140,7 +140,6 @@ public class AnimalController : MonoBehaviour
             else if(Time.time > _tiempoUltimoAtaque + CooldownAtaque)
             {
                 _health.Updatehealth(-Damage);
-                _health.HurtAnimation();
 
                 _animator.SetTrigger("Attack");
                 _animator.SetBool("Move", false);

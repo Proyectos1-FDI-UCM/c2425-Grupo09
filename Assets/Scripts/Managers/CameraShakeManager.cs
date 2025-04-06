@@ -64,6 +64,11 @@ public class CameraShakeManager : MonoBehaviour
         impulseSource.GenerateImpulseWithForce(force);
     }
 
+    public void StandardCameraShake()
+    {
+        _cinemachineImpulseSource.GenerateImpulseWithForce(_shakeForce);
+    }
+
     #endregion
 
 } // class CameraShakeManager 

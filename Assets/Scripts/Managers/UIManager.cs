@@ -23,6 +23,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject Fade;
     [SerializeField] private GameObject PauseMenu;
 
+    [SerializeField] private GameObject ObtainEffect;
+    [SerializeField] GameObject[] AbilitiesTextBox;
+
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -88,17 +91,40 @@ public class UIManager : MonoBehaviour
     {
         _fadeAnim.SetTrigger("FadeOut");
     }
+
     public void ResumeGame()
     {
         PauseMenu.SetActive(false);
         Time.timeScale = 1f;
         _isPaused = false;
     }
+
+    public void VFXObtainAbility(int index)
+    {
+        StartCoroutine(EffectAnimation(index));
+    }
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
+    private IEnumerator EffectAnimation(int index)
+    {
+        ObtainEffect.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        EnableAbilityTextBox(index, true);
+        CameraShakeManager.Instance.StandardCameraShake();
+        yield return new WaitForSeconds(2f);
+        ObtainEffect.SetActive(false);
+        yield return new WaitForSeconds(2f);
+        EnableAbilityTextBox(index, false);
+    }
+
+    private void EnableAbilityTextBox(int index, bool state)
+    {
+        AbilitiesTextBox[index].SetActive(state);
+    }
     #endregion
 
 } // class UIManager 

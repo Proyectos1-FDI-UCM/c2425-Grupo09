@@ -146,6 +146,9 @@ public class Health : MonoBehaviour
         if (_currentHealth <= 0) //Si la vida llega a 0 muere
         {
            Die();
+        } else {
+            animator.SetTrigger("Hurt"); 
+            EnablePlayerForAnimation();
         }
     }
 
@@ -154,12 +157,6 @@ public class Health : MonoBehaviour
         animator.SetTrigger("Dead");
         _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
-    }
-
-    public void HurtAnimation()
-    {
-        animator.SetTrigger("Hurt"); 
-        EnablePlayerForAnimation();
     }
 
     public void ResetPlayer()

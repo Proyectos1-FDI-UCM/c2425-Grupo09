@@ -27,9 +27,6 @@ public class AbilitiesManager : MonoBehaviour
     public bool tiger = false;
     public bool armadillo = false;
 
-    [SerializeField] private GameObject ObtainEffect;
-    [SerializeField] GameObject[] AbilitiesTextBox;
-
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -42,7 +39,9 @@ public class AbilitiesManager : MonoBehaviour
     {
         Armadillo,
         Bat,
-        Gorila
+        Gorila,
+        Tiger,
+        Bunny
     }
     #endregion
 
@@ -80,7 +79,7 @@ public class AbilitiesManager : MonoBehaviour
         if(!doubleJump)
         {
             doubleJump = true;
-            StartCoroutine(EffectAnimation(0));
+            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Bunny);
         }
     }
 
@@ -97,7 +96,7 @@ public class AbilitiesManager : MonoBehaviour
             }
             
             _HUDAbilities.ActivateColor((int)_HUDImage.Bat);
-            StartCoroutine(EffectAnimation(1));
+            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Bat);
         }
         
 
@@ -108,7 +107,7 @@ public class AbilitiesManager : MonoBehaviour
         {
             grappler = true;
             _HUDAbilities.ActivateColor((int)_HUDImage.Gorila);
-            StartCoroutine(EffectAnimation(2));
+            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Gorila);
         }
        
     }
@@ -117,7 +116,7 @@ public class AbilitiesManager : MonoBehaviour
         if(!tiger)
         {
             tiger = true;
-            StartCoroutine(EffectAnimation(3));
+            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Tiger);
         }
         
     }
@@ -127,7 +126,7 @@ public class AbilitiesManager : MonoBehaviour
         {
             armadillo = true;
             _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
-            StartCoroutine(EffectAnimation(4));
+            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Armadillo);
         }
     }
 
@@ -136,21 +135,7 @@ public class AbilitiesManager : MonoBehaviour
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 
-    private IEnumerator EffectAnimation(int index)
-    {
-        ObtainEffect.SetActive(true);
-        yield return new WaitForSeconds(2f);
-        EnableAbilityTextBox(index, true);
-        yield return new WaitForSeconds(2f);
-        ObtainEffect.SetActive(false);
-        yield return new WaitForSeconds(2f);
-        EnableAbilityTextBox(index, false);
-    }
-
-     public void EnableAbilityTextBox(int index, bool state)
-    {
-        AbilitiesTextBox[index].SetActive(state);
-    }
+    
     #endregion
 
 } // class AbilitiesController 
