@@ -53,8 +53,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip pickApple;
     public AudioClip pickTime;
     [Header("Oher SFX")]
+    public AudioClip magicCharge;
     public AudioClip magicExplosion;
-    public AudioClip torch;
+    public AudioClip magicTinkle;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----

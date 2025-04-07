@@ -576,6 +576,7 @@ GameObject:
   - component: {fileID: 3784885503509508793}
   - component: {fileID: 5547354880844517240}
   - component: {fileID: 7607157575400462418}
+  - component: {fileID: 8187854975485187339}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -840,6 +841,7 @@ MonoBehaviour:
   numApples: {fileID: 0}
   grayGoldenApple: {fileID: 0}
   appleHealthUp: 15
+  itemArray: []
 --- !u!114 &70015491447889464
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -854,6 +856,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanciaMaxima: 30
   animator: {fileID: 3784885503509508793}
+  AnimalsList: []
 --- !u!231 &5112008373399619799
 SpringJoint2D:
   m_ObjectHideFlags: 0
@@ -967,6 +970,14 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0.05, y: 0.05, z: 0}
+--- !u!81 &8187854975485187339
+AudioListener:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3561404253343709620}
+  m_Enabled: 1
 --- !u!1 &3611056737479953626
 GameObject:
   m_ObjectHideFlags: 0
