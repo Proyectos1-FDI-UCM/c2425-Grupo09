@@ -32,6 +32,11 @@ public class GameManager : MonoBehaviour
     // Ejemplo: MaxHealthPoints
     public PlayerController _playerController;
     public AbilitiesManager _abilitiesManager;
+    public Timer _timer;
+    public Health _health;
+    public Capture _capture;
+    public GrapplerGun _gun;
+    public InventoryController _inventoryController;
 
     #endregion
 
@@ -101,6 +106,11 @@ public class GameManager : MonoBehaviour
     {
         _playerController = FindFirstObjectByType<PlayerController>();
         _abilitiesManager = FindFirstObjectByType<AbilitiesManager>();
+        _timer = FindFirstObjectByType<Timer>();
+        _health = FindFirstObjectByType<Health>();
+        _capture = FindFirstObjectByType<Capture>();
+        _gun = FindFirstObjectByType<GrapplerGun>();
+        _inventoryController = FindFirstObjectByType<InventoryController>();
     }
     private void Update()
     {

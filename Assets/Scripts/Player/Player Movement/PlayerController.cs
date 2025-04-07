@@ -112,20 +112,7 @@ public class PlayerController : MonoBehaviour
         }
         Speed = velocidad;
         tSpeed = velocidad * 1.25f;
-
-        if (AbilitiesManager.Instance.doubleJump)
-        {
-            extraJump = 1;
-        }
-        if (AbilitiesManager.Instance.nightVision)
-        {
-            nightVision.SetActive(true);
-        }
-        if(AbilitiesManager.Instance.tiger == true) 
-        { 
-            tigerUnlocked = true; 
-        }
-
+        Abilities();
         _fallSpeedYDampingChangeThreshold = CameraManager.Instance.FallSpeedYDampingChangeThreshold;
 
     }
@@ -231,6 +218,23 @@ public class PlayerController : MonoBehaviour
     {
         _rB.velocity = Vector2.zero;
         enabled = false;
+    }
+
+    public void Abilities()
+    {
+
+        if (AbilitiesManager.Instance.doubleJump)
+        {
+            extraJump = 1;
+        }
+        if (AbilitiesManager.Instance.nightVision)
+        {
+            nightVision.SetActive(true);
+        }
+        if (AbilitiesManager.Instance.tiger == true)
+        {
+            tigerUnlocked = true;
+        }
     }
 
     /// <summary>

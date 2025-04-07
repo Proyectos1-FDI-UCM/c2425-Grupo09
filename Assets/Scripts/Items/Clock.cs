@@ -18,13 +18,15 @@ public class Clock : MonoBehaviour
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (Serialized Fields)
 
-    private Timer timer;
+
     [SerializeField] float SumaSeg = 20f;
+    [SerializeField] int ItemId;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (Private Fields)
-
+    private Timer timer;
+    private InventoryController inventoryController;
 
     #endregion
 
@@ -39,6 +41,7 @@ public class Clock : MonoBehaviour
     {
         // Se obtiene el componente Timer del objeto asociado a "timerText"
         timer = FindFirstObjectByType<Timer>();
+        inventoryController = FindFirstObjectByType<InventoryController>();
     }
 
     /// <summary>
@@ -75,10 +78,12 @@ public class Clock : MonoBehaviour
         GameObject player = collision.gameObject;
         if (player.GetComponent<PlayerController>() != null)
         {
+            inventoryController.InventoryAdd(ItemId);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.pickTime);
             gameObject.SetActive(false);
             timer.Reloj(SumaSeg);
             Destroy(gameObject);
+
         }
     }
 

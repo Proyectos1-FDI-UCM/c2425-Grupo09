@@ -7,6 +7,8 @@
 
 using UnityEditor.Rendering;
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 
 /// <summary>
 /// Clase encargada de la interacción con un objeto animal en el juego. 
@@ -19,6 +21,7 @@ public class Capture : MonoBehaviour
 
     [SerializeField] private float distanciaMaxima = 30f;  // Distancia máxima a la que se puede interactuar con el objeto.
     [SerializeField] Animator animator;
+    [SerializeField] GameObject[] AnimalsList;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -32,6 +35,7 @@ public class Capture : MonoBehaviour
     private Health _health;
     private CheckList _checkList;
     private int _capturedAnimals = 0;
+    private List <int> _animalCapture = new List<int>();
 
     private enum _animalIdentifier
     {
@@ -85,7 +89,7 @@ public class Capture : MonoBehaviour
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.pick, false);
                 CheckpointManager.Instance.SetCheckpoint(transform.position);
                 _capturedAnimals++;
-                
+                _animalCapture.Add(_barraDeSueño.AnimalId);
                 if (_animal.CompareTag("Bunny"))
                 {
                     Debug.Log("saltos extra:" + _playerController.extraJump);
@@ -164,6 +168,22 @@ public class Capture : MonoBehaviour
     public int AnimalCount ()
     { return _capturedAnimals; }
 
+    #region Save and Load
+    public void Save(ref CaptureData data)
+    {
+        data.captures = _animalCapture;
+    }
+    public void Load( CaptureData data)
+    {
+         _animalCapture = data.captures;
+        for (int i = 0; i < _animalCapture.Count; i++) 
+        {
+            Destroy(AnimalsList[_animalCapture[i]]);   
+        }
+
+    }
+    #endregion
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -183,4 +203,8 @@ public class Capture : MonoBehaviour
     #endregion
 
 } // class Capture
-
+[System.Serializable]
+public struct CaptureData
+{
+    public List<int> captures;
+}

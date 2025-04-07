@@ -12,6 +12,7 @@ using TMPro;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 using DG.Tweening;
+using System.Collections;
 // Añadir aquí el resto de directivas using
 
 /// <summary>
@@ -76,7 +77,7 @@ public class Health : MonoBehaviour
 
     void Start()
     {
-        if (AbilitiesManager.Instance.armadillo == true) { armadilloUnlocked = true; }
+        Abilities();
         _currentDuration = ShieldDuration;
         _currentHealth = startingHealth;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
@@ -179,6 +180,25 @@ public class Health : MonoBehaviour
         _playerController.enabled = false;
     }
 
+    #region Save and Load
+    public void Save(ref HealthData data)
+    {
+        data.healthAmount = _currentHealth;
+
+    }
+
+    public void Load( HealthData data)
+    {
+        _currentHealth = data.healthAmount;
+        UpdateHealthBar();
+        UpdateShieldBar();
+    }
+    #endregion
+
+    public void Abilities()
+    {
+        if (AbilitiesManager.Instance.armadillo == true) { armadilloUnlocked = true; }
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -220,3 +240,8 @@ public class Health : MonoBehaviour
 
 } // class Health 
 // namespace
+[System.Serializable]
+public struct HealthData
+{
+    public float healthAmount;
+}

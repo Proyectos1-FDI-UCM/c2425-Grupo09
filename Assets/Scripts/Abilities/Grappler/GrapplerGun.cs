@@ -91,10 +91,7 @@ public class GrapplerGun : MonoBehaviour
         grappleRope.OnGrappleStateChanged += CheckGrapplingState;
 
         //Comprobacion de desbloqueo de la habilidad
-        if (AbilitiesManager.Instance.grappler == true)
-        {
-            grapplerUnlocked = true;
-        }
+        Abilities();
 
         _initialGravity = m_rigidbody.gravityScale;
     }
@@ -300,6 +297,14 @@ public class GrapplerGun : MonoBehaviour
                 m_springJoint2D.frequency = launchSpeed;
                 m_springJoint2D.enabled = true;
             }
+        }
+
+    }
+    public void Abilities()
+    {
+        if (AbilitiesManager.Instance.grappler == true)
+        {
+            grapplerUnlocked = true;
         }
     }
     #endregion

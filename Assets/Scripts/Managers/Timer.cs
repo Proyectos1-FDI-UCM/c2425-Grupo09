@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
+using System.Collections;
 
 public class Timer : MonoBehaviour
 {
@@ -82,10 +83,33 @@ public class Timer : MonoBehaviour
         int seconds = Mathf.FloorToInt((timeSeg - currenttime) % 60);
         return seconds;
     }
+
+    #region Save and Load
+    public void Save(ref TimerData data)
+    {
+        playing = false;
+        data.timeAmount = currenttime;
+
+    }
+
+    public void Load(TimerData data) 
+    {
+        playing = true;
+        currenttime = data.timeAmount;
+
+    }
+
+    #endregion
     private void PlayerDead()
     {
         _defeat.ShowDefeat();
         _health.Die();
     }
+}
+[System.Serializable]
+public struct TimerData
+{
+    public float timeAmount;
+ 
 }
 

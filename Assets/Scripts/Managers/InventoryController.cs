@@ -6,6 +6,7 @@
 //---------------------------------------------------------
 
 using System;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -24,7 +25,7 @@ public class InventoryController : MonoBehaviour
     [SerializeField] TextMeshProUGUI numApples;
     [SerializeField] GameObject grayGoldenApple;
     [SerializeField] private int appleHealthUp = 50;
-
+    [SerializeField] GameObject[] itemArray;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -34,12 +35,12 @@ public class InventoryController : MonoBehaviour
     
     private int aviableApples;
     private int applesInInventory = 0;
-
+    private List<int> _itemList = new List<int>();
     #endregion
-    
+
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-    
+
     void Awake()
     {
         _health = GetComponent<Health>();
@@ -69,11 +70,36 @@ public class InventoryController : MonoBehaviour
         NumAppleToText(applesInInventory);
     }
 
+    public void InventoryAdd(int id) 
+    { 
+        _itemList.Add(id);
+    }
+    #region Save and Load
+
+    public void Save(ref ItemData data)
+    {
+        data.apple = applesInInventory;
+        data.items = _itemList;
+    }
+    public void Load(ItemData data)
+    {
+        applesInInventory = data.apple;
+        _itemList = data.items;
+        NumAppleToText(applesInInventory);
+        for (int i = 0; i < _itemList.Count; i++)
+        {
+            Destroy(itemArray[_itemList[i]]);
+        }
+    }
+
+
     #endregion
-    
+
+    #endregion
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-   
+
     private void AppleConsumed()
     {
         aviableApples--;
@@ -100,3 +126,9 @@ public class InventoryController : MonoBehaviour
 
 } // class InventoryController 
 // namespace
+[System.Serializable]
+public struct ItemData
+{
+    public List<int> items;
+    public int apple;
+}

@@ -25,8 +25,13 @@ public class BarraDeSueño : MonoBehaviour
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
+    [SerializeField] int _animalId;
 
     public bool Male;
+    public int AnimalId
+    {
+        get => _animalId;
+    }
 
     #endregion
 

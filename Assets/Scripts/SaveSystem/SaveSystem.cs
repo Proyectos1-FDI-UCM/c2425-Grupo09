@@ -31,6 +31,10 @@ public class SaveSystem
     {
         public PlayerSaveData PlayerData;
         public PlayerAbilitiesData AbilitiesData;
+        public TimerData timerData;
+        public HealthData healthData;
+        public CaptureData captureData;
+        public ItemData itemData;
     }
     #endregion
 
@@ -107,12 +111,23 @@ public class SaveSystem
     {
         GameManager.Instance._playerController.Save(ref _saveData.PlayerData);
         GameManager.Instance._abilitiesManager.Save(ref _saveData.AbilitiesData);
-        
+        GameManager.Instance._timer.Save(ref _saveData.timerData);
+        GameManager.Instance._health.Save(ref _saveData.healthData);
+        GameManager.Instance._capture.Save(ref _saveData.captureData);
+        GameManager.Instance._inventoryController.Save(ref _saveData.itemData);
+
     }
     private static void HandleLoadData()
     {
         GameManager.Instance._playerController.Load( _saveData.PlayerData);
         GameManager.Instance._abilitiesManager.Load( _saveData.AbilitiesData);
+        GameManager.Instance._timer.Load( _saveData.timerData);
+        GameManager.Instance._health.Load(_saveData.healthData);
+        GameManager.Instance._capture.Load( _saveData.captureData);
+        GameManager.Instance._inventoryController.Load(_saveData.itemData);
+        GameManager.Instance._playerController.Abilities();
+        GameManager.Instance._health.Abilities();
+        GameManager.Instance._gun.Abilities();
     }
     #endregion   
 

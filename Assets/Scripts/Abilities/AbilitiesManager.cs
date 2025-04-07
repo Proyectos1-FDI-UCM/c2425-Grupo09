@@ -147,6 +147,9 @@ public class AbilitiesManager : MonoBehaviour
         grappler = data.grappler;
         tiger = data.tiger;
         armadillo = data.armadillo;
+        if(nightVision) _HUDAbilities.ActivateColor((int)_HUDImage.Bat);
+        if(grappler) _HUDAbilities.ActivateColor((int)_HUDImage.Gorila);
+        if (armadillo) _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
     }
 
     #endregion

@@ -6,6 +6,7 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using static UnityEditor.Progress;
 // Añadir aquí el resto de directivas using
 
 
@@ -17,7 +18,7 @@ public class Apple : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-
+    [SerializeField] int ItemId;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
@@ -53,6 +54,7 @@ public class Apple : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Health>() != null)
         {
+            _inventoryController.InventoryAdd(ItemId);
             AudioManager.Instance.PlaySFX(AudioManager.Instance.pickApple);
             gameObject.SetActive(false);
             _inventoryController.AddAppleToInventory();
