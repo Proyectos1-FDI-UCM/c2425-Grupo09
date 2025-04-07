@@ -113,7 +113,11 @@ public class AnimalController : MonoBehaviour
                 LayerMask groundMask = LayerMask.GetMask("Ground");
                 Collider2D _targetPoint = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x - AnchoAnimal * 2f * Mathf.Sign(_direction.x), _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
 
-                if(_targetPoint != null) _isJumping = true;
+                if(_targetPoint != null) 
+                {
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.animalJump, true);
+                    _isJumping = true;
+                }
                 //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
             }
         }

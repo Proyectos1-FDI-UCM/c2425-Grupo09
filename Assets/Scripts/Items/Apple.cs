@@ -53,6 +53,7 @@ public class Apple : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Health>() != null)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.pickApple);
             gameObject.SetActive(false);
             _inventoryController.AddAppleToInventory();
             Destroy(gameObject);

@@ -75,6 +75,7 @@ public class Clock : MonoBehaviour
         GameObject player = collision.gameObject;
         if (player.GetComponent<PlayerController>() != null)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.pickTime);
             gameObject.SetActive(false);
             timer.Reloj(SumaSeg);
             Destroy(gameObject);

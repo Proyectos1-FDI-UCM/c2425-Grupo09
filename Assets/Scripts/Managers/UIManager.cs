@@ -115,6 +115,7 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         EnableAbilityTextBox(index, true);
         CameraShakeManager.Instance.StandardCameraShake();
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.magicExplosion);
         yield return new WaitForSeconds(2f);
         ObtainEffect.SetActive(false);
         yield return new WaitForSeconds(2f);

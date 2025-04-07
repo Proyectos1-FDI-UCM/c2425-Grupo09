@@ -79,6 +79,7 @@ public class BarraDeSueño : MonoBehaviour
                     if(gameObject.CompareTag("Bunny") || gameObject.CompareTag("Bat"))
                     _animalController.TurnAround();
                 }
+                AudioManager.Instance.PlaySFX(AudioManager.Instance.animalKO);
                 _animalController.enabled = false;
                 dormido = true;
             }

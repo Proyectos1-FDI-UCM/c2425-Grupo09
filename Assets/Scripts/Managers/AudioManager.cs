@@ -25,6 +25,9 @@ public class AudioManager : MonoBehaviour
     [Header("Audio Clip")]
     [Header("Music")]
     public AudioClip background;
+    public AudioClip mainMenu;
+    public AudioClip victory;
+    public AudioClip gameOver;
     [Header("Player SFX")]
     public AudioClip shoot;
     public AudioClip walk;
@@ -39,12 +42,19 @@ public class AudioManager : MonoBehaviour
     public AudioClip swingGrappler;
     [Header("Animal SFX")]
     public AudioClip attack;
+    public AudioClip animalJump;
     public AudioClip animalHurt;
+    public AudioClip animalKO;
     public AudioClip bat;
     public AudioClip[] tiger;
     public AudioClip gorilla;
-    public AudioClip bunny;
-
+    public AudioClip gorillaJump;
+    [Header("Interactuables SFX")]
+    public AudioClip pickApple;
+    public AudioClip pickTime;
+    [Header("Oher SFX")]
+    public AudioClip magicExplosion;
+    public AudioClip torch;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
@@ -93,7 +103,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="clip">Audio que se quiere reproducir</param>
     /// <param name="randomPitch">true si se debe reproducir el sonido con un tono aleatorio, false si no</param>
-    public void PlaySFX(AudioClip clip, bool randomPitch)
+    public void PlaySFX(AudioClip clip, bool randomPitch = false)
     {
         if(clip != null)
         {
@@ -117,7 +127,7 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="clips">Sonidos entre los que se selecciona uno aleatorio</param> 
     /// <param name="randomPitch">true si se debe reproducir el sonido con un tono aleatorio, false si no</param>
-    public void PlayRandomSFX(AudioClip[] clips, bool randomPitch)  
+    public void PlayRandomSFX(AudioClip[] clips, bool randomPitch = false)  
     {
         int randomIndex = Random.Range(0, clips.Length);
 
