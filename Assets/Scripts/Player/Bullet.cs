@@ -32,6 +32,8 @@ public class Bullet : MonoBehaviour
     private Rigidbody2D _rb;
     private SpriteRenderer _sr;
     private float _damage;
+    private bool hasHit = false;
+
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -63,6 +65,9 @@ public class Bullet : MonoBehaviour
     /// </summary>
     private void OnTriggerEnter2D(Collider2D coll)
     {
+        if (hasHit) return; // evita múltiples ejecuciones
+        hasHit = true;
+
         if(coll.gameObject.GetComponent<BarraDeSueño>() != null)
         {
             gameObject.SetActive(false);

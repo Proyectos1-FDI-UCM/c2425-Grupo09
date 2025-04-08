@@ -78,6 +78,8 @@ public class CaveEntrance : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
+            CheckpointManager.Instance.SetCheckpoint(other.transform.position);
+            
             Vector2 exitDirection = (other.transform.position - _coll.bounds.center).normalized;
 
             bool entering = (exitDirection.x > 0 == enteringFromLeft);
