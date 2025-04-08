@@ -148,7 +148,7 @@ public class Health : MonoBehaviour
         if (_currentHealth <= 0) //Si la vida llega a 0 muere
         {
            Die();
-        } else {
+        } else if(amount < 0) {
             animator.SetTrigger("Hurt"); 
             AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurt, true);
             EnablePlayerForAnimation();
