@@ -840,8 +840,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   numApples: {fileID: 0}
   grayGoldenApple: {fileID: 0}
-  appleHealthUp: 15
-  itemArray: []
+  appleHealthUp: 20
+  itemArray:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &70015491447889464
 MonoBehaviour:
   m_ObjectHideFlags: 0

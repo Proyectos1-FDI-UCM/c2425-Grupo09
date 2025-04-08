@@ -104,8 +104,6 @@ public class GrapplerGun : MonoBehaviour
         if (InputManager.Instance.GrapplerWasPressedThisFrame() && grapplerUnlocked) //Si se detecta el Input, se lanza el grappler
         {
             SetGrapplePoint();
-            HUDAbilities.Instance.GorillaGlow(true);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.launchGrappler, true);
         }
         else if (InputManager.Instance.GrapplerIsPressed() && grapplerUnlocked) //Mientras esta presionado el Input, se mantiene el grappler
         {
@@ -223,6 +221,10 @@ public class GrapplerGun : MonoBehaviour
 
         grappleDistanceVector = grapplePoint - (Vector2)gunPivot.position;
         grappleRope.enabled = true;
+        
+        HUDAbilities.Instance.GorillaGlow(true);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.launchGrappler, true);
+
     }
 
     /// <summary>
