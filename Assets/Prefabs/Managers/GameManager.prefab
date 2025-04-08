@@ -341,7 +341,7 @@ MonoBehaviour:
   musicSource: {fileID: 1567626120825920964}
   SFXSource: {fileID: 4487964267098893414}
   RandomPitchSFXSource: {fileID: 4613178982795883444}
-  background: {fileID: 8300000, guid: 683011b74c63a3e4a933a9937094348b, type: 3}
+  background: {fileID: 8300000, guid: 3233600a2eb802644be9a00305ca754e, type: 3}
   mainMenu: {fileID: 8300000, guid: 91ca76adbff663743ab83e01b3d7c647, type: 3}
   victory: {fileID: 8300000, guid: d87ab331c87d8454fa30c25caa049c05, type: 3}
   gameOver: {fileID: 8300000, guid: 510e305a20e5d5340ba123eac4f83f8e, type: 3}

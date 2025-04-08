@@ -224,8 +224,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TimerText: {fileID: 3623426414513371715}
   Player: {fileID: 0}
-  LoseMenu: {fileID: 0}
-  timeSeg: 600
+  DefeatSign: {fileID: 0}
+  timeSeg: 901
   SumaSeg: 5
   animator: {fileID: 4389887802914740243}
 --- !u!1 &4170480641016549701

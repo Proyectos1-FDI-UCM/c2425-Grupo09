@@ -178,12 +178,14 @@ public class PlayerController : MonoBehaviour
         if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.IsGrappling)
         {
             Jump();
+            animator.SetTrigger("Jump");
             _bufferCounter = 0;
             StartCoroutine(JumpCooldown());
         }
         else if (InputManager.Instance.JumpWasPressedThisFrame() && !EnSuelo && !grappleRope.IsGrappling && _jumpCounter > 0)
         {
             Jump();
+            animator.SetTrigger("DoubleJump");
             _jumpCounter = 0;
             StartCoroutine(JumpCooldown());
         }
@@ -262,7 +264,6 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        animator.SetTrigger("Jump");
         AudioManager.Instance.PlaySFX(AudioManager.Instance.jump, true);
         _rB.velocity = new Vector2(_rB.velocity.x, AlturaSalto);
     }

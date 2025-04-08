@@ -53,6 +53,11 @@ public class LevelManager : MonoBehaviour
         }
     }
 
+    void Start()
+    {
+        AudioManager.Instance.PlayMusic(AudioManager.Instance.background);
+    }
+
     
 
     #endregion

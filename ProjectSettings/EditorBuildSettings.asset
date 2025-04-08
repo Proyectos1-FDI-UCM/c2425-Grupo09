@@ -6,15 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/FUSION_MAPA.unity
-    guid: b60be34bb0ba4834089fe17eb06dc8d6
-  - enabled: 1
     path: Assets/Scenes/MainMenu.unity
     guid: 755f0b9243d58df4f9913577f0249e91
   - enabled: 1
-    path: Assets/Scenes/FUSION 2.unity
-    guid: 35fb0bc1f8742e8429ea0ea010672034
-  - enabled: 1
-    path: "Assets/Scenes/Testing/Dise\xF1oSabana.unity"
-    guid: 703164bdca3442f43aacf1ee0111aa83
+    path: Assets/Scenes/FUSION_MAPA.unity
+    guid: b60be34bb0ba4834089fe17eb06dc8d6
   m_configObjects: {}
