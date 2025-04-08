@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
                 if(_enSuelo == true)
                 {
                     animator.SetTrigger("Land");
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.land, false);
+                    AudioManager.Instance.PlaySFX(AudioManager.Instance.land, true);
                 } else animator.ResetTrigger("Land");
             }
         }

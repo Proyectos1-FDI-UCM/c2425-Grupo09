@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2725598850786426308}
   - component: {fileID: 3027325249833464269}
   - component: {fileID: 1095373416437715726}
+  - component: {fileID: 3115672998886232095}
   m_Layer: 12
   m_Name: Apple
   m_TagString: Apple
@@ -143,4 +144,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20fc2b22ab7f21d448b93e0d3d16aaf3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InventoryControllerHolder: {fileID: 0}
+  ItemId: 0
+--- !u!114 &3115672998886232095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4280653737915957505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38e811726bc1cc409b78c92e29941ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.5
+  frecuency: 1

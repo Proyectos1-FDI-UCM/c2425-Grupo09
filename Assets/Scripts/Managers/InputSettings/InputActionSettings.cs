@@ -156,15 +156,6 @@ namespace UnityEngine.InputSystem
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""New action"",
-                    ""type"": ""Button"",
-                    ""id"": ""63fc0d93-1563-42cc-a083-279ea65c04be"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Play"",
                     ""type"": ""Button"",
                     ""id"": ""be43a7d2-c6d1-45e9-9fc7-2b724d3ce120"",
@@ -275,7 +266,7 @@ namespace UnityEngine.InputSystem
                 {
                     ""name"": """",
                     ""id"": ""143bb1cd-cc10-4eca-a2f0-a3664166fe91"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
@@ -300,7 +291,7 @@ namespace UnityEngine.InputSystem
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -311,7 +302,7 @@ namespace UnityEngine.InputSystem
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -319,10 +310,21 @@ namespace UnityEngine.InputSystem
                 {
                     ""name"": """",
                     ""id"": ""5d0c4b5e-f570-4ab8-9f29-2ab2882b5fe0"",
-                    ""path"": ""<Keyboard>/p"",
+                    ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Heal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a631e31d-df18-4c6e-9bd1-5d487b0f14f0"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Heal"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -333,7 +335,18 @@ namespace UnityEngine.InputSystem
                     ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Capture"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""89ed7fbb-7662-48c5-87e2-b3c0e4c326d7"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Capture"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -344,19 +357,19 @@ namespace UnityEngine.InputSystem
                     ""path"": ""<Keyboard>/e"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Grappler"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4c080b72-e97f-463c-bdde-872817dd8836"",
-                    ""path"": ""<Keyboard>/t"",
+                    ""id"": ""051a75b2-7ccb-40cf-8244-e7be6e693e9f"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Tiger"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Grappler"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -366,7 +379,18 @@ namespace UnityEngine.InputSystem
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Shield"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""64ae7dee-1e3d-4ac5-8293-0472b80dd76f"",
+                    ""path"": ""<Gamepad>/buttonEast"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Shield"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -377,29 +401,29 @@ namespace UnityEngine.InputSystem
                     ""path"": ""<Keyboard>/tab"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""CheckList"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""6c6cced5-3a61-4769-b3ed-96238d13c85c"",
-                    ""path"": ""<Keyboard>/k"",
+                    ""id"": ""d6a569ce-a921-4419-9845-363bf8bb133a"",
+                    ""path"": ""<Gamepad>/dpad/down"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Testing"",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""CheckList"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""cd222f08-4619-4825-9a8b-b18657b081b4"",
-                    ""path"": ""<Keyboard>/v"",
+                    ""path"": ""<Keyboard>/f"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
                     ""action"": ""Exit"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -439,22 +463,22 @@ namespace UnityEngine.InputSystem
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9a95ad20-e3c1-4b78-a3f3-3dcfaaaf42b8"",
-                    ""path"": """",
+                    ""id"": ""9181e6fa-428a-4aca-8662-2bb20c8b7903"",
+                    ""path"": ""<Keyboard>/anyKey"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""New action"",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Play"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""9181e6fa-428a-4aca-8662-2bb20c8b7903"",
-                    ""path"": ""<Keyboard>/anyKey"",
+                    ""id"": ""8c284730-0da5-4a72-b124-2224dbbefdf7"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Play"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -462,10 +486,21 @@ namespace UnityEngine.InputSystem
                 {
                     ""name"": """",
                     ""id"": ""a3d09036-b6b0-40c1-a70f-1c52b9134d05"",
-                    ""path"": ""<Keyboard>/o"",
+                    ""path"": ""<Keyboard>/p"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55cb2c8b-c3e1-46bf-bac3-22a3a0de3415"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -1068,7 +1103,6 @@ namespace UnityEngine.InputSystem
             m_Player_Map = m_Player.FindAction("Map", throwIfNotFound: true);
             m_Player_Save = m_Player.FindAction("Save", throwIfNotFound: true);
             m_Player_Load = m_Player.FindAction("Load", throwIfNotFound: true);
-            m_Player_Newaction = m_Player.FindAction("New action", throwIfNotFound: true);
             m_Player_Play = m_Player.FindAction("Play", throwIfNotFound: true);
             m_Player_Pause = m_Player.FindAction("Pause", throwIfNotFound: true);
             // UI
@@ -1158,7 +1192,6 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Map;
         private readonly InputAction m_Player_Save;
         private readonly InputAction m_Player_Load;
-        private readonly InputAction m_Player_Newaction;
         private readonly InputAction m_Player_Play;
         private readonly InputAction m_Player_Pause;
         public struct PlayerActions
@@ -1179,7 +1212,6 @@ namespace UnityEngine.InputSystem
             public InputAction @Map => m_Wrapper.m_Player_Map;
             public InputAction @Save => m_Wrapper.m_Player_Save;
             public InputAction @Load => m_Wrapper.m_Player_Load;
-            public InputAction @Newaction => m_Wrapper.m_Player_Newaction;
             public InputAction @Play => m_Wrapper.m_Player_Play;
             public InputAction @Pause => m_Wrapper.m_Player_Pause;
             public InputActionMap Get() { return m_Wrapper.m_Player; }
@@ -1233,9 +1265,6 @@ namespace UnityEngine.InputSystem
                 @Load.started += instance.OnLoad;
                 @Load.performed += instance.OnLoad;
                 @Load.canceled += instance.OnLoad;
-                @Newaction.started += instance.OnNewaction;
-                @Newaction.performed += instance.OnNewaction;
-                @Newaction.canceled += instance.OnNewaction;
                 @Play.started += instance.OnPlay;
                 @Play.performed += instance.OnPlay;
                 @Play.canceled += instance.OnPlay;
@@ -1288,9 +1317,6 @@ namespace UnityEngine.InputSystem
                 @Load.started -= instance.OnLoad;
                 @Load.performed -= instance.OnLoad;
                 @Load.canceled -= instance.OnLoad;
-                @Newaction.started -= instance.OnNewaction;
-                @Newaction.performed -= instance.OnNewaction;
-                @Newaction.canceled -= instance.OnNewaction;
                 @Play.started -= instance.OnPlay;
                 @Play.performed -= instance.OnPlay;
                 @Play.canceled -= instance.OnPlay;
@@ -1493,7 +1519,6 @@ namespace UnityEngine.InputSystem
             void OnMap(InputAction.CallbackContext context);
             void OnSave(InputAction.CallbackContext context);
             void OnLoad(InputAction.CallbackContext context);
-            void OnNewaction(InputAction.CallbackContext context);
             void OnPlay(InputAction.CallbackContext context);
             void OnPause(InputAction.CallbackContext context);
         }

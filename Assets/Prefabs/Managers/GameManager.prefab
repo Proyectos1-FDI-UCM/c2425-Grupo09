@@ -307,6 +307,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerController: {fileID: 0}
   _abilitiesManager: {fileID: 0}
+  _timer: {fileID: 0}
+  _health: {fileID: 0}
+  _capture: {fileID: 0}
+  _gun: {fileID: 0}
+  _inventoryController: {fileID: 0}
 --- !u!114 &2598751330512981393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -365,8 +370,9 @@ MonoBehaviour:
   gorillaJump: {fileID: 8300000, guid: ab7a6b991dd1878468e905d0f398e679, type: 3}
   pickApple: {fileID: 8300000, guid: d6a019290d482bc4ca7247b5a00cdc75, type: 3}
   pickTime: {fileID: 8300000, guid: bacd3e82aed5c2b47b15e1288842da48, type: 3}
-  magicExplosion: {fileID: 8300000, guid: 9b8e69074a4feb14d84a612c0764d2c2, type: 3}
-  torch: {fileID: 8300000, guid: 46fb10348e40dfb429ca38ec77aae309, type: 3}
+  magicCharge: {fileID: 8300000, guid: 7f99d5959ccbe6e4ca8296b5bcafdf1d, type: 3}
+  magicExplosion: {fileID: 8300000, guid: 0d1dd7f92c5d5a8479e1522e11dc50e4, type: 3}
+  magicTinkle: {fileID: 8300000, guid: 9b8e69074a4feb14d84a612c0764d2c2, type: 3}
 --- !u!1 &5604622037873449801
 GameObject:
   m_ObjectHideFlags: 0

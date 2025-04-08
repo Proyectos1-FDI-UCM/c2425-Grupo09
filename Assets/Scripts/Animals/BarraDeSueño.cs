@@ -78,11 +78,6 @@ public class BarraDeSueño : MonoBehaviour
                 else 
                 {
                     _animator.SetTrigger("Sleep_Left");
-
-                    //Este if es temporal. Como el conejo y el murcielago tienen animaciones de dormir a izquierda y otra para derecha hace falta rotarlos.
-                    //Pero para el resto de animales no.
-                    if(gameObject.CompareTag("Bunny") || gameObject.CompareTag("Bat"))
-                    _animalController.TurnAround();
                 }
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.animalKO);
                 _animalController.enabled = false;

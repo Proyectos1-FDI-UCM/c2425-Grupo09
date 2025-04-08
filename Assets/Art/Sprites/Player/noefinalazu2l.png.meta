@@ -43,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -93,9 +93,980 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: noefinalazu2l_0
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 956
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b31bda8f5eec88944b825da032cb0f80
+      internalID: 436981261
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_1
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 956
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2151b36a2a3cd794b8a1a4fc652f7119
+      internalID: -380048367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_2
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 956
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d6aa781cb513c2041a11aa6508a6ea15
+      internalID: 1920245007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_3
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 956
+        width: 24
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d4694b9c345a7b84b95b68c41b2eed61
+      internalID: 1213214804
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_4
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 956
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02b3ffe60581a754a9bb211693fb76ee
+      internalID: 713661851
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_5
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 892
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 689d24afef07e0e4583dc4a680c878b5
+      internalID: -912791303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_6
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 892
+        width: 20
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a99e0972b2270a040887be498a6865c8
+      internalID: 649681993
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_7
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 892
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: acceb34c9900861498cb7006e4eae16c
+      internalID: 1650086992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_8
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 892
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b149457e530b6184ebcc53e07f1aaaa5
+      internalID: 1014583387
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_9
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 892
+        width: 35
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7ffb0c024f5b55a4d85bd5060dcff0c9
+      internalID: 96877622
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_10
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 828
+        width: 34
+        height: 28
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 26afda2bec548af498cd65e07175208f
+      internalID: 1298784990
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_11
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 828
+        width: 43
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 795347eb8c3d2024dabdc84b67c3172b
+      internalID: -1486585132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_12
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 828
+        width: 42
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 81cf6378e36377d4f9fbb4986ccb0d47
+      internalID: -721707045
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_13
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 828
+        width: 42
+        height: 8
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 656e0121743e902468e83d556183b4d2
+      internalID: -174389263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_14
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 764
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a5c003aae7252164699a09aa7e760118
+      internalID: 460343429
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_15
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 764
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9ca1e9ee799f83142b71142aa8bf56bd
+      internalID: 1196955874
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_16
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 764
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd7c3efc8c626d2409542cef3156cf8a
+      internalID: 260262060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_17
+      rect:
+        serializedVersion: 2
+        x: 207
+        y: 764
+        width: 25
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8e670d46e4314bd4bb6cadadb1a15dc3
+      internalID: 230940266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_18
+      rect:
+        serializedVersion: 2
+        x: 273
+        y: 764
+        width: 25
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6bf343da18e131246af6298c539b9243
+      internalID: -1514934748
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_19
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 764
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8185fe1293abab14c8eb2349e135875d
+      internalID: 10717331
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_20
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 700
+        width: 23
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4edd30f0d6884714bb63169b750daf9c
+      internalID: -885991599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_21
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 700
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6697d61ce421a694080fbe92ccfefb25
+      internalID: -1391325652
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_22
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 636
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2023397e35bcf1a49bf84fb7667ffd7f
+      internalID: -780239238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_23
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 636
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c1f84c1e34ebc5f4393058a3f314949b
+      internalID: 316968335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_24
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 636
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 118d92be41b48ed458521ee34ac0976b
+      internalID: 2053491540
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_25
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 636
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4df830388a6aead4eaef27ee314c7a62
+      internalID: -555532359
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_26
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 572
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22cd4ae8ee7ab7b43b1b868c0f2bda4f
+      internalID: -998602245
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_27
+      rect:
+        serializedVersion: 2
+        x: 80
+        y: 572
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 427aab1551e995c4d86642a7cf9f11ff
+      internalID: 1950469948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_28
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 572
+        width: 28
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3ead8897193bcd46b8aa755cc883788
+      internalID: 1604515815
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_29
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 572
+        width: 27
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c9d087389fc0c184bbfd1bfd6a6e2089
+      internalID: 758237316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_30
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 572
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 14abcc0d7aa00d3449e8188bb864d24a
+      internalID: 902694389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_31
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 572
+        width: 23
+        height: 29
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d528bf7516e6fa5458dbdc894596b518
+      internalID: 1088633869
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_32
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 508
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7e1f4a2ca818f654bb689c92928eae85
+      internalID: -1869243097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_33
+      rect:
+        serializedVersion: 2
+        x: 77
+        y: 508
+        width: 29
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bd27436334033974187a94511025faf9
+      internalID: -1165778104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_34
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 508
+        width: 44
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1f3a43f886774914a85462797b25243b
+      internalID: -1734005464
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_35
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 507
+        width: 44
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e1d5c10e04042344583bc9ac750455b8
+      internalID: -1169846056
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_36
+      rect:
+        serializedVersion: 2
+        x: 272
+        y: 508
+        width: 40
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0a48b51248c693641b82e267fc4d538e
+      internalID: 428791278
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_37
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 444
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ffc2849b299b994bb4b08e788976455
+      internalID: -500018276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_38
+      rect:
+        serializedVersion: 2
+        x: 79
+        y: 444
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3d1fdb1917321d4dbcda8b697428b09
+      internalID: 1850197317
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_39
+      rect:
+        serializedVersion: 2
+        x: 144
+        y: 444
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 321e89c665637e4428dfc3fd820d885e
+      internalID: -43227141
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_40
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 444
+        width: 21
+        height: 22
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d24283792b9aecc4793a19d03af18505
+      internalID: 1568307371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_41
+      rect:
+        serializedVersion: 2
+        x: 267
+        y: 444
+        width: 22
+        height: 21
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1001df906edc5d94eb2d1022d62bb0b0
+      internalID: 1110464240
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_42
+      rect:
+        serializedVersion: 2
+        x: 336
+        y: 444
+        width: 23
+        height: 25
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9254ef4678725934a81344eacac15317
+      internalID: 417649484
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_43
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 444
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3b32214af45b57643a80e037aeb7a488
+      internalID: 191088629
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: noefinalazu2l_44
+      rect:
+        serializedVersion: 2
+        x: 464
+        y: 444
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e94a255b21cd8d84997e7c68579676a1
+      internalID: 162674444
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -106,7 +1077,53 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      noefinalazu2l_0: 436981261
+      noefinalazu2l_1: -380048367
+      noefinalazu2l_10: 1298784990
+      noefinalazu2l_11: -1486585132
+      noefinalazu2l_12: -721707045
+      noefinalazu2l_13: -174389263
+      noefinalazu2l_14: 460343429
+      noefinalazu2l_15: 1196955874
+      noefinalazu2l_16: 260262060
+      noefinalazu2l_17: 230940266
+      noefinalazu2l_18: -1514934748
+      noefinalazu2l_19: 10717331
+      noefinalazu2l_2: 1920245007
+      noefinalazu2l_20: -885991599
+      noefinalazu2l_21: -1391325652
+      noefinalazu2l_22: -780239238
+      noefinalazu2l_23: 316968335
+      noefinalazu2l_24: 2053491540
+      noefinalazu2l_25: -555532359
+      noefinalazu2l_26: -998602245
+      noefinalazu2l_27: 1950469948
+      noefinalazu2l_28: 1604515815
+      noefinalazu2l_29: 758237316
+      noefinalazu2l_3: 1213214804
+      noefinalazu2l_30: 902694389
+      noefinalazu2l_31: 1088633869
+      noefinalazu2l_32: -1869243097
+      noefinalazu2l_33: -1165778104
+      noefinalazu2l_34: -1734005464
+      noefinalazu2l_35: -1169846056
+      noefinalazu2l_36: 428791278
+      noefinalazu2l_37: -500018276
+      noefinalazu2l_38: 1850197317
+      noefinalazu2l_39: -43227141
+      noefinalazu2l_4: 713661851
+      noefinalazu2l_40: 1568307371
+      noefinalazu2l_41: 1110464240
+      noefinalazu2l_42: 417649484
+      noefinalazu2l_43: 191088629
+      noefinalazu2l_44: 162674444
+      noefinalazu2l_45: -1488661056
+      noefinalazu2l_5: -912791303
+      noefinalazu2l_6: 649681993
+      noefinalazu2l_7: 1650086992
+      noefinalazu2l_8: 1014583387
+      noefinalazu2l_9: 96877622
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

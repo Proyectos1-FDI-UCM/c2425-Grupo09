@@ -112,8 +112,8 @@ public class UIManager : MonoBehaviour
     private IEnumerator EffectAnimation(int index)
     {
         ObtainEffect.SetActive(true);
-        //AudioManager.Instance.PlaySFX(AudioManager.Instance.magicCharge);
-        yield return new WaitForSeconds(1.8f);
+        AudioManager.Instance.PlaySFX(AudioManager.Instance.magicCharge);
+        yield return new WaitForSeconds(2f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.magicExplosion);
         CameraShakeManager.Instance.StandardCameraShake();
         yield return new WaitForSeconds(0.2f);

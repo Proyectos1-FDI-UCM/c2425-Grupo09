@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: -7978566115638685088}
   - component: {fileID: -605320158706313391}
   - component: {fileID: -2847111485238591647}
+  - component: {fileID: 3366167774127373689}
   m_Layer: 12
   m_Name: Clock
   m_TagString: Clock
@@ -47,8 +48,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9615dc4ebd4e9d44d81262b579a83041, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timertext: {fileID: 0}
   SumaSeg: 20
+  ItemId: 0
 --- !u!212 &-7978566115638685088
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -173,3 +174,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &3366167774127373689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3423927760540469844}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e38e811726bc1cc409b78c92e29941ea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitude: 0.3
+  frecuency: 1
