@@ -14965,7 +14965,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3d921bb4509744aa8c37cc9e1f8d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "MaxBarraDeSue\xF1o": 100
+  "MaxBarraDeSue\xF1o": 150
   TriggerCollider: {fileID: 4873482737072240303}
   _healthBarFill: {fileID: 1071825448551856376}
   _fillSpeed: 0.2
@@ -14999,6 +14999,7 @@ MonoBehaviour:
     m_ColorSpace: -1
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
+  _animalId: 0
   Male: 1
   "_barraDeSue\xF1o": 0
 --- !u!114 &4457287691815353232

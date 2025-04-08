@@ -39662,7 +39662,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3d921bb4509744aa8c37cc9e1f8d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "MaxBarraDeSue\xF1o": 100
+  "MaxBarraDeSue\xF1o": 90
   TriggerCollider: {fileID: 4187176767586889015}
   _healthBarFill: {fileID: 4364657741862328585}
   _fillSpeed: 0.2
@@ -39719,7 +39719,7 @@ MonoBehaviour:
   CooldownSalto: 5
   CooldownAtaque: 2
   JumpSpeed: 6
-  Damage: 10
+  Damage: 17
   SleepBarCanvas: {fileID: 8899138443513344905}
   AttackVFXHolderRight: {fileID: 1511158538418846860}
   AttackVFXHolderLeft: {fileID: 4278359133634569425}
