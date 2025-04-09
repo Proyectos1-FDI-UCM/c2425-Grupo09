@@ -8,7 +8,6 @@
 using UnityEngine;
 // Añadir aquí el resto de directivas using
 
-
 /// <summary>
 /// Antes de cada class, descripción de qué es y para qué sirve,
 /// usando todas las líneas que sean necesarias.
@@ -36,7 +35,6 @@ public class MapManager : MonoBehaviour
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
     private bool _mapaAbierto;
-    private PlayerController _playerController;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -91,14 +89,13 @@ public class MapManager : MonoBehaviour
     // Ejemplo: GetPlayerController
 
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
-
     #endregion   
 
 } // class MapManager 
