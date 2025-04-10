@@ -23,9 +23,6 @@ public class RoomRevealer : MonoBehaviour
     // públicos y de inspector se nombren en formato PascalCase
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
-    [SerializeField] Tilemap TilemapFog;
-    [SerializeField] Vector3Int RoomStart;
-    [SerializeField] Vector3Int RoomSize;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
@@ -84,20 +81,7 @@ public class RoomRevealer : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<PlayerController>() != null)
         {
-            RevealRoom();
             Destroy(gameObject);
-        }
-    }
-
-    private void RevealRoom()
-    {
-        for (int x = 0; x < RoomSize.x; x++)
-        {
-            for (int y = 0; y < RoomSize.y; y++)
-            {
-                Vector3Int pos = new Vector3Int(RoomStart.x + x, RoomStart.y + y, 0);
-                TilemapFog.SetTile(pos, null); 
-            }
         }
     }
 
