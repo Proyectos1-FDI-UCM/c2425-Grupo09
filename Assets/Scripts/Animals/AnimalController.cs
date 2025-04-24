@@ -69,6 +69,7 @@ public class AnimalController : MonoBehaviour
     private Animator _animator;
     private SpriteRenderer _sr;
     private Transform _player;
+    private BarraDeSueño _sleepBar;
 
     #endregion
     
@@ -84,6 +85,7 @@ public class AnimalController : MonoBehaviour
         _health = _player.gameObject.GetComponent<Health>();
         _animator = GetComponent<Animator>();
         _sr = GetComponent<SpriteRenderer>();
+        _sleepBar = GetComponent<BarraDeSueño>();
     }
 
     /// <summary>
@@ -111,9 +113,10 @@ public class AnimalController : MonoBehaviour
 
                 //Vemos si el punto de destino es válido
                 LayerMask groundMask = LayerMask.GetMask("Ground");
-                Collider2D _targetPoint = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x - AnchoAnimal * 2f * Mathf.Sign(_direction.x), _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
+                Collider2D _targetPoint = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x, _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
+                Collider2D _targetPointWithMargin = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x - AnchoAnimal * 2f * Mathf.Sign(_direction.x), _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
 
-                if(_targetPoint != null) 
+                if(_targetPoint != null && _targetPointWithMargin != null) 
                 {
                     AudioManager.Instance.PlaySFX(AudioManager.Instance.animalJump, true);
                     _isJumping = true;
@@ -256,12 +259,26 @@ public class AnimalController : MonoBehaviour
     /// </summary>
     private void OnTriggerExit2D(Collider2D coll)
     {
-        if(coll.gameObject.GetComponent<Health>())
+        if(coll.gameObject.GetComponent<Health>() != null)
         {
             _isInAttackRange = false;
             _animator.SetBool("Move", true);
         }
             
+    }
+
+    private void OnCollisionEnter2D(Collision2D coll)
+    {
+        if(!_sleepBar.Dormido() && coll.gameObject.GetComponent<Health>() != null)
+        {
+            Rigidbody2D rb = coll.gameObject.GetComponent<Rigidbody2D>();   
+            rb.AddForce(new Vector2(10f, 10f), ForceMode2D.Impulse);
+
+            _health.Updatehealth(-Damage);
+            _animator.SetTrigger("Attack");
+            _animator.SetBool("Move", false);
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.attack, true);
+        }
     }
 
 
