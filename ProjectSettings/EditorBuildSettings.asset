@@ -12,6 +12,12 @@ EditorBuildSettings:
     path: Assets/Scenes/ESCENAS PLAY-TEST/PlayTestMenu.unity
     guid: 43b41bde6d680b344bde3b00812f4475
   - enabled: 1
-    path: Assets/Scenes/FUSION_MAPA.unity
-    guid: b60be34bb0ba4834089fe17eb06dc8d6
+    path: Assets/Scenes/ESCENAS PLAY-TEST/GRAPPLER.unity
+    guid: daca801a6efdddb4ca6ea8769dae16e0
+  - enabled: 1
+    path: Assets/Scenes/ESCENAS PLAY-TEST/CHECKLIST.unity
+    guid: 47bb4556b0de26e4cb0b798e0ecd88a2
+  - enabled: 1
+    path: Assets/Scenes/ESCENAS PLAY-TEST/DESBLOQUEO MAPA.unity
+    guid: e9e1deeddfb1e2143afbeeac796916b6
   m_configObjects: {}

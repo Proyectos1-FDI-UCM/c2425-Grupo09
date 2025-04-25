@@ -75,7 +75,7 @@ public class MenuManager : MonoBehaviour
     void Update()
     {
         if (InputManager.Instance.PlayWasPressedThisFrame())
-        { SceneManager.LoadScene("FUSION_MAPA"); }
+        { SceneManager.LoadScene(1); }
 
         // Interpolación entre los dos colores según el tiempo
         time += Time.deltaTime * speed;

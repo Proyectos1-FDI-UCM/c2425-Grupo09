@@ -125,14 +125,15 @@ public class GrapplerGun : MonoBehaviour
             m_rigidbody.gravityScale = _initialGravity;
         }
 
-        /*Si la cuerda se ha hecho demasiado grande, se suelta. 
-        De momento esta desactivado porque la flexibilidad de la cuerda a 0.3 ya limita el tamaño, pero si la hicieramos mas flexible si sería necesario.
+        //Si la cuerda se ha hecho demasiado grande, se suelta. 
+        //De momento esta desactivado porque la flexibilidad de la cuerda a 0.3 ya limita el tamaño, pero si la hicieramos mas flexible si sería necesario.
 
-        if(m_springJoint2D.distance > maxDistance) 
+        /*if(m_springJoint2D.distance > maxDistance * 1.5f) 
         {
+            HUDAbilities.Instance.GorillaGlow(false);
             grappleRope.enabled = false;
             m_springJoint2D.enabled = false;
-            m_rigidbody.gravityScale = 1;
+            m_rigidbody.gravityScale = _initialGravity;
         }*/
     }
     #endregion
