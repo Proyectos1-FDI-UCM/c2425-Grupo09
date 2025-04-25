@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MainMenu.unity
     guid: 755f0b9243d58df4f9913577f0249e91
   - enabled: 1
+    path: Assets/Scenes/ESCENAS PLAY-TEST/PlayTestMenu.unity
+    guid: 43b41bde6d680b344bde3b00812f4475
+  - enabled: 1
     path: Assets/Scenes/FUSION_MAPA.unity
     guid: b60be34bb0ba4834089fe17eb06dc8d6
   m_configObjects: {}

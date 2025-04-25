@@ -222,6 +222,11 @@ public class PlayerController : MonoBehaviour
         enabled = false;
     }
 
+    public void UpdateJumpCounter()
+    {
+        _jumpCounter = extraJump;
+    }
+
     public void Abilities()
     {
 
