@@ -24,6 +24,10 @@ public class MapManager : MonoBehaviour
     [SerializeField] GameObject Map;
     [SerializeField] GameObject PlayerIcon;
     [SerializeField] GameObject MapRoomContainer;
+    [SerializeField] GameObject MapCamera;
+    [SerializeField] Vector2 MinBounds;
+    [SerializeField] Vector2 MaxBounds;
+    [SerializeField] float velocidad;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
@@ -57,25 +61,39 @@ public class MapManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (InputManager.Instance.MapWasPressedThisFrame())
+        Vector2 _moveVector = InputManager.Instance.MovementVector;
+
+        if (InputManager.Instance.MapWasPressedThisFrame() && !_mapaAbierto)
         {
-            if (!_mapaAbierto)
-            {
-                Map.SetActive(true);
-                PlayerIcon.SetActive(true);
-                MapRoomContainer.SetActive(true);
-                _mapaAbierto = true;
-                Time.timeScale = 0f;
-            }
-            else
-            {
-                Map.SetActive(false);
-                PlayerIcon.SetActive(false);
-                MapRoomContainer.SetActive(false);
-                _mapaAbierto = false;  
-                Time.timeScale = 1f;
-            }
+            Map.SetActive(true);
+            PlayerIcon.SetActive(true);
+            MapRoomContainer.SetActive(true);
+            Time.timeScale = 0f;
+            _mapaAbierto = true;
+            InputManager.Instance.EnableUIControls();
         }
+        else if (InputManager.Instance.MapCloseWasPressedThisFrame() && _mapaAbierto)
+        {
+            Map.SetActive(false);
+            PlayerIcon.SetActive(false);
+            MapRoomContainer.SetActive(false);
+            InputManager.Instance.EnablePlayerControls();
+            Time.timeScale = 1f;
+            _mapaAbierto = false;
+
+        }
+        else if (_mapaAbierto)
+        {
+            Vector3 moveVector3 = new Vector3(_moveVector.x, _moveVector.y, 0f);
+            Vector3 newPosition = MapCamera.transform.position + moveVector3 * Time.unscaledDeltaTime * velocidad;
+
+            newPosition.x = Mathf.Clamp(newPosition.x, MinBounds.x, MaxBounds.x);
+            newPosition.y = Mathf.Clamp(newPosition.y, MinBounds.y, MaxBounds.y);
+
+            MapCamera.transform.position = newPosition;
+        }
+
+
 
     }
     #endregion
@@ -96,6 +114,7 @@ public class MapManager : MonoBehaviour
     // El convenio de nombres de Unity recomienda que estos métodos
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
+
     #endregion   
 
 } // class MapManager 

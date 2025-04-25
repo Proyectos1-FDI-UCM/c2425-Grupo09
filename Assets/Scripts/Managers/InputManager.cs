@@ -80,6 +80,7 @@ public class InputManager : MonoBehaviour
     private InputAction _load;
     private InputAction _play;
     private InputAction _pause;
+    private InputAction _closeMap;
 
     #endregion
 
@@ -167,6 +168,22 @@ public class InputManager : MonoBehaviour
     /// </summary>
     public Vector2 MovementVector { get; private set; }
 
+    /// <summary>
+    /// Los dos métodos sirven para activar unos controles u otros
+    /// Los cotroles de la UI o los de Player
+    /// </summary>
+    public void EnableUIControls()
+    {
+        _theController.Player.Disable();
+        _theController.UI.Enable();
+    }
+
+    public void EnablePlayerControls()
+    {
+        _theController.UI.Disable();
+        _theController.Player.Enable();
+    }    
+    
     /// <summary>
     /// Método para saber si el botón de disparo (Fire) está pulsado
     /// Devolverá true en todos los frames en los que se mantenga pulsado
@@ -297,6 +314,10 @@ public class InputManager : MonoBehaviour
         return _pause.WasPressedThisFrame();
     }
 
+    public bool MapCloseWasPressedThisFrame()
+    {
+        return _closeMap.WasPressedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -314,11 +335,15 @@ public class InputManager : MonoBehaviour
 
         // Cacheamos la acción de movimiento
         InputAction movement = _theController.Player.Move;
+        InputAction mapMovement = _theController.UI.Navigate;
         // Para el movimiento, actualizamos el vector de movimiento usando
         // el método OnMove
         movement.performed += OnMove;
         movement.canceled += OnMove;
-
+        // Para el movimiento dentro del UI, actualizamos el vector de movimiento usando
+        // el método OnMove
+        mapMovement.performed += OnMoveMap;
+        mapMovement.canceled += OnMoveMap;
         // Para el disparo solo cacheamos la acción de disparo.
         // El estado lo consultaremos a través de los métodos públicos que 
         // tenemos (FireIsPressed, FireWasPressedThisFrame 
@@ -340,6 +365,9 @@ public class InputManager : MonoBehaviour
         _play = _theController.Player.Play;
         _pause = _theController.Player.Pause;
 
+        //UI Controls
+        _closeMap = _theController.UI.MapClose;
+
     }
 
     /// <summary>
@@ -348,6 +376,11 @@ public class InputManager : MonoBehaviour
     /// </summary>
     /// <param name="context">Información sobre el evento de movimiento</param>
     private void OnMove(InputAction.CallbackContext context)
+    {
+        MovementVector = context.ReadValue<Vector2>();
+    }
+
+    private void OnMoveMap(InputAction.CallbackContext context)
     {
         MovementVector = context.ReadValue<Vector2>();
     }

@@ -1,11 +1,12 @@
 //---------------------------------------------------------
 // Contiene el componente GameManager
-// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín
+// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín, Diego García Alonso
 // TemplateP1
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 
 /// <summary>
@@ -37,7 +38,6 @@ public class GameManager : MonoBehaviour
     public Capture _capture;
     public GrapplerGun _gun;
     public InventoryController _inventoryController;
-
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -174,7 +174,6 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(index);
         System.GC.Collect();
     } // ChangeScene
-
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
