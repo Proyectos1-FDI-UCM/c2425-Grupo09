@@ -21,7 +21,14 @@ public class BarraDeSueño : MonoBehaviour
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
     [SerializeField] float MaxBarraDeSueño;
+
+    [SerializeField] Collider2D NormalCollider;
     [SerializeField] Collider2D TriggerCollider;
+    [SerializeField] Collider2D SleepCollider;
+
+    [SerializeField] Collider2D SleepLeftCollider;
+    [SerializeField] Collider2D SleepRightCollider;
+    
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
@@ -74,13 +81,30 @@ public class BarraDeSueño : MonoBehaviour
                 if (_animalController.IsFlipped)
                 {
                     _animator.SetTrigger("Sleep_Right");
+
+                    if(SleepRightCollider != null)
+                    SleepRightCollider.enabled = true;
                 }
                 else 
                 {
                     _animator.SetTrigger("Sleep_Left");
+
+                    if(SleepLeftCollider != null)
+                    SleepLeftCollider.enabled = true;
                 }
                 AudioManager.Instance.PlaySFX(AudioManager.Instance.animalKO);
+
                 _animalController.enabled = false;
+
+                if(NormalCollider != null)
+                {
+                    NormalCollider.enabled = false;
+                }
+                if(SleepCollider != null)
+                {
+                    SleepCollider.enabled = true;
+                }
+
                 dormido = true;
             }
 

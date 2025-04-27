@@ -34520,6 +34520,7 @@ GameObject:
   - component: {fileID: 8364465959951423524}
   - component: {fileID: 2004477079712909556}
   - component: {fileID: 5936763898723316767}
+  - component: {fileID: 5974505964720384787}
   m_Layer: 11
   m_Name: BatFemale
   m_TagString: Bat
@@ -34701,6 +34702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   "MaxBarraDeSue\xF1o": 120
   TriggerCollider: {fileID: 4187176767586889015}
+  SleepCollider: {fileID: 5974505964720384787}
+  NormalCollider: {fileID: 7261809746522249113}
   _healthBarFill: {fileID: 6049408584606315714}
   _fillSpeed: 0.2
   _colorGradient:
@@ -34782,6 +34785,51 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &5974505964720384787
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8213178868730188694}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0075501204, y: -0.88607526}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.5, y: 1.5625}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.0222828, y: 1.5878496}
+  m_EdgeRadius: 0
 --- !u!1 &9030399954221531689
 GameObject:
   m_ObjectHideFlags: 0
