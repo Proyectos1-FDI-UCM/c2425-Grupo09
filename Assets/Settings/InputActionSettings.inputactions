@@ -417,28 +417,6 @@
                 },
                 {
                     "name": "",
-                    "id": "29305284-a902-4644-a183-f0036f6d38dd",
-                    "path": "<Keyboard>/0",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Save",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b6fe625e-6a82-4acb-afa8-d5e6a338edcb",
-                    "path": "<Keyboard>/9",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Load",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "9181e6fa-428a-4aca-8662-2bb20c8b7903",
                     "path": "<Keyboard>/anyKey",
                     "interactions": "",

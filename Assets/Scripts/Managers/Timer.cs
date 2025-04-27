@@ -9,10 +9,8 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject Player;
     [SerializeField] GameObject DefeatSign;
 
-
-
     [SerializeField] float timeSeg = 600f;
-    public float SumaSeg = 5f;
+    [SerializeField] float SumaSeg = 5f;
     float RestaSeg = 5f;
 
     static float currenttime;
@@ -55,8 +53,11 @@ public class Timer : MonoBehaviour
             if (currenttime > (timeSeg / 3) * 2) { animator.SetBool("1", true); }
             //if (currenttime < (time / 3) * 2 && currenttime > (time / 3)) { animator.SetBool("2", true);  }
             //if (currenttime < (time / 3)) { animator.SetBool("3", true); }
-           
+        }
 
+        if(InputManager.Instance.TestingWasPressedThisFrame())
+        {
+            currenttime += SumaSeg;
         }
     }
 
@@ -79,7 +80,6 @@ public class Timer : MonoBehaviour
     }
     public float SecondsCount()
     {
-
         int seconds = Mathf.FloorToInt((timeSeg - currenttime) % 60);
         return seconds;
     }
