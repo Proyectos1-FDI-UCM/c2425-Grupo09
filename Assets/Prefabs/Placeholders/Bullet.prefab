@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 20
-  Damage: 40
+  Damage: 15
   TigerMultiplier: 1.25
 --- !u!61 &3243932383568750052
 BoxCollider2D:
