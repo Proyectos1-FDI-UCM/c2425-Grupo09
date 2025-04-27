@@ -82,31 +82,59 @@ public class Health : MonoBehaviour
         _currentHealth = startingHealth;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
         UpdateHealthBar();
+        
 
         CheckpointManager.Instance.PlayerReference(gameObject);
     }
 
     private void Update()
     {
+        if (!armadilloUnlocked)
+        {
+            HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Locked);
+            return;
+        }
         if (_currentShield > 0)
         {
-            _currentDuration -= Time.deltaTime;
-            if (_currentDuration <= 0) // Si la duración llega a 0, el escudo se desactiva
-            {
-                HUDAbilities.Instance.ArmadilloGlow(false);
-                _currentShield = 0;
-                UpdateShieldBar(); 
-                UpdateHealthBar();
-            }
+                // ESCUDO ACTIVO
+                _currentDuration -= Time.deltaTime;
+
+                HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Active);
+                HUDAbilities.Instance.UpdateCountDown(_currentDuration);
+
+                if (_currentDuration <= 0)
+                {
+                    _currentShield = 0;
+                    _shieldDown = CooldownShield;
+                    UpdateShieldBar();
+                    UpdateHealthBar();
+                }
+            
+            
+        }
+        else if (_shieldDown > 0)
+        {
+            // COOLDOWN
+            _shieldDown -= Time.deltaTime;
+
+            HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Cooldown);
+            HUDAbilities.Instance.UpdateCountDown(_shieldDown);
+        }
+        else
+        {
+            // DISPONIBLE
+            HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Ready);
+            HUDAbilities.Instance.HideCountDown();
         }
 
-        if (InputManager.Instance.ShieldWasPressedThisFrame() && Time.time > _timeLastShield + CooldownShield && armadilloUnlocked)
+        if (InputManager.Instance.ShieldWasPressedThisFrame() && Time.time > _timeLastShield + CooldownShield && _shieldDown <= 0 && armadilloUnlocked)
         {
             _timeLastShield = Time.time;
             OnShield();
             AudioManager.Instance.PlaySFX(AudioManager.Instance.shield, true);
             _currentDuration = ShieldDuration;
         }
+
     }
 
     #endregion
@@ -224,8 +252,10 @@ public class Health : MonoBehaviour
             float targetFillAmount = (_currentShield + _currentHealth) / maximoRelativo;
             _shieldBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
 
-            if(_currentShield <= 0)
+            if (_currentShield <= 0)
+            {
                 HUDAbilities.Instance.ArmadilloGlow(false);
+            }
         }
     }
     private void OnShield()

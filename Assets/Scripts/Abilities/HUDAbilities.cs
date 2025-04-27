@@ -6,31 +6,39 @@
 //---------------------------------------------------------
 
 using UnityEngine;
-// Añadir aquí el resto de directivas using
 using UnityEngine.UI;
+using TMPro;
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Controla el HUD de habilidades. Cambia el estado visual del icono de habilidades (color, brillo, cuenta atrás)
+/// según el estado de activación y desbloqueo.
 /// </summary>
 public class HUDAbilities : MonoBehaviour
 {
-    // ---- ATRIBUTOS DEL INSPECTOR ----
-    #region Atributos del Inspector (serialized fields)
-
+    // ---- SINGLETON ----
     public static HUDAbilities Instance { get; private set; }
 
-    [SerializeField] Image[] Greyimage;
-    [SerializeField] Sprite[] Colorimage;
-    [SerializeField] GameObject[] ColorKeysImage;
+    public enum ArmadilloState
+    {
+        Locked,     // No se ha obtenido: icono gris
+        Ready,      // Obtenida pero no usada: icono en color sin brillo
+        Active,     // Escudo activo: icono en color con brillo
+        Cooldown    // En espera para volver a usar: icono en color sin brillo + cuenta atrás
+    }
+
+    // ---- ATRIBUTOS DEL INSPECTOR ----
+    [Header("Iconos de habilidad")]
+    [SerializeField] private Image[] Greyimage;       // Iconos de fondo
+    [SerializeField] private Sprite[] Colorimage;     // Iconos en color
+    [SerializeField] private GameObject[] ColorKeysImage;
+    [SerializeField] private GameObject[] GlowEffect;
     [SerializeField] GameObject[] ColorKeysImageGamePad;
-    [SerializeField] GameObject[] GlowEffect;
 
-    
-    #endregion
 
-    // ---- ATRIBUTOS PRIVADOS ----
-    #region Atributos Privados (private fields)
+    [Header("Texto de cuenta atrás")]
+    [SerializeField] private TMP_Text ArmadilloText;
+
+    // ---- ENUM PRIVADO PARA INDEXACIÓN ----
     private enum _animal
     {
         Armadillo,
@@ -38,32 +46,18 @@ public class HUDAbilities : MonoBehaviour
         Gorilla
     }
 
-    #endregion
-
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
-    #region Métodos de MonoBehaviour
-
     protected void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        if (Instance == null) Instance = this;
+        else Destroy(gameObject);
     }
 
-    #endregion
-
     // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
+
+    /// <summary>
+    /// Cambia el icono a color y muestra el key bind (cuando se desbloquea).
+    /// </summary>
     public void ActivateColor(int index)
     {
         Greyimage[index].sprite = Colorimage[index];
@@ -79,18 +73,29 @@ public class HUDAbilities : MonoBehaviour
              ColorKeysImage[index].SetActive(true);
         }
         
+        if (ColorKeysImage[index] != null)
+            ColorKeysImage[index].SetActive(true);
     }
 
+    /// <summary>
+    /// Controla el brillo del gorila.
+    /// </summary>
     public void GorillaGlow(bool state)
     {
-        GlowEffect[(int)_animal.Gorilla].SetActive(state); 
+        GlowEffect[(int)_animal.Gorilla].SetActive(state);
     }
 
+    /// <summary>
+    /// Controla el brillo del murciélago.
+    /// </summary>
     public void BatGlow(bool state)
     {
         GlowEffect[(int)_animal.Bat].SetActive(state);
     }
 
+    /// <summary>
+    /// Controla el brillo del armadillo.
+    /// </summary>
     public void ArmadilloGlow(bool state)
     {
         GlowEffect[(int)_animal.Armadillo].SetActive(state);
@@ -122,16 +127,65 @@ public class HUDAbilities : MonoBehaviour
         }
         
     }
-    #endregion
 
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
+    /// <summary>
+    /// Actualiza la cuenta atrás que se muestra en el HUD.
+    /// </summary>
+    public void UpdateCountDown(float seconds)
+    {
+        int s = Mathf.FloorToInt(seconds);
+        if (s >= 0)
+        {
+            ArmadilloText.gameObject.SetActive(true);
+            ArmadilloText.text = s.ToString();
+        }
+        else
+        {
+            ArmadilloText.gameObject.SetActive(false);
+        }
 
-    #endregion
+    }
 
-} // class HUD-Abilities 
-// namespace
+    /// <summary>
+    /// Oculta el texto de cuenta regresiva.
+    /// </summary>
+    public void HideCountDown()
+    {
+        ArmadilloText.gameObject.SetActive(false);
+    }
+
+    /// <summary>
+    /// Cambia el estado visual del icono del armadillo en función del estado del escudo.
+    /// </summary>
+    public void SetArmadilloIconState(ArmadilloState state)
+    {
+        switch (state)
+        {
+            case ArmadilloState.Locked:
+                Greyimage[(int)_animal.Armadillo].color = Color.gray;
+                GlowEffect[(int)_animal.Armadillo].SetActive(false);
+                ArmadilloText.gameObject.SetActive(false);
+                break;
+
+            case ArmadilloState.Ready:
+                Greyimage[(int)_animal.Armadillo].color = Color.white;
+                GlowEffect[(int)_animal.Armadillo].SetActive(false);
+                ArmadilloText.gameObject.SetActive(false);
+                break;
+
+            case ArmadilloState.Active:
+                Greyimage[(int)_animal.Armadillo].color = Color.white;
+                GlowEffect[(int)_animal.Armadillo].SetActive(true);
+                ArmadilloText.color = Color.black;
+
+                break;
+
+            case ArmadilloState.Cooldown:
+                Greyimage[(int)_animal.Armadillo].color = Color.gray;
+                GlowEffect[(int)_animal.Armadillo].SetActive(false);
+                ArmadilloText.color = Color.white;
+                break;
+        }
+    }
+}
+
