@@ -23,6 +23,7 @@ public class HUDAbilities : MonoBehaviour
     [SerializeField] Image[] Greyimage;
     [SerializeField] Sprite[] Colorimage;
     [SerializeField] GameObject[] ColorKeysImage;
+    [SerializeField] GameObject[] ColorKeysImageGamePad;
     [SerializeField] GameObject[] GlowEffect;
 
     
@@ -66,8 +67,18 @@ public class HUDAbilities : MonoBehaviour
     public void ActivateColor(int index)
     {
         Greyimage[index].sprite = Colorimage[index];
-        if (ColorKeysImage[index] != null) 
-        ColorKeysImage[index].SetActive(true);
+
+        if(InputManager.Instance.MandoConectado())
+        {
+            if (ColorKeysImageGamePad[index] != null) 
+             ColorKeysImageGamePad[index].SetActive(true);
+        }
+        else
+        {
+            if (ColorKeysImage[index] != null) 
+             ColorKeysImage[index].SetActive(true);
+        }
+        
     }
 
     public void GorillaGlow(bool state)
@@ -83,6 +94,33 @@ public class HUDAbilities : MonoBehaviour
     public void ArmadilloGlow(bool state)
     {
         GlowEffect[(int)_animal.Armadillo].SetActive(state);
+    }
+
+    public void UpdateHUDForGamePad(bool mando)
+    {
+        if(mando)
+        {
+            for(int i = 0; i < ColorKeysImage.Length; i++)
+            {
+                if(ColorKeysImage[i] != null && ColorKeysImage[i].activeSelf == true)
+                {
+                    ColorKeysImage[i].SetActive(false);
+                    ColorKeysImageGamePad[i].SetActive(true);
+                }
+            }
+        }
+        else
+        {
+            for(int i = 0; i < ColorKeysImageGamePad.Length; i++)
+            {
+                if(ColorKeysImage[i] != null && ColorKeysImageGamePad[i].activeSelf == true)
+                {
+                    ColorKeysImage[i].SetActive(true);
+                    ColorKeysImageGamePad[i].SetActive(false);
+                }
+            }
+        }
+        
     }
     #endregion
 

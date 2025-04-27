@@ -324,6 +324,50 @@ public class InputManager : MonoBehaviour
     {
         return _closePauseMenu.WasPressedThisFrame();
     }
+
+    //Esto es para detectar si hay mando o no
+    
+    void OnEnable()
+    {
+        InputSystem.onDeviceChange += OnDeviceChange;
+    }
+
+    void OnDisable()
+    {
+        InputSystem.onDeviceChange -= OnDeviceChange;
+    }
+
+    public bool MandoConectado()
+    {
+        // Comprobar si hay al menos un mando conectado
+        if (Gamepad.current != null)
+        {
+            Debug.Log("Hay un mando conectado");
+            return true;
+            // Mostrar HUD de mando
+        }
+
+        return false;
+    }
+
+    void OnDeviceChange(InputDevice device, InputDeviceChange change)
+    {
+        if (device is Gamepad)
+        {
+            switch (change)
+            {
+                case InputDeviceChange.Added:
+                    Debug.Log("Mando conectado");
+                    HUDAbilities.Instance.UpdateHUDForGamePad(true);
+                    break;
+                case InputDeviceChange.Removed:
+                    Debug.Log("Mando desconectado");
+                    HUDAbilities.Instance.UpdateHUDForGamePad(false);
+
+                    break;
+            }
+        }
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----

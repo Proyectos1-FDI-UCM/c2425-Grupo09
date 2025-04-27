@@ -25,6 +25,7 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject ObtainEffect;
     [SerializeField] GameObject[] AbilitiesTextBox;
+    [SerializeField] GameObject[] AbilitiesTextBoxGamePad;
 
     #endregion
 
@@ -130,7 +131,17 @@ public class UIManager : MonoBehaviour
 
     private void EnableAbilityTextBox(int index, bool state)
     {
-        AbilitiesTextBox[index].SetActive(state);
+        if(InputManager.Instance.MandoConectado())
+        {
+            if(AbilitiesTextBoxGamePad[index] != null)
+                AbilitiesTextBoxGamePad[index].SetActive(state);
+            else 
+                AbilitiesTextBox[index].SetActive(state);
+
+        }else{
+
+            AbilitiesTextBox[index].SetActive(state);
+        }
     }
     #endregion
 
