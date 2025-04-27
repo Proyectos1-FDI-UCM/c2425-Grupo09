@@ -81,6 +81,7 @@ public class InputManager : MonoBehaviour
     private InputAction _play;
     private InputAction _pause;
     private InputAction _closeMap;
+    private InputAction _closePauseMenu;
 
     #endregion
 
@@ -318,6 +319,11 @@ public class InputManager : MonoBehaviour
     {
         return _closeMap.WasPressedThisFrame();
     }
+
+    public bool PauseMenuCloseWasPressedThisFrame()
+    {
+        return _closePauseMenu.WasPressedThisFrame();
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
@@ -367,6 +373,7 @@ public class InputManager : MonoBehaviour
 
         //UI Controls
         _closeMap = _theController.UI.MapClose;
+        _closePauseMenu = _theController.UI.PauseMenuClose;
 
     }
 

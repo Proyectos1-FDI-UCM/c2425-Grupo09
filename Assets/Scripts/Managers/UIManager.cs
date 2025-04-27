@@ -52,12 +52,15 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (InputManager.Instance.PauseWasPressedThisFrame())
+        if (InputManager.Instance.PauseWasPressedThisFrame() && !_isPaused)
         {
-            if (_isPaused)
-                ResumeGame();
-            else
-                PauseGame();
+            PauseGame();
+            InputManager.Instance.EnableUIControls();
+        }
+        if (InputManager.Instance.PauseMenuCloseWasPressedThisFrame())
+        {
+            ResumeGame();
+            InputManager.Instance.EnablePlayerControls();
         }
     }
     private void PauseGame()

@@ -430,11 +430,33 @@ namespace UnityEngine.InputSystem
                 },
                 {
                     ""name"": """",
+                    ""id"": ""8eb72439-92f1-4557-b647-f51d518f8d45"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""Exit"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
                     ""id"": ""36200965-f53a-46e1-9d42-b8ce37ffa581"",
                     ""path"": ""<Keyboard>/m"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""Map"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70bf1d49-cbe9-459a-8afc-532763c9a8f8"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
                     ""action"": ""Map"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -594,6 +616,15 @@ namespace UnityEngine.InputSystem
                     ""name"": ""MapClose"",
                     ""type"": ""Button"",
                     ""id"": ""6f9cfbe1-5e93-4110-be24-943410ccb9f7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""PauseMenuClose"",
+                    ""type"": ""Button"",
+                    ""id"": ""ae1d18bb-b2ab-414f-9b86-0b6edb70af04"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -1029,6 +1060,61 @@ namespace UnityEngine.InputSystem
                     ""action"": ""MapClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c8d1b9b5-64f6-48c1-9064-3b02165a6b0a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MapClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0381e888-f309-48a1-8c46-03bf6b684a3e"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""MapClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""67ec17ee-5505-4d8f-9ac4-0bd95e9c9b1d"",
+                    ""path"": ""<Keyboard>/p"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenuClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c6205a13-d8db-4c03-963b-92a39d951023"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""PauseMenuClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""9b66c8f5-896b-462d-af44-98f791bc0e5e"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""PauseMenuClose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1127,6 +1213,7 @@ namespace UnityEngine.InputSystem
             m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
             m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
             m_UI_MapClose = m_UI.FindAction("MapClose", throwIfNotFound: true);
+            m_UI_PauseMenuClose = m_UI.FindAction("PauseMenuClose", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1365,6 +1452,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_UI_TrackedDevicePosition;
         private readonly InputAction m_UI_TrackedDeviceOrientation;
         private readonly InputAction m_UI_MapClose;
+        private readonly InputAction m_UI_PauseMenuClose;
         public struct UIActions
         {
             private @InputActionSettings m_Wrapper;
@@ -1380,6 +1468,7 @@ namespace UnityEngine.InputSystem
             public InputAction @TrackedDevicePosition => m_Wrapper.m_UI_TrackedDevicePosition;
             public InputAction @TrackedDeviceOrientation => m_Wrapper.m_UI_TrackedDeviceOrientation;
             public InputAction @MapClose => m_Wrapper.m_UI_MapClose;
+            public InputAction @PauseMenuClose => m_Wrapper.m_UI_PauseMenuClose;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1422,6 +1511,9 @@ namespace UnityEngine.InputSystem
                 @MapClose.started += instance.OnMapClose;
                 @MapClose.performed += instance.OnMapClose;
                 @MapClose.canceled += instance.OnMapClose;
+                @PauseMenuClose.started += instance.OnPauseMenuClose;
+                @PauseMenuClose.performed += instance.OnPauseMenuClose;
+                @PauseMenuClose.canceled += instance.OnPauseMenuClose;
             }
 
             private void UnregisterCallbacks(IUIActions instance)
@@ -1459,6 +1551,9 @@ namespace UnityEngine.InputSystem
                 @MapClose.started -= instance.OnMapClose;
                 @MapClose.performed -= instance.OnMapClose;
                 @MapClose.canceled -= instance.OnMapClose;
+                @PauseMenuClose.started -= instance.OnPauseMenuClose;
+                @PauseMenuClose.performed -= instance.OnPauseMenuClose;
+                @PauseMenuClose.canceled -= instance.OnPauseMenuClose;
             }
 
             public void RemoveCallbacks(IUIActions instance)
@@ -1553,6 +1648,7 @@ namespace UnityEngine.InputSystem
             void OnTrackedDevicePosition(InputAction.CallbackContext context);
             void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
             void OnMapClose(InputAction.CallbackContext context);
+            void OnPauseMenuClose(InputAction.CallbackContext context);
         }
     }
 }
