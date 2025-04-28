@@ -162,7 +162,6 @@ public class HUDAbilities : MonoBehaviour
         switch (state)
         {
             case ArmadilloState.Locked:
-                Greyimage[(int)_animal.Armadillo].color = Color.gray;
                 GlowEffect[(int)_animal.Armadillo].SetActive(false);
                 ArmadilloText.gameObject.SetActive(false);
                 break;
