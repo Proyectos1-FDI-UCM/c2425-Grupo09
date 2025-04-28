@@ -358,10 +358,12 @@ public class InputManager : MonoBehaviour
             {
                 case InputDeviceChange.Added:
                     Debug.Log("Mando conectado");
+                    if(HUDAbilities.Instance != null)
                     HUDAbilities.Instance.UpdateHUDForGamePad(true);
                     break;
                 case InputDeviceChange.Removed:
                     Debug.Log("Mando desconectado");
+                    if(HUDAbilities.Instance != null)
                     HUDAbilities.Instance.UpdateHUDForGamePad(false);
 
                     break;
