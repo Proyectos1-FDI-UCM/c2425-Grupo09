@@ -78,6 +78,10 @@ public class CheckList : MonoBehaviour
         if (InputManager.Instance.ChecklistWasPressedThisFrame()) // Detecta la tecla Tab
         {
             ToggleMenu();
+            InputManager.Instance.EnableUIControls();
+        }else if (InputManager.Instance.ChecklistCLoseWasPressedThisFrame())
+        {
+            ToggleMenu();
         }
         if (_onVessel && !_allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
         {

@@ -71,6 +71,7 @@ public class MapManager : MonoBehaviour
             Time.timeScale = 0f;
             _mapaAbierto = true;
             InputManager.Instance.EnableUIControls();
+            MapCamera.transform.position = new Vector3(PlayerIcon.transform.position.x, PlayerIcon.transform.position.y, MapCamera.transform.position.z);
         }
         else if (InputManager.Instance.MapCloseWasPressedThisFrame() && _mapaAbierto)
         {

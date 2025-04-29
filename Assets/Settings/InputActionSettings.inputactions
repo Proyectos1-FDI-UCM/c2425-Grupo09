@@ -605,6 +605,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ChecklistClose",
+                    "type": "Button",
+                    "id": "d099899f-4dac-4f9f-93bf-47b933b41179",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1061,6 +1070,17 @@
                 },
                 {
                     "name": "",
+                    "id": "6fd7c996-534b-4676-9ae2-546bab79a8d6",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "MapClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "67ec17ee-5505-4d8f-9ac4-0bd95e9c9b1d",
                     "path": "<Keyboard>/p",
                     "interactions": "",
@@ -1089,6 +1109,61 @@
                     "processors": "",
                     "groups": "Gamepad",
                     "action": "PauseMenuClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0749f4c0-17d7-48cb-a885-64faa7e668ad",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "PauseMenuClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5e10a319-3890-4471-a986-ad513ca18d29",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChecklistClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b61fd20a-6682-481d-b260-6d0404bf6889",
+                    "path": "<Keyboard>/tab",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ChecklistClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fae7532a-1114-4b66-b09c-b314a9af64e0",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ChecklistClose",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2066da26-fa90-4a59-991a-5eaf415106ae",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "ChecklistClose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

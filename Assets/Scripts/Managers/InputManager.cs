@@ -82,6 +82,7 @@ public class InputManager : MonoBehaviour
     private InputAction _pause;
     private InputAction _closeMap;
     private InputAction _closePauseMenu;
+    private InputAction _closeChecklist;
 
     #endregion
 
@@ -314,7 +315,7 @@ public class InputManager : MonoBehaviour
     {
         return _pause.WasPressedThisFrame();
     }
-
+    #region UI Methods
     public bool MapCloseWasPressedThisFrame()
     {
         return _closeMap.WasPressedThisFrame();
@@ -325,8 +326,15 @@ public class InputManager : MonoBehaviour
         return _closePauseMenu.WasPressedThisFrame();
     }
 
+    public bool ChecklistCLoseWasPressedThisFrame()
+    {
+        return _closeChecklist.WasPressedThisFrame();
+    }
+    #endregion
+
+
     //Esto es para detectar si hay mando o no
-    
+
     void OnEnable()
     {
         InputSystem.onDeviceChange += OnDeviceChange;
@@ -420,6 +428,7 @@ public class InputManager : MonoBehaviour
         //UI Controls
         _closeMap = _theController.UI.MapClose;
         _closePauseMenu = _theController.UI.PauseMenuClose;
+        _closeChecklist = _theController.UI.ChecklistClose;
 
     }
 

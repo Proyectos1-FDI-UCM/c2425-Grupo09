@@ -159,16 +159,20 @@ public class Health : MonoBehaviour
             _currentHealth += _dañoActual;
             UpdateShieldBar();
         }
-        else if (_currentShield > 0)
+        else if (_currentShield > 0 && amount < 0)
         {
 
             _currentShield += amount;
             UpdateShieldBar();
         }
-
-        else if (_currentShield <= 0)
+        else if (_currentShield <= 0 )
         {
             _currentHealth += amount;
+        }
+        else if (amount > 0)
+        {
+            _currentHealth += amount;
+            UpdateShieldBar();
         }
 
         UpdateHealthBar();
