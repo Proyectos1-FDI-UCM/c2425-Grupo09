@@ -33,6 +33,8 @@ public class BarraDeSueño : MonoBehaviour
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
     [SerializeField] int _animalId;
+    [SerializeField] private Transform Player;
+    [SerializeField] private float ResetDistance;
 
     public bool Male;
     public int AnimalId
@@ -50,6 +52,7 @@ public class BarraDeSueño : MonoBehaviour
     private AnimalController _animalController;
     private Animator _animator;
     private bool dormido;
+    private bool _playerDetected;
 
     #endregion
 
@@ -60,6 +63,13 @@ public class BarraDeSueño : MonoBehaviour
     {
         _animalController = GetComponent<AnimalController>();
         _animator = GetComponent<Animator>();
+    }
+    private void Update()
+    {
+        if (_playerDetected && !dormido) 
+        {
+            ResetBar();
+        }
     }
     #endregion
 
@@ -74,6 +84,7 @@ public class BarraDeSueño : MonoBehaviour
         if(!dormido)
         {
             _barraDeSueño += amount;
+            _playerDetected = true;
             AudioManager.Instance.PlaySFX(AudioManager.Instance.animalHurt, true);
 
             if(_barraDeSueño >= MaxBarraDeSueño)
@@ -127,6 +138,17 @@ public class BarraDeSueño : MonoBehaviour
         _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
     }
 
+    private void ResetBar()
+    {
+        float _distanceToPlayer = Vector2.Distance(transform.position, Player.transform.position);
+        
+        if (_distanceToPlayer > ResetDistance)
+        {
+            _barraDeSueño = 0;
+            UpdateHealthBar();
+            _playerDetected = false;
+        }
+    }
     #endregion   
 
 } // class BarraDeSueño 

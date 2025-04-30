@@ -83,7 +83,7 @@ public class InputManager : MonoBehaviour
     private InputAction _closeMap;
     private InputAction _closePauseMenu;
     private InputAction _closeChecklist;
-
+    private InputAction _cheats;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -315,6 +315,12 @@ public class InputManager : MonoBehaviour
     {
         return _pause.WasPressedThisFrame();
     }
+    public bool CheatWasPressedThisFrame() 
+    { 
+        return _cheats.WasPressedThisFrame();
+    }
+
+
     #region UI Methods
     public bool MapCloseWasPressedThisFrame()
     {
@@ -424,6 +430,7 @@ public class InputManager : MonoBehaviour
         _load = _theController.Player.Load;
         _play = _theController.Player.Play;
         _pause = _theController.Player.Pause;
+        _cheats = _theController.Player.Cheats;
 
         //UI Controls
         _closeMap = _theController.UI.MapClose;

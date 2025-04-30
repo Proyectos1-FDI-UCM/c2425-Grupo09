@@ -82,6 +82,7 @@ public class CheckList : MonoBehaviour
         }else if (InputManager.Instance.ChecklistCLoseWasPressedThisFrame())
         {
             ToggleMenu();
+            InputManager.Instance.EnablePlayerControls();
         }
         if (_onVessel && !_allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
         {
@@ -143,6 +144,14 @@ public class CheckList : MonoBehaviour
         ticks[_index].SetActive(true);
         _ticks++;
     } //Activa dentro de ticks
+
+    public void Cheats()
+    {
+        for (int i = 0; i < ticks.Length; i++)
+        {
+            ActivateTick(i);
+        }
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----

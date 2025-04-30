@@ -168,6 +168,15 @@ public class Capture : MonoBehaviour
     public int AnimalCount ()
     { return _capturedAnimals; }
 
+    public void Cheats()
+    {
+        _playerController.nightVision.SetActive(true);
+        _health.armadilloUnlocked = true;
+        _grapplerGun.grapplerUnlocked = true;
+        _playerController.extraJump = 1;
+        _playerController.tigerUnlocked = true;
+    }
+
     #region Save and Load
     public void Save(ref CaptureData data)
     {

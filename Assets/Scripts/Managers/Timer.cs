@@ -47,8 +47,8 @@ public class Timer : MonoBehaviour
                 
             }
             TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            if (Keyboard.current.rKey.wasPressedThisFrame) { currenttime = currenttime + SumaSeg; }
-            if (Keyboard.current.eKey.wasPressedThisFrame) { currenttime = currenttime - RestaSeg; }
+            // if (Keyboard.current.rKey.wasPressedThisFrame) { currenttime = currenttime + SumaSeg; }
+            // if (Keyboard.current.eKey.wasPressedThisFrame) { currenttime = currenttime - RestaSeg; }
 
             if (currenttime > (timeSeg / 3) * 2) { animator.SetBool("1", true); }
             //if (currenttime < (time / 3) * 2 && currenttime > (time / 3)) { animator.SetBool("2", true);  }
@@ -82,6 +82,12 @@ public class Timer : MonoBehaviour
     {
         int seconds = Mathf.FloorToInt((timeSeg - currenttime) % 60);
         return seconds;
+    }
+
+    public void InfiniteTime() 
+    {
+        TimerText.text = ("88:88");
+        playing = false;
     }
 
     #region Save and Load

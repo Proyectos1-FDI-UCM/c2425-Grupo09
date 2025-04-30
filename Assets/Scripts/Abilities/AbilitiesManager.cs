@@ -129,6 +129,26 @@ public class AbilitiesManager : MonoBehaviour
             UIManager.Instance.VFXObtainAbility((int)_HUDImage.Armadillo);
         }
     }
+
+    public void Cheats()
+    {
+        doubleJump = true;
+        nightVision = true;
+        grappler = true;
+        tiger = true;
+        armadillo = true;
+        
+        for (int i = 0; i < _caveTriggers.Length; i++)
+        {
+            if (_caveTriggers[i] != null)
+                _caveTriggers[i].UnlockCave();
+        }
+
+        _HUDAbilities.ActivateColor((int)_HUDImage.Bat);
+        _HUDAbilities.ActivateColor((int)_HUDImage.Gorila);
+        _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
+    }
+
     #region Save and Load
 
     public void Save(ref PlayerAbilitiesData data)

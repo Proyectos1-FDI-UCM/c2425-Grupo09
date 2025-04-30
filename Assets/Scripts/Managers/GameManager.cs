@@ -38,6 +38,7 @@ public class GameManager : MonoBehaviour
     public Capture _capture;
     public GrapplerGun _gun;
     public InventoryController _inventoryController;
+    public CheckList _checkList;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -102,22 +103,21 @@ public class GameManager : MonoBehaviour
             _instance = null;
         } // if somos la instancia principal
     }
-    private void Start()
-    {
-        _playerController = FindFirstObjectByType<PlayerController>();
-        _abilitiesManager = FindFirstObjectByType<AbilitiesManager>();
-        _timer = FindFirstObjectByType<Timer>();
-        _health = FindFirstObjectByType<Health>();
-        _capture = FindFirstObjectByType<Capture>();
-        _gun = FindFirstObjectByType<GrapplerGun>();
-        _inventoryController = FindFirstObjectByType<InventoryController>();
-    }
+
     private void Update()
     {
         if (InputManager.Instance.SaveWasPressedThisFrame())
             SaveSystem.Save();
         else if (InputManager.Instance.LoadWasPressedThisFrame())
             SaveSystem.Load();
+
+        if (InputManager.Instance.CheatWasPressedThisFrame())
+        {
+            _timer.InfiniteTime();
+            _abilitiesManager.Cheats();
+            _checkList.Cheats();
+            _capture.Cheats();
+        }
     }
 
     #endregion
@@ -174,6 +174,17 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(index);
         System.GC.Collect();
     } // ChangeScene
+    public void Variables(PlayerController playerController, AbilitiesManager abilitiesManager, Timer timer, Health health, Capture capture,
+                          GrapplerGun gun, InventoryController inventoryController, CheckList checkList)
+    {
+        _playerController = playerController;
+        _abilitiesManager = abilitiesManager;
+        _timer = timer;
+        _health = health;
+        _capture = capture;
+        _inventoryController = inventoryController;
+        _checkList = checkList;
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----

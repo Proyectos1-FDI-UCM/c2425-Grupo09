@@ -6,6 +6,7 @@
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
+using System.Text.RegularExpressions;
 using UnityEngine;
 
 /// <summary>
@@ -36,7 +37,14 @@ public class LevelManager : MonoBehaviour
     /// Instancia única de la clase (singleton).
     /// </summary>
     private static LevelManager _instance;
-
+    public PlayerController _playerController;
+    public AbilitiesManager _abilitiesManager;
+    public Timer _timer;
+    public Health _health;
+    public Capture _capture;
+    public GrapplerGun _gun;
+    public InventoryController _inventoryController;
+    public CheckList _checkList;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -56,9 +64,18 @@ public class LevelManager : MonoBehaviour
     void Start()
     {
         AudioManager.Instance.PlayMusic(AudioManager.Instance.background);
+        _playerController = FindFirstObjectByType<PlayerController>();
+        _abilitiesManager = FindFirstObjectByType<AbilitiesManager>();
+        _timer = FindFirstObjectByType<Timer>();
+        _health = FindFirstObjectByType<Health>();
+        _capture = FindFirstObjectByType<Capture>();
+        _gun = FindFirstObjectByType<GrapplerGun>();
+        _inventoryController = FindFirstObjectByType<InventoryController>();
+        _checkList = FindFirstObjectByType<CheckList>();
+        GameManager.Instance.Variables(_playerController, _abilitiesManager, _timer, _health, _capture, _gun, _inventoryController, _checkList);
     }
 
-    
+
 
     #endregion
 
