@@ -56,6 +56,11 @@ public class AudioManager : MonoBehaviour
     public AudioClip magicCharge;
     public AudioClip magicExplosion;
     public AudioClip magicTinkle;
+
+    [Header("UI SFX")]
+    public AudioClip click;
+    public AudioClip map;
+    public AudioClip checklist;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----

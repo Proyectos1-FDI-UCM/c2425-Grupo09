@@ -84,6 +84,7 @@ public class InputManager : MonoBehaviour
     private InputAction _closePauseMenu;
     private InputAction _closeChecklist;
     private InputAction _cheats;
+    private InputAction _nextTutorial;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -336,6 +337,11 @@ public class InputManager : MonoBehaviour
     {
         return _closeChecklist.WasPressedThisFrame();
     }
+
+    public bool NextTutorialWasPressedThisFrame()
+    {
+        return _nextTutorial.WasPressedThisFrame();
+    }
     #endregion
 
 
@@ -436,6 +442,7 @@ public class InputManager : MonoBehaviour
         _closeMap = _theController.UI.MapClose;
         _closePauseMenu = _theController.UI.PauseMenuClose;
         _closeChecklist = _theController.UI.ChecklistClose;
+        _nextTutorial = _theController.UI.Tutorial;
 
     }
 

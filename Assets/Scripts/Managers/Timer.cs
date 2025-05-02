@@ -24,7 +24,10 @@ public class Timer : MonoBehaviour
     {
         _health = Player.GetComponent<Health>();
         _defeat = DefeatSign.GetComponent<Defeat>();
-        playing = true;
+
+        //Esto está desactivado porque el tiempo se activa desde el TutorialManager
+        //playing = true;
+        
         currenttime = timeSeg;
         animator.SetBool("1", true);
     }
@@ -71,6 +74,12 @@ public class Timer : MonoBehaviour
     {
         playing = false;
         Debug.Log("Fin partida");
+    }
+
+    public void StartCounting()
+    {
+        playing = true;
+        Debug.Log("Inicio partida");
     }
 
     public float MinutesCount ()

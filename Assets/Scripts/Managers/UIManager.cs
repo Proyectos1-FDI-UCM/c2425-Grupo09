@@ -42,6 +42,8 @@ public class UIManager : MonoBehaviour
 
     protected void Awake()
     {
+        _fadeAnim = Fade.GetComponent<Animator>();
+
         if (Instance == null)
         {
             Instance = this;
@@ -69,16 +71,6 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(true);
         Time.timeScale = 0f;
         _isPaused = true;
-    }
-
-    
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before 
-    /// any of the Update methods are called the first time.
-    /// </summary>
-    void Start()
-    {
-        _fadeAnim = Fade.GetComponent<Animator>();
     }
 
 

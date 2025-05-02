@@ -658,6 +658,15 @@ namespace UnityEngine.InputSystem
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Tutorial"",
+                    ""type"": ""Button"",
+                    ""id"": ""b6be9da5-140e-4b35-8691-5fa24612a4c7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -1210,6 +1219,28 @@ namespace UnityEngine.InputSystem
                     ""action"": ""ChecklistClose"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""32a05962-efaf-43bf-a406-46bfaf419017"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tutorial"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a1e1e1e9-60c1-4642-a816-9f75c6f98206"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Tutorial"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -1311,6 +1342,7 @@ namespace UnityEngine.InputSystem
             m_UI_MapClose = m_UI.FindAction("MapClose", throwIfNotFound: true);
             m_UI_PauseMenuClose = m_UI.FindAction("PauseMenuClose", throwIfNotFound: true);
             m_UI_ChecklistClose = m_UI.FindAction("ChecklistClose", throwIfNotFound: true);
+            m_UI_Tutorial = m_UI.FindAction("Tutorial", throwIfNotFound: true);
         }
 
         public void Dispose()
@@ -1559,6 +1591,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_UI_MapClose;
         private readonly InputAction m_UI_PauseMenuClose;
         private readonly InputAction m_UI_ChecklistClose;
+        private readonly InputAction m_UI_Tutorial;
         public struct UIActions
         {
             private @InputActionSettings m_Wrapper;
@@ -1576,6 +1609,7 @@ namespace UnityEngine.InputSystem
             public InputAction @MapClose => m_Wrapper.m_UI_MapClose;
             public InputAction @PauseMenuClose => m_Wrapper.m_UI_PauseMenuClose;
             public InputAction @ChecklistClose => m_Wrapper.m_UI_ChecklistClose;
+            public InputAction @Tutorial => m_Wrapper.m_UI_Tutorial;
             public InputActionMap Get() { return m_Wrapper.m_UI; }
             public void Enable() { Get().Enable(); }
             public void Disable() { Get().Disable(); }
@@ -1624,6 +1658,9 @@ namespace UnityEngine.InputSystem
                 @ChecklistClose.started += instance.OnChecklistClose;
                 @ChecklistClose.performed += instance.OnChecklistClose;
                 @ChecklistClose.canceled += instance.OnChecklistClose;
+                @Tutorial.started += instance.OnTutorial;
+                @Tutorial.performed += instance.OnTutorial;
+                @Tutorial.canceled += instance.OnTutorial;
             }
 
             private void UnregisterCallbacks(IUIActions instance)
@@ -1667,6 +1704,9 @@ namespace UnityEngine.InputSystem
                 @ChecklistClose.started -= instance.OnChecklistClose;
                 @ChecklistClose.performed -= instance.OnChecklistClose;
                 @ChecklistClose.canceled -= instance.OnChecklistClose;
+                @Tutorial.started -= instance.OnTutorial;
+                @Tutorial.performed -= instance.OnTutorial;
+                @Tutorial.canceled -= instance.OnTutorial;
             }
 
             public void RemoveCallbacks(IUIActions instance)
@@ -1764,6 +1804,7 @@ namespace UnityEngine.InputSystem
             void OnMapClose(InputAction.CallbackContext context);
             void OnPauseMenuClose(InputAction.CallbackContext context);
             void OnChecklistClose(InputAction.CallbackContext context);
+            void OnTutorial(InputAction.CallbackContext context);
         }
     }
 }

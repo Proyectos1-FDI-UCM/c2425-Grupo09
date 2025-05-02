@@ -312,6 +312,7 @@ MonoBehaviour:
   _capture: {fileID: 0}
   _gun: {fileID: 0}
   _inventoryController: {fileID: 0}
+  _checkList: {fileID: 0}
 --- !u!114 &2598751330512981393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -373,6 +374,9 @@ MonoBehaviour:
   magicCharge: {fileID: 8300000, guid: 7f99d5959ccbe6e4ca8296b5bcafdf1d, type: 3}
   magicExplosion: {fileID: 8300000, guid: 0d1dd7f92c5d5a8479e1522e11dc50e4, type: 3}
   magicTinkle: {fileID: 8300000, guid: 9b8e69074a4feb14d84a612c0764d2c2, type: 3}
+  click: {fileID: 8300000, guid: dacb15441cccad846b4f519797063dbc, type: 3}
+  map: {fileID: 0}
+  checklist: {fileID: 0}
 --- !u!1 &5604622037873449801
 GameObject:
   m_ObjectHideFlags: 0
