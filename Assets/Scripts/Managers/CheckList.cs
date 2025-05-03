@@ -8,6 +8,11 @@ using TMPro;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.InputSystem;
+using System.Linq;
+using UnityEngine.InputSystem.Controls;
+
+
 // Añadir aquí el resto de directivas using
 
 /// <summary>
@@ -27,6 +32,11 @@ public class CheckList : MonoBehaviour
     [SerializeField] private GameObject menuPanel; // Aqui referenciamos a el panel del menú de checklist
     [SerializeField] private GameObject[] ticks;
     [SerializeField] private TextMeshProUGUI VesselText;
+    [SerializeField] private TextMeshProUGUI TutorialVesselText;
+    [SerializeField] private TextMeshProUGUI GamepadVesselText;
+    [SerializeField] private TextMeshProUGUI KeyboardVesselText;
+
+
     [SerializeField] private GameObject VesselTextBack;
     [SerializeField] private GameObject victorySign;
     #endregion
@@ -44,6 +54,7 @@ public class CheckList : MonoBehaviour
     private int _ticks = 0;
     private bool _allCaptured;
     private bool _inVesselRange;
+    private bool _inKeyboard;
     private Victory _victory;
 
     #endregion
@@ -64,7 +75,10 @@ public class CheckList : MonoBehaviour
         }
 
         VesselText.gameObject.SetActive(false);
-        VesselTextBack.gameObject.SetActive(false);
+        TutorialVesselText.gameObject.SetActive(false);
+        GamepadVesselText.gameObject.SetActive(false);
+        KeyboardVesselText.gameObject.SetActive(false);
+
         //_allCaptured = true;
         _onVessel = false;
         _victory = victorySign.GetComponent<Victory>();
@@ -75,11 +89,35 @@ public class CheckList : MonoBehaviour
     /// </summary>
     void Update()
     {
+        if (_onVessel)
+        {
+            TutorialVesselText.gameObject.SetActive(true);
+            if (_inKeyboard)
+            {
+                KeyboardVesselText.gameObject.SetActive(true);
+                GamepadVesselText.gameObject.SetActive(false);
+            }
+            else
+            {
+                GamepadVesselText.gameObject.SetActive(true);
+                KeyboardVesselText.gameObject.SetActive(false);
+            }
+
+
+        }
+        else
+        {
+            TutorialVesselText.gameObject.SetActive(false);
+            GamepadVesselText.gameObject.SetActive(false);
+            KeyboardVesselText.gameObject.SetActive(false);
+        }
+
         if (InputManager.Instance.ChecklistWasPressedThisFrame()) // Detecta la tecla Tab
         {
             ToggleMenu();
             InputManager.Instance.EnableUIControls();
-        }else if (InputManager.Instance.ChecklistCLoseWasPressedThisFrame())
+        }
+        else if (InputManager.Instance.ChecklistCLoseWasPressedThisFrame())
         {
             ToggleMenu();
             InputManager.Instance.EnablePlayerControls();
@@ -87,7 +125,6 @@ public class CheckList : MonoBehaviour
         if (_onVessel && !_allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
         {
             VesselText.gameObject.SetActive(true);
-            VesselTextBack.gameObject.SetActive(true);
             StartCoroutine(DeactivateVesselTextAfterTime(2f));
         }
         else if (_onVessel && _allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
@@ -98,6 +135,10 @@ public class CheckList : MonoBehaviour
         {
             _allCaptured=true;
         }
+        if (Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
+        { _inKeyboard = true; }
+        else if (Gamepad.current != null && Gamepad.current.allControls.Any(c => c is ButtonControl b && b.wasPressedThisFrame))
+        { _inKeyboard = false; }
     }
     #endregion
 
@@ -113,7 +154,6 @@ public class CheckList : MonoBehaviour
 
         // Desactiva el texto después del tiempo de espera
         VesselText.gameObject.SetActive(false);
-        VesselTextBack.gameObject.SetActive(false);
     }
     public void ToggleMenu()
     {
