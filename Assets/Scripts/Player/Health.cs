@@ -53,6 +53,7 @@ public class Health : MonoBehaviour
     private float _shieldDown;
 
     private PlayerController _playerController;
+    private bool playerDisabledForAbilityVFX = false;
     private CinemachineImpulseSource _cinemachineImpulseSource;
     #endregion
 
@@ -202,15 +203,41 @@ public class Health : MonoBehaviour
         Updatehealth(0f);
     }
 
+    /// <summary>
+    /// Se activa el movimiento del jugador. Se llama desde eventos de animación.
+    /// </summary>
     public void EnablePlayerForAnimation()
     {
+        if(!playerDisabledForAbilityVFX)
         _playerController.enabled = true;
     }
 
+    /// <summary>
+    /// Se desactiva el movimiento del jugador. Se llama desde eventos de animación.
+    /// </summary>
     public void DisablePlayerForAnimation()
     {
         _playerController.enabled = false;
     }
+
+    /// <summary>
+    /// Se desactiva el movimiento del jugador. Se llama desde el UIManager.
+    /// </summary>
+    public void DisablePlayerForAbilityVFX()
+    {
+        _playerController.enabled = false;
+        animator.SetBool("Walk", false);
+        playerDisabledForAbilityVFX = true;
+    }
+
+    /// <summary>
+    /// Se activa el movimiento del jugador. Se llama desde el UIManager.
+    /// </summary>
+    public void EnablePlayerForAbilityVFX()
+    {
+        _playerController.enabled = true;
+        playerDisabledForAbilityVFX = false;
+    }    
 
     #region Save and Load
     public void Save(ref HealthData data)

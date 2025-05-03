@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     #region Atributos Privados (private fields)
 
     private Animator _fadeAnim;
+    private Health _health;
     private bool _isPaused = false;
 
     #endregion
@@ -52,6 +53,11 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    void Start()
+    {
+        _health = GameManager.Instance._health;
     }
     private void Update()
     {
@@ -104,19 +110,31 @@ public class UIManager : MonoBehaviour
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-
+    /// <summary>
+    /// Corrutine para gestionar lo que ocurre cuando se obtiene una habilidad.
+    /// </summary>
+    /// <param name="index">Indice de la habilidad.</param>
+    /// <returns></returns>
     private IEnumerator EffectAnimation(int index)
     {
         ObtainEffect.SetActive(true);
+        _health.DisablePlayerForAbilityVFX();
         AudioManager.Instance.PlaySFX(AudioManager.Instance.magicCharge);
+
         yield return new WaitForSeconds(2f);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.magicExplosion);
         CameraShakeManager.Instance.StandardCameraShake();
+
         yield return new WaitForSeconds(0.2f);
+
         EnableAbilityTextBox(index, true);
         AudioManager.Instance.PlaySFX(AudioManager.Instance.magicTinkle);
+        _health.EnablePlayerForAbilityVFX();
+
         yield return new WaitForSeconds(2f);
+
         ObtainEffect.SetActive(false);
+
         yield return new WaitForSeconds(2f);
         EnableAbilityTextBox(index, false);
     }
