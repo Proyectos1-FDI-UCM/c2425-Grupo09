@@ -170,6 +170,7 @@ public class InputManager : MonoBehaviour
     /// es un vector normalizado 
     /// </summary>
     public Vector2 MovementVector { get; private set; }
+    public Vector2 MapMovementVector { get; private set; }
 
     /// <summary>
     /// Los dos métodos sirven para activar unos controles u otros
@@ -458,7 +459,7 @@ public class InputManager : MonoBehaviour
 
     private void OnMoveMap(InputAction.CallbackContext context)
     {
-        MovementVector = context.ReadValue<Vector2>();
+        MapMovementVector = context.ReadValue<Vector2>();
     }
 
     #endregion

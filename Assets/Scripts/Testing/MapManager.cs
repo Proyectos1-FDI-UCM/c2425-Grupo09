@@ -61,7 +61,7 @@ public class MapManager : MonoBehaviour
     /// </summary>
     void Update()
     {
-        Vector2 _moveVector = InputManager.Instance.MovementVector;
+        Vector2 _moveVector = InputManager.Instance.MapMovementVector;
 
         if (InputManager.Instance.MapWasPressedThisFrame() && !_mapaAbierto)
         {
