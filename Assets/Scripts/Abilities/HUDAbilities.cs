@@ -101,6 +101,11 @@ public class HUDAbilities : MonoBehaviour
         GlowEffect[(int)_animal.Armadillo].SetActive(state);
     }
 
+    
+    /// <summary>
+    /// Cambia el icono del control a mando o teclado.
+    /// </summary>
+    /// <param name="mando">Si es true, el icono es del mando, si es false, el icono es del teclado.</param>
     public void UpdateHUDForGamePad(bool mando)
     {
         if(mando)
