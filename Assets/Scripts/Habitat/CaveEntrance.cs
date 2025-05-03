@@ -6,6 +6,8 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using TMPro;
+
 
 
 /// <summary>
@@ -30,13 +32,19 @@ public class CaveEntrance : MonoBehaviour
     [SerializeField] GameObject JungleAnimals;
     //Bool para saber si el jugador entra desde la izquierda o desde la derecha
     [SerializeField] bool enteringFromLeft;
+    [SerializeField] private TextMeshProUGUI CaveText;
+
+
 
     #endregion
-    
+
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
     private Collider2D _coll;
+
+    private bool _caveUnlock;
+    private bool _inCaveEntrance;
     #endregion
     
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -49,6 +57,25 @@ public class CaveEntrance : MonoBehaviour
     void Start()
     {
         _coll = GetComponent<Collider2D>();
+
+        _caveUnlock = false;
+        _inCaveEntrance = false; 
+        CaveText.gameObject.SetActive(false);
+    }
+
+    void Update()
+    {
+        Debug.Log("Cueva desbloqueada: " + _caveUnlock);
+        Debug.Log("Entrada cueva: " + _inCaveEntrance);
+
+        if (!_caveUnlock && _inCaveEntrance)
+        {
+            CaveText.gameObject.SetActive(true);
+        }
+        else
+            CaveText.gameObject.SetActive(false);
+
+
     }
 
     #endregion
@@ -62,6 +89,7 @@ public class CaveEntrance : MonoBehaviour
     public void UnlockCave()
     {
         _coll.isTrigger = true;
+        _caveUnlock = true;
     }
 
     #endregion
@@ -78,6 +106,7 @@ public class CaveEntrance : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
+            _inCaveEntrance = false;
             CheckpointManager.Instance.SetCheckpoint(other.transform.position);
             
             Vector2 exitDirection = (other.transform.position - _coll.bounds.center).normalized;
@@ -104,6 +133,13 @@ public class CaveEntrance : MonoBehaviour
                     JungleAnimals.SetActive(true);
                 }
             }
+        }
+    }
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.GetComponent<PlayerController>() != null)
+        {
+            _inCaveEntrance = true;
         }
     }
 
