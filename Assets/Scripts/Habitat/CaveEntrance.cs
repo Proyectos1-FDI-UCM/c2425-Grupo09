@@ -116,6 +116,7 @@ public class CaveEntrance : MonoBehaviour
             if(entering)
             {
                 EnteringCave(true);
+                AudioManager.Instance.PlayMusic(AudioManager.Instance.caveMusic);
             } 
             else 
             {
@@ -126,11 +127,14 @@ public class CaveEntrance : MonoBehaviour
                 {
                     SavannahBackground.SetActive(true);
                     SavannahAnimals.SetActive(true);
+                    AudioManager.Instance.PlayMusic(AudioManager.Instance.savannahMusic);
                 }
                 else
                 {
                     JungleBackground.SetActive(true);
                     JungleAnimals.SetActive(true);
+                    AudioManager.Instance.PlayMusic(AudioManager.Instance.jungleMusic);
+
                 }
             }
         }

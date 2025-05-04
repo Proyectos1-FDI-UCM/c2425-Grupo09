@@ -342,7 +342,9 @@ MonoBehaviour:
   musicSource: {fileID: 1567626120825920964}
   SFXSource: {fileID: 4487964267098893414}
   RandomPitchSFXSource: {fileID: 4613178982795883444}
-  background: {fileID: 8300000, guid: 3233600a2eb802644be9a00305ca754e, type: 3}
+  savannahMusic: {fileID: 8300000, guid: 3233600a2eb802644be9a00305ca754e, type: 3}
+  caveMusic: {fileID: 8300000, guid: 597665d827c17d74b90284fcca56dec9, type: 3}
+  jungleMusic: {fileID: 8300000, guid: 3d18ec4467b18ba48b16eec7d483e616, type: 3}
   mainMenu: {fileID: 8300000, guid: 91ca76adbff663743ab83e01b3d7c647, type: 3}
   victory: {fileID: 8300000, guid: d87ab331c87d8454fa30c25caa049c05, type: 3}
   gameOver: {fileID: 8300000, guid: 510e305a20e5d5340ba123eac4f83f8e, type: 3}
@@ -375,8 +377,8 @@ MonoBehaviour:
   magicExplosion: {fileID: 8300000, guid: 0d1dd7f92c5d5a8479e1522e11dc50e4, type: 3}
   magicTinkle: {fileID: 8300000, guid: 9b8e69074a4feb14d84a612c0764d2c2, type: 3}
   click: {fileID: 8300000, guid: dacb15441cccad846b4f519797063dbc, type: 3}
-  map: {fileID: 0}
-  checklist: {fileID: 0}
+  map: {fileID: 8300000, guid: 2d9d0830a44d1ed4fbe7e25ab4a3b8e3, type: 3}
+  checklist: {fileID: 8300000, guid: 3701680a1f3e6a64dba7fa7561ddf741, type: 3}
 --- !u!1 &5604622037873449801
 GameObject:
   m_ObjectHideFlags: 0

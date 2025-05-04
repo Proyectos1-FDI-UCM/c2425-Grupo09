@@ -159,6 +159,7 @@ public class CheckList : MonoBehaviour
     {
         if (menuPanel != null)
         {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.checklist, true);
             _isMenuOpen = !_isMenuOpen;
             menuPanel.SetActive(_isMenuOpen);
         }

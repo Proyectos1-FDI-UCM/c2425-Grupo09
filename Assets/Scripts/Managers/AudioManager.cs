@@ -24,7 +24,9 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clip")]
     [Header("Music")]
-    public AudioClip background;
+    public AudioClip savannahMusic;
+    public AudioClip caveMusic;
+    public AudioClip jungleMusic;
     public AudioClip mainMenu;
     public AudioClip victory;
     public AudioClip gameOver;
