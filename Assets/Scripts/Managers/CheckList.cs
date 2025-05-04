@@ -117,7 +117,7 @@ public class CheckList : MonoBehaviour
             ToggleMenu();
             InputManager.Instance.EnableUIControls();
         }
-        else if (InputManager.Instance.ChecklistCLoseWasPressedThisFrame())
+        else if (InputManager.Instance.ChecklistCLoseWasPressedThisFrame() && _isMenuOpen)
         {
             ToggleMenu();
             InputManager.Instance.EnablePlayerControls();
