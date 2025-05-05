@@ -67,6 +67,7 @@ public class MenuManager : MonoBehaviour
         StartCoroutine(SlideInTitlePanel());
         StartCoroutine(SlideInMenuPanel());
         AudioManager.Instance.PlayMusic(AudioManager.Instance.mainMenu);
+        InputManager.Instance.EnablePlayerControls();
     }
 
     /// <summary>

@@ -130,6 +130,7 @@ public class CheckList : MonoBehaviour
         else if (_onVessel && _allCaptured && InputManager.Instance.ExitWasPressedThisFrame())
         {
             _victory.ShowVictory(); 
+            InputManager.Instance.DisablePlayerControls();
         }
         if (_ticks==10)
         {
