@@ -86,7 +86,7 @@ public class Capture : MonoBehaviour
             if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
             {
                 animator.SetTrigger("Capture");
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.pick, false);
+                AudioManager.Instance.PlaySFX("pick", false);
                 CheckpointManager.Instance.SetCheckpoint(transform.position);
                 _capturedAnimals++;
                 _animalCapture.Add(_barraDeSueño.AnimalId);

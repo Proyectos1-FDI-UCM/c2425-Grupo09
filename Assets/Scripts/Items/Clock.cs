@@ -79,7 +79,7 @@ public class Clock : MonoBehaviour
         if (player.GetComponent<PlayerController>() != null)
         {
             inventoryController.InventoryAdd(ItemId);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.pickTime);
+            AudioManager.Instance.PlaySFX("pickTime");
             gameObject.SetActive(false);
             timer.Reloj(SumaSeg);
             Destroy(gameObject);

@@ -54,7 +54,7 @@ public class Apple : MonoBehaviour
         if (collision.gameObject.GetComponent<Health>() != null)
         {
             _inventoryController.InventoryAdd(ItemId);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.pickApple);
+            AudioManager.Instance.PlaySFX("pickApple");
             gameObject.SetActive(false);
             _inventoryController.AddAppleToInventory();
             Destroy(gameObject);

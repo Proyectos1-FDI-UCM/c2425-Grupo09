@@ -85,7 +85,7 @@ public class BarraDeSueño : MonoBehaviour
         {
             _barraDeSueño += amount;
             _playerDetected = true;
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.animalHurt, true);
+            AudioManager.Instance.PlaySFX("animalHurt", true);
 
             if(_barraDeSueño >= MaxBarraDeSueño)
             {
@@ -103,7 +103,7 @@ public class BarraDeSueño : MonoBehaviour
                     if(SleepLeftCollider != null)
                     SleepLeftCollider.enabled = true;
                 }
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.animalKO);
+                AudioManager.Instance.PlaySFX("animalKO");
 
                 _animalController.enabled = false;
 

@@ -160,7 +160,7 @@ public class CheckList : MonoBehaviour
     {
         if (menuPanel != null)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.checklist, true);
+            AudioManager.Instance.PlaySFX("checklist", true);
             _isMenuOpen = !_isMenuOpen;
             menuPanel.SetActive(_isMenuOpen);
         }
@@ -196,11 +196,4 @@ public class CheckList : MonoBehaviour
     }
     #endregion
 
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    #endregion
 } // class CheckList 

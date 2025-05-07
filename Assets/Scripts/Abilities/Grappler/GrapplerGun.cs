@@ -224,7 +224,7 @@ public class GrapplerGun : MonoBehaviour
         grappleRope.enabled = true;
         
         HUDAbilities.Instance.GorillaGlow(true);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.launchGrappler, true);
+        AudioManager.Instance.PlaySFX("launchGrappler", true);
         playerController.UpdateJumpCounter();
     }
 

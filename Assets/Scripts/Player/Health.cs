@@ -132,7 +132,7 @@ public class Health : MonoBehaviour
         {
             _timeLastShield = Time.time;
             OnShield();
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.shield, true);
+            AudioManager.Instance.PlaySFX("shield", true);
             _currentDuration = ShieldDuration;
         }
 
@@ -183,7 +183,7 @@ public class Health : MonoBehaviour
            Die();
         } else if(amount < 0) {
             animator.SetTrigger("Hurt"); 
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurt, true);
+            AudioManager.Instance.PlaySFX("playerHurt", true);
             EnablePlayerForAnimation();
         }
     }
@@ -191,7 +191,7 @@ public class Health : MonoBehaviour
     public void Die()
     {
         animator.SetTrigger("Dead");
-        AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.die, false);
+        AudioManager.Instance.PlaySFX("die", false);
         _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
     }

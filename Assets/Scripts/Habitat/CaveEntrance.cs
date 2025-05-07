@@ -116,7 +116,7 @@ public class CaveEntrance : MonoBehaviour
             if(entering)
             {
                 EnteringCave(true);
-                AudioManager.Instance.PlayMusic(AudioManager.Instance.caveMusic);
+                AudioManager.Instance.PlayMusic("caveMusic");
             } 
             else 
             {
@@ -127,13 +127,13 @@ public class CaveEntrance : MonoBehaviour
                 {
                     SavannahBackground.SetActive(true);
                     SavannahAnimals.SetActive(true);
-                    AudioManager.Instance.PlayMusic(AudioManager.Instance.savannahMusic);
+                    AudioManager.Instance.PlayMusic("savannahMusic");
                 }
                 else
                 {
                     JungleBackground.SetActive(true);
                     JungleAnimals.SetActive(true);
-                    AudioManager.Instance.PlayMusic(AudioManager.Instance.jungleMusic);
+                    AudioManager.Instance.PlayMusic("jungleMusic");
 
                 }
             }
