@@ -111,7 +111,7 @@ public class Capture : MonoBehaviour
                 if (_animal.CompareTag("Gorila"))
                 {
                     AbilitiesManager.Instance.GorilaAbilityUnlock();
-                    _grapplerGun.grapplerUnlocked = true;
+                    _grapplerGun.GrapplerUnlocked = true;
 
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleGorila);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleGorila);
@@ -172,7 +172,7 @@ public class Capture : MonoBehaviour
     {
         _playerController.nightVision.SetActive(true);
         _health.armadilloUnlocked = true;
-        _grapplerGun.grapplerUnlocked = true;
+        _grapplerGun.GrapplerUnlocked = true;
         _playerController.extraJump = 1;
         _playerController.tigerUnlocked = true;
     }

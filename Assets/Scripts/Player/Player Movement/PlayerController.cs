@@ -230,15 +230,15 @@ public class PlayerController : MonoBehaviour
     public void Abilities()
     {
 
-        if (AbilitiesManager.Instance.doubleJump)
+        if (AbilitiesManager.Instance.DoubleJump)
         {
             extraJump = 1;
         }
-        if (AbilitiesManager.Instance.nightVision)
+        if (AbilitiesManager.Instance.NightVision)
         {
             nightVision.SetActive(true);
         }
-        if (AbilitiesManager.Instance.tiger == true)
+        if (AbilitiesManager.Instance.Tiger == true)
         {
             tigerUnlocked = true;
         }

@@ -262,7 +262,7 @@ public class Health : MonoBehaviour
 
     public void Abilities()
     {
-        if (AbilitiesManager.Instance.armadillo == true) { armadilloUnlocked = true; }
+        if (AbilitiesManager.Instance.Armadillo == true) { armadilloUnlocked = true; }
     }
     #endregion
 
