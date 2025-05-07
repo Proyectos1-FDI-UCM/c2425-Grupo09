@@ -266,7 +266,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   grappleRope: {fileID: 9011569648895095918}
   playerController: {fileID: 3574316574254708645}
-  m_camera: {fileID: 0}
   gunHolder: {fileID: 4913350770382398780}
   gunPivot: {fileID: 849332029143353790}
   firePoint: {fileID: 4913350770382398780}
@@ -279,8 +278,6 @@ MonoBehaviour:
   autoConfigureDistance: 1
   targetDistance: 6.5
   targetFrequncy: 1
-  grapplePoint: {x: 0, y: 0}
-  grappleDistanceVector: {x: 0, y: 0}
   maxDistance: 8
   alturaMinimaEnganche: 0.8
   impulso: 8
@@ -716,7 +713,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 2.3
+  m_GravityScale: 2.5
   m_Material: {fileID: 6200000, guid: 123d7b3fa5e29cc42a792f67c5e6d019, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
@@ -726,7 +723,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!114 &3574316574254708645
 MonoBehaviour:
@@ -922,7 +919,8 @@ MonoBehaviour:
   ticks: []
   VesselText: {fileID: 0}
   TutorialVesselText: {fileID: 0}
-  GamepadVesselText: {fileID: 0}
+  PS4VesselText: {fileID: 0}
+  XBOXVesselText: {fileID: 0}
   KeyboardVesselText: {fileID: 0}
   VesselTextBack: {fileID: 0}
   victorySign: {fileID: 0}
