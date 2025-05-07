@@ -36,7 +36,11 @@ public class BarraDeSueño : MonoBehaviour
     [SerializeField] private Transform Player;
     [SerializeField] private float ResetDistance;
 
-    public bool Male;
+    [SerializeField] private bool male;
+    public bool Male
+    {
+        get => male;
+    }
     public int AnimalId
     {
         get => _animalId;

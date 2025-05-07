@@ -34701,9 +34701,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   "MaxBarraDeSue\xF1o": 120
+  NormalCollider: {fileID: 7261809746522249113}
   TriggerCollider: {fileID: 4187176767586889015}
   SleepCollider: {fileID: 8197405736743229306}
-  NormalCollider: {fileID: 7261809746522249113}
+  SleepLeftCollider: {fileID: 0}
+  SleepRightCollider: {fileID: 0}
   _healthBarFill: {fileID: 6049408584606315714}
   _fillSpeed: 0.2
   _colorGradient:
@@ -34737,7 +34739,9 @@ MonoBehaviour:
     m_NumColorKeys: 2
     m_NumAlphaKeys: 2
   _animalId: 0
-  Male: 1
+  Player: {fileID: 0}
+  ResetDistance: 0
+  male: 1
   "_barraDeSue\xF1o": 0
 --- !u!114 &2004477079712909556
 MonoBehaviour:
