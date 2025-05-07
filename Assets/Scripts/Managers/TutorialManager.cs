@@ -19,7 +19,8 @@ public class TutorialManager : MonoBehaviour
     //El texto relativo a los controles de teclado
     [SerializeField] GameObject[] ControlsText;
     //El texto relativo a los controles de mando
-    [SerializeField] GameObject[] ControlsTextGamepad;
+    [SerializeField] GameObject[] ControlsTextPS4;
+    [SerializeField] GameObject[] ControlsTextXbox;
 
     //El texto que se va a mostrar en la ventana emergente
     [SerializeField] TextMeshProUGUI TextComponent;
@@ -160,9 +161,11 @@ public class TutorialManager : MonoBehaviour
 
             if(currentWord == "pressing")
             {
-                if(InputManager.Instance.MandoConectado())
-                    ControlsTextGamepad[controlsPopUpIndex].SetActive(true);
-                else 
+                if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.PS4)
+                    ControlsTextPS4[controlsPopUpIndex].SetActive(true);
+                else if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.XBOX)
+                    ControlsTextXbox[controlsPopUpIndex].SetActive(true);
+                else
                     ControlsText[controlsPopUpIndex].SetActive(true);
 
                 controlsPopUpIndex++;
@@ -180,7 +183,8 @@ public class TutorialManager : MonoBehaviour
         for(int i = 0; i < ControlsText.Length; i++)
         {
             ControlsText[i].SetActive(false);
-            ControlsTextGamepad[i].SetActive(false);
+            ControlsTextPS4[i].SetActive(false);
+            ControlsTextXbox[i].SetActive(false);
         }
 
         if(popUpIndex < lines.Length - 1)

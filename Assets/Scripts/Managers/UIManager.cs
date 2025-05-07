@@ -25,7 +25,8 @@ public class UIManager : MonoBehaviour
 
     [SerializeField] private GameObject ObtainEffect;
     [SerializeField] GameObject[] AbilitiesTextBox;
-    [SerializeField] GameObject[] AbilitiesTextBoxGamePad;
+    [SerializeField] GameObject[] AbilitiesTextBoxPS4;
+    [SerializeField] GameObject[] AbilitiesTextBoxXbox;
 
     #endregion
 
@@ -141,15 +142,21 @@ public class UIManager : MonoBehaviour
 
     private void EnableAbilityTextBox(int index, bool state)
     {
-        if(InputManager.Instance.MandoConectado())
+        if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.PS4)
         {
-            if(AbilitiesTextBoxGamePad[index] != null)
-                AbilitiesTextBoxGamePad[index].SetActive(state);
+            if(AbilitiesTextBoxPS4[index] != null)
+                AbilitiesTextBoxPS4[index].SetActive(state);
             else 
                 AbilitiesTextBox[index].SetActive(state);
 
-        }else{
+        }else if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.XBOX){
 
+            if(AbilitiesTextBoxXbox[index] != null)
+                AbilitiesTextBoxXbox[index].SetActive(state);
+            else 
+                AbilitiesTextBox[index].SetActive(state);
+        }else 
+        {
             AbilitiesTextBox[index].SetActive(state);
         }
     }

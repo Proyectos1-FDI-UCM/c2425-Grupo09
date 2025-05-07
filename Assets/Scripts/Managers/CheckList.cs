@@ -33,7 +33,8 @@ public class CheckList : MonoBehaviour
     [SerializeField] private GameObject[] ticks;
     [SerializeField] private TextMeshProUGUI VesselText;
     [SerializeField] private TextMeshProUGUI TutorialVesselText;
-    [SerializeField] private TextMeshProUGUI GamepadVesselText;
+    [SerializeField] private TextMeshProUGUI PS4VesselText;
+    [SerializeField] private TextMeshProUGUI XBOXVesselText;
     [SerializeField] private TextMeshProUGUI KeyboardVesselText;
 
 
@@ -61,7 +62,11 @@ public class CheckList : MonoBehaviour
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
-    public bool _onVessel;
+    [SerializeField] private bool _onVessel;
+    public bool OnVessel
+    {
+        get => _onVessel;
+    }
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
@@ -76,8 +81,9 @@ public class CheckList : MonoBehaviour
 
         VesselText.gameObject.SetActive(false);
         TutorialVesselText.gameObject.SetActive(false);
-        GamepadVesselText.gameObject.SetActive(false);
+        PS4VesselText.gameObject.SetActive(false);
         KeyboardVesselText.gameObject.SetActive(false);
+        XBOXVesselText.gameObject.SetActive(false);
 
         //_allCaptured = true;
         _onVessel = false;
@@ -92,23 +98,31 @@ public class CheckList : MonoBehaviour
         if (_onVessel)
         {
             TutorialVesselText.gameObject.SetActive(true);
-            if (_inKeyboard)
+
+            if (InputManager.Instance.GetDevice() == InputManager.Dispositivo.PS4)
             {
-                KeyboardVesselText.gameObject.SetActive(true);
-                GamepadVesselText.gameObject.SetActive(false);
+                PS4VesselText.gameObject.SetActive(true);
+                KeyboardVesselText.gameObject.SetActive(false);
+                XBOXVesselText.gameObject.SetActive(false);
+            }
+            else if (InputManager.Instance.GetDevice() == InputManager.Dispositivo.XBOX)
+            {
+                PS4VesselText.gameObject.SetActive(false);
+                XBOXVesselText.gameObject.SetActive(true);
+                KeyboardVesselText.gameObject.SetActive(false);
             }
             else
             {
-                GamepadVesselText.gameObject.SetActive(true);
-                KeyboardVesselText.gameObject.SetActive(false);
+                KeyboardVesselText.gameObject.SetActive(true);
+                XBOXVesselText.gameObject.SetActive(false);
+                PS4VesselText.gameObject.SetActive(false);
             }
-
 
         }
         else
         {
             TutorialVesselText.gameObject.SetActive(false);
-            GamepadVesselText.gameObject.SetActive(false);
+            PS4VesselText.gameObject.SetActive(false);
             KeyboardVesselText.gameObject.SetActive(false);
         }
 
@@ -136,10 +150,7 @@ public class CheckList : MonoBehaviour
         {
             _allCaptured=true;
         }
-        if (Keyboard.current.anyKey.wasPressedThisFrame || Mouse.current.leftButton.wasPressedThisFrame)
-        { _inKeyboard = true; }
-        else if (Gamepad.current != null && Gamepad.current.allControls.Any(c => c is ButtonControl b && b.wasPressedThisFrame))
-        { _inKeyboard = false; }
+        
     }
     #endregion
 

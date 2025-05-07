@@ -26,13 +26,15 @@ public class HUDAbilities : MonoBehaviour
         Cooldown    // En espera para volver a usar: icono en color sin brillo + cuenta atrás
     }
 
+
     // ---- ATRIBUTOS DEL INSPECTOR ----
     [Header("Iconos de habilidad")]
     [SerializeField] private Image[] Greyimage;       // Iconos de fondo
     [SerializeField] private Sprite[] Colorimage;     // Iconos en color
     [SerializeField] private GameObject[] ColorKeysImage;
     [SerializeField] private GameObject[] GlowEffect;
-    [SerializeField] GameObject[] ColorKeysImageGamePad;
+    [SerializeField] GameObject[] ColorKeysImagePS4;
+    [SerializeField] GameObject[] ColorKeysImageXbox;
 
 
     [Header("Texto de cuenta atrás")]
@@ -62,10 +64,15 @@ public class HUDAbilities : MonoBehaviour
     {
         Greyimage[index].sprite = Colorimage[index];
 
-        if(InputManager.Instance.MandoConectado())
+        if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.PS4)
         {
-            if (ColorKeysImageGamePad[index] != null) 
-             ColorKeysImageGamePad[index].SetActive(true);
+            if (ColorKeysImagePS4[index] != null) 
+             ColorKeysImagePS4[index].SetActive(true);
+        }
+        else if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.XBOX)
+        {
+            if (ColorKeysImageXbox[index] != null) 
+             ColorKeysImageXbox[index].SetActive(true);
         }
         else
         {
@@ -73,8 +80,7 @@ public class HUDAbilities : MonoBehaviour
              ColorKeysImage[index].SetActive(true);
         }
         
-        if (ColorKeysImage[index] != null)
-            ColorKeysImage[index].SetActive(true);
+       
     }
 
     /// <summary>
@@ -106,27 +112,41 @@ public class HUDAbilities : MonoBehaviour
     /// Cambia el icono del control a mando o teclado.
     /// </summary>
     /// <param name="mando">Si es true, el icono es del mando, si es false, el icono es del teclado.</param>
-    public void UpdateHUDForGamePad(bool mando)
+    public void UpdateHUDForGamePad(InputManager.Dispositivo _dispositivo)
     {
-        if(mando)
+        if(_dispositivo == InputManager.Dispositivo.PS4)
         {
             for(int i = 0; i < ColorKeysImage.Length; i++)
             {
                 if(ColorKeysImage[i] != null && ColorKeysImage[i].activeSelf == true)
                 {
                     ColorKeysImage[i].SetActive(false);
-                    ColorKeysImageGamePad[i].SetActive(true);
+                    ColorKeysImagePS4[i].SetActive(true);
+                    ColorKeysImageXbox[i].SetActive(false);
                 }
             }
         }
-        else
+        else if (_dispositivo == InputManager.Dispositivo.Teclado)
         {
-            for(int i = 0; i < ColorKeysImageGamePad.Length; i++)
+            for(int i = 0; i < ColorKeysImagePS4.Length; i++)
             {
-                if(ColorKeysImage[i] != null && ColorKeysImageGamePad[i].activeSelf == true)
+                if(ColorKeysImage[i] != null && ColorKeysImagePS4[i].activeSelf == true)
                 {
                     ColorKeysImage[i].SetActive(true);
-                    ColorKeysImageGamePad[i].SetActive(false);
+                    ColorKeysImagePS4[i].SetActive(false);
+                    ColorKeysImageXbox[i].SetActive(false);
+                }
+            }
+        }
+        else if (_dispositivo == InputManager.Dispositivo.XBOX)
+        {
+            for (int i = 0; i < ColorKeysImage.Length; i++)
+            {
+                if (ColorKeysImage[i] != null && ColorKeysImage[i].activeSelf == true)
+                {
+                    ColorKeysImage[i].SetActive(false);
+                    ColorKeysImagePS4[i].SetActive(false);
+                    ColorKeysImageXbox[i].SetActive(true);
                 }
             }
         }

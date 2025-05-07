@@ -36,11 +36,12 @@ public class InputManager : MonoBehaviour
 
     #region Atributos del Inspector (serialized fields)
 
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
+    public enum Dispositivo
+    {
+        Teclado,
+        XBOX,
+        PS4
+    }
 
     #endregion
 
@@ -350,7 +351,7 @@ public class InputManager : MonoBehaviour
     #endregion
 
 
-    //Esto es para detectar si hay mando o no
+    #region Detección de mando conectado/desconectado
 
     void OnEnable()
     {
@@ -362,19 +363,43 @@ public class InputManager : MonoBehaviour
         InputSystem.onDeviceChange -= OnDeviceChange;
     }
 
-    public bool MandoConectado()
+    /// <summary>
+    /// Método que devuelve el dispositivo conectado.
+    /// Si no hay ninguno conectado, devuelve Teclado.
+    /// </summary>
+    /// <returns></returns>
+    public Dispositivo GetDevice()
     {
-        // Comprobar si hay al menos un mando conectado
         if (Gamepad.current != null)
         {
-            Debug.Log("Hay un mando conectado");
-            return true;
-            // Mostrar HUD de mando
+            string nombre = Gamepad.current.name.ToLower();
+
+            if (nombre.Contains("xbox"))
+            {
+                Debug.Log("Mando Xbox detectado.");
+                return Dispositivo.XBOX;
+            }
+            else if (nombre.Contains("dualshock") || nombre.Contains("ps4"))
+            {
+                Debug.Log("Mando PS4 detectado.");
+                return Dispositivo.PS4;
+            }
+            else
+            {
+                Debug.Log($"Mando desconocido: '{nombre}'");
+                return Dispositivo.Teclado;
+            }
         }
 
-        return false;
+        Debug.Log("No hay ningún mando conectado.");
+        return Dispositivo.Teclado;
     }
 
+    /// <summary>
+    /// Método que se llama cuando se conecta o desconecta un dispositivo para actualizar el HUD.
+    /// </summary>
+    /// <param name="device"></param>
+    /// <param name="change"></param>
     void OnDeviceChange(InputDevice device, InputDeviceChange change)
     {
         if (device is Gamepad)
@@ -384,17 +409,24 @@ public class InputManager : MonoBehaviour
                 case InputDeviceChange.Added:
                     Debug.Log("Mando conectado");
                     if(HUDAbilities.Instance != null)
-                    HUDAbilities.Instance.UpdateHUDForGamePad(true);
+                    {
+                        if(GetDevice() == Dispositivo.XBOX)
+                            HUDAbilities.Instance.UpdateHUDForGamePad(Dispositivo.XBOX);
+                        else if(GetDevice() == Dispositivo.PS4)
+                            HUDAbilities.Instance.UpdateHUDForGamePad(Dispositivo.PS4);
+                        
+                    }
                     break;
                 case InputDeviceChange.Removed:
                     Debug.Log("Mando desconectado");
                     if(HUDAbilities.Instance != null)
-                    HUDAbilities.Instance.UpdateHUDForGamePad(false);
+                            HUDAbilities.Instance.UpdateHUDForGamePad(Dispositivo.Teclado);
 
                     break;
             }
         }
     }
+    #endregion	
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----
