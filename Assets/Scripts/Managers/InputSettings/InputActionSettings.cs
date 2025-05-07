@@ -34,7 +34,7 @@ namespace UnityEngine.InputSystem
                     ""type"": ""Value"",
                     ""id"": ""351f2ccd-1f9f-44bf-9bec-d62ac5c5f408"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""stickDeadzone(min=0.2)"",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -547,7 +547,7 @@ namespace UnityEngine.InputSystem
                     ""type"": ""PassThrough"",
                     ""id"": ""c95b2375-e6d9-4b88-9c4c-c5e76515df4b"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
+                    ""processors"": ""stickDeadzone(min=0.2)"",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },

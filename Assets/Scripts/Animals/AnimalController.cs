@@ -38,6 +38,8 @@ public class AnimalController : MonoBehaviour
     [SerializeField] float CooldownAtaque;
     [SerializeField] float JumpSpeed = 6f;
     [SerializeField] int Damage;
+
+    [SerializeField] float JumpDelay = 0.3f;
     //Transform del jugador para que el animal sepa donde saltar
     [Header("Referencias")]
     [SerializeField] Transform SleepBarCanvas;
@@ -45,6 +47,7 @@ public class AnimalController : MonoBehaviour
     [SerializeField] GameObject AttackVFXHolderRight;
     [SerializeField] GameObject AttackVFXHolderLeft;
     [SerializeField] bool NeedAttackVFX;
+    [SerializeField] GameObject DangerSignal;
 
     #endregion
 
@@ -59,6 +62,7 @@ public class AnimalController : MonoBehaviour
     //Variables para almacenar el ultimo tiempo donde se ejecuto el ataque y salto (de cara a gestionar los cooldowns)
     private float _tiempoUltimoAtaque;
     private float _tiempoUltimoSalto;
+    private float _jumpDelayTime;
 
     //Bool para saber si el animal ha entrado en el rango de ataque
     private bool _isInAttackRange = false;
@@ -88,6 +92,11 @@ public class AnimalController : MonoBehaviour
         _sleepBar = GetComponent<BarraDeSueño>();
     }
 
+    void Start()
+    {
+        _jumpDelayTime = JumpDelay;
+    }
+
     /// <summary>
     /// Se mueve el animal a una velocidad constante, y en la direccion deseada. He gestionado el movimiento por transform en vez de por físicas
     /// al tratarse de un patrón de movimiento sencillo.
@@ -107,34 +116,55 @@ public class AnimalController : MonoBehaviour
         //Si ha pasado el tiempo de cooldown desde el último ataque && ha detectado al jugador a la distancia de salto && no está ya cerca del jugador 
         else if(Time.time > _tiempoUltimoSalto + CooldownSalto && DetectarJugador(rightDirection, DistanciaSalto, "Player", "Ground") && !_isInAttackRange)
         { 
-            if(!_isJumping)
-            {
-                _destinoSalto = new Vector2(_player.position.x, transform.position.y);
-
-                //Vemos si el punto de destino es válido
-                LayerMask groundMask = LayerMask.GetMask("Ground");
-                Collider2D _targetPoint = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x, _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
-                Collider2D _targetPointWithMargin = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x - AnchoAnimal * 2f * Mathf.Sign(_direction.x), _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
-
-                if(_targetPoint != null && _targetPointWithMargin != null) 
+                if(!_isJumping)
                 {
-                    AudioManager.Instance.PlaySFX("animalJump", true);
-                    _isJumping = true;
+                    _destinoSalto = new Vector2(_player.position.x, transform.position.y);
+
+                    //Vemos si el punto de destino es válido
+                    LayerMask groundMask = LayerMask.GetMask("Ground");
+                    Collider2D _targetPoint = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x, _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
+                    Collider2D _targetPointWithMargin = Physics2D.OverlapCircle(new Vector2(_destinoSalto.x - AnchoAnimal * 2f * Mathf.Sign(_direction.x), _destinoSalto.y - AltoAnimal), 0.1f, groundMask);
+
+                    if(_targetPoint != null && _targetPointWithMargin != null) 
+                    {
+                        AudioManager.Instance.PlaySFX("animalJump", true);
+                        _isJumping = true;
+                    }
+                    //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
                 }
-                //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
-            }
+
+           
         }
 
         if(_isJumping)
         {
-            //Se mueve hacia el jugador a gran velocidad (salto)
-           transform.position = Vector2.MoveTowards(transform.position, _destinoSalto, Speed * JumpSpeed * Time.deltaTime);
-
-            //Si ha llegado al destino || esta a melee del jugador, reseteamos el bool, y establecemos el tiempo del ultimo salto para gestionar el cooldown.
-            if(_isInAttackRange || Mathf.Abs(transform.position.x - _destinoSalto.x) <= 0.01f )
+            if(_jumpDelayTime <= 0)
             {
-                _tiempoUltimoSalto = Time.time;
-                _isJumping = false;
+                //Se mueve hacia el jugador a gran velocidad (salto)
+                transform.position = Vector2.MoveTowards(transform.position, _destinoSalto, Speed * JumpSpeed * Time.deltaTime);
+
+                //Si ha llegado al destino || esta a melee del jugador, reseteamos el bool, y establecemos el tiempo del ultimo salto para gestionar el cooldown.
+                if(_isInAttackRange || Mathf.Abs(transform.position.x - _destinoSalto.x) <= 0.01f)
+                {
+                    _tiempoUltimoSalto = Time.time;
+                    _isJumping = false;
+                    DangerSignal.SetActive(false);
+                    _jumpDelayTime = JumpDelay;
+                }
+
+             } else{
+                _jumpDelayTime -= Time.deltaTime;
+                
+                if(DangerSignal != null && DangerSignal.activeSelf == false)
+                {
+                    DangerSignal.SetActive(true);
+                    _animator.SetBool("Move", false);
+                }
+
+                if(_jumpDelayTime <= 0)
+                {
+                    _animator.SetBool("Move", true);
+                }
             }
         }  
 
@@ -161,8 +191,10 @@ public class AnimalController : MonoBehaviour
             _animator.SetBool("Move", false);
 
         }else
-        transform.position += _direction * Speed * Time.deltaTime;
-        //De normal camina en la dirección en la que mira.
+        {
+            transform.position += _direction * Speed * Time.deltaTime;
+            //De normal camina en la dirección en la que mira.
+        }
         
         
     }
