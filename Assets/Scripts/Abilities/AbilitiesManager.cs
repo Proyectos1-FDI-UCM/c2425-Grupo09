@@ -21,11 +21,17 @@ public class AbilitiesManager : MonoBehaviour
 
     public static AbilitiesManager Instance { get; private set; }
 
-    public bool nightVision = false;
-    public bool doubleJump = false;
-    public bool grappler = false;
-    public bool tiger = false;
-    public bool armadillo = false;
+    [SerializeField] private bool nightVision = false;
+    [SerializeField] private bool doubleJump = false;
+    [SerializeField] private bool grappler = false;
+    [SerializeField] private bool tiger = false;
+    [SerializeField] private bool armadillo = false;
+
+    public bool NightVision { get { return nightVision; } }
+    public bool DoubleJump { get { return doubleJump; } }
+    public bool Grappler { get { return grappler; } }
+    public bool Tiger { get { return tiger; } }
+    public bool Armadillo { get { return armadillo; } }
 
     #endregion
 

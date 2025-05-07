@@ -6,12 +6,15 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using System.Collections.Generic;
 
 public class AudioManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
     public static AudioManager Instance { get; private set; } // Singleton
+
+    private Dictionary<string, AudioClip> audioClips;
 
     [Header("Settings")]
     [SerializeField] private float MaxPitch = 1.1f;
@@ -24,49 +27,49 @@ public class AudioManager : MonoBehaviour
 
     [Header("Audio Clip")]
     [Header("Music")]
-    public AudioClip savannahMusic;
-    public AudioClip caveMusic;
-    public AudioClip jungleMusic;
-    public AudioClip mainMenu;
-    public AudioClip victory;
-    public AudioClip gameOver;
+    [SerializeField] private AudioClip savannahMusic;
+    [SerializeField] private AudioClip caveMusic;
+    [SerializeField] private AudioClip jungleMusic;
+    [SerializeField] private AudioClip mainMenu;
+    [SerializeField] private AudioClip victory;
+    [SerializeField] private AudioClip gameOver;
     [Header("Player SFX")]
-    public AudioClip shoot;
-    public AudioClip walk;
-    public AudioClip jump;
-    public AudioClip land;
-    public AudioClip playerHurt;
-    public AudioClip[] die;
-    public AudioClip pick;
-    public AudioClip eat;
-    public AudioClip shield;
-    public AudioClip launchGrappler;
-    public AudioClip swingGrappler;
+    [SerializeField] private AudioClip shoot;
+    [SerializeField] private AudioClip walk;
+    [SerializeField] private AudioClip jump;
+    [SerializeField] private AudioClip land;
+    [SerializeField] private AudioClip playerHurt;
+    [SerializeField] private AudioClip die;
+    [SerializeField] private AudioClip pick;
+    [SerializeField] private AudioClip eat;
+    [SerializeField] private AudioClip shield;
+    [SerializeField] private AudioClip launchGrappler;
+    [SerializeField] private AudioClip swingGrappler;
     [Header("Animal SFX")]
-    public AudioClip attack;
-    public AudioClip animalJump;
-    public AudioClip animalHurt;
-    public AudioClip animalKO;
-    public AudioClip bat;
-    public AudioClip[] tiger;
-    public AudioClip gorilla;
-    public AudioClip gorillaJump;
+    [SerializeField] private AudioClip attack;
+    [SerializeField] private AudioClip animalJump;
+    [SerializeField] private AudioClip animalHurt;
+    [SerializeField] private AudioClip animalKO;
+    [SerializeField] private AudioClip bat;
+    [SerializeField] private AudioClip tiger;
+    [SerializeField] private AudioClip gorilla;
+    [SerializeField] private AudioClip gorillaJump;
     [Header("Interactuables SFX")]
-    public AudioClip pickApple;
-    public AudioClip pickTime;
+    [SerializeField] private AudioClip pickApple;
+    [SerializeField] private AudioClip pickTime;
     [Header("Oher SFX")]
-    public AudioClip magicCharge;
-    public AudioClip magicExplosion;
-    public AudioClip magicTinkle;
+    [SerializeField] private AudioClip magicCharge;
+    [SerializeField] private AudioClip magicExplosion;
+    [SerializeField] private AudioClip magicTinkle;
 
     [Header("UI SFX")]
-    public AudioClip click;
-    public AudioClip map;
-    public AudioClip checklist;
+    [SerializeField] private AudioClip click;
+    [SerializeField] private AudioClip map;
+    [SerializeField] private AudioClip checklist;
     #endregion
     
     // ---- ATRIBUTOS PRIVADOS ----
-    #region Atributos Privados (private fields)
+    #region Metodos Monobehaviour
     private void Awake()
     {
         if (Instance == null)
@@ -78,20 +81,54 @@ public class AudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
 
-    #endregion
-    
-    // ---- MÉTODOS DE MONOBEHAVIOUR ----
-    #region Métodos de MonoBehaviour
+        audioClips = new Dictionary<string, AudioClip>
+        {
+            { "savannahMusic", savannahMusic },
+            { "caveMusic", caveMusic },
+            { "jungleMusic", jungleMusic },
+            { "mainMenu", mainMenu },
+            { "victory", victory },
+            { "gameOver", gameOver },
+            { "shoot", shoot },
+            { "walk", walk },
+            { "jump", jump },
+            { "land", land },
+            { "playerHurt", playerHurt },
+            { "die", die },
+            { "pick", pick },
+            { "eat", eat },
+            { "shield", shield },
+            { "launchGrappler", launchGrappler },
+            { "swingGrappler", swingGrappler },
+            { "attack", attack },
+            { "animalJump", animalJump },
+            { "animalHurt", animalHurt },
+            { "animalKO", animalKO },
+            { "bat", bat },
+            { "tiger", tiger },
+            { "gorilla", gorilla },
+            { "gorillaJump", gorillaJump },
+            { "pickApple", pickApple },
+            { "pickTime", pickTime },
+            { "magicCharge", magicCharge },
+            { "magicExplosion", magicExplosion },
+            { "magicTinkle", magicTinkle },
+            { "click", click },
+            { "map", map },
+            { "checklist", checklist }
+        };
+    }
 
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
 
-    public void PlayMusic(AudioClip clip)
+    public void PlayMusic(string audioClip)
     {
+        AudioClip clip = audioClips[audioClip];
+
         if(clip != null)
         {
             musicSource.clip = clip;
@@ -111,8 +148,10 @@ public class AudioManager : MonoBehaviour
     /// </summary>
     /// <param name="clip">Audio que se quiere reproducir</param>
     /// <param name="randomPitch">true si se debe reproducir el sonido con un tono aleatorio, false si no</param>
-    public void PlaySFX(AudioClip clip, bool randomPitch = false)
+    public void PlaySFX(string audioClip, bool randomPitch = false)
     {
+        AudioClip clip = audioClips[audioClip];
+
         if(clip != null)
         {
             if(randomPitch)
@@ -130,38 +169,8 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// Reproduce un sonido aleatorio de una lista de sonidos
-    /// </summary>
-    /// <param name="clips">Sonidos entre los que se selecciona uno aleatorio</param> 
-    /// <param name="randomPitch">true si se debe reproducir el sonido con un tono aleatorio, false si no</param>
-    public void PlayRandomSFX(AudioClip[] clips, bool randomPitch = false)  
-    {
-        int randomIndex = Random.Range(0, clips.Length);
-
-        if(clips[randomIndex] != null)
-        {
-            if(randomPitch)
-            {
-                RandomPitchSFXSource.pitch = Random.Range(MinPitch, MaxPitch);
-                RandomPitchSFXSource.PlayOneShot(clips[randomIndex]);
-            }
-            else
-            {
-                SFXSource.PlayOneShot(clips[randomIndex]);
-            }
-        } else{
-            Debug.LogWarning("Audio clip array is null. Cannot play sound effect.");
-        }
-    }
 
     #endregion
-    
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
-
-
-    #endregion   
 
 } // class AudioManager 
 // namespace

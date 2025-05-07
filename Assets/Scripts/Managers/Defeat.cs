@@ -54,7 +54,7 @@ public class Defeat : MonoBehaviour
 
         // Animación cartel
         StartCoroutine(SlideInPanel());
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.gameOver);
+        AudioManager.Instance.PlayMusic("gameOver");
         MenuButton.onClick.AddListener(OnButtonClick);
     }
 

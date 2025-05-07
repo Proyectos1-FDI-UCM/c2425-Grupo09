@@ -65,7 +65,7 @@ public class MapManager : MonoBehaviour
 
         if (InputManager.Instance.MapWasPressedThisFrame() && !_mapaAbierto)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.map, true);
+            AudioManager.Instance.PlaySFX("map", true);
 
             Map.SetActive(true);
             PlayerIcon.SetActive(true);
@@ -77,7 +77,7 @@ public class MapManager : MonoBehaviour
         }
         else if (InputManager.Instance.MapCloseWasPressedThisFrame() && _mapaAbierto)
         {
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.map, true);
+            AudioManager.Instance.PlaySFX("map", true);
 
             Map.SetActive(false);
             PlayerIcon.SetActive(false);

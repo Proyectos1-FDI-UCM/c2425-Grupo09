@@ -63,7 +63,7 @@ public class LevelManager : MonoBehaviour
 
     void Start()
     {
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.savannahMusic);
+        AudioManager.Instance.PlayMusic("savannahMusic");
         _playerController = FindFirstObjectByType<PlayerController>();
         _abilitiesManager = FindFirstObjectByType<AbilitiesManager>();
         _timer = FindFirstObjectByType<Timer>();

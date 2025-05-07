@@ -18,22 +18,55 @@ public class GrapplerGun : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
 
     [Header("Scripts Ref:")]
-    public GrapplerRope grappleRope;
+    [SerializeField] private GrapplerRope grappleRope;
     [SerializeField] private PlayerController playerController;
 
     [Header("Main Camera:")]
-    public Camera m_camera;
+    private Camera m_camera;
+    public Camera MainCamera
+    {
+        get => m_camera;
+    }
 
     [Header("Transform Ref:")]
-    public Transform gunHolder;
-    public Transform gunPivot;
-    public Transform firePoint;
+    [SerializeField] private Transform gunHolder;
+    [SerializeField] private Transform gunPivot;
+    [SerializeField] private Transform firePoint;
+
+    public Transform GunHolder
+    {
+        get => gunHolder;
+    }
+    public Transform GunPivot
+    {
+        get => gunPivot;
+    }
+    public Transform FirePoint
+    {
+        get => firePoint;
+    }
 
     [Header("Physics Ref:")]
-    public SpringJoint2D m_springJoint2D;
-    public Rigidbody2D m_rigidbody;
+    [SerializeField] private SpringJoint2D m_springJoint2D;
+    [SerializeField] private Rigidbody2D m_rigidbody;
 
-    public bool grapplerUnlocked = false;
+    [SerializeField] private bool grapplerUnlocked = false;
+
+    public SpringJoint2D M_springJoint2D
+    {
+        get => m_springJoint2D;
+    } 
+
+    public Rigidbody2D M_rigidbody
+    {
+        get => m_rigidbody;
+    }
+
+    public bool GrapplerUnlocked
+    {
+        get => grapplerUnlocked;
+        set => grapplerUnlocked = value;
+    }
 
     private enum LaunchType
     {
@@ -51,8 +84,17 @@ public class GrapplerGun : MonoBehaviour
     [SerializeField] private float targetDistance = 3;
     [SerializeField] private float targetFrequncy = 1;
 
-    [HideInInspector] public Vector2 grapplePoint;
-    [HideInInspector] public Vector2 grappleDistanceVector;
+    [HideInInspector] private Vector2 grapplePoint;
+    [HideInInspector] private Vector2 grappleDistanceVector;
+
+    public Vector2 GrapplePoint
+    {
+        get => grapplePoint;
+    }
+    public Vector2 GrappleDistanceVector
+    {
+        get => grappleDistanceVector;
+    }
 
     [Header("Raycast")]
     [SerializeField] private float maxDistance;  
@@ -224,7 +266,7 @@ public class GrapplerGun : MonoBehaviour
         grappleRope.enabled = true;
         
         HUDAbilities.Instance.GorillaGlow(true);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.launchGrappler, true);
+        AudioManager.Instance.PlaySFX("launchGrappler", true);
         playerController.UpdateJumpCounter();
     }
 
@@ -305,7 +347,7 @@ public class GrapplerGun : MonoBehaviour
     }
     public void Abilities()
     {
-        if (AbilitiesManager.Instance.grappler == true)
+        if (AbilitiesManager.Instance.Grappler == true)
         {
             grapplerUnlocked = true;
         }

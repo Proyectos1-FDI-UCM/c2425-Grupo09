@@ -118,7 +118,7 @@ public class AnimalController : MonoBehaviour
 
                 if(_targetPoint != null && _targetPointWithMargin != null) 
                 {
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.animalJump, true);
+                    AudioManager.Instance.PlaySFX("animalJump", true);
                     _isJumping = true;
                 }
                 //Establecemos el punto de destino del salto, poniendo el bool _IsJumping a true para que no siga estableciendolo en cada update.
@@ -150,7 +150,7 @@ public class AnimalController : MonoBehaviour
 
                 _animator.SetTrigger("Attack");
                 _animator.SetBool("Move", false);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.attack, true);
+                AudioManager.Instance.PlaySFX("attack", true);
                 
                 if(NeedAttackVFX)
                 StartCoroutine(AttackVFX());
@@ -277,7 +277,7 @@ public class AnimalController : MonoBehaviour
             _health.Updatehealth(-Damage);
             _animator.SetTrigger("Attack");
             _animator.SetBool("Move", false);
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.attack, true);
+            AudioManager.Instance.PlaySFX("attack", true);
         }
     }
 

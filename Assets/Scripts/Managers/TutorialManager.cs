@@ -78,7 +78,7 @@ public class TutorialManager : MonoBehaviour
             if(waitTime <= 0)
             {
                 PopUp.SetActive(true);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
+                AudioManager.Instance.PlaySFX("click");
                 NextLine();
             }else waitTime -= Time.deltaTime;
             
@@ -95,7 +95,7 @@ public class TutorialManager : MonoBehaviour
                 PopUp.SetActive(true);
 
                 //Reproducimos el sonido de click
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
+                AudioManager.Instance.PlaySFX("click");
 
                 //Pasamos a la siguiente línea
                 NextLine();
@@ -109,7 +109,7 @@ public class TutorialManager : MonoBehaviour
 
                 PopUp.SetActive(false);
                 PopUp.SetActive(true);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
+                AudioManager.Instance.PlaySFX("click");
                 NextLine();
             }
 
@@ -120,7 +120,7 @@ public class TutorialManager : MonoBehaviour
                 StopCoroutine(_typeLine);
 
                 PopUp.SetActive(false);
-                AudioManager.Instance.PlaySFX(AudioManager.Instance.click);
+                AudioManager.Instance.PlaySFX("click");
 
                 //Reanudamos el temporizador y activamos los controles del jugador
                 _timer.StartCounting();

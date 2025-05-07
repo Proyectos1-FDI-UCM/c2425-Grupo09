@@ -51,6 +51,7 @@ public class Health : MonoBehaviour
     private float _dañoActual;
     private float _currentShield;
     private float _shieldDown;
+    private bool _shieldOn;
 
     private PlayerController _playerController;
     private bool playerDisabledForAbilityVFX = false;
@@ -82,6 +83,7 @@ public class Health : MonoBehaviour
         _currentDuration = ShieldDuration;
         _currentHealth = startingHealth;
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
+        _shieldOn = false;
         UpdateHealthBar();
         
 
@@ -99,8 +101,10 @@ public class Health : MonoBehaviour
         {
                 // ESCUDO ACTIVO
                 _currentDuration -= Time.deltaTime;
+                _shieldOn = true;
 
-                HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Active);
+
+            HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Active);
                 HUDAbilities.Instance.UpdateCountDown(_currentDuration);
 
                 if (_currentDuration <= 0)
@@ -116,6 +120,7 @@ public class Health : MonoBehaviour
         else if (_shieldDown > 0)
         {
             // COOLDOWN
+            _shieldOn = false;
             _shieldDown -= Time.deltaTime;
 
             HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Cooldown);
@@ -124,15 +129,16 @@ public class Health : MonoBehaviour
         else
         {
             // DISPONIBLE
+            _shieldOn = false;
             HUDAbilities.Instance.SetArmadilloIconState(HUDAbilities.ArmadilloState.Ready);
             HUDAbilities.Instance.HideCountDown();
         }
 
-        if (InputManager.Instance.ShieldWasPressedThisFrame() && Time.time > _timeLastShield + CooldownShield && _shieldDown <= 0 && armadilloUnlocked)
+        if (InputManager.Instance.ShieldWasPressedThisFrame() && Time.time > _timeLastShield + CooldownShield && _shieldDown <= 0 && armadilloUnlocked && !_shieldOn)
         {
             _timeLastShield = Time.time;
             OnShield();
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.shield, true);
+            AudioManager.Instance.PlaySFX("shield", true);
             _currentDuration = ShieldDuration;
         }
 
@@ -183,7 +189,7 @@ public class Health : MonoBehaviour
            Die();
         } else if(amount < 0) {
             animator.SetTrigger("Hurt"); 
-            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurt, true);
+            AudioManager.Instance.PlaySFX("playerHurt", true);
             EnablePlayerForAnimation();
         }
     }
@@ -191,7 +197,7 @@ public class Health : MonoBehaviour
     public void Die()
     {
         animator.SetTrigger("Dead");
-        AudioManager.Instance.PlayRandomSFX(AudioManager.Instance.die, false);
+        AudioManager.Instance.PlaySFX("die", false);
         _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
     }
@@ -256,7 +262,7 @@ public class Health : MonoBehaviour
 
     public void Abilities()
     {
-        if (AbilitiesManager.Instance.armadillo == true) { armadilloUnlocked = true; }
+        if (AbilitiesManager.Instance.Armadillo == true) { armadilloUnlocked = true; }
     }
     #endregion
 

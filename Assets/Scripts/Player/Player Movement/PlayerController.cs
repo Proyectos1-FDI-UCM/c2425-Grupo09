@@ -52,7 +52,7 @@ public class PlayerController : MonoBehaviour
                 if(_enSuelo == true)
                 {
                     animator.SetTrigger("Land");
-                    AudioManager.Instance.PlaySFX(AudioManager.Instance.land, true);
+                    AudioManager.Instance.PlaySFX("land", true);
                 } else animator.ResetTrigger("Land");
             }
         }
@@ -230,15 +230,15 @@ public class PlayerController : MonoBehaviour
     public void Abilities()
     {
 
-        if (AbilitiesManager.Instance.doubleJump)
+        if (AbilitiesManager.Instance.DoubleJump)
         {
             extraJump = 1;
         }
-        if (AbilitiesManager.Instance.nightVision)
+        if (AbilitiesManager.Instance.NightVision)
         {
             nightVision.SetActive(true);
         }
-        if (AbilitiesManager.Instance.tiger == true)
+        if (AbilitiesManager.Instance.Tiger == true)
         {
             tigerUnlocked = true;
         }
@@ -269,7 +269,7 @@ public class PlayerController : MonoBehaviour
     /// </summary>
     private void Jump()
     {
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.jump, true);
+        AudioManager.Instance.PlaySFX("jump", true);
         _rB.velocity = new Vector2(_rB.velocity.x, AlturaSalto);
     }
     /// <summary>

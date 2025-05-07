@@ -59,7 +59,7 @@ public class Victory : MonoBehaviour
 
         // Animación cartel
         StartCoroutine(SlideInPanel());
-        AudioManager.Instance.PlayMusic(AudioManager.Instance.victory);
+        AudioManager.Instance.PlayMusic("victory");
         MenuButton.onClick.AddListener(OnButtonClick);
     }
 

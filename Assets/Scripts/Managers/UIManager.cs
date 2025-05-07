@@ -119,16 +119,16 @@ public class UIManager : MonoBehaviour
     {
         ObtainEffect.SetActive(true);
         _health.DisablePlayerForAbilityVFX();
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.magicCharge);
+        AudioManager.Instance.PlaySFX("magicCharge");
 
         yield return new WaitForSeconds(2f);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.magicExplosion);
+        AudioManager.Instance.PlaySFX("magicExplosion");
         CameraShakeManager.Instance.StandardCameraShake();
 
         yield return new WaitForSeconds(0.2f);
 
         EnableAbilityTextBox(index, true);
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.magicTinkle);
+        AudioManager.Instance.PlaySFX("magicTinkle");
         _health.EnablePlayerForAbilityVFX();
 
         yield return new WaitForSeconds(2f);

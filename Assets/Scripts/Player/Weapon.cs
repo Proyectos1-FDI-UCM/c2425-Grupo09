@@ -66,7 +66,7 @@ public class Weapon : MonoBehaviour
     /// </summary>
     private void Shoot()
     {
-        AudioManager.Instance.PlaySFX(AudioManager.Instance.shoot, true);
+        AudioManager.Instance.PlaySFX("shoot", true);
         bool isFlipped = playercontroller.FlippedRight;
 
         Vector3 _firingPoint = (isFlipped ? FiringPointRight : FiringPointRight).position;
