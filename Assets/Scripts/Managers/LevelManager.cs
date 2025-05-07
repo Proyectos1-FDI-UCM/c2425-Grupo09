@@ -37,14 +37,14 @@ public class LevelManager : MonoBehaviour
     /// Instancia única de la clase (singleton).
     /// </summary>
     private static LevelManager _instance;
-    public PlayerController _playerController;
-    public AbilitiesManager _abilitiesManager;
-    public Timer _timer;
-    public Health _health;
-    public Capture _capture;
-    public GrapplerGun _gun;
-    public InventoryController _inventoryController;
-    public CheckList _checkList;
+    private PlayerController _playerController;
+    private AbilitiesManager _abilitiesManager;
+    private Timer _timer;
+    private Health _health;
+    private Capture _capture;
+    private GrapplerGun _gun;
+    private InventoryController _inventoryController;
+    private CheckList _checkList;
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----

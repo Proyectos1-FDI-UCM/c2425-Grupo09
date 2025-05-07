@@ -62,22 +62,15 @@ public class UIManager : MonoBehaviour
     }
     private void Update()
     {
-        if (InputManager.Instance.PauseWasPressedThisFrame() && !_isPaused)
-        {
-            PauseGame();
-            InputManager.Instance.EnableUIControls();
-        }
-        if (InputManager.Instance.PauseMenuCloseWasPressedThisFrame())
-        {
-            ResumeGame();
-            InputManager.Instance.EnablePlayerControls();
-        }
+        if (InputManager.Instance.PauseWasPressedThisFrame() && !_isPaused) PauseGame();
+        else if (InputManager.Instance.PauseMenuCloseWasPressedThisFrame()) ResumeGame();
     }
     private void PauseGame()
     {
         PauseMenu.SetActive(true);
         Time.timeScale = 0f;
         _isPaused = true;
+        InputManager.Instance.EnableUIControls();
     }
 
 
@@ -100,6 +93,7 @@ public class UIManager : MonoBehaviour
         PauseMenu.SetActive(false);
         Time.timeScale = 1f;
         _isPaused = false;
+        InputManager.Instance.EnablePlayerControls();
     }
 
     public void VFXObtainAbility(int index)
