@@ -42,8 +42,8 @@ public class TutorialManager : MonoBehaviour
     //Array de textos que se van a mostrar en la ventana emergente
     private string[] lines = {
     " ",
-    "The Great Flood is coming...\nRelentless rain will soon drown the world.\nOnly you can gather the animals and lead them to safety.",    
-    "You can view the list of rescued animals by pressing         , and use the map for guidance by pressing \n     .",
+    "The Great Flood is coming...\nRelentless rain will soon drown the world.\nOnly you can gather the animals and lead them to safety.",
+    "You can view the list of rescued animals by pressing         , and use the map for guidance by pressing \n     . Use     to capture sleeping animals.",
     "Save as many as you can before the waters rise!",
     };
 
@@ -159,7 +159,7 @@ public class TutorialManager : MonoBehaviour
             else 
                 currentWord = string.Empty;
 
-            if(currentWord == "pressing")
+            if(currentWord == "pressing" || currentWord == "Use")
             {
                 if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.PS4)
                     ControlsTextPS4[controlsPopUpIndex].SetActive(true);

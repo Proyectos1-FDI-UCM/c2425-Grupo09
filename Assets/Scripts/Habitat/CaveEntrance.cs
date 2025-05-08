@@ -65,8 +65,6 @@ public class CaveEntrance : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Cueva desbloqueada: " + _caveUnlock);
-        Debug.Log("Entrada cueva: " + _inCaveEntrance);
 
         if (!_caveUnlock && _inCaveEntrance)
         {

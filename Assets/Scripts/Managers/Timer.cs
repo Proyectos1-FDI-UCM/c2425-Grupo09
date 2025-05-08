@@ -1,3 +1,11 @@
+
+//---------------------------------------------------------
+// Gestión del timer
+// Valeria Espada
+// The Last Vessel
+// Proyectos 1 - Curso 2024-25
+//---------------------------------------------------------
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using TMPro;
