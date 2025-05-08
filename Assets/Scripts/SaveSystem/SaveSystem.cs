@@ -38,61 +38,28 @@ public class SaveSystem
     }
     #endregion
 
-    // ---- ATRIBUTOS PRIVADOS ----
-    #region Atributos Privados (private fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // privados se nombren en formato _camelCase (comienza con _, 
-    // primera palabra en minúsculas y el resto con la 
-    // primera letra en mayúsculas)
-    // Ejemplo: _maxHealthPoints
-    #endregion
-    
-    // ---- MÉTODOS DE MONOBEHAVIOUR ----
-    #region Métodos de MonoBehaviour
-    
-    // Por defecto están los típicos (Update y Start) pero:
-    // - Hay que añadir todos los que sean necesarios
-    // - Hay que borrar los que no se usen 
-    
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before 
-    /// any of the Update methods are called the first time.
-    /// </summary>
-    void Start()
-    {
-        
-    }
-
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-
-    }
-    #endregion
-
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
+    /// <summary>
+    /// Este método da el nombre al archivo en el que se guarda y carga todo
+    /// </summary>
     public static string SaveFileName()
     {
         string _saveFile = Application.persistentDataPath + "/save" + ".save";
         return _saveFile;
     }
-
+    /// <summary>
+    /// Este método guarda las cosas en el archivo
+    /// </summary>
     public static void Save()
     {
         HandleSaveData();
 
         File.WriteAllText(SaveFileName(), JsonUtility.ToJson(_saveData, true));
     }
-
+    /// <summary>
+    /// Este método carga lo que recibe del archivo
+    /// </summary>
     public static void Load()
     {
         string _saveContent = File.ReadAllText(SaveFileName());
@@ -100,13 +67,12 @@ public class SaveSystem
         HandleLoadData();
     }
     #endregion
-    
+
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
+    /// <summary>
+    /// Este método gestiona todos los datos guardados
+    /// </summary>
     private static void HandleSaveData()
     {
         GameManager.Instance._PlayerController.Save(ref _saveData.PlayerData);
@@ -117,6 +83,9 @@ public class SaveSystem
         GameManager.Instance._InventoryController.Save(ref _saveData.itemData);
 
     }
+    /// <summary>
+    /// Este método gestiona todos los datos cargados
+    /// </summary>
     private static void HandleLoadData()
     {
         GameManager.Instance._PlayerController.Load( _saveData.PlayerData);

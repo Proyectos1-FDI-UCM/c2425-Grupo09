@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Sergio Valiente Urueña
+// Script hecho para detectar si el jugador ha colisionado con una manzana
+// Sergio Valiente Urueña, Diego García Alonso
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -17,6 +17,9 @@ public class Apple : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
+    /// <summary>
+    /// Se usa para guardar que manzana ha sido destruida y cual no
+    /// </summary>
     [SerializeField] int ItemId;
     #endregion
     
@@ -29,7 +32,6 @@ public class Apple : MonoBehaviour
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
     
-    
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
     /// any of the Update methods are called the first time.
@@ -41,14 +43,11 @@ public class Apple : MonoBehaviour
 
     #endregion
 
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-
-    #endregion
-    
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-
+    /// <summary>
+    /// Se usa para saber si el jugador ha colisionado con la manzana
+    /// </summary>
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.GetComponent<Health>() != null)

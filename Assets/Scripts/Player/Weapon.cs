@@ -53,11 +53,6 @@ public class Weapon : MonoBehaviour
     }
     #endregion
 
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-
-    #endregion
-
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
 

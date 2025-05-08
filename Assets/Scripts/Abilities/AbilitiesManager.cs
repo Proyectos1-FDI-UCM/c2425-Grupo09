@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Script responsable de manejar cuando pueden funcionar las habilidades
-// Alejandro García Díaz, Pablo Abellán
+// Alejandro García Díaz, Pablo Abellán, Diego García Alonso
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -9,11 +9,6 @@ using UnityEngine;
 using System.Collections;
 // Añadir aquí el resto de directivas using
 
-
-/// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
-/// </summary>
 public class AbilitiesManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
@@ -79,7 +74,10 @@ public class AbilitiesManager : MonoBehaviour
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-
+    /// <summary>
+    /// Se llama cuando el jugador captura el primer conejo
+    /// para otorgarle su habilidad
+    /// </summary>
     public void BunnyAbilityUnlock()
     {
         if(!doubleJump)
@@ -88,7 +86,10 @@ public class AbilitiesManager : MonoBehaviour
             UIManager.Instance.VFXObtainAbility((int)_HUDImage.Bunny);
         }
     }
-
+    /// <summary>
+    /// Se llama cuando el jugador captura el primer murciélago
+    /// para otorgarle su habilidad
+    /// </summary>
     public void BatAbilityUnlock()
     {
         if(!nightVision)
@@ -107,6 +108,10 @@ public class AbilitiesManager : MonoBehaviour
         
 
     }
+    /// <summary>
+    /// Se llama cuando el jugador captura el primer gorila
+    /// para otorgarle su habilidad
+    /// </summary>
     public void GorilaAbilityUnlock()
     {
         if(!grappler)
@@ -117,6 +122,10 @@ public class AbilitiesManager : MonoBehaviour
         }
        
     }
+    /// <summary>
+    /// Se llama cuando el jugador captura el primer tigre
+    /// para otorgarle su habilidad
+    /// </summary>
     public void TigerAbilityUnlock()
     {
         if(!tiger)
@@ -126,6 +135,10 @@ public class AbilitiesManager : MonoBehaviour
         }
         
     }
+    /// <summary>
+    /// Se llama cuando el jugador captura el primer armadillo
+    /// para otorgarle su habilidad
+    /// </summary>
     public void ArmadilloAbilityUnlock()
     {
         if(!armadillo)
@@ -135,7 +148,10 @@ public class AbilitiesManager : MonoBehaviour
             UIManager.Instance.VFXObtainAbility((int)_HUDImage.Armadillo);
         }
     }
-
+    /// <summary>
+    /// Se usa para otorgar todas las habilidades al jugador,
+    /// al activarse los cheats
+    /// </summary>
     public void Cheats()
     {
         doubleJump = true;
@@ -156,7 +172,9 @@ public class AbilitiesManager : MonoBehaviour
     }
 
     #region Save and Load
-
+    /// <summary>
+    /// Se usa para guardar las habilidades que tiene el jugador 
+    /// </summary>
     public void Save(ref PlayerAbilitiesData data)
     {
         data.nightVision = nightVision;
@@ -165,7 +183,9 @@ public class AbilitiesManager : MonoBehaviour
         data.tiger = tiger;
         data.armadillo = armadillo;
     }
-
+    /// <summary>
+    /// Se usa para cargar las habilidades que tiene el jugador 
+    /// </summary>
     public void Load(PlayerAbilitiesData data) 
     { 
         nightVision = data.nightVision;
@@ -182,14 +202,12 @@ public class AbilitiesManager : MonoBehaviour
 
     #endregion
 
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
-
-
-    #endregion
-
 } // class AbilitiesController 
-// namespace
+  // namespace
+#region Struct Save
+/// <summary>
+/// Guarda las habilidades que ya ha conseguido el jugador
+/// </summary>
 [System.Serializable]
 public struct PlayerAbilitiesData
 {
@@ -199,3 +217,4 @@ public struct PlayerAbilitiesData
     public bool tiger;
     public bool armadillo;
 }
+#endregion

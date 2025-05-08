@@ -35,11 +35,6 @@ public class Bullet : MonoBehaviour
     private bool hasHit = false;
 
     #endregion
-    
-    // ---- MÉTODOS DE MONOBEHAVIOUR ----
-    #region Métodos de MonoBehaviour
-
-    #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
@@ -98,7 +93,9 @@ public class Bullet : MonoBehaviour
     {
         Destroy(gameObject);
     }
-
+    /// <summary>
+    /// Se usa si el tigre ya ha sido desbloqueado para aumentar el daño de la bala.
+    /// </summary>
     public void HabilidadTigre(bool tigre)
     {
         if (!tigre)

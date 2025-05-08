@@ -16,6 +16,7 @@ using TMPro;
 public class HUDAbilities : MonoBehaviour
 {
     // ---- SINGLETON ----
+    #region SINGLETON
     public static HUDAbilities Instance { get; private set; }
 
     public enum ArmadilloState
@@ -25,9 +26,9 @@ public class HUDAbilities : MonoBehaviour
         Active,     // Escudo activo: icono en color con brillo
         Cooldown    // En espera para volver a usar: icono en color sin brillo + cuenta atrás
     }
-
-
+    #endregion
     // ---- ATRIBUTOS DEL INSPECTOR ----
+    #region ATRIBUTOS DEL INSPECTOR
     [Header("Iconos de habilidad")]
     // Iconos en gris
     [SerializeField] private Image[] Greyimage;       
@@ -47,24 +48,26 @@ public class HUDAbilities : MonoBehaviour
 
     [Header("Texto de cuenta atrás")]
     [SerializeField] private TMP_Text ArmadilloText;
-
+    #endregion
     // ---- ENUM PRIVADO PARA INDEXACIÓN ----
+    #region ENUM PRIVADO PARA INDEXACIÓN
     private enum _animal
     {
         Armadillo,
         Bat,
         Gorilla
     }
-
+    #endregion
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
+    #region MÉTODOS DE MONOBEHAVIOUR
     protected void Awake()
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
-
+    #endregion
     // ---- MÉTODOS PÚBLICOS ----
-
+    #region MÉTODOSPÚBLICOS
     /// <summary>
     /// Cambia el icono a color y muestra el key bind (cuando se desbloquea).
     /// </summary>
@@ -86,9 +89,7 @@ public class HUDAbilities : MonoBehaviour
         {
             if (ColorKeysImage[index] != null) 
              ColorKeysImage[index].SetActive(true);
-        }
-        
-       
+        }  
     }
 
     /// <summary>
@@ -231,5 +232,6 @@ public class HUDAbilities : MonoBehaviour
                 break;
         }
     }
+    #endregion
 }
 

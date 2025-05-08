@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// EL jugador recoge animales dormidos con la F
-// Valeria Espada
+// Este script se usa para recoger los animales 
+// Valeria Espada, Diego García
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -165,9 +165,16 @@ public class Capture : MonoBehaviour
             _animal = null;  
         }
     }
+    /// <summary>
+    /// Se usa para saber el número de animales que ha capturado 
+    /// una vez que el jugador ya ha acabado la partida.
+    /// </summary>
     public int AnimalCount ()
     { return _capturedAnimals; }
-
+    /// <summary>
+    /// Se usa para activar las habilidades de los animales
+    /// cuando se ponen los cheats.
+    /// </summary>
     public void Cheats()
     {
         _playerController.nightVision.SetActive(true);
@@ -178,10 +185,16 @@ public class Capture : MonoBehaviour
     }
 
     #region Save and Load
+    /// <summary>
+    /// Se usa para guardar los animales capturados.
+    /// </summary>
     public void Save(ref CaptureData data)
     {
         data.captures = _animalCapture;
     }
+    /// <summary>
+    /// Se usa para cargarr los animales capturados.
+    /// </summary>
     public void Load( CaptureData data)
     {
          _animalCapture = data.captures;
@@ -212,8 +225,13 @@ public class Capture : MonoBehaviour
     #endregion
 
 } // class Capture
+#region Struct SaveAndLoad
+/// <summary>
+/// Se usa para guardar los animales capturados.
+/// </summary>
 [System.Serializable]
 public struct CaptureData
 {
     public List<int> captures;
 }
+#endregion

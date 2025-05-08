@@ -135,12 +135,6 @@ public class TutorialManager : MonoBehaviour
         } 
     }
     #endregion
-
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-
-
-    #endregion
     
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados

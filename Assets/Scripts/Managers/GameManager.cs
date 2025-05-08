@@ -26,11 +26,6 @@ public class GameManager : MonoBehaviour
 
     #region Atributos del Inspector (serialized fields)
 
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
     private PlayerController _playerController;
     private AbilitiesManager _abilitiesManager;
     private Timer _timer;
@@ -213,6 +208,11 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(index);
         System.GC.Collect();
     } // ChangeScene
+
+    /// <summary>
+    /// Lo usamos para coger referencia de todos los scripts que se 
+    /// necesitan para guardar la partida y para activar los cheats.
+    /// </summary>
     public void Variables(PlayerController playerController, AbilitiesManager abilitiesManager, Timer timer, Health health, Capture capture,
                           GrapplerGun gun, InventoryController inventoryController, CheckList checkList)
     {

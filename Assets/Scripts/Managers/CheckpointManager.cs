@@ -51,12 +51,16 @@ public class CheckpointManager : MonoBehaviour
     {
         _lastCheckpoint = checkPosition;
     }
-
+    /// <summary>
+    /// Se usa para revivir al jugador despues de que haya muerto.
+    /// </summary>
     public void Revivir()
     {
         StartCoroutine(ResetPlayer());
     }
-
+    /// <summary>
+    /// Se usa para coger la referencia y la posicion del jugador.
+    /// </summary>
     public void PlayerReference(GameObject player)
     {
         _player = player;

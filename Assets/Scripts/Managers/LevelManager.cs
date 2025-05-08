@@ -1,7 +1,7 @@
 //---------------------------------------------------------
 // Gestor de escena. Podemos crear uno diferente con un
 // nombre significativo para cada escena, si es necesario
-// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín
+// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín , DIego García
 // TemplateP1
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -22,13 +22,6 @@ using UnityEngine;
 /// </summary>
 public class LevelManager : MonoBehaviour
 {
-    // ---- ATRIBUTOS DEL INSPECTOR ----
-
-    #region Atributos del Inspector (serialized fields)
-
-
-    #endregion
-
     // ---- ATRIBUTOS PRIVADOS ----
 
     #region Atributos Privados (private fields)
@@ -60,10 +53,15 @@ public class LevelManager : MonoBehaviour
             Init();
         }
     }
-
+    /// <summary>
+    /// Lo usamos para coger referencia de todos los scripts que se 
+    /// necesitan para guardar la partida y para activar los cheats.
+    /// Y también para activar la primera música
+    /// </summary>
     void Start()
     {
         AudioManager.Instance.PlayMusic("savannahMusic");
+
         _playerController = FindFirstObjectByType<PlayerController>();
         _abilitiesManager = FindFirstObjectByType<AbilitiesManager>();
         _timer = FindFirstObjectByType<Timer>();
@@ -74,8 +72,6 @@ public class LevelManager : MonoBehaviour
         _checkList = FindFirstObjectByType<CheckList>();
         GameManager.Instance.Variables(_playerController, _abilitiesManager, _timer, _health, _capture, _gun, _inventoryController, _checkList);
     }
-
-
 
     #endregion
 

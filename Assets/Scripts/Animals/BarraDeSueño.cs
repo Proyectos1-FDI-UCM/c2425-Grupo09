@@ -138,6 +138,9 @@ public class BarraDeSueño : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Sirve para detectar si el animal esta dormido.
+    /// </summary>
     public bool Dormido ()
     { return dormido; }
 

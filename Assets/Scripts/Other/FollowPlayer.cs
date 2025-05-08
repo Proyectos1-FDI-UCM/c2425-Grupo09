@@ -39,8 +39,5 @@ public class FollowPlayer : MonoBehaviour
         transform.position = _player.transform.position;
     }
     #endregion
-
-
-
 } // class FollowPlayer 
 // namespace

@@ -70,6 +70,61 @@ public class UIManager : MonoBehaviour
         if (InputManager.Instance.PauseWasPressedThisFrame() && !_isPaused) PauseGame();
         else if (InputManager.Instance.PauseMenuCloseWasPressedThisFrame() ) ResumeGame();
     }
+
+    #endregion
+
+    // ---- MÉTODOS PÚBLICOS ----
+    #region Métodos públicos
+    /// <summary>
+    /// Se llama cuando se abre cualquier menu, 
+    /// para hacer una pequeña transición de entrada.
+    /// </summary>
+    public void FadeIn()
+    {
+        _fadeAnim.SetTrigger("FadeIn");
+    }
+    /// <summary>
+    /// Se llama cuando se abre cualquier menu , 
+    /// para hacer una pequeña transición de salida.
+    /// </summary>
+    public void FadeOut()
+    {
+        _fadeAnim.SetTrigger("FadeOut");
+    }
+    /// <summary>
+    /// Se llama cuando se cierra el menu de pausa,
+    /// para reanudar la partida.
+    /// </summary>
+    public void ResumeGame()
+    {
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1f;
+        _isPaused = false;
+        InputManager.Instance.EnablePlayerControls();
+    }
+    /// <summary>
+    /// Se llama cuando el jugador obtiene una habilidad nueva.
+    /// </summary>
+    public void VFXObtainAbility(int index)
+    {
+        StartCoroutine(EffectAnimation(index));
+    }
+    /// <summary>
+    /// Al clickar el boton de Main Menu vuelve a la escena de main menu.
+    /// </summary>
+    public void OnButtonClick()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene("MainMenu");
+    }
+    #endregion
+
+    // ---- MÉTODOS PRIVADOS ----
+    #region Métodos Privados
+
+    /// <summary>
+    /// Se llama cuando se abre el menu de pausa.
+    /// </summary>
     private void PauseGame()
     {
         PauseMenu.SetActive(true);
@@ -80,41 +135,6 @@ public class UIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(FirstButton);
     }
 
-
-    #endregion
-
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-    public void FadeIn()
-    {
-        _fadeAnim.SetTrigger("FadeIn");
-    }
-
-    public void FadeOut()
-    {
-        _fadeAnim.SetTrigger("FadeOut");
-    }
-
-    public void ResumeGame()
-    {
-        PauseMenu.SetActive(false);
-        Time.timeScale = 1f;
-        _isPaused = false;
-        InputManager.Instance.EnablePlayerControls();
-    }
-    public void VFXObtainAbility(int index)
-    {
-        StartCoroutine(EffectAnimation(index));
-    }
-    public void OnButtonClick()
-    {
-        Time.timeScale = 1f;
-        SceneManager.LoadScene("MainMenu");
-    }
-    #endregion
-
-    // ---- MÉTODOS PRIVADOS ----
-    #region Métodos Privados
     /// <summary>
     /// Corrutine para gestionar lo que ocurre cuando se obtiene una habilidad.
     /// </summary>
@@ -143,7 +163,10 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         EnableAbilityTextBox(index, false);
     }
-
+    /// <summary>
+    /// Se llama cuando el jugador consigue una habilidad nueva, 
+    /// le muestra un pequeño mensaje.
+    /// </summary>
     private void EnableAbilityTextBox(int index, bool state)
     {
         if(InputManager.Instance.GetDevice() == InputManager.Dispositivo.PS4)
@@ -164,6 +187,8 @@ public class UIManager : MonoBehaviour
             AbilitiesTextBox[index].SetActive(state);
         }
     }
+
+
     #endregion
 
 } // class UIManager 

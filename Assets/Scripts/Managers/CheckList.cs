@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // En este script se gestiona el menu de la checklist de animales mediante el tabulador
-// Pablo Abellán
+// Pablo Abellán , Diego Garcí Alonso
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -177,6 +177,9 @@ public class CheckList : MonoBehaviour
         }
     }
     
+    /// <summary>
+    /// Detectan las colisiones con el jugador.
+    /// </summary>
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Vessel"))
@@ -192,12 +195,20 @@ public class CheckList : MonoBehaviour
             _onVessel = false;
         }
     }
+    
+    /// <summary>
+    /// Pone ticks si se ha capturado a ese animal.
+    /// </summary>
     public void ActivateTick(int _index)
     {
         ticks[_index].SetActive(true);
         _ticks++;
     } //Activa dentro de ticks
-
+    
+    /// <summary>
+    /// Pone todos los ticks para permitir al jugador 
+    /// pasarse el juego activando los cheats.
+    /// </summary>
     public void Cheats()
     {
         for (int i = 0; i < ticks.Length; i++)

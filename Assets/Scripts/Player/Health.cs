@@ -158,7 +158,10 @@ public class Health : MonoBehaviour
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-
+    /// <summary>
+    /// Se usa para actualizar la vida del jugador, cuando come una manzana
+    /// o cuando le ataca un animal.
+    /// </summary>
     public void Updatehealth(float amount)
     {
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
@@ -203,7 +206,9 @@ public class Health : MonoBehaviour
             EnablePlayerForAnimation();
         }
     }
-
+    /// <summary>
+    /// Se usa cuando el jugador muere.
+    /// </summary>
     public void Die()
     {
         animator.SetTrigger("Dead");
@@ -212,7 +217,9 @@ public class Health : MonoBehaviour
         _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
     }
-
+    /// <summary>
+    /// Se llama cuando el jugador respawnea.
+    /// </summary>
     public void ResetPlayer()
     {
         _playerController.enabled = true;
@@ -254,15 +261,20 @@ public class Health : MonoBehaviour
     {
         _playerController.enabled = true;
         playerDisabledForAbilityVFX = false;
-    }    
+    }
 
     #region Save and Load
+    /// <summary>
+    /// Se usa para guardar la cantidad de vida del jugador.
+    /// </summary>
     public void Save(ref HealthData data)
     {
         data.healthAmount = _currentHealth;
 
     }
-
+    /// <summary>
+    /// Se usa para cargar la cantidad de vida del jugador.
+    /// </summary>
     public void Load( HealthData data)
     {
         _currentHealth = data.healthAmount;
@@ -270,7 +282,9 @@ public class Health : MonoBehaviour
         UpdateShieldBar();
     }
     #endregion
-
+    /// <summary>
+    /// Se usa para otorgar la habilidad del armadillo.
+    /// </summary>
     public void Abilities()
     {
         if (AbilitiesManager.Instance.Armadillo == true) { armadilloUnlocked = true; }
@@ -279,6 +293,9 @@ public class Health : MonoBehaviour
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos privados
+    /// <summary>
+    /// Este método actualiza la barra de vida del jugador
+    /// </summary>
     private void UpdateHealthBar()
     {
         float maximoRelativo = _currentHealth + _currentShield > 100 ? _currentHealth + _currentShield : maxHealth;
@@ -289,7 +306,7 @@ public class Health : MonoBehaviour
     }
 
     /// <summary>
-    /// Este método pone el escudo al jugador
+    /// Este método actualiza la barra de escudo del jugador
     /// </summary>
     private void UpdateShieldBar()
     {
@@ -306,6 +323,9 @@ public class Health : MonoBehaviour
             }
         }
     }
+    /// <summary>
+    /// Este método pone el escudo al jugador
+    /// </summary>
     private void OnShield()
     {
         HUDAbilities.Instance.ArmadilloGlow(true);
@@ -317,9 +337,14 @@ public class Health : MonoBehaviour
     #endregion
 
 } // class Health 
-// namespace
+  // namespace
+#region Struct SaveAndLoad
+/// <summary>
+/// Guarda la vida del jugador
+/// </summary>
 [System.Serializable]
 public struct HealthData
 {
     public float healthAmount;
 }
+#endregion

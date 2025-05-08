@@ -15,10 +15,11 @@ using UnityEngine.SceneManagement;
 /// </summary>
 public class Credits : MonoBehaviour
 {
-
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    
+    /// <summary>
+    /// Se usa cuando se acaban los creditos y te devuelve al main menu.
+    /// </summary>
     public void EndCredits()
     {
         SceneManager.LoadScene("MainMenu");

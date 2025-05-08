@@ -34,12 +34,6 @@ public class MenuManager : MonoBehaviour
     private Color color1 = new Color(0.176f, 0.110f, 0f); 
     private Color color2 = Color.white; 
     private float time = 0f;
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // privados se nombren en formato _camelCase (comienza con _, 
-    // primera palabra en minúsculas y el resto con la 
-    // primera letra en mayúsculas)
-    // Ejemplo: _maxHealthPoints
 
     #endregion
 
@@ -82,18 +76,11 @@ public class MenuManager : MonoBehaviour
     }
     #endregion
 
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
-
-    #endregion
-
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
+    /// <summary>
+    /// Ambos métodos sirven para insertar el menu .
+    /// </summary>
     private IEnumerator SlideInTitlePanel()
     {
         // Pos original
@@ -149,11 +136,6 @@ public class MenuManager : MonoBehaviour
 
         menuPanel.anchoredPosition = originalPosition;
     }
-
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
 
     #endregion   
 

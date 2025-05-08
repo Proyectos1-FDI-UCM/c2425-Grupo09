@@ -1,5 +1,4 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo:
 // Este script gestiona la interacción de un objeto de tipo "Reloj de Arena" en el juego,
 // el cual, al colisionar con un objeto que tenga el componente "PlayerController",
 // ejecuta un método en el temporizador y luego destruye el objeto "Reloj de Arena".
@@ -20,6 +19,9 @@ public class Clock : MonoBehaviour
 
 
     [SerializeField] float SumaSeg = 20f;
+    /// <summary>
+    /// Se usa para saber si los relojes que han sido cogidos por el jugador.  
+    /// </summary>
     [SerializeField] int ItemId;
     #endregion
 

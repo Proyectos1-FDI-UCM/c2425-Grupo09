@@ -47,7 +47,9 @@ public class Victory : MonoBehaviour
         _timer = timer.GetComponent<Timer>();
     }
     /// <summary>
-    /// Método que muestra el cartel de victoria cuando el jugador escapa. Escribe los textos AnimalCount y TimerCount con las estadísticas de la partida. Activa el botón del menú.
+    /// Método que muestra el cartel de victoria cuando el jugador escapa. 
+    /// Escribe los textos AnimalCount y TimerCount con las estadísticas de la partida.
+    /// Activa el botón del menú.
     /// </summary>
     public void ShowVictory()
     {
@@ -67,49 +69,13 @@ public class Victory : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(FirstButton);
     }
-
-    /// <summary>
-    /// Método que hace la animación del cartel cuando se desliza desde lo alto de la pantalla hasta el centro.
-    /// </summary>
-    /// <returns></returns>
-    private IEnumerator SlideInPanel()
-    {
-        // Pos original
-        Vector2 originalPosition = victoryPanel.anchoredPosition;
-
-        // Pos inicial 
-        victoryPanel.anchoredPosition = new Vector2(originalPosition.x, Screen.height);
-
-        // Velocidad y duración de movimiento
-        float moveDuration = 0.7f; 
-        float elapsedTime = 0f;
-
-        // Animación
-        while (elapsedTime < moveDuration)
-        {
-            
-            float t = elapsedTime / moveDuration;
-
-            
-            float currentY = Mathf.Lerp(Screen.height, originalPosition.y, t);
-            victoryPanel.anchoredPosition = new Vector2(originalPosition.x, currentY);
-
-            
-            elapsedTime += Time.deltaTime;
-
-            yield return null;
-        }
-
-        victoryPanel.anchoredPosition = originalPosition;
-    }
-
-
-
     #endregion
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    
+    /// <summary>
+    /// Muestra los créditos del juego
+    /// </summary>
     public void ShowCredits()
     {
         Credits.SetActive(true);
@@ -123,18 +89,48 @@ public class Victory : MonoBehaviour
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-    // Documentar cada método que aparece aquí
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
     /// <summary>
-    /// Vuelve a la escena menú al presionar el botón.
+    /// Método que hace la animación del cartel cuando se desliza desde lo alto de la pantalla hasta el centro.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator SlideInPanel()
+    {
+        // Pos original
+        Vector2 originalPosition = victoryPanel.anchoredPosition;
+
+        // Pos inicial 
+        victoryPanel.anchoredPosition = new Vector2(originalPosition.x, Screen.height);
+
+        // Velocidad y duración de movimiento
+        float moveDuration = 0.7f;
+        float elapsedTime = 0f;
+
+        // Animación
+        while (elapsedTime < moveDuration)
+        {
+
+            float t = elapsedTime / moveDuration;
+
+
+            float currentY = Mathf.Lerp(Screen.height, originalPosition.y, t);
+            victoryPanel.anchoredPosition = new Vector2(originalPosition.x, currentY);
+
+
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        victoryPanel.anchoredPosition = originalPosition;
+    }
+    /// <summary>
+    /// Vuelve a la escena Main Menu al presionar el botón.
     /// </summary>
     private void OnButtonClick()
     {
         SceneManager.LoadScene("MainMenu");
     }
 
-        #endregion
+   #endregion
 } // class Victory 
 // namespace
