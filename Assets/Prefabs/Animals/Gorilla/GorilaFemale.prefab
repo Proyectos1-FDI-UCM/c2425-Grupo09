@@ -29789,7 +29789,7 @@ MonoBehaviour:
   AnchoAnimal: 2
   AltoAnimal: 2.5
   DistanciaDeteccion: 6
-  DistanciaSalto: 12
+  DistanciaSalto: 15
   CooldownSalto: 5
   CooldownAtaque: 2
   JumpSpeed: 6

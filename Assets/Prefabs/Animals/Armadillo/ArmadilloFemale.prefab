@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3d921bb4509744aa8c37cc9e1f8d07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  "MaxBarraDeSue\xF1o": 150
+  "MaxBarraDeSue\xF1o": 130
   NormalCollider: {fileID: 1029269217016283632}
   TriggerCollider: {fileID: 1337474716743739798}
   SleepCollider: {fileID: 4406149051064399814}
