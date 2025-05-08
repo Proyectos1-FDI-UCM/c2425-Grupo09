@@ -8,6 +8,10 @@
 using UnityEngine;
 using System.Collections.Generic;
 
+
+/// <summary>
+/// Clase que gestiona el audio del juego. Se encarga de reproducir música y efectos de sonido.
+/// </summary>
 public class AudioManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
@@ -125,6 +129,10 @@ public class AudioManager : MonoBehaviour
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
 
+    /// <summary>
+    /// Reproduce una música
+    /// </summary>
+    /// <param name="audioClip">nombre de la música que se quiere reproducir</param>
     public void PlayMusic(string audioClip)
     {
         AudioClip clip = audioClips[audioClip];
@@ -138,6 +146,9 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Detiene la música que está sonando en ese momento en el AudioSource musicSource.
+    /// </summary>
     public void StopMusic()
     {
         musicSource.Stop();

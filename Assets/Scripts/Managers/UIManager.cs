@@ -15,8 +15,7 @@ using UnityEngine.UIElements;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Clase que gestiona la interfaz de usuario del juego.
 /// </summary>
 public class UIManager : MonoBehaviour
 {

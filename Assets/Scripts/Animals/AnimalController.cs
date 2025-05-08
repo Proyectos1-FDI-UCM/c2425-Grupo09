@@ -10,8 +10,7 @@ using System.Collections;
 
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Script que maneja todo el comportamiento del animal, incluyendo su movimiento y ataque.
 /// </summary>
 public class AnimalController : MonoBehaviour
 {

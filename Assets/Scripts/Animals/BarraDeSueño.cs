@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Se encarga de gestionar la barra de sueño de los animales
-// Sergio Valiente Urueña
+// Sergio Valiente Urueña, Sergio González López
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -9,19 +9,20 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 
-// Añadir aquí el resto de directivas using
-
-
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// La clase BarraDeSueño se encarga de gestionar la barra de sueño de los animales.
 /// </summary>
 public class BarraDeSueño : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    [SerializeField] float MaxBarraDeSueño;
 
+    [Header("Atributos del Inspector")]
+    [SerializeField] float MaxBarraDeSueño;
+    [SerializeField] private float ResetDistance;
+
+    [Header("Colliders")]
+    //Distintos colliders para el animal dependiendo de su estado.
     [SerializeField] Collider2D NormalCollider;
     [SerializeField] Collider2D TriggerCollider;
     [SerializeField] Collider2D SleepCollider;
@@ -29,18 +30,26 @@ public class BarraDeSueño : MonoBehaviour
     [SerializeField] Collider2D SleepLeftCollider;
     [SerializeField] Collider2D SleepRightCollider;
     
+    [Header("UI Elements")]
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
-    [SerializeField] int _animalId;
-    [SerializeField] private Transform Player;
-    [SerializeField] private float ResetDistance;
 
+    [Header("Referencias")]
+    [SerializeField] private Transform Player;
+    
+    [Header("Sistema de guardado")]
+    [SerializeField] int _animalId;
+
+
+    //Para diferenciar si el animal es macho o hembra.
     [SerializeField] private bool male;
     public bool Male
     {
         get => male;
     }
+
+    //Para el sistema de guardado
     public int AnimalId
     {
         get => _animalId;
@@ -51,8 +60,7 @@ public class BarraDeSueño : MonoBehaviour
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
-    [SerializeField] private float _barraDeSueño = 0; 
-    //De momento está SerializeField para poder comprobar en el inspector que aumenta correctamente. Luego se quitará.
+    private float _barraDeSueño = 0; 
     private AnimalController _animalController;
     private Animator _animator;
     private bool dormido;
@@ -137,6 +145,10 @@ public class BarraDeSueño : MonoBehaviour
 
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
+
+    /// <summary>
+    /// Actualiza la barra de sueño del animal.
+    /// </summary>
     private void UpdateHealthBar()
     {
         float targetFillAmount = _barraDeSueño / MaxBarraDeSueño;
@@ -144,6 +156,9 @@ public class BarraDeSueño : MonoBehaviour
         _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
     }
 
+    /// <summary>
+    /// Resetea la barra de sueño del animal si el jugador se aleja demasiado.
+    /// </summary>
     private void ResetBar()
     {
         float _distanceToPlayer = Vector2.Distance(transform.position, Player.transform.position);

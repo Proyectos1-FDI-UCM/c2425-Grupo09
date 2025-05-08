@@ -9,6 +9,9 @@ using UnityEngine;
 using TMPro;
 using System.Collections;
 
+/// <summary>
+/// Clase que gestiona el tutorial inicial del juego.
+/// </summary>
 public class TutorialManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----

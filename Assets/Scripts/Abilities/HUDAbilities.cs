@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Pablo Abellán
+// El script se encarga de gestionar el HUD de habilidades del juego, mostrando los iconos y su estado (bloqueado, activo, en espera, etc.).
+// Pablo Abellán, Sergio Valiente
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -29,12 +29,19 @@ public class HUDAbilities : MonoBehaviour
 
     // ---- ATRIBUTOS DEL INSPECTOR ----
     [Header("Iconos de habilidad")]
-    [SerializeField] private Image[] Greyimage;       // Iconos de fondo
-    [SerializeField] private Sprite[] Colorimage;     // Iconos en color
+    // Iconos en gris
+    [SerializeField] private Image[] Greyimage;       
+    // Iconos en color
+    [SerializeField] private Sprite[] Colorimage;     
+    //Iconos de la tecla que hay que pulsar para activar la habilidad
     [SerializeField] private GameObject[] ColorKeysImage;
+    //Efecto de brillo del icono
     [SerializeField] private GameObject[] GlowEffect;
+    //Boton de la habilidad en PS4
     [SerializeField] GameObject[] ColorKeysImagePS4;
+    //Boton de la habilidad en Xbox
     [SerializeField] GameObject[] ColorKeysImageXbox;
+    //Icono del control que hay que pulsar para consumir una manzana (0: teclado, 1: mando PS4, 2: mando Xbox)
     [SerializeField] GameObject[] ApplesControls;
 
 
