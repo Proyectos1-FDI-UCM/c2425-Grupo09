@@ -22,8 +22,6 @@ public class Timer : MonoBehaviour
     [SerializeField] GameObject DefeatSign;
 
     [SerializeField] float timeSeg = 600f;
-    [SerializeField] float SumaSeg = 5f;
-    private float RestaSeg = 5f;
 
     static float currenttime;
     static bool playing = true;
@@ -47,37 +45,37 @@ public class Timer : MonoBehaviour
 
     void Start()
     {
+        _health = Player.GetComponent<Health>();
+        _defeat = DefeatSign.GetComponent<Defeat>();
+
         //Esto está desactivado porque el tiempo se activa desde el TutorialManager
         //playing = true;
+        
         currenttime = timeSeg;
         animator.SetBool("1", true);
-        int minutes = Mathf.RoundToInt(currenttime / 60);
-        int seconds = Mathf.FloorToInt(currenttime % 60);
+    }
 
-        if (minutes <= 0 && seconds <= 0)
+    void Update()
+    {
+        if (playing)
         {
-            {
+            currenttime -= Time.deltaTime;
+            int minutes = Mathf.FloorToInt(currenttime / 60);
+            int seconds = Mathf.FloorToInt(currenttime % 60);
+
+            if (minutes <= 0 && seconds <= 0)
+            {  
                 minutes = 0;
                 seconds = 0;
                 PlayerDead();
-                TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-                TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+                TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds); 
                 StopCounting();
-
-
+                
             }
             TimerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
-            // if (Keyboard.current.rKey.wasPressedThisFrame) { currenttime = currenttime + SumaSeg; }
 
-
-            //if (currenttime < (time / 3)) { animator.SetBool("3", true); }
+            if (currenttime > (timeSeg / 3) * 2) { animator.SetBool("1", true); }
         }
-
-        if (InputManager.Instance.TestingWasPressedThisFrame())
-            if (InputManager.Instance.TestingWasPressedThisFrame())
-            {
-                currenttime += SumaSeg;
-            }
     }
 
 
