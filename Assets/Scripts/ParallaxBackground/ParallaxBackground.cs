@@ -19,7 +19,7 @@ public class ParallaxBackground : MonoBehaviour
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
 
-    public ParallaxCamera parallaxCamera;
+    [SerializeField] private ParallaxCamera parallaxCamera;
 
     #endregion
 

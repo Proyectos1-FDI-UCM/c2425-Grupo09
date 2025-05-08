@@ -64,7 +64,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        _health = GameManager.Instance._health;
+        _health = GameManager.Instance._Health;
     }
     private void Update()
     {

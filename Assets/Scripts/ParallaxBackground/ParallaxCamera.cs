@@ -18,7 +18,7 @@ public class ParallaxCamera : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
 
     public delegate void ParallaxCameraDelegate(float deltaMovement);
-    public ParallaxCameraDelegate OnCameraTranslate;
+    public event ParallaxCameraDelegate OnCameraTranslate;
 
     #endregion
  

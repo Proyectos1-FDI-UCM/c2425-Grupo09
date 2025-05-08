@@ -31,7 +31,6 @@ public class Health : MonoBehaviour
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
     [SerializeField] Animator animator;
-    [HideInInspector] public float _currentHealth;
 
     [Header("Escudo")]
     [SerializeField] float ShieldDuration;
@@ -39,7 +38,16 @@ public class Health : MonoBehaviour
     [SerializeField] float CooldownShield;
     [SerializeField] private Image _shieldBarFill; // Barra de escudo
 
-    public bool armadilloUnlocked = false;
+    public float CurrentHealth
+    {
+        get => _currentHealth;
+    }
+
+    public bool ArmadilloUnlocked
+    {
+        get => armadilloUnlocked;
+        set => armadilloUnlocked = value;
+    }
 
     #endregion
 
@@ -52,6 +60,8 @@ public class Health : MonoBehaviour
     private float _currentShield;
     private float _shieldDown;
     private bool _shieldOn;
+    private float _currentHealth;
+    private bool armadilloUnlocked = false;
 
     private PlayerController _playerController;
     private bool playerDisabledForAbilityVFX = false;

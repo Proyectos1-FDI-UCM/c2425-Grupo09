@@ -31,14 +31,53 @@ public class GameManager : MonoBehaviour
     // públicos y de inspector se nombren en formato PascalCase
     // (palabras con primera letra mayúscula, incluida la primera letra)
     // Ejemplo: MaxHealthPoints
-    public PlayerController _playerController;
-    public AbilitiesManager _abilitiesManager;
-    public Timer _timer;
-    public Health _health;
-    public Capture _capture;
-    public GrapplerGun _gun;
-    public InventoryController _inventoryController;
-    public CheckList _checkList;
+    private PlayerController _playerController;
+    private AbilitiesManager _abilitiesManager;
+    private Timer _timer;
+    private Health _health;
+    private Capture _capture;
+    private GrapplerGun _gun;
+    private InventoryController _inventoryController;
+    private CheckList _checkList;
+
+    public PlayerController _PlayerController
+    {
+        get => _playerController;
+    }
+
+    public AbilitiesManager _AbilitiesManager
+    {
+        get => _abilitiesManager;
+    }
+
+    public Timer _Timer
+    {
+        get => _timer;
+    }
+
+    public Health _Health
+    {
+        get => _health;
+    }
+    public Capture _Capture
+    {
+        get => _capture;
+    }
+
+    public GrapplerGun _Gun
+    {
+        get => _gun;
+    }
+
+    public InventoryController _InventoryController
+    {
+        get => _inventoryController;
+    }
+    public CheckList _CheckList
+    {
+        get => _checkList;
+    }
+    
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----

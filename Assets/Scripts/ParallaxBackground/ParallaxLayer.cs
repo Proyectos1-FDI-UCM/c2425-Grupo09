@@ -16,7 +16,7 @@ public class ParallaxLayer : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    public float parallaxFactor;
+    [SerializeField] private float parallaxFactor;
 
     #endregion
 

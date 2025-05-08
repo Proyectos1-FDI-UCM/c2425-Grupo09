@@ -92,9 +92,9 @@ public class Capture : MonoBehaviour
                 _animalCapture.Add(_barraDeSueño.AnimalId);
                 if (_animal.CompareTag("Bunny"))
                 {
-                    Debug.Log("saltos extra:" + _playerController.extraJump);
+                    Debug.Log("saltos extra:" + _playerController.ExtraJump);
                     AbilitiesManager.Instance.BunnyAbilityUnlock();
-                    _playerController.extraJump = 1;
+                    _playerController.ExtraJump = 1;
 
                     if(_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleBunny);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleBunny);
@@ -119,7 +119,7 @@ public class Capture : MonoBehaviour
                 if (_animal.CompareTag("Tiger"))
                 {
                     AbilitiesManager.Instance.TigerAbilityUnlock();
-                    _playerController.tigerUnlocked = true;
+                    _playerController.TigerUnlocked = true;
 
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleTiger);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleTiger);
@@ -127,7 +127,7 @@ public class Capture : MonoBehaviour
                 if (_animal.CompareTag("Armadillo"))
                 {
                     AbilitiesManager.Instance.ArmadilloAbilityUnlock();
-                    _health.armadilloUnlocked = true;
+                    _health.ArmadilloUnlocked = true;
 
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleArmadillo);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleArmadillo);
@@ -171,10 +171,10 @@ public class Capture : MonoBehaviour
     public void Cheats()
     {
         _playerController.nightVision.SetActive(true);
-        _health.armadilloUnlocked = true;
+        _health.ArmadilloUnlocked = true;
         _grapplerGun.GrapplerUnlocked = true;
-        _playerController.extraJump = 1;
-        _playerController.tigerUnlocked = true;
+        _playerController.ExtraJump = 1;
+        _playerController.TigerUnlocked = true;
     }
 
     #region Save and Load

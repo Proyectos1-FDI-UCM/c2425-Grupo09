@@ -30,11 +30,21 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float CoyoteTime;
     [SerializeField] float BufferTime;
     [SerializeField]  float maxVelocidad = 7f;
-    public int extraJump = 0;
-    public bool tigerUnlocked = false;
 
     [SerializeField] Animator animator;
     public GameObject nightVision;
+
+    public int ExtraJump
+    {
+        get => extraJump;
+        set => extraJump = value;
+    }
+
+    public bool TigerUnlocked
+    {
+        get => tigerUnlocked;
+        set => tigerUnlocked = value;
+    }
     
     //Evento que se llama cuando cambia el estado de EnSuelo
     public event Action<bool> OnGroundStateChanged;
@@ -83,6 +93,8 @@ public class PlayerController : MonoBehaviour
     private bool _enSuelo;
     private bool _flippedRight = true;
     private float moveX;
+    private int extraJump = 0;
+    private bool tigerUnlocked = false;
     
     private float tSpeed; 
     private float Speed;

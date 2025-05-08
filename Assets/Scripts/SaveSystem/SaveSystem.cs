@@ -109,25 +109,25 @@ public class SaveSystem
     // mayúscula, incluida la primera letra)
     private static void HandleSaveData()
     {
-        GameManager.Instance._playerController.Save(ref _saveData.PlayerData);
-        GameManager.Instance._abilitiesManager.Save(ref _saveData.AbilitiesData);
-        GameManager.Instance._timer.Save(ref _saveData.timerData);
-        GameManager.Instance._health.Save(ref _saveData.healthData);
-        GameManager.Instance._capture.Save(ref _saveData.captureData);
-        GameManager.Instance._inventoryController.Save(ref _saveData.itemData);
+        GameManager.Instance._PlayerController.Save(ref _saveData.PlayerData);
+        GameManager.Instance._AbilitiesManager.Save(ref _saveData.AbilitiesData);
+        GameManager.Instance._Timer.Save(ref _saveData.timerData);
+        GameManager.Instance._Health.Save(ref _saveData.healthData);
+        GameManager.Instance._Capture.Save(ref _saveData.captureData);
+        GameManager.Instance._InventoryController.Save(ref _saveData.itemData);
 
     }
     private static void HandleLoadData()
     {
-        GameManager.Instance._playerController.Load( _saveData.PlayerData);
-        GameManager.Instance._abilitiesManager.Load( _saveData.AbilitiesData);
-        GameManager.Instance._timer.Load( _saveData.timerData);
-        GameManager.Instance._health.Load(_saveData.healthData);
-        GameManager.Instance._capture.Load( _saveData.captureData);
-        GameManager.Instance._inventoryController.Load(_saveData.itemData);
-        GameManager.Instance._playerController.Abilities();
-        GameManager.Instance._health.Abilities();
-        GameManager.Instance._gun.Abilities();
+        GameManager.Instance._PlayerController.Load( _saveData.PlayerData);
+        GameManager.Instance._AbilitiesManager.Load( _saveData.AbilitiesData);
+        GameManager.Instance._Timer.Load( _saveData.timerData);
+        GameManager.Instance._Health.Load(_saveData.healthData);
+        GameManager.Instance._Capture.Load( _saveData.captureData);
+        GameManager.Instance._InventoryController.Load(_saveData.itemData);
+        GameManager.Instance._PlayerController.Abilities();
+        GameManager.Instance._Health.Abilities();
+        GameManager.Instance._Gun.Abilities();
     }
     #endregion   
 
