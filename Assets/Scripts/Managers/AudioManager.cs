@@ -37,6 +37,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip mainMenu;
     [SerializeField] private AudioClip victory;
     [SerializeField] private AudioClip gameOver;
+    [SerializeField] private AudioClip credits;
     [Header("Player SFX")]
     [SerializeField] private AudioClip shoot;
     [SerializeField] private AudioClip walk;
@@ -120,7 +121,8 @@ public class AudioManager : MonoBehaviour
             { "magicTinkle", magicTinkle },
             { "click", click },
             { "map", map },
-            { "checklist", checklist }
+            { "checklist", checklist },
+            { "credits", credits }
         };
     }
 

@@ -113,6 +113,7 @@ public class Victory : MonoBehaviour
     public void ShowCredits()
     {
         Credits.SetActive(true);
+        AudioManager.Instance.PlayMusic("credits");
         gameObject.SetActive(false);
         InputManager.Instance.DisablePlayerControls();
         InputManager.Instance.DisableUIControls();

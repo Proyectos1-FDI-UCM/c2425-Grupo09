@@ -305,14 +305,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55695a01267fa4264b28ed5ffab61a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerController: {fileID: 0}
-  _abilitiesManager: {fileID: 0}
-  _timer: {fileID: 0}
-  _health: {fileID: 0}
-  _capture: {fileID: 0}
-  _gun: {fileID: 0}
-  _inventoryController: {fileID: 0}
-  _checkList: {fileID: 0}
 --- !u!114 &2598751330512981393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -348,14 +340,13 @@ MonoBehaviour:
   mainMenu: {fileID: 8300000, guid: 91ca76adbff663743ab83e01b3d7c647, type: 3}
   victory: {fileID: 8300000, guid: d87ab331c87d8454fa30c25caa049c05, type: 3}
   gameOver: {fileID: 8300000, guid: 510e305a20e5d5340ba123eac4f83f8e, type: 3}
+  credits: {fileID: 8300000, guid: 3e350f2b4251ad04cb17d719ee9efbf2, type: 3}
   shoot: {fileID: 8300000, guid: 683011b74c63a3e4a933a9937094348b, type: 3}
   walk: {fileID: 8300000, guid: 5f654efbc81b0d344b52bcfd2314a752, type: 3}
   jump: {fileID: 8300000, guid: 3efcdc28db16dc542bcd103abac8dfef, type: 3}
   land: {fileID: 8300000, guid: 2f30d1215496e0f48b9d1e6f9e6592c8, type: 3}
   playerHurt: {fileID: 8300000, guid: ecf08f1afddc30c4ca396648f4dcdaa5, type: 3}
-  die:
-  - {fileID: 8300000, guid: b2b303c51b373d84791420f0f136ef2b, type: 3}
-  - {fileID: 8300000, guid: d25ddee85da1e2043af9b30b9a4bdf6a, type: 3}
+  die: {fileID: 8300000, guid: b2b303c51b373d84791420f0f136ef2b, type: 3}
   pick: {fileID: 8300000, guid: ea5c26feb1a82584394a78095c07d1b1, type: 3}
   eat: {fileID: 8300000, guid: 1cf83330b84cdec4599774645e0a15d4, type: 3}
   shield: {fileID: 8300000, guid: 1f233e889e847b54491f4a35bc21c6c8, type: 3}
@@ -366,9 +357,7 @@ MonoBehaviour:
   animalHurt: {fileID: 8300000, guid: 716571f2af4ff364fba4186079c9f43e, type: 3}
   animalKO: {fileID: 8300000, guid: 68c5212771f3ddb4bacd28c9b1ad6dd1, type: 3}
   bat: {fileID: 8300000, guid: 52f02477be9a7f14fac22930bafc8276, type: 3}
-  tiger:
-  - {fileID: 8300000, guid: beeb8a57d339b6b4ba121655cf2c1619, type: 3}
-  - {fileID: 8300000, guid: 905c14c0abb8a0146a9b5ea8bf2f22eb, type: 3}
+  tiger: {fileID: 0}
   gorilla: {fileID: 8300000, guid: fde818e80eff5af4da35db91d88d80f3, type: 3}
   gorillaJump: {fileID: 8300000, guid: ab7a6b991dd1878468e905d0f398e679, type: 3}
   pickApple: {fileID: 8300000, guid: d6a019290d482bc4ca7247b5a00cdc75, type: 3}
