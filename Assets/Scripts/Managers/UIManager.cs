@@ -11,6 +11,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.InputSystem;
 using UnityEditor.SearchService;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 
 /// <summary>
@@ -76,6 +77,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
         _isPaused = true;
         InputManager.Instance.EnableUIControls();
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(FirstButton);
     }
 
@@ -107,6 +109,7 @@ public class UIManager : MonoBehaviour
     }
     public void OnButtonClick()
     {
+        Time.timeScale = 1f;
         SceneManager.LoadScene("MainMenu");
     }
     #endregion
