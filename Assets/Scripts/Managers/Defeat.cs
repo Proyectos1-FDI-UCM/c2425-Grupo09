@@ -10,6 +10,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Defeat : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class Defeat : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private RectTransform defeatPanel;
     [SerializeField] private Button MenuButton;
+    [SerializeField] private GameObject FirstButton;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -56,6 +58,8 @@ public class Defeat : MonoBehaviour
         StartCoroutine(SlideInPanel());
         AudioManager.Instance.PlayMusic("gameOver");
         MenuButton.onClick.AddListener(OnButtonClick);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(FirstButton);
     }
 
     /// <summary>

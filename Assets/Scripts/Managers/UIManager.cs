@@ -1,12 +1,16 @@
 //---------------------------------------------------------
 // Breve descripción del contenido del archivo
-// Sergio Valiente Urueña, Sergio Gonzalez
+// Sergio Valiente Urueña, Sergio Gonzalez López , Diego García Alonso
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
+using UnityEngine.InputSystem;
+using UnityEditor.SearchService;
+using UnityEngine.SceneManagement;
 
 
 /// <summary>
@@ -27,6 +31,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject[] AbilitiesTextBox;
     [SerializeField] GameObject[] AbilitiesTextBoxPS4;
     [SerializeField] GameObject[] AbilitiesTextBoxXbox;
+    [SerializeField] GameObject FirstButton;
 
     #endregion
 
@@ -63,7 +68,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         if (InputManager.Instance.PauseWasPressedThisFrame() && !_isPaused) PauseGame();
-        else if (InputManager.Instance.PauseMenuCloseWasPressedThisFrame()) ResumeGame();
+        else if (InputManager.Instance.PauseMenuCloseWasPressedThisFrame() ) ResumeGame();
     }
     private void PauseGame()
     {
@@ -71,6 +76,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
         _isPaused = true;
         InputManager.Instance.EnableUIControls();
+        EventSystem.current.SetSelectedGameObject(FirstButton);
     }
 
 
@@ -95,12 +101,14 @@ public class UIManager : MonoBehaviour
         _isPaused = false;
         InputManager.Instance.EnablePlayerControls();
     }
-
     public void VFXObtainAbility(int index)
     {
         StartCoroutine(EffectAnimation(index));
     }
-
+    public void OnButtonClick()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----

@@ -10,6 +10,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class Victory : MonoBehaviour
 {
@@ -21,6 +22,7 @@ public class Victory : MonoBehaviour
     [SerializeField] private GameObject player;
     [SerializeField] private RectTransform victoryPanel;
     [SerializeField] private Button MenuButton;
+    [SerializeField] private GameObject FirstButton;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -61,6 +63,8 @@ public class Victory : MonoBehaviour
         StartCoroutine(SlideInPanel());
         AudioManager.Instance.PlayMusic("victory");
         MenuButton.onClick.AddListener(OnButtonClick);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(FirstButton);
     }
 
     /// <summary>
