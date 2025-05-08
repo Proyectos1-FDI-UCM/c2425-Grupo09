@@ -192,6 +192,11 @@ public class InputManager : MonoBehaviour
     { 
         _theController?.Player.Disable();
     }
+
+    public void DisableUIControls()
+    {
+        _theController.UI.Disable();
+    }
     
     /// <summary>
     /// Método para saber si el botón de disparo (Fire) está pulsado

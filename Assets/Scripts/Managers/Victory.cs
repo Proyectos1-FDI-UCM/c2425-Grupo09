@@ -23,6 +23,7 @@ public class Victory : MonoBehaviour
     [SerializeField] private RectTransform victoryPanel;
     [SerializeField] private Button MenuButton;
     [SerializeField] private GameObject FirstButton;
+    [SerializeField] private GameObject Credits;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -108,11 +109,14 @@ public class Victory : MonoBehaviour
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
+    
+    public void ShowCredits()
+    {
+        Credits.SetActive(true);
+        gameObject.SetActive(false);
+        InputManager.Instance.DisablePlayerControls();
+        InputManager.Instance.DisableUIControls();
+    }
 
     #endregion
 

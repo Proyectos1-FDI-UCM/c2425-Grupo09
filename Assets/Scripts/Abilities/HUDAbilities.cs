@@ -35,6 +35,7 @@ public class HUDAbilities : MonoBehaviour
     [SerializeField] private GameObject[] GlowEffect;
     [SerializeField] GameObject[] ColorKeysImagePS4;
     [SerializeField] GameObject[] ColorKeysImageXbox;
+    [SerializeField] GameObject[] ApplesControls;
 
 
     [Header("Texto de cuenta atrás")]
@@ -125,6 +126,10 @@ public class HUDAbilities : MonoBehaviour
                     ColorKeysImageXbox[i].SetActive(false);
                 }
             }
+
+            ApplesControls[0].SetActive(false);
+            ApplesControls[1].SetActive(true);
+            ApplesControls[2].SetActive(false);
         }
         else if (_dispositivo == InputManager.Dispositivo.Teclado)
         {
@@ -137,6 +142,10 @@ public class HUDAbilities : MonoBehaviour
                     ColorKeysImageXbox[i].SetActive(false);
                 }
             }
+
+            ApplesControls[0].SetActive(true);
+            ApplesControls[1].SetActive(false);
+            ApplesControls[2].SetActive(false);
         }
         else if (_dispositivo == InputManager.Dispositivo.XBOX)
         {
@@ -149,6 +158,10 @@ public class HUDAbilities : MonoBehaviour
                     ColorKeysImageXbox[i].SetActive(true);
                 }
             }
+
+            ApplesControls[0].SetActive(false);
+            ApplesControls[1].SetActive(false);
+            ApplesControls[2].SetActive(true);
         }
         
     }
