@@ -91,7 +91,7 @@ public class CameraControlTrigger : MonoBehaviour
 
 /// <summary>
 /// Esta clase se utiliza para almacenar y gestionar configuraciones que se muestran en el Inspector de Unity.
-/// Los campos públicos han sido elegidos en este caso porque no se requiere lógica adicional o validación.
+/// Los CAMPOS PÚBLICOS han sido elegidos en este caso porque no se requiere lógica adicional o validación.
 /// </summary>
 [System.Serializable]
 public class CustomInspectorObjects

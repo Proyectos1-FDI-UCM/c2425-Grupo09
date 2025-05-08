@@ -208,6 +208,7 @@ public class Health : MonoBehaviour
     {
         animator.SetTrigger("Dead");
         AudioManager.Instance.PlaySFX("die", false);
+        GameManager.Instance._Gun?.ReleaseGrapple();
         _playerController.DisablePlayer();
         CheckpointManager.Instance.Revivir();
     }

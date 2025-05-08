@@ -220,10 +220,12 @@ public class GameManager : MonoBehaviour
         _abilitiesManager = abilitiesManager;
         _timer = timer;
         _health = health;
+        _gun = gun;
         _capture = capture;
         _inventoryController = inventoryController;
         _checkList = checkList;
     }
+
     #endregion
 
     // ---- MÉTODOS PRIVADOS ----

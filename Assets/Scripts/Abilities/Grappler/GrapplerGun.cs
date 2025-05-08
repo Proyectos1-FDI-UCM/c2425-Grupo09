@@ -345,6 +345,14 @@ public class GrapplerGun : MonoBehaviour
         }
 
     }
+    public void ReleaseGrapple()
+    {
+        HUDAbilities.Instance.GorillaGlow(false);
+        grappleRope.enabled = false;
+        m_springJoint2D.enabled = false;
+        m_rigidbody.gravityScale = _initialGravity;
+    }
+    
     public void Abilities()
     {
         if (AbilitiesManager.Instance.Grappler == true)

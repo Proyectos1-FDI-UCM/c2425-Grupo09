@@ -5,7 +5,7 @@ using System.Collections;
 
 public class Timer : MonoBehaviour
 {
-    [SerializeField] public TextMeshProUGUI TimerText;
+    [SerializeField] private TextMeshProUGUI TimerText;
     [SerializeField] GameObject Player;
     [SerializeField] GameObject DefeatSign;
 
@@ -15,7 +15,7 @@ public class Timer : MonoBehaviour
 
     static float currenttime;
     static bool playing = true;
-    public Animator animator;
+    [SerializeField] private Animator animator;
     private Health _health;
     private Defeat _defeat;
    

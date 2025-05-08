@@ -25,15 +25,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] private RectTransform menuPanel;
     [SerializeField] TMP_Text playText; 
     
-
-    
-
-    public float speed = 0.1f;  // Velocidad del parpadeo
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
+    [SerializeField] private float speed = 0.1f;  // Velocidad del parpadeo
 
     #endregion
 
