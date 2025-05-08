@@ -93,6 +93,8 @@ public class BarraDeSueño : MonoBehaviour
 
             if(_barraDeSueño >= MaxBarraDeSueño)
             {
+                _animalController.HideDangerSignal();
+                
                 if (_animalController.IsFlipped)
                 {
                     _animator.SetTrigger("Sleep_Right");

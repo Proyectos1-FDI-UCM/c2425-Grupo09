@@ -213,6 +213,15 @@ public class AnimalController : MonoBehaviour
         _sr.flipX = !_sr.flipX;
     }
 
+    /// <summary>
+    /// Método que se llama desde el script BarraDeSueño para ocultar el icono cuando se duerme el animal.
+    /// </summary>
+    public void HideDangerSignal()
+    {
+        if(DangerSignal != null)
+            DangerSignal.SetActive(false);
+    }
+
     #endregion
     
     // ---- MÉTODOS PRIVADOS ----
