@@ -9,16 +9,10 @@ using UnityEngine;
 using System.Collections;
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Clase que gestiona el sistema de checkpoints del juego.
 /// </summary>
 public class CheckpointManager : MonoBehaviour
-{
-    // ---- ATRIBUTOS DEL INSPECTOR ----
-    #region Atributos del Inspector (serialized fields)
-
-    #endregion
-    
+{    
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
@@ -74,7 +68,11 @@ public class CheckpointManager : MonoBehaviour
     
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
-
+    
+    /// <summary>
+    /// Resetea al jugador a la posición del último checkpoint.
+    /// </summary>
+    /// <returns></returns>
     private IEnumerator ResetPlayer()
     {
         yield return new WaitForSeconds(1f);

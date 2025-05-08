@@ -9,8 +9,7 @@ using UnityEngine;
 using System;
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// La clase GrapplerRope se encarga de gestionar la cuerda del grappler, incluyendo su animación y el estado de grappling.
 /// </summary>
 public class GrapplerRope : MonoBehaviour
 {
@@ -67,7 +66,13 @@ public class GrapplerRope : MonoBehaviour
     #region Métodos de MonoBehaviour
 
     /// <summary>
-    /// OnEnable se llama cuando se activa el componente
+    /// Se llama cuando el componente se activa. Inicializa la cuerda:
+    /// - Resetea el tiempo de movimiento.
+    /// - Ajusta el número de puntos del LineRenderer según la precisión.
+    /// - Establece el tamaño inicial de la onda.
+    /// - Indica que la cuerda no está recta aún.
+    /// - Coloca todos los puntos de la cuerda en la posición del punto de disparo.
+    /// - Activa el LineRenderer.
     /// </summary>
     private void OnEnable()
     {
@@ -82,7 +87,9 @@ public class GrapplerRope : MonoBehaviour
     }
 
     /// <summary>
-    /// OnDisable se llama cuando se desactiva el componente
+    /// Se llama cuando el componente se desactiva. 
+    /// - Desactiva el LineRenderer.
+    /// - Marca que ya no se está usando el grappling.
     /// </summary>
     private void OnDisable()
     {
@@ -91,7 +98,9 @@ public class GrapplerRope : MonoBehaviour
     }
     
     /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// Se llama una vez por frame.
+    /// - Aumenta el contador de tiempo.
+    /// - Llama a la función encargada de dibujar la cuerda.
     /// </summary>
     private void Update()
     {
@@ -105,7 +114,8 @@ public class GrapplerRope : MonoBehaviour
     #region Métodos Privados
 
     /// <summary>
-    /// 
+    /// Inicializa todos los puntos de la cuerda en el punto de disparo del grappler.
+    /// Esto crea la ilusión de que la cuerda se extiende desde un único punto inicial.
     /// </summary>
     private void LinePointsToFirePoint()
     {
@@ -116,7 +126,13 @@ public class GrapplerRope : MonoBehaviour
     }
 
     /// <summary>
-    /// Dibuja la cuerda
+    /// Determina cómo se debe dibujar la cuerda en cada frame:
+    /// - Si aún no está recta, comprueba si ha llegado al punto objetivo.
+    ///   Si no ha llegado, dibuja con ondas.
+    /// - Si ya está recta:
+    ///     - Llama a `Grapple()` una sola vez (al inicio).
+    ///     - Reduce gradualmente el tamaño de las ondas hasta hacer la cuerda recta.
+    ///     - Finalmente, muestra una línea recta de solo 2 puntos.
     /// </summary>
     void DrawRope()
     {
@@ -155,7 +171,11 @@ public class GrapplerRope : MonoBehaviour
     }
 
     /// <summary>
-    /// Dibujar cuerda con las ondas
+    /// Dibuja la cuerda con una animación ondulada entre el punto de disparo y el punto de enganche.
+    /// La animación depende de:
+    /// - La curva de animación.
+    /// - El tamaño de la onda.
+    /// - La progresión del tiempo para suavizar la animación.
     /// </summary>
     void DrawRopeWaves()
     {
@@ -171,8 +191,9 @@ public class GrapplerRope : MonoBehaviour
     }
 
     /// <summary>
-    /// Dibujar cuerda sin las ondas
-    /// </summary>
+    /// Dibuja una cuerda completamente recta entre el punto de disparo y el punto de enganche,
+    /// usando solo dos puntos en el LineRenderer.
+    /// </summary>   
     void DrawRopeNoWaves()
     {
         _LineRenderer.SetPosition(0, _GrapplerGun.FirePoint.position);

@@ -8,8 +8,7 @@
 using UnityEngine;
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Esta clase gestiona el grappler del jugador.
 /// </summary>
 public class GrapplerGun : MonoBehaviour
 {
@@ -73,7 +72,7 @@ public class GrapplerGun : MonoBehaviour
         Transform_Launch,
         Physics_Launch
     }
-
+    //Esto es si quisieramos que el grappler impulsara al jugador hacia la dirección donde se ha enganchado
     [Header("Launching:")]
     [SerializeField] private bool launchToPoint = true;
     [SerializeField] private LaunchType launchType = LaunchType.Physics_Launch;
@@ -120,7 +119,7 @@ public class GrapplerGun : MonoBehaviour
     #region Métodos de MonoBehaviour
 
     /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// Al pincipio se desactiva la cuerda y se desactiva el springJoint2D. Además se suscribe a los eventos de OnGroundStateChanged y OnGrappleStateChanged.
     /// </summary>
     private void Start()
     {
@@ -139,15 +138,18 @@ public class GrapplerGun : MonoBehaviour
     }
 
     /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// En el update se actualiza el estado del grappler en función del input del jugador.
     /// </summary>
     private void Update()
     {
-        if (InputManager.Instance.GrapplerWasPressedThisFrame() && grapplerUnlocked) //Si se detecta el Input, se lanza el grappler
+        //Si se detecta el Input, se lanza el grappler
+
+        if (InputManager.Instance.GrapplerWasPressedThisFrame() && grapplerUnlocked) 
         {
             SetGrapplePoint();
         }
-        else if (InputManager.Instance.GrapplerIsPressed() && grapplerUnlocked) //Mientras esta presionado el Input, se mantiene el grappler
+        //Mientras esta presionado el Input, se mantiene el grappler
+        else if (InputManager.Instance.GrapplerIsPressed() && grapplerUnlocked) 
         {
             if (launchToPoint && grappleRope.IsGrappling)
             {
@@ -159,7 +161,8 @@ public class GrapplerGun : MonoBehaviour
                 }
             }
         }
-        else if (InputManager.Instance.GrapplerWasReleasedThisFrame() && grapplerUnlocked) //Si se deja de presionar el Input, se desactiva la cuerda
+        //Si se deja de presionar el Input, se desactiva la cuerda
+        else if (InputManager.Instance.GrapplerWasReleasedThisFrame() && grapplerUnlocked) 
         {
             HUDAbilities.Instance.GorillaGlow(false);
             grappleRope.enabled = false;
@@ -345,6 +348,10 @@ public class GrapplerGun : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// Método para desactivar el grappler. Se llama desde health cuando el jugador muere.
+    /// </summary>
     public void ReleaseGrapple()
     {
         HUDAbilities.Instance.GorillaGlow(false);

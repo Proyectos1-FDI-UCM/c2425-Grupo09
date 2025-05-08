@@ -8,8 +8,7 @@
 using UnityEngine;
  
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Clase que gestiona el movimiento de cada layer del fondo.
 /// </summary>
 [ExecuteInEditMode]
 public class ParallaxLayer : MonoBehaviour

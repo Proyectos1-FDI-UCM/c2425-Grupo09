@@ -9,8 +9,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
-/// Antes de cada class, descripción de qué es y para qué sirve,
-/// usando todas las líneas que sean necesarias.
+/// Clase que gestiona el sistema de parallax en el fondo del juego.
 /// </summary>
  
 [ExecuteInEditMode]

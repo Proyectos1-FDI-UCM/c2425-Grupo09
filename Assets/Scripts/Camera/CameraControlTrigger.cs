@@ -16,7 +16,18 @@ public class CameraControlTrigger : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    public CustomInspectorObjects customInspectorObjects;
+
+    [Header("Camera Swap")]
+    [SerializeField] private bool swapCameras = false;
+    [SerializeField] private CinemachineVirtualCamera cameraOnLeft;
+    [SerializeField] private CinemachineVirtualCamera cameraOnRight;
+
+    [Header("Camera Pan")]
+    [SerializeField] private bool panCameraOnContact = false;
+
+    [SerializeField] private PanDirection panDirection;
+    [SerializeField] private float panDistance = 3f;
+    [SerializeField] private float panTime = 0.35f;
 
     #endregion
     
@@ -54,9 +65,9 @@ public class CameraControlTrigger : MonoBehaviour
     {
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
-            if(customInspectorObjects.panCameraOnContact)
+            if(panCameraOnContact)
             {
-                CameraManager.Instance.PanCameraOnContact(customInspectorObjects.panDistance, customInspectorObjects.panTime, customInspectorObjects.panDirection, false);
+                CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, false);
             }
         }
     }
@@ -72,14 +83,14 @@ public class CameraControlTrigger : MonoBehaviour
         if(other.gameObject.GetComponent<PlayerController>() != null)
         {
             Vector2 exitDirection = (other.transform.position - _coll.bounds.center).normalized;
-            if(customInspectorObjects.swapCameras && customInspectorObjects.cameraOnLeft != null && customInspectorObjects.cameraOnRight != null)
+            if(swapCameras && cameraOnLeft != null && cameraOnRight != null)
             {
-                CameraManager.Instance.SwapCamera(customInspectorObjects.cameraOnLeft, customInspectorObjects.cameraOnRight, exitDirection);
+                CameraManager.Instance.SwapCamera(cameraOnLeft, cameraOnRight, exitDirection);
             }
 
-            if(customInspectorObjects.panCameraOnContact)
+            if(panCameraOnContact)
             {
-                CameraManager.Instance.PanCameraOnContact(customInspectorObjects.panDistance, customInspectorObjects.panTime, customInspectorObjects.panDirection, true);
+                CameraManager.Instance.PanCameraOnContact(panDistance, panTime, panDirection, true);
             }
         }
     }
@@ -88,24 +99,6 @@ public class CameraControlTrigger : MonoBehaviour
 
 } // class CameraControlTrigger 
 // namespace
-
-/// <summary>
-/// Esta clase se utiliza para almacenar y gestionar configuraciones que se muestran en el Inspector de Unity.
-/// Los CAMPOS PÚBLICOS han sido elegidos en este caso porque no se requiere lógica adicional o validación.
-/// </summary>
-[System.Serializable]
-public class CustomInspectorObjects
-{
-    public bool swapCameras = false;
-    public bool panCameraOnContact = false;
-
-    [HideInInspector] public CinemachineVirtualCamera cameraOnLeft;
-    [HideInInspector] public CinemachineVirtualCamera cameraOnRight;
-
-    [HideInInspector] public PanDirection panDirection;
-    [HideInInspector] public float panDistance = 3f;
-    [HideInInspector] public float panTime = 0.35f;
-}
 
 /// <summary>
 /// Enumeración que define las posibles direcciones en las que se puede mover la cámara.
