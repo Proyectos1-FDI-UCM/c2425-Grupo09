@@ -45,6 +45,12 @@ public class PlayerController : MonoBehaviour
         get => tigerUnlocked;
         set => tigerUnlocked = value;
     }
+
+    public bool CoconutUnlocked
+    {
+        get => coconutUnlocked;
+        set => coconutUnlocked = value;
+    }
     
     //Evento que se llama cuando cambia el estado de EnSuelo
     public event Action<bool> OnGroundStateChanged;
@@ -95,6 +101,7 @@ public class PlayerController : MonoBehaviour
     private float moveX;
     private int extraJump = 0;
     private bool tigerUnlocked = false;
+    private bool coconutUnlocked = false;
     
     private float tSpeed; 
     private float Speed;
@@ -227,6 +234,9 @@ public class PlayerController : MonoBehaviour
 
     public bool Tiger()
     { return tigerUnlocked; }
+
+    public bool Coconut() 
+    { return coconutUnlocked; }
 
     public void DisablePlayer()
     {

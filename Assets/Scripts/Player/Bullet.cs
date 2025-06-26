@@ -6,6 +6,7 @@
 //---------------------------------------------------------
 
 using UnityEngine;
+using UnityEngine.Rendering;
 // Añadir aquí el resto de directivas using
 
 
@@ -23,6 +24,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float Damage = 10;
 
     [SerializeField] private float TigerMultiplier = 1.25f;
+    [SerializeField] private float CoconutMultiplier = 1.25f;
 
     #endregion
     
@@ -107,6 +109,14 @@ public class Bullet : MonoBehaviour
             _damage = Damage * TigerMultiplier;
         }
 
+    }
+
+    public void CocoConsumido(bool coco)
+    {
+        if(coco)
+        {
+            _damage *= CoconutMultiplier;
+        }
     }
     #endregion   
 

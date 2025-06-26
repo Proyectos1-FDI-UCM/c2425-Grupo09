@@ -72,6 +72,7 @@ public class Weapon : MonoBehaviour
 
         bulletScript.ImpulseBullet(_bulletDirection);
         bulletScript.HabilidadTigre(playercontroller.Tiger());
+        bulletScript.CocoConsumido(playercontroller.Coconut());
     }
 
     #endregion   

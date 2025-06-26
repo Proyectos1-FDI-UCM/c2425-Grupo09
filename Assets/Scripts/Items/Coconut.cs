@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Script encargado de aumentar el daño al consumir el coco
+// Alejandro Garcia Diaz
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
