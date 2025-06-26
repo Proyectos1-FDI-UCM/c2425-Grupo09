@@ -260,9 +260,17 @@ public class PlayerController : MonoBehaviour
         {
             nightVision.SetActive(true);
         }
-        if (AbilitiesManager.Instance.Tiger == true)
+        if (AbilitiesManager.Instance.Tiger)
         {
             tigerUnlocked = true;
+        }
+    }
+
+    public void Consumables()
+    {
+        if (ConsumableManager.Instance.Coconut)
+        {
+            coconutUnlocked = true;
         }
     }
 

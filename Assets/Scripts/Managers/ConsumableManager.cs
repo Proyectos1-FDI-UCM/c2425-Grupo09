@@ -1,12 +1,11 @@
 //---------------------------------------------------------
-// Script encargado de aumentar el daño al consumir el coco
-// Alejandro Garcia Diaz
+// Guarda que consumibles permanentes se han consumido para aplicarlos despues de revivir al personaje
+// Alejandro García Díaz
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
 
 using UnityEngine;
-using static UnityEditor.Progress;
 // Añadir aquí el resto de directivas using
 
 
@@ -14,16 +13,16 @@ using static UnityEditor.Progress;
 /// Antes de cada class, descripción de qué es y para qué sirve,
 /// usando todas las líneas que sean necesarias.
 /// </summary>
-public class Coconut : MonoBehaviour
+public class ConsumableManager : MonoBehaviour
 {
     // ---- ATRIBUTOS DEL INSPECTOR ----
     #region Atributos del Inspector (serialized fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
 
+    public static ConsumableManager Instance { get; private set; }
+
+    [SerializeField] private bool coconut = false;
+
+    public bool Coconut { get { return coconut; } }
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -35,16 +34,22 @@ public class Coconut : MonoBehaviour
     // primera letra en mayúsculas)
     // Ejemplo: _maxHealthPoints
 
-    private PlayerController _playerController;
-
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
     #region Métodos de MonoBehaviour
 
-    // Por defecto están los típicos (Update y Start) pero:
-    // - Hay que añadir todos los que sean necesarios
-    // - Hay que borrar los que no se usen 
+    protected void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     /// <summary>
     /// Start is called on the frame when a script is enabled just before 
@@ -52,7 +57,7 @@ public class Coconut : MonoBehaviour
     /// </summary>
     void Start()
     {
-        _playerController = GetComponent<PlayerController>();
+        
     }
 
     /// <summary>
@@ -66,14 +71,14 @@ public class Coconut : MonoBehaviour
 
     // ---- MÉTODOS PÚBLICOS ----
     #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
+    
+    public void CoconutConsumed()
+    {
+        coconut = true;
+    }
 
     #endregion
-
+    
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
@@ -81,18 +86,7 @@ public class Coconut : MonoBehaviour
     // se nombren en formato PascalCase (palabras con primera letra
     // mayúscula, incluida la primera letra)
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.GetComponent<Health>() != null)
-        {
-            _playerController.CoconutUnlocked = true;
-            AudioManager.Instance.PlaySFX("pickApple");
-            gameObject.SetActive(false);
-            Destroy(gameObject);
-        }
-    }
-
     #endregion   
 
-} // class Coconut 
+} // class ConsumableManager 
 // namespace
