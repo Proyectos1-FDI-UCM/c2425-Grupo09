@@ -64,6 +64,12 @@ public class PlayerController : MonoBehaviour
         set => bananaUnlocked = value;
     }
 
+    public bool SeedUnlocked
+    {
+        get => seedUnlocked;
+        set => SeedUnlocked = value;
+    }
+
     //Evento que se llama cuando cambia el estado de EnSuelo
     public event Action<bool> OnGroundStateChanged;
 
@@ -115,6 +121,7 @@ public class PlayerController : MonoBehaviour
     private bool tigerUnlocked = false;
     private bool coconutUnlocked = false;
     private bool bananaUnlocked = false;
+    private bool seedUnlocked = false;
     
     private float tSpeed; 
     private float Speed;
@@ -254,6 +261,9 @@ public class PlayerController : MonoBehaviour
 
     public bool Banana()
     { return bananaUnlocked; }
+
+    public bool Seed() 
+    { return seedUnlocked; }
 
     public void DisablePlayer()
     {

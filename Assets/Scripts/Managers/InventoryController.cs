@@ -24,8 +24,9 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI numApples;
     [SerializeField] GameObject grayGoldenApple;
-    [SerializeField] private int appleHealthUp = 50;
     [SerializeField] GameObject[] itemArray;
+
+    public int appleHealthUp = 50;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -45,6 +46,12 @@ public class InventoryController : MonoBehaviour
     {
         _health = GetComponent<Health>();
         _animator = GetComponent<Animator>();
+    }
+
+    private void Start()
+    {
+        // Comprueba si ha consumido la semilla dorada para curar mas por manzana
+        if (ConsumableManager.Instance.Seed) { appleHealthUp = 35; }
     }
 
     private void Update()

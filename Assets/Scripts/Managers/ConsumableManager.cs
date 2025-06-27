@@ -22,10 +22,14 @@ public class ConsumableManager : MonoBehaviour
 
     [SerializeField] private bool coconut = false;
     [SerializeField] private bool banana = false;
+    [SerializeField] private bool seed = false;
 
     public bool Coconut { get { return coconut; } }
 
     public bool Banana { get { return banana; } }
+
+    public bool Seed { get { return seed; } }
+
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -83,6 +87,11 @@ public class ConsumableManager : MonoBehaviour
     public void BananaConsumed()
     {
         banana = true;
+    }
+
+    public void SeedConsumed()
+    {
+        seed = true;
     }
 
     #endregion
