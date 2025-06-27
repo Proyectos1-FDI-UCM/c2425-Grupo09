@@ -95,6 +95,7 @@ public class SaveSystem
         GameManager.Instance._Capture.Load( _saveData.captureData);
         GameManager.Instance._InventoryController.Load(_saveData.itemData);
         GameManager.Instance._PlayerController.Abilities();
+        GameManager.Instance._PlayerController.Consumables();
         GameManager.Instance._Health.Abilities();
         GameManager.Instance._Gun.Abilities();
     }

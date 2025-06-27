@@ -16,16 +16,6 @@ using static UnityEditor.Progress;
 /// </summary>
 public class Coconut : MonoBehaviour
 {
-    // ---- ATRIBUTOS DEL INSPECTOR ----
-    #region Atributos del Inspector (serialized fields)
-    // Documentar cada atributo que aparece aquí.
-    // El convenio de nombres de Unity recomienda que los atributos
-    // públicos y de inspector se nombren en formato PascalCase
-    // (palabras con primera letra mayúscula, incluida la primera letra)
-    // Ejemplo: MaxHealthPoints
-
-    #endregion
-
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
     // Documentar cada atributo que aparece aquí.
@@ -39,41 +29,6 @@ public class Coconut : MonoBehaviour
 
     #endregion
 
-    // ---- MÉTODOS DE MONOBEHAVIOUR ----
-    #region Métodos de MonoBehaviour
-
-    // Por defecto están los típicos (Update y Start) pero:
-    // - Hay que añadir todos los que sean necesarios
-    // - Hay que borrar los que no se usen 
-
-    /// <summary>
-    /// Start is called on the frame when a script is enabled just before 
-    /// any of the Update methods are called the first time.
-    /// </summary>
-    void Start()
-    {
-        _playerController = GetComponent<PlayerController>();
-    }
-
-    /// <summary>
-    /// Update is called every frame, if the MonoBehaviour is enabled.
-    /// </summary>
-    void Update()
-    {
-        
-    }
-    #endregion
-
-    // ---- MÉTODOS PÚBLICOS ----
-    #region Métodos públicos
-    // Documentar cada método que aparece aquí con ///<summary>
-    // El convenio de nombres de Unity recomienda que estos métodos
-    // se nombren en formato PascalCase (palabras con primera letra
-    // mayúscula, incluida la primera letra)
-    // Ejemplo: GetPlayerController
-
-    #endregion
-
     // ---- MÉTODOS PRIVADOS ----
     #region Métodos Privados
     // Documentar cada método que aparece aquí
@@ -83,9 +38,12 @@ public class Coconut : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        _playerController = collision.GetComponent<PlayerController>();
+
         if (collision.gameObject.GetComponent<Health>() != null)
         {
             _playerController.CoconutUnlocked = true;
+            ConsumableManager.Instance.CoconutConsumed();
             AudioManager.Instance.PlaySFX("pickApple");
             gameObject.SetActive(false);
             Destroy(gameObject);

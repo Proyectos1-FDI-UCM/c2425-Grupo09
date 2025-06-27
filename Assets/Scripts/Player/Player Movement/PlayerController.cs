@@ -34,6 +34,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] Animator animator;
     public GameObject nightVision;
 
+    public float PlayerSpeed
+    {
+        get => Speed;
+        set => Speed = value;
+    }
+
     public int ExtraJump
     {
         get => extraJump;
@@ -51,7 +57,13 @@ public class PlayerController : MonoBehaviour
         get => coconutUnlocked;
         set => coconutUnlocked = value;
     }
-    
+
+    public bool BananaUnlocked
+    {
+        get => bananaUnlocked;
+        set => bananaUnlocked = value;
+    }
+
     //Evento que se llama cuando cambia el estado de EnSuelo
     public event Action<bool> OnGroundStateChanged;
 
@@ -102,6 +114,7 @@ public class PlayerController : MonoBehaviour
     private int extraJump = 0;
     private bool tigerUnlocked = false;
     private bool coconutUnlocked = false;
+    private bool bananaUnlocked = false;
     
     private float tSpeed; 
     private float Speed;
@@ -130,8 +143,9 @@ public class PlayerController : MonoBehaviour
             animator = GetComponent<Animator>(); // Si no lo asignas en el inspector, lo asigna automáticamente
         }
         Speed = velocidad;
-        tSpeed = velocidad * 1.25f;
+        tSpeed = 1.25f;
         Abilities();
+        Consumables();
         _fallSpeedYDampingChangeThreshold = CameraManager.Instance.FallSpeedYDampingChangeThreshold;
 
     }
@@ -213,7 +227,7 @@ public class PlayerController : MonoBehaviour
             _jumpCounter = extraJump;
         }
 
-        if (tigerUnlocked) velocidad = tSpeed;
+        if (tigerUnlocked) velocidad = Speed * tSpeed;
         else velocidad = Speed;
 
         if(_rB.velocity.y < _fallSpeedYDampingChangeThreshold && !CameraManager.Instance.IsLerpingYDamping && !CameraManager.Instance.LerpedFromPlayerFalling)
@@ -237,6 +251,9 @@ public class PlayerController : MonoBehaviour
 
     public bool Coconut() 
     { return coconutUnlocked; }
+
+    public bool Banana()
+    { return bananaUnlocked; }
 
     public void DisablePlayer()
     {
@@ -271,6 +288,12 @@ public class PlayerController : MonoBehaviour
         if (ConsumableManager.Instance.Coconut)
         {
             coconutUnlocked = true;
+        }
+
+        if (ConsumableManager.Instance.Banana)
+        {
+            bananaUnlocked = true;
+            Speed = 13;
         }
     }
 
