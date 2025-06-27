@@ -97,6 +97,11 @@ public class ConsumableManager : MonoBehaviour
         seed = true;
     }
 
+    public void GrapeConsumed()
+    {
+        grape = true;
+    }
+
     #endregion
     
     // ---- MÉTODOS PRIVADOS ----

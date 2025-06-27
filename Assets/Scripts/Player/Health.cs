@@ -25,8 +25,8 @@ public class Health : MonoBehaviour
     #region Atributos del Inspector (serialized fields)
 
     [Header("Vida")]
-    [SerializeField] float maxHealth = 100f;
-    [SerializeField] float startingHealth = 100f;
+    [SerializeField] private float _maxHealth = 100f;
+    [SerializeField] private float _startingHealth = 100f;
     [SerializeField] private Image _healthBarFill;
     [SerializeField] private float _fillSpeed;
     [SerializeField] private Gradient _colorGradient;
@@ -42,6 +42,20 @@ public class Health : MonoBehaviour
     {
         get => _currentHealth;
     }
+
+    public float MaxHealth
+    {
+        get => _maxHealth;
+        set => _maxHealth = value;
+    }
+
+    public float StartingHealth
+    {
+        get => _startingHealth;
+        set => _startingHealth = value;
+    }
+
+
 
     public bool ArmadilloUnlocked
     {
@@ -91,8 +105,8 @@ public class Health : MonoBehaviour
     {
         Abilities();
         _currentDuration = ShieldDuration;
-        _currentHealth = startingHealth;
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
+        _currentHealth = _startingHealth;
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
         _shieldOn = false;
         UpdateHealthBar();
         
@@ -164,7 +178,7 @@ public class Health : MonoBehaviour
     /// </summary>
     public void Updatehealth(float amount)
     {
-        _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
+        _currentHealth = Mathf.Clamp(_currentHealth, 0f, _maxHealth);
         _dañoActual = amount;
         Debug.Log("daño hecho: " + _dañoActual);
 
@@ -224,7 +238,7 @@ public class Health : MonoBehaviour
     public void ResetPlayer()
     {
         _playerController.enabled = true;
-        _currentHealth = startingHealth;
+        _currentHealth = _startingHealth;
         Updatehealth(0f);
     }
 
@@ -299,11 +313,11 @@ public class Health : MonoBehaviour
     /// </summary>
     private void UpdateHealthBar()
     {
-        float maximoRelativo = _currentHealth + _currentShield > startingHealth ? _currentHealth + _currentShield : maxHealth;
+        float maximoRelativo = _currentHealth + _currentShield > _startingHealth ? _currentHealth + _currentShield : _maxHealth;
 
         float targetFillAmount = _currentHealth / maximoRelativo;
         _healthBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
-        _healthBarFill.color = _colorGradient.Evaluate(_currentHealth / maxHealth);
+        _healthBarFill.color = _colorGradient.Evaluate(_currentHealth / _maxHealth);
     }
 
     /// <summary>
@@ -313,7 +327,7 @@ public class Health : MonoBehaviour
     {
         if (Shield > 0) // Asegurar que no haya división por cero
         {
-            float maximoRelativo = _currentHealth + _currentShield > startingHealth ? _currentHealth + _currentShield : maxHealth;
+            float maximoRelativo = _currentHealth + _currentShield > _startingHealth ? _currentHealth + _currentShield : _maxHealth;
 
             float targetFillAmount = (_currentShield + _currentHealth) / maximoRelativo;
             _shieldBarFill.DOFillAmount(targetFillAmount, _fillSpeed);

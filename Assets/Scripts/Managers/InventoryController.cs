@@ -56,7 +56,7 @@ public class InventoryController : MonoBehaviour
 
     private void Update()
     {
-        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0 && _health.CurrentHealth < 100) //Curacion al consumir una manzana
+        if (InputManager.Instance.HealWasPressedThisFrame() && applesInInventory > 0 && _health.CurrentHealth < _health.StartingHealth) //Curacion al consumir una manzana
         {
             _animator.SetTrigger("Eat");
             AudioManager.Instance.PlaySFX("eat", true);

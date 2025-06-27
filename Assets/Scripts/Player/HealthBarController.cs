@@ -33,9 +33,13 @@ public class HealthBarController : MonoBehaviour
     private float _widthUpgrade = 726.856f;
 
     private RectTransform _rt;
+    private RectTransform _bgrt; // Background rt
+    private RectTransform _shrt; // Shield rt
 
     [SerializeField] private GameObject normalHealth;
     [SerializeField] private GameObject upgradedHealth;
+    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject shield;
 
     #endregion
 
@@ -45,6 +49,8 @@ public class HealthBarController : MonoBehaviour
     private void Start()
     {
         _rt = GetComponent<RectTransform>();
+        _bgrt = background.GetComponent<RectTransform>();
+        _shrt = shield.GetComponent<RectTransform>();
 
         if (ConsumableManager.Instance.Grape)
         {
@@ -69,13 +75,26 @@ public class HealthBarController : MonoBehaviour
     public void NormalHealthBar()
     {
         _rt.sizeDelta = new Vector2(_width, _height);
-        _rt.position = new Vector2(_posX, gameObject.transform.position.y);
+        _rt.position = new Vector2(237, gameObject.transform.position.y);
+        _bgrt.sizeDelta = new Vector2(_width, _height);
+        _bgrt.position = new Vector2(237, gameObject.transform.position.y);
+        _shrt.sizeDelta = new Vector2(_width, _height);
+        _shrt.position = new Vector2(237, gameObject.transform.position.y);
+        Debug.Log("tu madre");
+        upgradedHealth.SetActive(false);
+        normalHealth.SetActive(true);
     }
 
     public void UpgradeHealthBar()
     {
         _rt.sizeDelta = new Vector2(_widthUpgrade, _height);
-        _rt.position = new Vector2(_posXUpgrade, gameObject.transform.position.y);
+        _rt.position = new Vector2(267, gameObject.transform.position.y);
+        _bgrt.sizeDelta = new Vector2(_widthUpgrade, _height);
+        _bgrt.position = new Vector2(267, gameObject.transform.position.y);
+        _shrt.sizeDelta = new Vector2(_widthUpgrade, _height);
+        _shrt.position = new Vector2(267, gameObject.transform.position.y);
+        upgradedHealth.SetActive(true);
+        normalHealth.SetActive(false);
     }
 
     #endregion

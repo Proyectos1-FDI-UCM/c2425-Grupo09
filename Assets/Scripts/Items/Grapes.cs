@@ -35,6 +35,7 @@ public class Grapes : MonoBehaviour
     // Ejemplo: _maxHealthPoints
 
     private HealthBarController _healthBar;
+    private Health _health;
 
     #endregion
     
@@ -83,10 +84,13 @@ public class Grapes : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        _health = collision.GetComponent<Health>();
         if (collision.gameObject.GetComponent<Health>() != null)
         {
+            _health.MaxHealth = 150f;
+            _health.StartingHealth = 150f;
             _healthBar.UpgradeHealthBar();
-
+            ConsumableManager.Instance.GrapeConsumed();
             AudioManager.Instance.PlaySFX("pickApple");
             gameObject.SetActive(false);
             Destroy(gameObject);

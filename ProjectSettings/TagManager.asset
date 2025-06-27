@@ -15,6 +15,8 @@ TagManager:
   - Coconut
   - Banana
   - Seed
+  - Grapes
+  - HealthBar
   layers:
   - Default
   - TransparentFX
