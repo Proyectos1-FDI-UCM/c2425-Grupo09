@@ -38,12 +38,10 @@ public class Seed : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         _inventoryController = collision.GetComponent<InventoryController>();
-        Debug.Log("culo: " + _inventoryController.appleHealthUp);
 
         if (collision.gameObject.GetComponent<Health>() != null)
         {
             _inventoryController.appleHealthUp = 35;
-            Debug.Log("Curacion por manzana: " + _inventoryController.appleHealthUp);
             ConsumableManager.Instance.SeedConsumed();
             AudioManager.Instance.PlaySFX("pickApple");
             gameObject.SetActive(false);

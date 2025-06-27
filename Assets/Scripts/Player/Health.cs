@@ -166,6 +166,7 @@ public class Health : MonoBehaviour
     {
         _currentHealth = Mathf.Clamp(_currentHealth, 0f, maxHealth);
         _dañoActual = amount;
+        Debug.Log("daño hecho: " + _dañoActual);
 
         if (_dañoActual < 0) 
         {
@@ -194,7 +195,7 @@ public class Health : MonoBehaviour
             _currentHealth += amount;
             UpdateShieldBar();
         }
-
+        Debug.Log( "vida restante: " + _currentHealth);
         UpdateHealthBar();
 
         if (_currentHealth <= 0) //Si la vida llega a 0 muere
@@ -223,7 +224,7 @@ public class Health : MonoBehaviour
     public void ResetPlayer()
     {
         _playerController.enabled = true;
-        _currentHealth = 100f;
+        _currentHealth = startingHealth;
         Updatehealth(0f);
     }
 
@@ -298,7 +299,7 @@ public class Health : MonoBehaviour
     /// </summary>
     private void UpdateHealthBar()
     {
-        float maximoRelativo = _currentHealth + _currentShield > 100 ? _currentHealth + _currentShield : maxHealth;
+        float maximoRelativo = _currentHealth + _currentShield > startingHealth ? _currentHealth + _currentShield : maxHealth;
 
         float targetFillAmount = _currentHealth / maximoRelativo;
         _healthBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
@@ -312,7 +313,7 @@ public class Health : MonoBehaviour
     {
         if (Shield > 0) // Asegurar que no haya división por cero
         {
-            float maximoRelativo = _currentHealth + _currentShield > 100 ? _currentHealth + _currentShield : maxHealth;
+            float maximoRelativo = _currentHealth + _currentShield > startingHealth ? _currentHealth + _currentShield : maxHealth;
 
             float targetFillAmount = (_currentShield + _currentHealth) / maximoRelativo;
             _shieldBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
