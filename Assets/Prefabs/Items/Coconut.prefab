@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4294000432216459904}
   m_Layer: 12
   m_Name: Coconut
-  m_TagString: Apple
+  m_TagString: Coconut
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,5 +156,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e38e811726bc1cc409b78c92e29941ea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  amplitude: 0.3
-  frecuency: 1.5
+  amplitude: 0.5
+  frecuency: 1

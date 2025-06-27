@@ -82,7 +82,14 @@ public class Banana : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+
+        Debug.Log("que pasaaaa");
         _playerController = collision.GetComponent<PlayerController>();
+
+        if (_playerController != null)
+        {
+            Debug.Log("Barriga");
+        }
 
         if (collision.gameObject.GetComponent<Health>() != null)
         {
