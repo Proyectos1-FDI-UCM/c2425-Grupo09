@@ -12,6 +12,9 @@ TagManager:
   - Tiger
   - Armadillo
   - Vessel
+  - Coconut
+  - Banana
+  - Seed
   layers:
   - Default
   - TransparentFX
