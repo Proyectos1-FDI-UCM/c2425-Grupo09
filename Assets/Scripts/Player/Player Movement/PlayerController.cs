@@ -133,8 +133,8 @@ public class PlayerController : MonoBehaviour
 
     //Dash
     private float _gravedadInicial;
-    private bool _puedeHacerDash;
-    private bool _sePuedeMover;
+    private bool _puedeHacerDash = true;
+    private bool _sePuedeMover = true;
 
     //Velocidad de movimiento (tigre/normal)
     private float tSpeed; 
