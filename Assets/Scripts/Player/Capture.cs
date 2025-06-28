@@ -87,14 +87,20 @@ public class Capture : MonoBehaviour
             {
                 _near = false;
             }
-
-            if (_near && InputManager.Instance.CaptureWasPressedThisFrame () && _barraDeSueño.Dormido())
+            if (InputManager.Instance.CaptureWasPressedThisFrame())
             {
+                Debug.Log("capturePressed");
+            }
+
+            if (_near && InputManager.Instance.CaptureWasPressedThisFrame() && !_barraDeSueño.Dormido())
+            {
+                Debug.Log("capturePressed");
                 animator.SetTrigger("Capture");
                 AudioManager.Instance.PlaySFX("pick", false);
                 CheckpointManager.Instance.SetCheckpoint(transform.position);
                 _capturedAnimals++;
                 _animalCapture.Add(_barraDeSueño.AnimalId);
+                Debug.Log("capturePressed");
                 if (_animal.CompareTag("Bunny"))
                 {
                     Debug.Log("saltos extra:" + _playerController.ExtraJump);
@@ -104,7 +110,7 @@ public class Capture : MonoBehaviour
                     if(_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleBunny);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleBunny);
                 }
-                if (_animal.CompareTag("Bat"))
+                else if (_animal.CompareTag("Bat"))
                 {
                     Debug.Log("activada la vision nocturna");
                     AbilitiesManager.Instance.BatAbilityUnlock();
@@ -113,7 +119,7 @@ public class Capture : MonoBehaviour
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleBat);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleBat);
                 }
-                if (_animal.CompareTag("Gorila"))
+                else if (_animal.CompareTag("Gorila"))
                 {
                     AbilitiesManager.Instance.GorilaAbilityUnlock();
                     _grapplerGun.GrapplerUnlocked = true;
@@ -121,7 +127,7 @@ public class Capture : MonoBehaviour
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleGorila);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleGorila);
                 }
-                if (_animal.CompareTag("Tiger"))
+                else if (_animal.CompareTag("Tiger"))
                 {
                     AbilitiesManager.Instance.TigerAbilityUnlock();
                     _playerController.TigerUnlocked = true;
@@ -129,7 +135,7 @@ public class Capture : MonoBehaviour
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleTiger);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleTiger);
                 }
-                if (_animal.CompareTag("Armadillo"))
+                else if (_animal.CompareTag("Armadillo"))
                 {
                     AbilitiesManager.Instance.ArmadilloAbilityUnlock();
                     _health.ArmadilloUnlocked = true;
@@ -137,7 +143,7 @@ public class Capture : MonoBehaviour
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleArmadillo);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleArmadillo);
                 }
-                if (_animal.CompareTag("Dog"))
+                else if (_animal.CompareTag("Dog"))
                 {
                     AbilitiesManager.Instance.DogAbilityUnlock();
                     _playerController.DogUnlocked = true;
@@ -146,6 +152,7 @@ public class Capture : MonoBehaviour
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleDog);
                 }
                 RecogerObjeto();
+                Debug.Log("captureEnded");
             }
         }
         //Debug.Log(_animal);
