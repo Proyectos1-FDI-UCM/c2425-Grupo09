@@ -49,10 +49,10 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.3
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.15
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 2501b696c1f5c90e
+  m_ApplyToSortingLayers: 2501b696
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -309,7 +309,7 @@ TrailRenderer:
   m_MinVertexDistance: 0.2
   m_MaskInteraction: 0
   m_Autodestruct: 0
-  m_Emitting: 1
+  m_Emitting: 0
   m_ApplyActiveColorSpace: 1
 --- !u!1 &2094814545725993657
 GameObject:
@@ -423,7 +423,7 @@ MonoBehaviour:
   autoConfigureDistance: 1
   targetDistance: 6.5
   targetFrequncy: 1
-  maxDistance: 8
+  maxDistance: 12
   alturaMinimaEnganche: 0.8
   impulso: 8
   offset: 3
@@ -788,7 +788,7 @@ SpriteRenderer:
   m_SortingLayerID: 248116673
   m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1277911916, guid: 6105dc71fc2f13e4fb6f01dc08adf162, type: 3}
+  m_Sprite: {fileID: 460343429, guid: c297f40b997fc4145b1615ee744a42f3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -835,7 +835,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.45, y: 2.15}
+    oldSize: {x: 1.375, y: 2.1875}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -963,9 +963,9 @@ MonoBehaviour:
     m_NumColorKeys: 4
     m_NumAlphaKeys: 2
   animator: {fileID: 3784885503509508793}
-  ShieldDuration: 10
-  Shield: 10
-  CooldownShield: 3
+  ShieldDuration: 11
+  Shield: 25
+  CooldownShield: 6
   _shieldBarFill: {fileID: 0}
 --- !u!114 &7154726047639681158
 MonoBehaviour:
@@ -1006,6 +1006,8 @@ MonoBehaviour:
   distanciaMaxima: 30
   animator: {fileID: 3784885503509508793}
   AnimalsList:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1072,6 +1074,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 0}
   ticks:
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}

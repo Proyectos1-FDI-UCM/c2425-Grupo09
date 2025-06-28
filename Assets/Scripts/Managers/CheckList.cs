@@ -146,7 +146,7 @@ public class CheckList : MonoBehaviour
             _victory.ShowVictory(); 
             InputManager.Instance.DisablePlayerControls();
         }
-        if (_ticks==10)
+        if (_ticks==12)
         {
             _allCaptured=true;
         }
