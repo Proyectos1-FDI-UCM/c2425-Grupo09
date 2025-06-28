@@ -168,7 +168,7 @@ public class PlayerController : MonoBehaviour
         Abilities();
         Consumables();
         _fallSpeedYDampingChangeThreshold = CameraManager.Instance.FallSpeedYDampingChangeThreshold;
-        gravedadInicial = _rB.gravityScale;
+        _gravedadInicial = _rB.gravityScale;
     }
     private void Awake()
     {
@@ -184,7 +184,7 @@ public class PlayerController : MonoBehaviour
         //MOVIMIENTO CON GRAPPLER
 
         //Si no está enganchado o esta enganchado estando en el suelo se mueve normal
-        if (!grappleRope.IsGrappling || (grappleRope.IsGrappling & EnSuelo))
+        if ((!grappleRope.IsGrappling || (grappleRope.IsGrappling & EnSuelo)) && _sePuedeMover)
         {   
             if(EnSuelo)
                 _rB.velocity = new Vector2(velocidad * moveX, _rB.velocity.y); // Movimiento normal
@@ -229,14 +229,14 @@ public class PlayerController : MonoBehaviour
 
         _bufferCounter = InputManager.Instance.JumpWasPressedThisFrame() ? BufferTime : _bufferCounter - Time.deltaTime;
 
-        if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.IsGrappling)
+        if (_bufferCounter > 0 && _coyoteCounter > 0 && !_isJumping && !grappleRope.IsGrappling && _sePuedeMover)
         {
             Jump();
             animator.SetTrigger("Jump");
             _bufferCounter = 0;
             StartCoroutine(JumpCooldown());
         }
-        else if (InputManager.Instance.JumpWasPressedThisFrame() && !EnSuelo && !grappleRope.IsGrappling && _jumpCounter > 0)
+        else if (InputManager.Instance.JumpWasPressedThisFrame() && !EnSuelo && !grappleRope.IsGrappling && _jumpCounter > 0 && _sePuedeMover)
         {
             Jump();
             animator.SetTrigger("DoubleJump");
@@ -266,7 +266,7 @@ public class PlayerController : MonoBehaviour
 
         if(InputManager.Instance.DashWasPressedThisFrame() && _puedeHacerDash)
         {
-
+            StartCoroutine(Dash());
         }
     }
     #endregion
@@ -365,6 +365,20 @@ public class PlayerController : MonoBehaviour
         _isJumping = true;
         yield return new WaitForSeconds(0.4f);
         _isJumping = false;
+    }
+
+    private IEnumerator Dash()
+    {
+        _sePuedeMover = false;
+        _puedeHacerDash = false;
+        _rB.gravityScale = 0;
+        _rB.velocity = new Vector2(velocidadDash, 0);
+
+        yield return new WaitForSeconds (tiempoDash);
+
+        _puedeHacerDash = true;
+        _sePuedeMover = true;
+        _rB.gravityScale = _gravedadInicial;
     }
 
     private void TurnCheck()
