@@ -9,6 +9,7 @@ using UnityEngine;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.Serialization;
 
 /// <summary>
 /// Antes de cada class, descripción de qué es y para qué sirve,
@@ -33,6 +34,11 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] Animator animator;
     public GameObject nightVision;
+
+    //Dash
+    [SerializeField] float velocidadDash;
+    [SerializeField] float tiempoDash;
+    
 
     public float PlayerSpeed
     {
@@ -117,12 +123,20 @@ public class PlayerController : MonoBehaviour
     private bool _enSuelo;
     private bool _flippedRight = true;
     private float moveX;
+
+    //Abilities and consumables unlocked
     private int extraJump = 0;
     private bool tigerUnlocked = false;
     private bool coconutUnlocked = false;
     private bool bananaUnlocked = false;
     private bool seedUnlocked = false;
-    
+
+    //Dash
+    private float _gravedadInicial;
+    private bool _puedeHacerDash;
+    private bool _sePuedeMover;
+
+    //Velocidad de movimiento (tigre/normal)
     private float tSpeed; 
     private float Speed;
 
@@ -154,7 +168,7 @@ public class PlayerController : MonoBehaviour
         Abilities();
         Consumables();
         _fallSpeedYDampingChangeThreshold = CameraManager.Instance.FallSpeedYDampingChangeThreshold;
-
+        gravedadInicial = _rB.gravityScale;
     }
     private void Awake()
     {
@@ -209,7 +223,7 @@ public class PlayerController : MonoBehaviour
     /// <summary>
     /// Update is called every frame, if the MonoBehaviour is enabled.
     /// </summary>
-     void Update()
+    void Update()
     {
         _coyoteCounter = EnSuelo ? CoyoteTime : _coyoteCounter - Time.deltaTime;
 
@@ -246,6 +260,13 @@ public class PlayerController : MonoBehaviour
         {
             CameraManager.Instance.LerpedFromPlayerFalling = false;
             CameraManager.Instance.LerpYDamping(false);
+        }
+
+        // DASH
+
+        if(InputManager.Instance.DashWasPressedThisFrame() && _puedeHacerDash)
+        {
+
         }
     }
     #endregion

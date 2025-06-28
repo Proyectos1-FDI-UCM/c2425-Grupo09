@@ -68,6 +68,7 @@ public class InputManager : MonoBehaviour
     /// </summary>
     private InputAction _fire;
     private InputAction _jump;
+    private InputAction _dash;
     private InputAction _heal;
     private InputAction _capture;
     private InputAction _grappler;
@@ -236,6 +237,11 @@ public class InputManager : MonoBehaviour
         return _jump.WasPressedThisFrame();
     }
 
+
+    public bool DashWasPressedThisFrame()
+    {
+        return _dash.WasPressedThisFrame();
+    }
     /// <summary>
     /// Método para saber si el botón de curacion (Heal) se ha pulsado en este frame
     /// <returns>Devuelve true, si el botón ha sido pulsado en este frame
@@ -464,6 +470,7 @@ public class InputManager : MonoBehaviour
         // y FireWasReleasedThisFrame)
         _fire = _theController.Player.Fire;
         _jump = _theController.Player.Jump;
+        _dash = _theController.Player.Dash;
         _heal = _theController.Player.Heal;
         _capture = _theController.Player.Capture;
         _grappler = _theController.Player.Grappler;

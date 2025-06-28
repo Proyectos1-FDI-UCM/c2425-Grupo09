@@ -34,7 +34,7 @@ namespace UnityEngine.InputSystem
                     ""type"": ""Value"",
                     ""id"": ""351f2ccd-1f9f-44bf-9bec-d62ac5c5f408"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""stickDeadzone(min=0.2)"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
                 },
@@ -51,6 +51,15 @@ namespace UnityEngine.InputSystem
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""deaea7a5-e9d0-40ad-9c14-757a3a9c02e6"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""e134af3d-9cde-4cb9-b2f2-d89fc4ab4698"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -535,6 +544,17 @@ namespace UnityEngine.InputSystem
                     ""action"": ""Cheats"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3cec37ac-043f-42a7-b166-ba121731f4f4"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard&Mouse"",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -547,7 +567,7 @@ namespace UnityEngine.InputSystem
                     ""type"": ""PassThrough"",
                     ""id"": ""c95b2375-e6d9-4b88-9c4c-c5e76515df4b"",
                     ""expectedControlType"": ""Vector2"",
-                    ""processors"": ""stickDeadzone(min=0.2)"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 },
@@ -1313,6 +1333,7 @@ namespace UnityEngine.InputSystem
             m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
             m_Player_Fire = m_Player.FindAction("Fire", throwIfNotFound: true);
             m_Player_Jump = m_Player.FindAction("Jump", throwIfNotFound: true);
+            m_Player_Dash = m_Player.FindAction("Dash", throwIfNotFound: true);
             m_Player_Heal = m_Player.FindAction("Heal", throwIfNotFound: true);
             m_Player_Capture = m_Player.FindAction("Capture", throwIfNotFound: true);
             m_Player_Grappler = m_Player.FindAction("Grappler", throwIfNotFound: true);
@@ -1407,6 +1428,7 @@ namespace UnityEngine.InputSystem
         private readonly InputAction m_Player_Move;
         private readonly InputAction m_Player_Fire;
         private readonly InputAction m_Player_Jump;
+        private readonly InputAction m_Player_Dash;
         private readonly InputAction m_Player_Heal;
         private readonly InputAction m_Player_Capture;
         private readonly InputAction m_Player_Grappler;
@@ -1428,6 +1450,7 @@ namespace UnityEngine.InputSystem
             public InputAction @Move => m_Wrapper.m_Player_Move;
             public InputAction @Fire => m_Wrapper.m_Player_Fire;
             public InputAction @Jump => m_Wrapper.m_Player_Jump;
+            public InputAction @Dash => m_Wrapper.m_Player_Dash;
             public InputAction @Heal => m_Wrapper.m_Player_Heal;
             public InputAction @Capture => m_Wrapper.m_Player_Capture;
             public InputAction @Grappler => m_Wrapper.m_Player_Grappler;
@@ -1460,6 +1483,9 @@ namespace UnityEngine.InputSystem
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
                 @Heal.started += instance.OnHeal;
                 @Heal.performed += instance.OnHeal;
                 @Heal.canceled += instance.OnHeal;
@@ -1515,6 +1541,9 @@ namespace UnityEngine.InputSystem
                 @Jump.started -= instance.OnJump;
                 @Jump.performed -= instance.OnJump;
                 @Jump.canceled -= instance.OnJump;
+                @Dash.started -= instance.OnDash;
+                @Dash.performed -= instance.OnDash;
+                @Dash.canceled -= instance.OnDash;
                 @Heal.started -= instance.OnHeal;
                 @Heal.performed -= instance.OnHeal;
                 @Heal.canceled -= instance.OnHeal;
@@ -1774,6 +1803,7 @@ namespace UnityEngine.InputSystem
             void OnMove(InputAction.CallbackContext context);
             void OnFire(InputAction.CallbackContext context);
             void OnJump(InputAction.CallbackContext context);
+            void OnDash(InputAction.CallbackContext context);
             void OnHeal(InputAction.CallbackContext context);
             void OnCapture(InputAction.CallbackContext context);
             void OnGrappler(InputAction.CallbackContext context);

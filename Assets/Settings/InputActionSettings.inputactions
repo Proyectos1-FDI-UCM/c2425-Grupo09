@@ -33,6 +33,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Dash",
+                    "type": "Button",
+                    "id": "e134af3d-9cde-4cb9-b2f2-d89fc4ab4698",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Heal",
                     "type": "Button",
                     "id": "723ffe85-fb34-4264-8b49-d2cb8640cf52",
@@ -509,6 +518,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "Cheats",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cec37ac-043f-42a7-b166-ba121731f4f4",
+                    "path": "<Keyboard>/leftShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard&Mouse",
+                    "action": "Dash",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
