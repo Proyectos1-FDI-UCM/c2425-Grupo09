@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Este script se encarga de gestionar el movimiento y ataque de los animales
-// Sergio Valiente Urueña, Alejandro Garcia
+// Sergio Valiente Urueña
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

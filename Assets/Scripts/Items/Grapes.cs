@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Script responsable de realizar los cambios respectivos a consumir las uvas
-// Alejandro Garcia
+// Breve descripción del contenido del archivo
+// Responsable de la creación de este archivo
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

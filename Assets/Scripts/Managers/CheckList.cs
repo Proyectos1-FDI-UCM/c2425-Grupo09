@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // En este script se gestiona el menu de la checklist de animales mediante el tabulador
-// Pablo Abellán , Diego Garcí Alonso, Alejandro Garcia
+// Pablo Abellán , Diego Garcí Alonso
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

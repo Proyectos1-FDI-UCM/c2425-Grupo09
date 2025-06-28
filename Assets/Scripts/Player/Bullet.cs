@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Script que lleva la bala para gestionar su movimiento y colsiones
-// Sergio Valiente Urueña, Alejandro Garcia
+// Sergio Valiente Urueña
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

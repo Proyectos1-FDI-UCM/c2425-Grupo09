@@ -1,5 +1,5 @@
 //---------------------------------------------------------
-// Script responsable de todo el manejo del personaje principal (Noe)
+// Breve descripción del contenido del archivo
 // Pablo Abellán, Diego García, Sergio Valiente, Alejandro Garcia
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
@@ -56,12 +56,6 @@ public class PlayerController : MonoBehaviour
     {
         get => tigerUnlocked;
         set => tigerUnlocked = value;
-    }
-
-    public bool DogUnlocked
-    {
-        get => dogUnlocked;
-        set => dogUnlocked = value;
     }
 
     public bool CoconutUnlocked

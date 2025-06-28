@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Script responsable de capturar y manejar los aspectos posteriores a cada captura de animal 
-// Valeria Espada, Diego García, Alejandro Garcia
+// Este script se usa para recoger los animales 
+// Valeria Espada, Diego García
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -33,7 +33,6 @@ public class Capture : MonoBehaviour
     private PlayerController _playerController;
     private GrapplerGun _grapplerGun;
     private Health _health;
-    private HealthBarController _healthBar;
     private CheckList _checkList;
     private int _capturedAnimals = 0;
     private List <int> _animalCapture = new List<int>();
@@ -49,9 +48,7 @@ public class Capture : MonoBehaviour
         MaleTiger,
         FemaleTiger,
         MaleArmadillo,
-        FemaleArmadillo,
-        MaleDog,
-        FemaleDog
+        FemaleArmadillo
     }
 
     #endregion
@@ -64,8 +61,6 @@ public class Capture : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _grapplerGun = GetComponentInChildren<GrapplerGun>();
         _health = GetComponent<Health>();
-        GameObject healthBar = GameObject.FindGameObjectWithTag("HealthBar");
-        _healthBar = _healthBar.GetComponent<HealthBarController>();
         _checkList = GetComponent<CheckList>();
         _capturedAnimals = 0;
     }
@@ -139,11 +134,7 @@ public class Capture : MonoBehaviour
                 }
                 if (_animal.CompareTag("Dog"))
                 {
-                    AbilitiesManager.Instance.DogAbilityUnlock();
-                    _playerController.DogUnlocked = true;
-
-                    if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleDog);
-                    else _checkList.ActivateTick((int)_animalIdentifier.FemaleDog);
+                    AbilitiesManager.Instance.Dogun
                 }
                 RecogerObjeto();
             }
@@ -190,21 +181,11 @@ public class Capture : MonoBehaviour
     /// </summary>
     public void Cheats()
     {
-        //Abilities
         _playerController.nightVision.SetActive(true);
         _health.ArmadilloUnlocked = true;
         _grapplerGun.GrapplerUnlocked = true;
         _playerController.ExtraJump = 1;
         _playerController.TigerUnlocked = true;
-        _playerController.DogUnlocked = true;
-        
-        //Consumables
-        _playerController.CoconutUnlocked = true;
-        _playerController.BananaUnlocked = true;
-        _playerController.SeedUnlocked = true;
-        _health.MaxHealth = 150f;
-        _health.StartingHealth = 150f;
-        _healthBar.UpgradeHealthBar();
     }
 
     #region Save and Load

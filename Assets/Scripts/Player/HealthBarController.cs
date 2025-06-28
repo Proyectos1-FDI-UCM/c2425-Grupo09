@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Script responsable de controlar el tamaño y proporciones de la barra de vida al mejorarla o no
-// Alejandro Garcia
+// Breve descripción del contenido del archivo
+// Responsable de la creación de este archivo
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
