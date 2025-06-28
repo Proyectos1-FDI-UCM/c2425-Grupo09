@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // El script se encarga de gestionar el HUD de habilidades del juego, mostrando los iconos y su estado (bloqueado, activo, en espera, etc.).
-// Pablo Abellán, Sergio Valiente
+// Pablo Abellán, Sergio Valiente, Alejandro Garcia
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

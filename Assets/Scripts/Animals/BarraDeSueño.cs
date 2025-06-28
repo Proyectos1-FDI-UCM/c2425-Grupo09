@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Se encarga de gestionar la barra de sueño de los animales
-// Sergio Valiente Urueña, Sergio González López
+// Sergio Valiente Urueña, Sergio González López, Alejandro Garcia
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

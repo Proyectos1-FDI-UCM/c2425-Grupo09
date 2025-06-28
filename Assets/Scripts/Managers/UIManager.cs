@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Sergio Valiente Urueña, Sergio Gonzalez López , Diego García Alonso
+// Script responsable del manejo de la representacion grafica de las habilidades en el HUD
+// Sergio Valiente Urueña, Sergio Gonzalez López , Diego García Alonso, Alejandro Garcia
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
