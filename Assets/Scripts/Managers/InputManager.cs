@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Contiene el componente de InputManager
-// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín, Sergio Gonzalez Lopez
+// Guillermo Jiménez Díaz, Pedro Pablo Gómez Martín, Sergio Gonzalez Lopez, Alejandro Garcia
 // TemplateP1
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
