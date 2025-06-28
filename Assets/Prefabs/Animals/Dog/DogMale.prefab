@@ -34804,7 +34804,7 @@ MonoBehaviour:
   SleepCollider: {fileID: 0}
   SleepLeftCollider: {fileID: 0}
   SleepRightCollider: {fileID: 0}
-  _healthBarFill: {fileID: 0}
+  _healthBarFill: {fileID: 3856939778305223216}
   _fillSpeed: 0.2
   _colorGradient:
     serializedVersion: 2

@@ -33,7 +33,6 @@ public class Capture : MonoBehaviour
     private PlayerController _playerController;
     private GrapplerGun _grapplerGun;
     private Health _health;
-    private HealthBarController _healthBar;
     private CheckList _checkList;
     private int _capturedAnimals = 0;
     private List <int> _animalCapture = new List<int>();
@@ -64,8 +63,6 @@ public class Capture : MonoBehaviour
         _playerController = GetComponent<PlayerController>();
         _grapplerGun = GetComponentInChildren<GrapplerGun>();
         _health = GetComponent<Health>();
-        GameObject healthBar = GameObject.FindGameObjectWithTag("HealthBar");
-        _healthBar = _healthBar.GetComponent<HealthBarController>();
         _checkList = GetComponent<CheckList>();
         _capturedAnimals = 0;
     }
@@ -87,12 +84,8 @@ public class Capture : MonoBehaviour
             {
                 _near = false;
             }
-            if (InputManager.Instance.CaptureWasPressedThisFrame())
-            {
-                Debug.Log("capturePressed");
-            }
 
-            if (_near && InputManager.Instance.CaptureWasPressedThisFrame() && !_barraDeSueño.Dormido())
+            if (_near && InputManager.Instance.CaptureWasPressedThisFrame() && _barraDeSueño.Dormido())
             {
                 Debug.Log("capturePressed");
                 animator.SetTrigger("Capture");
@@ -209,9 +202,6 @@ public class Capture : MonoBehaviour
         _playerController.CoconutUnlocked = true;
         _playerController.BananaUnlocked = true;
         _playerController.SeedUnlocked = true;
-        _health.MaxHealth = 150f;
-        _health.StartingHealth = 150f;
-        _healthBar.UpgradeHealthBar();
     }
 
     #region Save and Load

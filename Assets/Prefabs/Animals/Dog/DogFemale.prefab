@@ -24925,7 +24925,7 @@ MonoBehaviour:
   SleepCollider: {fileID: 0}
   SleepLeftCollider: {fileID: 0}
   SleepRightCollider: {fileID: 0}
-  _healthBarFill: {fileID: 0}
+  _healthBarFill: {fileID: 8857965939500932568}
   _fillSpeed: 0.2
   _colorGradient:
     serializedVersion: 2
