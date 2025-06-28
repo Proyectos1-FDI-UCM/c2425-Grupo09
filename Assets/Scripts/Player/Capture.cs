@@ -132,6 +132,10 @@ public class Capture : MonoBehaviour
                     if (_barraDeSueño.Male) _checkList.ActivateTick((int)_animalIdentifier.MaleArmadillo);
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleArmadillo);
                 }
+                if (_animal.CompareTag("Dog"))
+                {
+                    AbilitiesManager.Instance.Dogun
+                }
                 RecogerObjeto();
             }
         }

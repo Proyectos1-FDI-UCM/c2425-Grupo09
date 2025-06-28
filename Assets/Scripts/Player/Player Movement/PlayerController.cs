@@ -1,6 +1,6 @@
 //---------------------------------------------------------
 // Breve descripción del contenido del archivo
-// Pablo Abellán, Diego García, Sergio Valiente
+// Pablo Abellán, Diego García, Sergio Valiente, Alejandro Garcia
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
@@ -127,14 +127,17 @@ public class PlayerController : MonoBehaviour
     //Abilities and consumables unlocked
     private int extraJump = 0;
     private bool tigerUnlocked = false;
+    private bool dogUnlocked = false;
     private bool coconutUnlocked = false;
     private bool bananaUnlocked = false;
     private bool seedUnlocked = false;
 
     //Dash
     private float _gravedadInicial;
-    private bool _puedeHacerDash = true;
+    private float _tiempoRestanteDash;
+    private bool _haciendoDash = false;
     private bool _sePuedeMover = true;
+    [SerializeField] private TrailRenderer _tr;
 
     //Velocidad de movimiento (tigre/normal)
     private float tSpeed; 
@@ -169,6 +172,7 @@ public class PlayerController : MonoBehaviour
         Consumables();
         _fallSpeedYDampingChangeThreshold = CameraManager.Instance.FallSpeedYDampingChangeThreshold;
         _gravedadInicial = _rB.gravityScale;
+        _tr.emitting = false;
     }
     private void Awake()
     {
@@ -195,7 +199,7 @@ public class PlayerController : MonoBehaviour
             else  //Si está en el aire y no hay input, lo deceleramos poco a poco
                 _rB.velocity = new Vector2(Mathf.Lerp(_rB.velocity.x, 0, Time.deltaTime * 2f), _rB.velocity.y);
         }
-        else //Si está enganchado, el jugador puede balancearse un poco añadiendo fuerzas (no velocidad para que se sienta mas natural)
+        else if (_sePuedeMover) //Si está enganchado, el jugador puede balancearse un poco añadiendo fuerzas (no velocidad para que se sienta mas natural)
         {
             if(Mathf.Abs(moveX) > 0)
                 _rB.AddForce(new Vector2(moveX * velocidad/2f, 0), ForceMode2D.Force);
@@ -217,6 +221,33 @@ public class PlayerController : MonoBehaviour
 
         else animator.SetBool("Walk", false);
 
+
+        //DASH
+
+        if (_haciendoDash)
+        {
+            _sePuedeMover = false;
+            _tr.emitting = true;
+
+            if (_flippedRight)
+            {
+                _rB.velocity = new Vector2(velocidadDash * transform.localScale.x, 0f);
+            }
+            else if (!_flippedRight)
+            {
+                _rB.velocity = new Vector2(-(velocidadDash * transform.localScale.x), 0f);
+            }
+
+            _tiempoRestanteDash -= Time.fixedDeltaTime;
+
+            if (_tiempoRestanteDash <= 0)
+            {
+                _haciendoDash = false;
+                _sePuedeMover = true;
+                _tr.emitting = false;
+                _rB.velocity = Vector2.down; // o vuelve a velocidad normal
+            }
+        }
     }
 
 
@@ -262,11 +293,11 @@ public class PlayerController : MonoBehaviour
             CameraManager.Instance.LerpYDamping(false);
         }
 
-        // DASH
 
-        if(InputManager.Instance.DashWasPressedThisFrame() && _puedeHacerDash)
+        //Dash Input
+        if (InputManager.Instance.DashWasPressedThisFrame() && !_haciendoDash && dogUnlocked)
         {
-            StartCoroutine(Dash());
+            StartDash();
         }
     }
     #endregion
@@ -311,6 +342,10 @@ public class PlayerController : MonoBehaviour
         if (AbilitiesManager.Instance.Tiger)
         {
             tigerUnlocked = true;
+        }
+        if (AbilitiesManager.Instance.Dog)
+        {
+            dogUnlocked = true;
         }
     }
 
@@ -367,18 +402,12 @@ public class PlayerController : MonoBehaviour
         _isJumping = false;
     }
 
-    private IEnumerator Dash()
+
+    //Empieza el temporizador del dash
+    void StartDash()
     {
-        _sePuedeMover = false;
-        _puedeHacerDash = false;
-        _rB.gravityScale = 0;
-        _rB.velocity = new Vector2(velocidadDash, 0);
-
-        yield return new WaitForSeconds (tiempoDash);
-
-        _puedeHacerDash = true;
-        _sePuedeMover = true;
-        _rB.gravityScale = _gravedadInicial;
+        _haciendoDash = true;
+        _tiempoRestanteDash = tiempoDash;
     }
 
     private void TurnCheck()

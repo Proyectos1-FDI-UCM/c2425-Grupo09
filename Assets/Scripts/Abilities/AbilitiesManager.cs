@@ -21,12 +21,14 @@ public class AbilitiesManager : MonoBehaviour
     [SerializeField] private bool grappler = false;
     [SerializeField] private bool tiger = false;
     [SerializeField] private bool armadillo = false;
+    [SerializeField] private bool dog = false;
 
     public bool NightVision { get { return nightVision; } }
     public bool DoubleJump { get { return doubleJump; } }
     public bool Grappler { get { return grappler; } }
     public bool Tiger { get { return tiger; } }
     public bool Armadillo { get { return armadillo; } }
+    public bool Dog { get { return dog; } }
 
     #endregion
 
@@ -41,6 +43,7 @@ public class AbilitiesManager : MonoBehaviour
         Armadillo,
         Bat,
         Gorila,
+        Dog,
         Tiger,
         Bunny
     }
@@ -145,6 +148,19 @@ public class AbilitiesManager : MonoBehaviour
         {
             armadillo = true;
             _HUDAbilities.ActivateColor((int)_HUDImage.Armadillo);
+            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Armadillo);
+        }
+    }
+    /// <summary>
+    /// Se llama cuando el jugador captura el primer perro
+    /// para otorgarle su habilidad
+    /// </summary>
+    public void DogAbilityUnlock()
+    {
+        if (!dog)
+        {
+            dog = true;
+            _HUDAbilities.ActivateColor((int)_HUDImage.Dog);
             UIManager.Instance.VFXObtainAbility((int)_HUDImage.Armadillo);
         }
     }

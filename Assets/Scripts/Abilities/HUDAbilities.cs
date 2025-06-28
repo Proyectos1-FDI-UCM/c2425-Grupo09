@@ -55,7 +55,8 @@ public class HUDAbilities : MonoBehaviour
     {
         Armadillo,
         Bat,
-        Gorilla
+        Gorilla,
+        Dog
     }
     #endregion
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -116,7 +117,15 @@ public class HUDAbilities : MonoBehaviour
         GlowEffect[(int)_animal.Armadillo].SetActive(state);
     }
 
-    
+    /// <summary>
+    /// Controla el brillo del perro.
+    /// </summary>
+    public void DogGlow(bool state)
+    {
+        GlowEffect[(int)_animal.Dog].SetActive(state);
+    }
+
+
     /// <summary>
     /// Cambia el icono del control a mando o teclado.
     /// </summary>
