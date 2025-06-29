@@ -1,0 +1,157 @@
+//---------------------------------------------------------
+// Breve descripción del contenido del archivo
+// Responsable de la creación de este archivo
+// The Last Vessel
+// Proyectos 1 - Curso 2024-25
+//---------------------------------------------------------
+
+using System.Collections;
+using UnityEngine;
+using UnityEngine.UIElements;
+// Añadir aquí el resto de directivas using
+
+
+/// <summary>
+/// Antes de cada class, descripción de qué es y para qué sirve,
+/// usando todas las líneas que sean necesarias.
+/// </summary>
+public class PhoenixController : MonoBehaviour
+{
+    // ---- ATRIBUTOS DEL INSPECTOR ----
+    #region Atributos del Inspector (serialized fields)
+    // Documentar cada atributo que aparece aquí.
+    // El convenio de nombres de Unity recomienda que los atributos
+    // públicos y de inspector se nombren en formato PascalCase
+    // (palabras con primera letra mayúscula, incluida la primera letra)
+    // Ejemplo: MaxHealthPoints
+
+    [SerializeField] private float phoenixSpeed;
+
+    #endregion
+
+    // ---- ATRIBUTOS PRIVADOS ----
+    #region Atributos Privados (private fields)
+    // Documentar cada atributo que aparece aquí.
+    // El convenio de nombres de Unity recomienda que los atributos
+    // privados se nombren en formato _camelCase (comienza con _, 
+    // primera palabra en minúsculas y el resto con la 
+    // primera letra en mayúsculas)
+    // Ejemplo: _maxHealthPoints
+
+    // Las tres posiciones posibles (horizontalmente separadas 15 unidades)
+    private Vector3[] _positions = new Vector3[3];
+
+    // Duración de espera en cada posición
+    private float _waitTime = 6f;
+
+    // Velocidad de movimiento
+    private float _moveSpeed = 4f;
+
+    // Posición actual (índice)
+    private int _currentIndex;   
+
+    #endregion
+
+    // ---- MÉTODOS DE MONOBEHAVIOUR ----
+    #region Métodos de MonoBehaviour
+
+    // Por defecto están los típicos (Update y Start) pero:
+    // - Hay que añadir todos los que sean necesarios
+    // - Hay que borrar los que no se usen 
+
+    /// <summary>
+    /// Start is called on the frame when a script is enabled just before 
+    /// any of the Update methods are called the first time.
+    /// </summary>
+    void Start()
+    {
+        // Establecemos las posiciones
+        Vector3 basePos = transform.position;
+        _positions[0] = new Vector3(30, basePos.y, basePos.z);
+        _positions[1] = new Vector3(45, basePos.y, basePos.z);
+        _positions[2] = new Vector3(60, basePos.y, basePos.z);
+
+        // Detectar la posición inicial más cercana
+        _currentIndex = GetNearestPositionIndex(transform.position);
+
+        // Comenzar el ciclo de movimiento
+        StartCoroutine(MoveLoop());
+    }
+
+    /// <summary>
+    /// Update is called every frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    void Update()
+    {
+
+    }
+    #endregion
+    // ---- MÉTODOS PÚBLICOS ----
+    #region Métodos públicos
+    // Documentar cada método que aparece aquí con ///<summary>
+    // El convenio de nombres de Unity recomienda que estos métodos
+    // se nombren en formato PascalCase (palabras con primera letra
+    // mayúscula, incluida la primera letra)
+    // Ejemplo: GetPlayerController
+
+    #endregion
+
+    // ---- MÉTODOS PRIVADOS ----
+    #region Métodos Privados
+    // Documentar cada método que aparece aquí
+    // El convenio de nombres de Unity recomienda que estos métodos
+    // se nombren en formato PascalCase (palabras con primera letra
+    // mayúscula, incluida la primera letra)
+
+    private IEnumerator MoveLoop()
+    {
+        while (true)
+        {
+            // Elegir una nueva posición distinta de la actual
+            int nextIndex;
+            do
+            {
+                nextIndex = Random.Range(0, _positions.Length);
+            } while (nextIndex == _currentIndex);
+
+            // Mover hacia esa posición
+            yield return StartCoroutine(MoveToPosition(_positions[nextIndex]));
+
+            // Actualizar posición actual
+            _currentIndex = nextIndex;
+
+            // Esperar antes de volver a moverse
+            yield return new WaitForSeconds(_waitTime);
+        }
+    }
+    private IEnumerator MoveToPosition(Vector3 target)
+    {
+        while (Vector3.Distance(transform.position, target) > 0.05f)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, target, _moveSpeed * Time.deltaTime);
+            yield return null;
+        }
+
+        // Corregir posición final
+        transform.position = target;
+    }
+
+    private int GetNearestPositionIndex(Vector3 pos)
+    {
+        int closest = 0;
+        float minDist = Vector3.Distance(pos, _positions[0]);
+        for (int i = 1; i < _positions.Length; i++)
+        {
+            float dist = Vector3.Distance(pos, _positions[i]);
+            if (dist < minDist)
+            {
+                closest = i;
+                minDist = dist;
+            }
+        }
+        return closest;
+    }
+    #endregion   
+
+} // class PhoenixController 
+// namespace
