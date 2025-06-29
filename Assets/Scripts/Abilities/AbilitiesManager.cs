@@ -161,7 +161,7 @@ public class AbilitiesManager : MonoBehaviour
         {
             dog = true;
             _HUDAbilities.ActivateColor((int)_HUDImage.Dog);
-            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Armadillo);
+            UIManager.Instance.VFXObtainAbility((int)_HUDImage.Dog);
         }
     }
     /// <summary>
