@@ -26,6 +26,7 @@ public class PhoenixController : MonoBehaviour
     // Ejemplo: MaxHealthPoints
 
     [SerializeField] private float phoenixSpeed;
+    [SerializeField] private BoxCollider2D arenaArea;
 
     #endregion
 
@@ -48,7 +49,14 @@ public class PhoenixController : MonoBehaviour
     private float _moveSpeed = 4f;
 
     // Posición actual (índice)
-    private int _currentIndex;   
+    private int _currentIndex;
+
+    // Controlador de animaciones
+    private Animator _animator;
+
+    private bool _playerDetected = false;
+
+    private SpriteRenderer _sR;
 
     #endregion
 
@@ -71,11 +79,11 @@ public class PhoenixController : MonoBehaviour
         _positions[1] = new Vector3(45, basePos.y, basePos.z);
         _positions[2] = new Vector3(60, basePos.y, basePos.z);
 
+        _animator = GetComponent<Animator>();
+        _sR = GetComponent<SpriteRenderer>();
+
         // Detectar la posición inicial más cercana
         _currentIndex = GetNearestPositionIndex(transform.position);
-
-        // Comenzar el ciclo de movimiento
-        StartCoroutine(MoveLoop());
     }
 
     /// <summary>
@@ -105,6 +113,7 @@ public class PhoenixController : MonoBehaviour
 
     private IEnumerator MoveLoop()
     {
+        Debug.Log("empiza bucle");
         while (true)
         {
             // Elegir una nueva posición distinta de la actual
@@ -120,14 +129,20 @@ public class PhoenixController : MonoBehaviour
             // Actualizar posición actual
             _currentIndex = nextIndex;
 
+            // Empieza la animacion de idle
+            _animator.SetBool("Flight", false);
+
             // Esperar antes de volver a moverse
             yield return new WaitForSeconds(_waitTime);
         }
     }
     private IEnumerator MoveToPosition(Vector3 target)
     {
+        _animator.SetBool("Flight", true);
         while (Vector3.Distance(transform.position, target) > 0.05f)
         {
+            if (target.x - transform.position.x < 0) { _sR.flipX = true; }
+            if (target.x - transform.position.x > 0) { _sR.flipX = false; }
             transform.position = Vector3.MoveTowards(transform.position, target, _moveSpeed * Time.deltaTime);
             yield return null;
         }
@@ -151,7 +166,18 @@ public class PhoenixController : MonoBehaviour
         }
         return closest;
     }
-    #endregion   
+    #endregion
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("choque");
+        if (!_playerDetected && other.GetComponent<PlayerController>() != null)
+        {
+            _playerDetected = true;
+            arenaArea.enabled = false;
+            StartCoroutine(MoveLoop());
+        }
+    }
 
 } // class PhoenixController 
 // namespace

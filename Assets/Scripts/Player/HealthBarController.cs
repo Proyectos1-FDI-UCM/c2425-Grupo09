@@ -80,7 +80,6 @@ public class HealthBarController : MonoBehaviour
         _bgrt.position = new Vector2(237, gameObject.transform.position.y);
         _shrt.sizeDelta = new Vector2(_width, _height);
         _shrt.position = new Vector2(237, gameObject.transform.position.y);
-        Debug.Log("tu madre");
         upgradedHealth.SetActive(false);
         normalHealth.SetActive(true);
     }
