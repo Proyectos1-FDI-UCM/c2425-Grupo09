@@ -897,6 +897,7 @@ MonoBehaviour:
   nightVision: {fileID: 1596692666541051136}
   velocidadDash: 20
   tiempoDash: 0.3
+  phoenixDead: 0
   _tr: {fileID: 5311438834182476081}
 --- !u!114 &219931106219531943
 MonoBehaviour:
@@ -1093,6 +1094,7 @@ MonoBehaviour:
   KeyboardVesselText: {fileID: 0}
   VesselTextBack: {fileID: 0}
   victorySign: {fileID: 0}
+  phoenix: {fileID: 0}
   _onVessel: 0
 --- !u!114 &7607157575400462418
 MonoBehaviour:
