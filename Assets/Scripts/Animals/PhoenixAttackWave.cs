@@ -41,7 +41,7 @@ public class PhoenixAttackWave : MonoBehaviour
     // Ejemplo: _maxHealthPoints
 
     private float _timer = 0f;
-    private float _spawnInterval = 3f;
+    private float _spawnInterval = 2f;
     private Vector3 spawnPos;
     private SpriteRenderer _sR;
 
@@ -113,7 +113,6 @@ public class PhoenixAttackWave : MonoBehaviour
             // Calcular posición de spawn al lado del jugador
             spawnPos = new Vector3(player.position.x + spawnOffset * spawnDistance, 1.816f, 0);
         }
-        Debug.Log("ola spawneada 2");
         GameObject newWave = Instantiate(fireWave, spawnPos, Quaternion.identity);
 
         SpriteRenderer _sR = newWave.GetComponent<SpriteRenderer>();
@@ -132,8 +131,6 @@ public class PhoenixAttackWave : MonoBehaviour
         // Mover la ola hacia el jugador
         Rigidbody2D rb = newWave.GetComponent<Rigidbody2D>();
         rb.velocity = direction * fireSpeed;
-        Debug.Log("ola spawneada 3");
-
     }
 
     #endregion   

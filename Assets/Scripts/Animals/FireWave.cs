@@ -102,11 +102,13 @@ public class FireWave : MonoBehaviour
     {
         if (_hasHit) return; // evita múltiples ejecuciones
         _hasHit = true;
-
-        if (coll.gameObject.GetComponent<Health>() != null)
+        Debug.Log("ole, choque");
+        if (coll.gameObject.GetComponent<PlayerController>() != null)
         {
+            Debug.Log("-vida 1");
             Health _playerHealth = coll.gameObject.GetComponent<Health>();
             _playerHealth.Updatehealth(-_damage);
+            Debug.Log("-vida 2");
         }
     }
 
