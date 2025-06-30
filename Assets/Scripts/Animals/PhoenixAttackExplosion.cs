@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Script encargado de spawnear los ataques explosivos de fuego
+// Alejandro Garcia
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------

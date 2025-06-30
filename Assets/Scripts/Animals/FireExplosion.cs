@@ -1,6 +1,6 @@
 //---------------------------------------------------------
-// Breve descripción del contenido del archivo
-// Responsable de la creación de este archivo
+// Script responsable de el comportamiento de la explosion de fuego (su destruccion, daño, etc)
+// Alejandro Garcia
 // The Last Vessel
 // Proyectos 1 - Curso 2024-25
 //---------------------------------------------------------
