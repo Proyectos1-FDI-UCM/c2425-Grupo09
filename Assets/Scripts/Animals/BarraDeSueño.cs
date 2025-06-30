@@ -19,6 +19,7 @@ public class BarraDeSueño : MonoBehaviour
 
     [Header("Atributos del Inspector")]
     [SerializeField] float MaxBarraDeSueño;
+    public float barraDeSueño = 0;
     [SerializeField] private float ResetDistance;
 
     [Header("Colliders")]
@@ -60,7 +61,6 @@ public class BarraDeSueño : MonoBehaviour
     // ---- ATRIBUTOS PRIVADOS ----
     #region Atributos Privados (private fields)
 
-    private float _barraDeSueño = 0; 
     private AnimalController _animalController;
     private Animator _animator;
     private bool dormido;
@@ -95,11 +95,11 @@ public class BarraDeSueño : MonoBehaviour
     {
         if(!dormido)
         {
-            _barraDeSueño += amount;
+            barraDeSueño += amount;
             _playerDetected = true;
             AudioManager.Instance.PlaySFX("animalHurt", true);
 
-            if(_barraDeSueño >= MaxBarraDeSueño)
+            if(barraDeSueño >= MaxBarraDeSueño)
             {
                 _animalController.HideDangerSignal();
                 
@@ -133,7 +133,7 @@ public class BarraDeSueño : MonoBehaviour
                 dormido = true;
             }
 
-            _barraDeSueño = Mathf.Clamp(_barraDeSueño, 0f, MaxBarraDeSueño);
+            barraDeSueño = Mathf.Clamp(barraDeSueño, 0f, MaxBarraDeSueño);
             UpdateHealthBar();
         }
     }
@@ -154,7 +154,7 @@ public class BarraDeSueño : MonoBehaviour
     /// </summary>
     private void UpdateHealthBar()
     {
-        float targetFillAmount = _barraDeSueño / MaxBarraDeSueño;
+        float targetFillAmount = barraDeSueño / MaxBarraDeSueño;
         _healthBarFill.DOFillAmount(targetFillAmount, _fillSpeed);
         _healthBarFill.color = _colorGradient.Evaluate(targetFillAmount);
     }
@@ -168,7 +168,7 @@ public class BarraDeSueño : MonoBehaviour
         
         if (_distanceToPlayer > ResetDistance)
         {
-            _barraDeSueño = 0;
+            barraDeSueño = 0;
             UpdateHealthBar();
             _playerDetected = false;
         }

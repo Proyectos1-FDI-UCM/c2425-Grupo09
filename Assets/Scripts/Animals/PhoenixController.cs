@@ -27,6 +27,8 @@ public class PhoenixController : MonoBehaviour
 
     [SerializeField] private float phoenixSpeed;
     [SerializeField] private BoxCollider2D arenaArea;
+    [SerializeField] private GameObject health;
+
 
     #endregion
 
@@ -55,8 +57,10 @@ public class PhoenixController : MonoBehaviour
     private Animator _animator;
 
     private bool _playerDetected = false;
+    private bool _dead = false;
 
     private SpriteRenderer _sR;
+    private BarraDeSueño _sueño;
 
     #endregion
 
@@ -81,6 +85,7 @@ public class PhoenixController : MonoBehaviour
 
         _animator = GetComponent<Animator>();
         _sR = GetComponent<SpriteRenderer>();
+        _sueño = GetComponent<BarraDeSueño>();
 
         // Detectar la posición inicial más cercana
         _currentIndex = GetNearestPositionIndex(transform.position);
@@ -91,7 +96,17 @@ public class PhoenixController : MonoBehaviour
     /// </summary>
     void Update()
     {
+        Debug.Log(_sueño.barraDeSueño);
 
+        if (_sueño.barraDeSueño >= 300 && !_dead)
+        {
+            transform.position = Vector3.MoveTowards(transform.position, transform.position, _moveSpeed * Time.deltaTime);
+            StopCoroutine(MoveLoop());
+            health.SetActive(false);
+            _dead = true;
+            _animator.SetTrigger("Death");
+            Destroy(gameObject, 1.5f);
+        }
     }
     #endregion
     // ---- MÉTODOS PÚBLICOS ----
@@ -177,6 +192,19 @@ public class PhoenixController : MonoBehaviour
             arenaArea.enabled = false;
             StartCoroutine(MoveLoop());
         }
+    }
+
+    private void PhoenixDead()
+    {
+        health.SetActive(false);
+        StartCoroutine(Death());
+        Destroy(gameObject);
+    }
+
+    private IEnumerator Death()
+    {
+        _animator.SetTrigger("Death");
+        yield return new WaitForSecondsRealtime(0.45f);
     }
 
 } // class PhoenixController 

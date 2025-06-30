@@ -689,9 +689,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 218
-        y: 69
+        y: 82
         width: 11
-        height: 38
+        height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -706,55 +706,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phoenixling Sprite Sheet_29
-      rect:
-        serializedVersion: 2
-        x: 281
-        y: 94
-        width: 5
-        height: 11
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9a13c580fe846e242bdc42477567a30b
-      internalID: 450258263
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Phoenixling Sprite Sheet_30
-      rect:
-        serializedVersion: 2
-        x: 285
-        y: 100
-        width: 6
-        height: 14
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 6fb40b7fe3019c4489cd91c46c12654c
-      internalID: -256105410
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Phoenixling Sprite Sheet_31
       rect:
         serializedVersion: 2
         x: 345
-        y: 69
+        y: 90
         width: 12
-        height: 49
+        height: 28
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -773,9 +731,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 410
-        y: 69
+        y: 96
         width: 11
-        height: 51
+        height: 24
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -790,34 +748,13 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Phoenixling Sprite Sheet_33
-      rect:
-        serializedVersion: 2
-        x: 286
-        y: 82
-        width: 6
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 4fc63e808c8880d429fd893c36151086
-      internalID: -259261643
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Phoenixling Sprite Sheet_34
       rect:
         serializedVersion: 2
-        x: 283
-        y: 69
-        width: 9
-        height: 12
+        x: 281
+        y: 82
+        width: 11
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -857,9 +794,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 463
-        y: 13
+        y: 22
         width: 35
-        height: 41
+        height: 32
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -878,9 +815,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 526
-        y: 15
+        y: 21
         width: 35
-        height: 41
+        height: 35
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -922,9 +859,9 @@ TextureImporter:
         x: 282
         y: 12
         width: 12
-        height: 55
-      alignment: 9
-      pivot: {x: 0.51121014, y: 0.90273166}
+        height: 25
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -941,9 +878,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 346
-        y: 8
+        y: 19
         width: 11
-        height: 41
+        height: 25
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -962,9 +899,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 399
-        y: 11
-        width: 35
-        height: 41
+        y: 23
+        width: 32
+        height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
