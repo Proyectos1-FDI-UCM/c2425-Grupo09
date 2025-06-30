@@ -28,6 +28,8 @@ public class PhoenixController : MonoBehaviour
     [SerializeField] private float phoenixSpeed;
     [SerializeField] private BoxCollider2D arenaArea;
     [SerializeField] private GameObject health;
+    [SerializeField] private GameObject fireColumn1;
+    [SerializeField] private GameObject fireColumn2;
 
 
     #endregion
@@ -62,6 +64,9 @@ public class PhoenixController : MonoBehaviour
     private SpriteRenderer _sR;
     private BarraDeSueño _sueño;
 
+    private Animator _col1;
+    private Animator _col2;
+
     #endregion
 
     // ---- MÉTODOS DE MONOBEHAVIOUR ----
@@ -83,6 +88,8 @@ public class PhoenixController : MonoBehaviour
         _positions[1] = new Vector3(45, basePos.y, basePos.z);
         _positions[2] = new Vector3(60, basePos.y, basePos.z);
 
+        _col1 = fireColumn1.GetComponent<Animator>();
+        _col2 = fireColumn2.GetComponent<Animator>();
         _animator = GetComponent<Animator>();
         _sR = GetComponent<SpriteRenderer>();
         _sueño = GetComponent<BarraDeSueño>();
@@ -96,14 +103,16 @@ public class PhoenixController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        Debug.Log(_sueño.barraDeSueño);
-
         if (_sueño.barraDeSueño >= 300 && !_dead)
         {
             transform.position = Vector3.MoveTowards(transform.position, transform.position, _moveSpeed * Time.deltaTime);
             StopCoroutine(MoveLoop());
             health.SetActive(false);
             _dead = true;
+            _col1.SetTrigger("End");
+            _col2.SetTrigger("End");
+            Destroy(fireColumn1, 0.6f);
+            Destroy(fireColumn2, 0.6f);
             _animator.SetTrigger("Death");
             Destroy(gameObject, 1.5f);
         }
@@ -185,11 +194,12 @@ public class PhoenixController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log("choque");
         if (!_playerDetected && other.GetComponent<PlayerController>() != null)
         {
             _playerDetected = true;
             arenaArea.enabled = false;
+            fireColumn1.SetActive(true);
+            fireColumn2.SetActive(true);
             StartCoroutine(MoveLoop());
         }
     }
