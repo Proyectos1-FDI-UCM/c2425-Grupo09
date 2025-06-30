@@ -43,9 +43,6 @@ public class FireWave : MonoBehaviour
     private float _currentLifeTime;
     private bool _end = false;
     private Animator _animator;
-    private PhoenixAttackWave _wave;
-    private SpriteRenderer _sR;
-
 
     #endregion
     
@@ -102,13 +99,10 @@ public class FireWave : MonoBehaviour
     {
         if (_hasHit) return; // evita múltiples ejecuciones
         _hasHit = true;
-        Debug.Log("ole, choque");
         if (coll.gameObject.GetComponent<PlayerController>() != null)
         {
-            Debug.Log("-vida 1");
             Health _playerHealth = coll.gameObject.GetComponent<Health>();
             _playerHealth.Updatehealth(-_damage);
-            Debug.Log("-vida 2");
         }
     }
 

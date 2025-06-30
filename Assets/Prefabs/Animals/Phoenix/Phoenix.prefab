@@ -201,6 +201,7 @@ GameObject:
   - component: {fileID: 5478932381446429041}
   - component: {fileID: 44227791703459825}
   - component: {fileID: 1898070451416372011}
+  - component: {fileID: 7435536890720017510}
   m_Layer: 11
   m_Name: Phoenix_Body
   m_TagString: Untagged
@@ -476,6 +477,20 @@ MonoBehaviour:
   spawnDistance: 5
   fireSpeed: 6
   spawnOffset: 0
+--- !u!114 &7435536890720017510
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 613846941157238147}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5364338feb8e2a45aa2d6a66ae3d8b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  fireExplosion: {fileID: 2499822053447023455, guid: 6432545b94be1b44e94a81bad26cb781, type: 3}
 --- !u!1 &2205146556892436181
 GameObject:
   m_ObjectHideFlags: 0

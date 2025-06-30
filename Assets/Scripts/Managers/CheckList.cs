@@ -40,6 +40,7 @@ public class CheckList : MonoBehaviour
 
     [SerializeField] private GameObject VesselTextBack;
     [SerializeField] private GameObject victorySign;
+    [SerializeField] private GameObject phoenix;
     #endregion
 
     // ---- ATRIBUTOS PRIVADOS ----
@@ -57,6 +58,7 @@ public class CheckList : MonoBehaviour
     private bool _inVesselRange;
     private bool _inKeyboard;
     private Victory _victory;
+    private PlayerController _player;
 
     #endregion
 
@@ -74,6 +76,7 @@ public class CheckList : MonoBehaviour
     /// </summary>
     void Start()
     {
+        _player = GetComponent<PlayerController>();
         if (menuPanel != null)
         {
             menuPanel.SetActive(false); // Con esto hacemos que el menú esté oculto al inicio
@@ -146,9 +149,13 @@ public class CheckList : MonoBehaviour
             _victory.ShowVictory(); 
             InputManager.Instance.DisablePlayerControls();
         }
-        if (_ticks==12)
+        if (_ticks==12 && _player.phoenixDead)
         {
             _allCaptured=true;
+        }
+        else if (_ticks == 12)
+        {
+            phoenix.SetActive(true);
         }
         
     }

@@ -38,6 +38,9 @@ public class PlayerController : MonoBehaviour
     //Dash
     [SerializeField] float velocidadDash;
     [SerializeField] float tiempoDash;
+
+    //Phoenix derrotado
+    public bool phoenixDead = false;
     
 
     public float PlayerSpeed

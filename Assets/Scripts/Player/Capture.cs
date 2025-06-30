@@ -87,13 +87,11 @@ public class Capture : MonoBehaviour
 
             if (_near && InputManager.Instance.CaptureWasPressedThisFrame() && _barraDeSueño.Dormido())
             {
-                Debug.Log("capturePressed");
                 animator.SetTrigger("Capture");
                 AudioManager.Instance.PlaySFX("pick", false);
                 CheckpointManager.Instance.SetCheckpoint(transform.position);
                 _capturedAnimals++;
                 _animalCapture.Add(_barraDeSueño.AnimalId);
-                Debug.Log("capturePressed");
                 if (_animal.CompareTag("Bunny"))
                 {
                     Debug.Log("saltos extra:" + _playerController.ExtraJump);
@@ -145,7 +143,6 @@ public class Capture : MonoBehaviour
                     else _checkList.ActivateTick((int)_animalIdentifier.FemaleDog);
                 }
                 RecogerObjeto();
-                Debug.Log("captureEnded");
             }
         }
         //Debug.Log(_animal);

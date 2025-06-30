@@ -61,8 +61,12 @@ public class PhoenixController : MonoBehaviour
     private bool _playerDetected = false;
     private bool _dead = false;
 
+    private bool _fase2 = false;
+    private bool _fase3 = false;
+
     private SpriteRenderer _sR;
     private BarraDeSueño _sueño;
+    private PlayerController _player;
 
     private Animator _col1;
     private Animator _col2;
@@ -103,8 +107,22 @@ public class PhoenixController : MonoBehaviour
     /// </summary>
     void Update()
     {
-        if (_sueño.barraDeSueño >= 300 && !_dead)
+        if (_sueño.barraDeSueño >= 150 && !_fase2) // Fase 2 cambia de usar olas de fuego a usar explosiones
         {
+            _fase2 = true;
+            GetComponent<PhoenixAttackExplosion>().enabled = true;
+            GetComponent<PhoenixAttackWave>().enabled = false;
+        }
+        if (_sueño.barraDeSueño >= 210 && !_fase3) // Fase 3 ahora el fenix utiliza ambas mecanicas
+        {
+            _fase3 = true;
+            GetComponent<PhoenixAttackExplosion>().enabled = true;
+            GetComponent<PhoenixAttackWave>().enabled = true;
+        }
+        if (_sueño.barraDeSueño >= 300 && !_dead) // Hace la animacion de desaparecer y muere
+        {
+            AudioManager.Instance.PlayMusic("savannahMusic");
+            _player.phoenixDead = true;
             transform.position = Vector3.MoveTowards(transform.position, transform.position, _moveSpeed * Time.deltaTime);
             StopCoroutine(MoveLoop());
             health.SetActive(false);
@@ -194,8 +212,11 @@ public class PhoenixController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        _player = other.gameObject.GetComponent<PlayerController>();
+
         if (!_playerDetected && other.GetComponent<PlayerController>() != null)
         {
+            AudioManager.Instance.PlayMusic("bossMusic");
             _playerDetected = true;
             arenaArea.enabled = false;
             fireColumn1.SetActive(true);

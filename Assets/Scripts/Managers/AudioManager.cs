@@ -34,6 +34,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] private AudioClip savannahMusic;
     [SerializeField] private AudioClip caveMusic;
     [SerializeField] private AudioClip jungleMusic;
+    [SerializeField] private AudioClip bossMusic;
     [SerializeField] private AudioClip mainMenu;
     [SerializeField] private AudioClip victory;
     [SerializeField] private AudioClip gameOver;
@@ -92,6 +93,7 @@ public class AudioManager : MonoBehaviour
             { "savannahMusic", savannahMusic },
             { "caveMusic", caveMusic },
             { "jungleMusic", jungleMusic },
+            { "bossMusic", bossMusic },
             { "mainMenu", mainMenu },
             { "victory", victory },
             { "gameOver", gameOver },
