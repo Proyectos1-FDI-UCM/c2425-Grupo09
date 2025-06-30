@@ -216,11 +216,11 @@ public class PhoenixController : MonoBehaviour
 
         if (!_playerDetected && other.GetComponent<PlayerController>() != null)
         {
-            AudioManager.Instance.PlayMusic("bossMusic");
             _playerDetected = true;
             arenaArea.enabled = false;
             fireColumn1.SetActive(true);
             fireColumn2.SetActive(true);
+            AudioManager.Instance.PlayMusic("bossMusic");
             StartCoroutine(MoveLoop());
         }
     }

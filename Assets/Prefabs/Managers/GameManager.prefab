@@ -337,6 +337,7 @@ MonoBehaviour:
   savannahMusic: {fileID: 8300000, guid: 3233600a2eb802644be9a00305ca754e, type: 3}
   caveMusic: {fileID: 8300000, guid: 597665d827c17d74b90284fcca56dec9, type: 3}
   jungleMusic: {fileID: 8300000, guid: 3d18ec4467b18ba48b16eec7d483e616, type: 3}
+  bossMusic: {fileID: 8300000, guid: c8cd7975c19349643a8def92cca419b4, type: 3}
   mainMenu: {fileID: 8300000, guid: 91ca76adbff663743ab83e01b3d7c647, type: 3}
   victory: {fileID: 8300000, guid: d87ab331c87d8454fa30c25caa049c05, type: 3}
   gameOver: {fileID: 8300000, guid: 510e305a20e5d5340ba123eac4f83f8e, type: 3}
